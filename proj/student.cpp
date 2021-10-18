@@ -70,15 +70,15 @@ int compareCGPA(Student stu1, Student stu2)
 {
     if (stu1.getCGPA() > stu2.getCGPA())
     {
-        return stu1.getCGPA() > stu2.getCGPA();
+        return 1;
     }
     if (stu1.getCGPA() < stu2.getCGPA())
     {
-        return stu1.getCGPA() < stu2.getCGPA();
+        return -1;
     }
     else
     {
-        return stu1.getCGPA() == stu2.getCGPA();
+        return 0;
     }
 }
 
@@ -86,15 +86,15 @@ int compareResearchScore(Student stu1, Student stu2)
 {
     if (stu1.getResearchScore() > stu2.getResearchScore())
     {
-        return stu1.getResearchScore() > stu2.getResearchScore();
+        return 1;
     }
     if (stu1.getResearchScore() < stu2.getResearchScore())
     {
-        return stu1.getResearchScore() < stu2.getResearchScore();
+        return -1;
     }
     else
     {
-        return stu1.getResearchScore() == stu2.getResearchScore();
+        return 0;
     }
 }
 
