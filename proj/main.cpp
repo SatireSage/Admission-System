@@ -32,6 +32,36 @@ int Get_Number()
   return user_input;
 }
 
+string Get_String()
+{
+  bool num = false;
+  string line;
+  string user_input;
+  while (getline(cin, line))
+  {
+    for (int i = 0; i < line.length(); i++)
+    {
+      char c = line.at(i); // Get a char from string
+      // if it's NOT within these bounds, then it's not a character
+      if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')))
+      {
+        num = true;
+      }
+      else
+      {
+        num = false;
+      }
+    }
+    if (num == false)
+    {
+      break;
+    }
+    cout << "Please enter a string as input only for the previous input: " << '\n'
+         << ">> ";
+  }
+  return user_input;
+}
+
 int lineCounter(ifstream &file)
 {
   int i = 0;
@@ -196,7 +226,8 @@ int main()
       }
       cout << "Or any combination of the above (i.e. LRG).\n"
            << ">> ";
-      cin >> user_selector;
+      user_selector = Get_String();
+      // cin >> user_selector;
       if (menu_selector == 1)
       {
         MultiSort(DomesticStudents, numDomesticStudents, user_selector);
