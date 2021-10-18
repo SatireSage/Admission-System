@@ -267,10 +267,8 @@ int main()
 
     if (menu_selector == 3)
     {
-      string user_selector_Dom = "GRP";
-      string user_selector_Int = "GRC";
-      MultiSort(DomesticStudents, numDomesticStudents, user_selector_Dom);
-      MultiSort(InternationalStudents, numInternationalStudents, user_selector_Int);
+      MultiSort(DomesticStudents, numDomesticStudents);
+      MultiSort(InternationalStudents, numInternationalStudents);
       int filteredIndex = 0;
       for (int j = 0; j < numInternationalStudents; j++)
       {
