@@ -2,8 +2,8 @@
 #ifndef STUDENT_HPP
 #define STUDENT_HPP
 
-using namespace std; // use namespace std
 #include <string>    //you will have to use string in C++
+using namespace std; // use namespace std
 
 // Main Student class
 class Student
@@ -12,8 +12,7 @@ private:
     // Student class private memeber variables
     string firstName, lastName;
     float CGPA;
-    int RScore;
-    // int UID;
+    int RScore, UID;
 
 public:
     //  Studnet class constructor
@@ -24,12 +23,16 @@ public:
     string getLastName() const;
     float getCGPA() const;
     int getResearchScore() const;
+    int getUID() const;
 
     // Student class set functions
     void setFirstName(string firstNameValue);
     void setLastName(string lastNameValue);
     void setCGPA(float cgpaValue);
     void setResearchScore(int researchScoreValue);
+    void setUID(int UIDValue);
+    // each student should have an 8-digit unique application id with int type, starting with 20210000.
+    // We assume there are less than 10,000 applicants in our system.
 
     // Student class friend functions
     friend int compareCGPA(Student stu1, Student stu2);
@@ -57,6 +60,7 @@ public:
 
     // Domestic class friend function
     friend ostream &operator<<(ostream &outs, const Domestic &stuObj);
+    friend istream &operator>>(istream &ins, Domestic &stuObj);
 };
 
 // TOEFL class for international students
@@ -121,6 +125,7 @@ public:
 
     // International class friend function
     friend ostream &operator<<(ostream &outs, const International &stuObj);
+    friend istream &operator>>(istream &ins, International &stuObj);
 };
 
 #endif

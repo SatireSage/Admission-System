@@ -1,7 +1,7 @@
 // student.cpp to implement your classes
 #include "student.hpp"
 #include <iomanip>
-
+using namespace std; // use namespace std
 // -------------------------------------- Student Class -------------------------------------- //
 
 // Student class constructor
@@ -11,6 +11,7 @@ Student::Student()
     setLastName("");
     setCGPA(0.0);
     setResearchScore(0);
+    setUID(20210000);
 }
 
 // Student class get-functions
@@ -34,8 +35,13 @@ int Student::getResearchScore() const
     return RScore;
 }
 
+int Student::getUID() const
+{
+    return UID;
+}
+
 // Student class Set-functions
-void Student::setLastName(string firstNameValue)
+void Student::setFirstName(string firstNameValue)
 {
     lastName = firstNameValue;
 }
@@ -53,6 +59,11 @@ void Student::setCGPA(float cgpaValue)
 void Student::setResearchScore(int researchScoreValue)
 {
     RScore = researchScoreValue;
+}
+
+void Student::setUID(int UIDValue)
+{
+    UID = UIDValue;
 }
 
 // Student class friend functions
@@ -145,6 +156,22 @@ ostream &operator<<(ostream &outs, const Domestic &stuObj)
     return outs;
 }
 
+istream &operator>>(istream &ins, Domestic &stuObj)
+{
+    string s_tmp;
+    getline(ins, s_tmp, ',');
+    stuObj.setFirstName(s_tmp);
+    getline(ins, s_tmp, ',');
+    stuObj.setLastName(s_tmp);
+    getline(ins, s_tmp, ',');
+    stuObj.setProvince(s_tmp);
+    getline(ins, s_tmp, ',');
+    stuObj.setCGPA(atof(s_tmp.c_str()));
+    getline(ins, s_tmp, ',');
+    stuObj.setResearchScore(atoi(s_tmp.c_str()));
+    return ins;
+}
+
 // -------------------------------------- End Domestic Class -------------------------------------- //
 // -------------------------------------- International Class -------------------------------------- //
 
@@ -163,10 +190,10 @@ string International::getCountry() const
 ToeflScore International::getToeflScore() const
 {
     ToeflScore toefl;
-    toefl.setReading(this->toeflScore.getReading());
-    toefl.setListening(this->toeflScore.getListening());
-    toefl.setSpeaking(this->toeflScore.getSpeaking());
-    toefl.setWriting(this->toeflScore.getWriting());
+    toefl.setReading(toeflScore.getReading());
+    toefl.setListening(toeflScore.getListening());
+    toefl.setSpeaking(toeflScore.getSpeaking());
+    toefl.setWriting(toeflScore.getWriting());
     return toefl;
 }
 
@@ -203,18 +230,18 @@ void International::setCountry(string countryValue)
 
 void International::setToeflScore(int reading, int listening, int speaking, int writing)
 {
-    this->toeflScore.setReading(reading);
-    this->toeflScore.setListening(listening);
-    this->toeflScore.setSpeaking(speaking);
-    this->toeflScore.setWriting(writing);
+    toeflScore.setReading(reading);
+    toeflScore.setListening(listening);
+    toeflScore.setSpeaking(speaking);
+    toeflScore.setWriting(writing);
 }
 
 void International::setToeflScore(ToeflScore score)
 {
-    this->toeflScore.setReading(score.getReading());
-    this->toeflScore.setListening(score.getListening());
-    this->toeflScore.setSpeaking(score.getSpeaking());
-    this->toeflScore.setWriting(score.getWriting());
+    toeflScore.setReading(score.getReading());
+    toeflScore.setListening(score.getListening());
+    toeflScore.setSpeaking(score.getSpeaking());
+    toeflScore.setWriting(score.getWriting());
 }
 
 void International::setReading(int reading)
@@ -250,6 +277,30 @@ ostream &operator<<(ostream &outs, const International &stuObj)
     outs << setw(4) << left << stuObj.getWriting();
     outs << stuObj.getTotalScore() << endl;
     return outs;
+}
+
+istream &operator>>(istream &ins, International &stuObj)
+{
+    string s_tmp;
+    getline(ins, s_tmp, ',');
+    stuObj.setFirstName(s_tmp);
+    getline(ins, s_tmp, ',');
+    stuObj.setLastName(s_tmp);
+    getline(ins, s_tmp, ',');
+    stuObj.setCountry(s_tmp);
+    getline(ins, s_tmp, ',');
+    stuObj.setCGPA(atof(s_tmp.c_str()));
+    getline(ins, s_tmp, ',');
+    stuObj.setResearchScore(atoi(s_tmp.c_str()));
+    getline(ins, s_tmp, ',');
+    stuObj.setReading(atoi(s_tmp.c_str()));
+    getline(ins, s_tmp, ',');
+    stuObj.setListening(atoi(s_tmp.c_str()));
+    getline(ins, s_tmp, ',');
+    stuObj.setSpeaking(atoi(s_tmp.c_str()));
+    getline(ins, s_tmp, ',');
+    stuObj.setWriting(atoi(s_tmp.c_str()));
+    return ins;
 }
 
 // -------------------------------------- End International Class -------------------------------------- //

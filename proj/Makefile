@@ -7,19 +7,19 @@ run: main
 
 #link main.o, student.o, and stu_sort.o to executable main
 main: main.o student.o stu_sort.o
-	g++ -g -o main main.o student.o stu_sort.o
+	g++ -g -std=c++11 -o main main.o student.o stu_sort.o
 
 #compile the main.cpp to main.o
 main.o: main.cpp
-	g++ -g -c main.cpp
+	g++ -g -std=c++11 -c main.cpp
 
 #compile the student.cpp to student.o
 student.o: student.cpp
-	g++ -g -c student.cpp
+	g++ -g -std=c++11 -c student.cpp
 
 #compile the stu_sort.cpp to stu_sort.o
 stu_sort.o: stu_sort.cpp
-	g++ -g -c stu_sort.cpp
+	g++ -g -std=c++11 -c stu_sort.cpp
 
 #remove built files
 clean:

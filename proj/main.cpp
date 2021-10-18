@@ -4,6 +4,7 @@
 #include <fstream>  //file processing
 #include <sstream>  //formatted string processing
 #include <cstdlib>  //atof and atoi
+#include <iomanip>
 #include "student.hpp"
 #include "stu_sort.hpp"
 
@@ -33,6 +34,16 @@ int Get_Number()
  */
 int main()
 {
+  // string menu_selector, sort_selector;
+  // cout << "Please select which group you would like to sort:\nDomestic Students (D)  International Students(I)  All Students (O)\n";
+  // cin >> menu_selector;
+
+  // if (menu_selector != "O")
+  // {
+  //   cout << "Please enter what you would like to sort by:\nFirst Name (F)  Last Name (L)  CGPA (G)  Research Score (R)  Province (P)  Country (C)\nOr any combination of the above.\n";
+  //   cin >> sort_selector;
+  // }
+
   // Read the domestic-stu.txt file and exit if failed
   string line;
   ifstream domesticFile("domestic-stu.txt");
