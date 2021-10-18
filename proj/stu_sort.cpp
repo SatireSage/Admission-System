@@ -68,28 +68,26 @@ void mergeSort(int array[], int const begin, int const end)
 }
 
 // Multi Sort functions
-void MultiSort(Domestic *DomesticStudent, int num, string type, string order)
+void MultiSort(Domestic *DomesticStudent, int num, string type)
 {
     for (int i = sizeof(type) - 1; i >= 0; i--)
     {
-        SingleSort(DomesticStudent, num, type[i], order);
+        SingleSort(DomesticStudent, num, type[i]);
     }
 }
 
-void MultiSort(International *InternationalStudent, int num, string type, string order)
+void MultiSort(International *InternationalStudent, int num, string type)
 {
     for (int i = sizeof(type) - 1; i >= 0; i--)
     {
-        SingleSort(InternationalStudent, num, type[i], order);
+        SingleSort(InternationalStudent, num, type[i]);
     }
 }
 
 // Single Sort functions
-void SingleSort(Domestic *DomesticStudent, int num, char type, string order)
+void SingleSort(Domestic *DomesticStudent, int num, char type)
 {
-    int ascending = -1;
-    if (order == "ascending")
-        ascending = 1;
+    int ascending = 1;
     for (int i = 0; i < num; i++)
     {
         for (int j = 0; j < num - 1; j++)
@@ -105,11 +103,9 @@ void SingleSort(Domestic *DomesticStudent, int num, char type, string order)
     }
 }
 
-void SingleSort(International *InternationalStudent, int num, char type, string order)
+void SingleSort(International *InternationalStudent, int num, char type)
 {
-    int ascending = -1;
-    if (order == "ascending")
-        ascending = 1;
+    int ascending = 1;
     for (int i = 0; i < num; i++)
     {
         for (int j = 0; j < num - 1; j++)

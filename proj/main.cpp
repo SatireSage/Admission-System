@@ -4,29 +4,8 @@
 #include <fstream>  //file processing
 #include <sstream>  //formatted string processing
 #include <cstdlib>  //atof and atoi
-#include <iomanip>
 #include "student.hpp"
 #include "stu_sort.hpp"
-
-int Get_Number()
-{
-  std::string line;
-  int user_input;
-  while (std::getline(std::cin, line))
-  {
-    std::stringstream ss(line);
-    if (ss >> user_input)
-    {
-      if (ss.eof())
-      {
-        break;
-      }
-    }
-    std::cout << "Please enter a number as input only for the previous input: " << '\n'
-              << ">> ";
-  }
-  return user_input;
-}
 
 /*I provide example code here to help you read the input
  *data from a file, so that you can focus on creating
@@ -34,16 +13,6 @@ int Get_Number()
  */
 int main()
 {
-  // string menu_selector, sort_selector;
-  // cout << "Please select which group you would like to sort:\nDomestic Students (D)  International Students(I)  All Students (O)\n";
-  // cin >> menu_selector;
-
-  // if (menu_selector != "O")
-  // {
-  //   cout << "Please enter what you would like to sort by:\nFirst Name (F)  Last Name (L)  CGPA (G)  Research Score (R)  Province (P)  Country (C)\nOr any combination of the above.\n";
-  //   cin >> sort_selector;
-  // }
-
   // Read the domestic-stu.txt file and exit if failed
   string line;
   ifstream domesticFile("domestic-stu.txt");
@@ -106,8 +75,63 @@ int main()
     stu_count++;
   }
 
+  ifstream InternationalFile("international-stu.txt");
+  if (!InternationalFile.is_open())
+  {
+    cout << "Unable to open file international-stu.txt" << endl;
+    return -1;
+  }
+
+  getline(InternationalFile, line);
+  cout << endl
+       << "File format: " << line << endl;
+
+  int stu_inter_count = 1;
+  int i = 0;
+  while (getline(InternationalFile, line))
+  {
+    istringstream ss(line);
+
+    // FirstName,LastName,Country,CGPA,ResearchScore,Reading,Listening,Speaking,Writing
+    string firstName, lastName, country, s_cgpa, s_researchScore, s_reading, s_listening, s_speaking, s_writing;
+    float cgpa;
+    int researchScore, reading, listening, speaking, writing;
+
+    getline(ss, firstName, ',');
+    getline(ss, lastName, ',');
+    getline(ss, country, ',');
+
+    getline(ss, s_cgpa, ',');
+    cgpa = atof(s_cgpa.c_str());
+
+    getline(ss, s_researchScore, ',');
+    researchScore = atoi(s_researchScore.c_str());
+
+    getline(ss, s_reading, ',');
+    reading = atoi(s_reading.c_str());
+
+    getline(ss, s_listening, ',');
+    listening = atoi(s_listening.c_str());
+
+    getline(ss, s_speaking, ',');
+    speaking = atoi(s_speaking.c_str());
+
+    getline(ss, s_writing, ',');
+    writing = atoi(s_writing.c_str());
+
+    cout << "International student " << stu_inter_count << " " << firstName << " "
+         << lastName << " from " << country << " has cgpa of "
+         << cgpa << ", and research score of " << researchScore
+         << " Reading Score: " << reading << " "
+         << " Listening Score: " << listening << " "
+         << " Speaking Score: " << speaking << " "
+         << " Writing Score: " << writing << endl;
+    stu_inter_count++;
+  }
+
   // close your file
   domesticFile.close();
+  InternationalFile.close();
 
   return 0;
 }

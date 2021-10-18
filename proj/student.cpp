@@ -63,7 +63,7 @@ void Student::setResearchScore(int researchScoreValue)
 
 void Student::setUID(int UIDValue)
 {
-    UID = UIDValue;
+    UID = 20210000 + UIDValue;
 }
 
 // Student class friend functions
