@@ -11,7 +11,6 @@ Student::Student()
     setLastName("");
     setCGPA(0.0);
     setResearchScore(0);
-    setUID(20210000);
 }
 
 // Student class get-functions
@@ -156,22 +155,6 @@ ostream &operator<<(ostream &outs, const Domestic &stuObj)
     return outs;
 }
 
-istream &operator>>(istream &ins, Domestic &stuObj)
-{
-    string s_tmp;
-    getline(ins, s_tmp, ',');
-    stuObj.setFirstName(s_tmp);
-    getline(ins, s_tmp, ',');
-    stuObj.setLastName(s_tmp);
-    getline(ins, s_tmp, ',');
-    stuObj.setProvince(s_tmp);
-    getline(ins, s_tmp, ',');
-    stuObj.setCGPA(atof(s_tmp.c_str()));
-    getline(ins, s_tmp, ',');
-    stuObj.setResearchScore(atoi(s_tmp.c_str()));
-    return ins;
-}
-
 // -------------------------------------- End Domestic Class -------------------------------------- //
 // -------------------------------------- International Class -------------------------------------- //
 
@@ -277,30 +260,6 @@ ostream &operator<<(ostream &outs, const International &stuObj)
     outs << setw(4) << left << stuObj.getWriting();
     outs << stuObj.getTotalScore() << endl;
     return outs;
-}
-
-istream &operator>>(istream &ins, International &stuObj)
-{
-    string s_tmp;
-    getline(ins, s_tmp, ',');
-    stuObj.setFirstName(s_tmp);
-    getline(ins, s_tmp, ',');
-    stuObj.setLastName(s_tmp);
-    getline(ins, s_tmp, ',');
-    stuObj.setCountry(s_tmp);
-    getline(ins, s_tmp, ',');
-    stuObj.setCGPA(atof(s_tmp.c_str()));
-    getline(ins, s_tmp, ',');
-    stuObj.setResearchScore(atoi(s_tmp.c_str()));
-    getline(ins, s_tmp, ',');
-    stuObj.setReading(atoi(s_tmp.c_str()));
-    getline(ins, s_tmp, ',');
-    stuObj.setListening(atoi(s_tmp.c_str()));
-    getline(ins, s_tmp, ',');
-    stuObj.setSpeaking(atoi(s_tmp.c_str()));
-    getline(ins, s_tmp, ',');
-    stuObj.setWriting(atoi(s_tmp.c_str()));
-    return ins;
 }
 
 // -------------------------------------- End International Class -------------------------------------- //
