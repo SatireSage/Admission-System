@@ -165,13 +165,13 @@ int main()
   //    cout << setw(10) << left << i + 1 << filteredInternational[i];
   //  }
 
-  MultiSort(DomesticStudents, numDomesticStudents, "C");
-  // print out the results
-  cout << "\n\nSorted DomesticStudent Array:\n\n";
-  for (int i = 0; i < numDomesticStudents; i++)
-  {
-    cout << setw(5) << left << DomesticStudents[i];
-  }
+  // MultiSort(DomesticStudents, numDomesticStudents, "R");
+  // // print out the results
+  // cout << "\n\nSorted DomesticStudent Array:\n\n";
+  // for (int i = 0; i < numDomesticStudents; i++)
+  // {
+  //   cout << setw(5) << left << DomesticStudents[i];
+  // }
 
   // char test = 'R';
   // SingleSort(DomesticStudents, numDomesticStudents, test);

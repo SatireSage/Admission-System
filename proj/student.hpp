@@ -60,6 +60,7 @@ public:
 
     // Domestic class friend function
     friend ostream &operator<<(ostream &outs, const Domestic &stuObj);
+    friend int compareProvince(Domestic stu1, Domestic stu2);
 };
 
 // TOEFL class for international students
@@ -124,6 +125,7 @@ public:
 
     // International class friend function
     friend ostream &operator<<(ostream &outs, const International &stuObj);
+    friend int compareCountry(International stu1, International stu2);
 };
 
 #endif

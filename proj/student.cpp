@@ -11,6 +11,7 @@ Student::Student()
     setLastName("");
     setCGPA(0.0);
     setResearchScore(0);
+    setUID(0);
 }
 
 // Student class get-functions
@@ -156,6 +157,19 @@ ostream &operator<<(ostream &outs, const Domestic &stuObj)
     return outs;
 }
 
+int compareProvince(Domestic stu1, Domestic stu2)
+{
+    string student1 = stu1.getProvince();
+    string student2 = stu2.getProvince();
+    for (int i = 0; i < student1.size(); i++)
+        if (student1[i] >= 'a' && student1[i] <= 'z')
+            student1[i] -= ('a' - 'A');
+    for (int i = 0; i < student2.size(); i++)
+        if (student2[i] >= 'a' && student2[i] <= 'z')
+            student2[i] -= ('a' - 'A');
+    return student1.compare(student2);
+}
+
 // -------------------------------------- End Domestic Class -------------------------------------- //
 // -------------------------------------- International Class -------------------------------------- //
 
@@ -276,6 +290,19 @@ ostream &operator<<(ostream &outs, const International &stuObj)
     outs << setw(4) << left << stuObj.getWriting();
     outs << stuObj.getTotalScore() << endl;
     return outs;
+}
+
+int compareCountry(International stu1, International stu2)
+{
+    string student1 = stu1.getCountry();
+    string student2 = stu2.getCountry();
+    for (int i = 0; i < student1.size(); i++)
+        if (student1[i] >= 'a' && student1[i] <= 'z')
+            student1[i] -= ('a' - 'A');
+    for (int i = 0; i < student2.size(); i++)
+        if (student2[i] >= 'a' && student2[i] <= 'z')
+            student2[i] -= ('a' - 'A');
+    return student1.compare(student2);
 }
 
 // -------------------------------------- End International Class -------------------------------------- //

@@ -25,7 +25,7 @@ void SingleSort(Domestic *DomesticStudent, int num, char type)
     {
         for (int j = 0; j < num - 1; j++)
         {
-            if (((type == 'F') && (compareFirstName(DomesticStudent[j], DomesticStudent[j + 1]) > 0)) || ((type == 'L') && (compareLastName(DomesticStudent[j], DomesticStudent[j + 1]) > 0)) || ((type == 'C') && (compareCGPA(DomesticStudent[j], DomesticStudent[j + 1]) > 0)) || ((type == 'R') && (compareResearchScore(DomesticStudent[j], DomesticStudent[j + 1]) > 0)))
+            if (((type == 'F') && (compareFirstName(DomesticStudent[j], DomesticStudent[j + 1]) > 0)) || ((type == 'L') && (compareLastName(DomesticStudent[j], DomesticStudent[j + 1]) > 0)) || ((type == 'G') && (compareCGPA(DomesticStudent[j], DomesticStudent[j + 1]) > 0)) || ((type == 'R') && (compareResearchScore(DomesticStudent[j], DomesticStudent[j + 1]) > 0)) || ((type == 'P') && (compareProvince(DomesticStudent[j], DomesticStudent[j + 1]))))
             {
                 Domestic tmpStudent;
                 tmpStudent = DomesticStudent[j];
@@ -42,7 +42,7 @@ void SingleSort(International *InternationalStudent, int num, char type)
     {
         for (int j = 0; j < num - 1; j++)
         {
-            if (((type == 'F') && (compareFirstName(InternationalStudent[j], InternationalStudent[j + 1]) > 0)) || ((type == 'L') && (compareLastName(InternationalStudent[j], InternationalStudent[j + 1]) > 0)) || ((type == 'C') && (compareCGPA(InternationalStudent[j], InternationalStudent[j + 1]) > 0)) || ((type == 'R') && (compareResearchScore(InternationalStudent[j], InternationalStudent[j + 1]) > 0)))
+            if (((type == 'F') && (compareFirstName(InternationalStudent[j], InternationalStudent[j + 1]) > 0)) || ((type == 'L') && (compareLastName(InternationalStudent[j], InternationalStudent[j + 1]) > 0)) || ((type == 'G') && (compareCGPA(InternationalStudent[j], InternationalStudent[j + 1]) > 0)) || ((type == 'R') && (compareResearchScore(InternationalStudent[j], InternationalStudent[j + 1]) > 0)) || ((type == 'C') && (compareCountry(InternationalStudent[j], InternationalStudent[j + 1]))))
             {
                 International tmpStudent;
                 tmpStudent = InternationalStudent[j];
