@@ -42,7 +42,7 @@ int Student::getUID() const
 // Student class Set-functions
 void Student::setFirstName(string firstNameValue)
 {
-    lastName = firstNameValue;
+    firstName = firstNameValue;
 }
 
 void Student::setLastName(string lastNameValue)
