@@ -100,27 +100,27 @@ public:
     // international class get function
     string getCountry() const;
 
+    ToeflScore getToeflScore() const;
+
+    int getReading() const;
+    int getListening() const;
+    int getWriting() const;
+    int getSpeaking() const;
+    int getTotalScore() const;
+
     // International class set function
     void setCountry(string countryName);
 
+    void setToeflScore(int reading, int listening, int speaking, int writing);
+    void setToeflScore(ToeflScore score);
+
+    void setReading(int reading);
+    void setListening(int listening);
+    void setSpeaking(int speaking);
+    void setWriting(int writing);
+
     // International class friend function
     friend ostream &operator<<(ostream &outs, const International &stuObj);
-
-    // International class toeflScore
-    // ToeflScore getToeflScore() const;
-    // void setToeflScore(int reading, int listening, int speaking, int writing);
-    // void setToeflScore(ToeflScore score);
-
-    // void setReading(int reading);
-    // void setListening(int listening);
-    // void setSpeaking(int speaking);
-    // void setWriting(int writing);
-
-    // int getReading() const;
-    // int getListening() const;
-    // int getWriting() const;
-    // int getSpeaking() const;
-    // int getTotalScore() const;
 };
 
 #endif
