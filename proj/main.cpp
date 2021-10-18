@@ -265,16 +265,33 @@ int main()
           filteredInternational[filteredIndex++] = InternationalStudents[j];
         }
       }
+      int totalIndex = 0;
+      Student *AllStudents = new Student[numDomesticStudents + filteredIndex];
+      for (int k = 0; k < numDomesticStudents; k++)
+      {
+        AllStudents[totalIndex++] = DomesticStudents[k];
+      }
+      for (int k = 0; k < filteredIndex; k++)
+      {
+        AllStudents[totalIndex++] = filteredInternational[k];
+      }
+      MultiSort(AllStudents, totalIndex);
       cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
-      cout << "\nAll Sorted Students:\n";
+      cout << "\nAll Sorted Domestic Students:\n";
       for (int i = 0; i < numDomesticStudents; i++)
       {
         cout << setw(5) << left << DomesticStudents[i];
       }
-      // cout << "\nAll Sorted International Students:\n";
+      cout << "\nAll Sorted International Students:\n";
       for (int i = 0; i < filteredIndex; i++)
       {
         cout << setw(5) << left << filteredInternational[i];
+      }
+      cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
+      cout << "\nAll Sorted Students: (Based on Research Score and CGPA)\n";
+      for (int i = 0; i < totalIndex; i++)
+      {
+        cout << setw(5) << left << AllStudents[i];
       }
     }
 

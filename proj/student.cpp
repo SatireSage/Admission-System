@@ -67,6 +67,16 @@ void Student::setUID(int UIDValue)
 }
 
 // Student class friend functions
+// Overload operator
+ostream &operator<<(ostream &outs, const Student &stuObj)
+{
+    outs << setw(12) << left << stuObj.getUID();
+    outs << setw(14) << left << stuObj.getFirstName() << " " << setw(17) << left << stuObj.getLastName();
+    outs << setw(10) << left << stuObj.getCGPA();
+    outs << setw(6) << left << stuObj.getResearchScore() << endl;
+    return outs;
+}
+
 int compareCGPA(Student stu1, Student stu2)
 {
     if (stu1.getCGPA() < stu2.getCGPA())

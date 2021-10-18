@@ -7,6 +7,7 @@
 // Multi Sort functions
 void MultiSort(Domestic *DomesticStudent, int num);
 void MultiSort(International *InternationalStudent, int num);
+void MultiSort(Student *Students, int num);
 
 // Single Sort functions
 void SingleSort(Domestic *DomesticStudent, int num, char type);

@@ -88,6 +88,48 @@ void MultiSort(International *InternationalStudent, int num)
     }
 }
 
+void MultiSort(Student *Students, int num)
+{
+    // for (int i = 0; i < num; i++)
+    // {
+    //     for (int j = 0; j < num - 1; j++)
+    //     {
+    //         if (compareCountry(Students[j], Students[j + 1]) > 0)
+    //         {
+    //             International tmpStudent;
+    //             tmpStudent = InternationalStudent[j];
+    //             InternationalStudent[j] = InternationalStudent[j + 1];
+    //             InternationalStudent[j + 1] = tmpStudent;
+    //         }
+    //     }
+    // }
+    for (int i = 0; i < num; i++)
+    {
+        for (int j = 0; j < num - 1; j++)
+        {
+            if (compareCGPA(Students[j], Students[j + 1]) > 0)
+            {
+                Student tmpStudent;
+                tmpStudent = Students[j];
+                Students[j] = Students[j + 1];
+                Students[j + 1] = tmpStudent;
+            }
+        }
+    }
+    for (int i = 0; i < num; i++)
+    {
+        for (int j = 0; j < num - 1; j++)
+        {
+            if (compareResearchScore(Students[j], Students[j + 1]) > 0)
+            {
+                Student tmpStudent;
+                tmpStudent = Students[j];
+                Students[j] = Students[j + 1];
+                Students[j + 1] = tmpStudent;
+            }
+        }
+    }
+}
 // Single Sort functions
 void SingleSort(Domestic *DomesticStudent, int num, char type)
 {

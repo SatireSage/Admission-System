@@ -39,6 +39,7 @@ public:
     friend int compareResearchScore(Student stu1, Student stu2);
     friend int compareFirstName(Student stu1, Student stu2);
     friend int compareLastName(Student stu1, Student stu2);
+    friend ostream &operator<<(ostream &outs, const Student &stuObj);
 };
 
 // Domestic student sub-class
