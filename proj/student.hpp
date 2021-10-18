@@ -85,7 +85,7 @@ public:
     void setListening(int listeningScore);
     void setSpeaking(int speakingScore);
     void setWriting(int writingScore);
-    void setTotalScore();
+    void setTotalScore(int totalScore);
 };
 
 // International student sub-class

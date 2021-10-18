@@ -149,7 +149,7 @@ void Domestic::setProvince(string ProvinceName)
 ostream &operator<<(ostream &outs, const Domestic &stuObj)
 {
     outs << setw(12) << left << stuObj.getUID();
-    outs << setw(14) << left << stuObj.getFirstName() << " " << setw(18) << left << stuObj.getLastName();
+    outs << setw(14) << left << stuObj.getFirstName() << " " << setw(17) << left << stuObj.getLastName();
     outs << setw(10) << left << stuObj.getProvince();
     outs << setw(6) << left << stuObj.getCGPA();
     outs << setw(4) << left << stuObj.getResearchScore() << endl;
@@ -218,6 +218,13 @@ void International::setToeflScore(int reading, int listening, int speaking, int 
     toeflScore.setListening(listening);
     toeflScore.setSpeaking(speaking);
     toeflScore.setWriting(writing);
+    int total = 0;
+    int readScore = getReading();
+    int listenScore = getListening();
+    int speakScore = getSpeaking();
+    int writeScore = getWriting();
+    total = reading + listening + speaking + writing;
+    toeflScore.setTotalScore(total);
 }
 
 void International::setToeflScore(ToeflScore score)
@@ -226,6 +233,13 @@ void International::setToeflScore(ToeflScore score)
     toeflScore.setListening(score.getListening());
     toeflScore.setSpeaking(score.getSpeaking());
     toeflScore.setWriting(score.getWriting());
+    int total = 0;
+    int readScore = toeflScore.getReading();
+    int listenScore = toeflScore.getListening();
+    int speakScore = toeflScore.getSpeaking();
+    int writeScore = toeflScore.getWriting();
+    total = readScore + listenScore + speakScore + writeScore;
+    toeflScore.setTotalScore(total);
 }
 
 void International::setReading(int reading)
@@ -252,7 +266,7 @@ void International::setWriting(int writing)
 ostream &operator<<(ostream &outs, const International &stuObj)
 {
     outs << setw(12) << left << stuObj.getUID();
-    outs << setw(14) << left << stuObj.getFirstName() << " " << setw(18) << left << stuObj.getLastName();
+    outs << setw(14) << left << stuObj.getFirstName() << " " << setw(17) << left << stuObj.getLastName();
     outs << setw(10) << left << stuObj.getCountry();
     outs << setw(6) << left << stuObj.getCGPA();
     outs << setw(4) << left << stuObj.getResearchScore();
@@ -323,15 +337,9 @@ void ToeflScore::setWriting(int writingScore)
     writing = writingScore;
 }
 
-void ToeflScore::setTotalScore()
+void ToeflScore::setTotalScore(int totalScore)
 {
-    int total = 0;
-    int readScore = getReading();
-    int listenScore = getListening();
-    int speakScore = getSpeaking();
-    int writeScore = getWriting();
-    total = readScore + listenScore + speakScore + writeScore;
-    cummulative = total;
+    cummulative = totalScore;
 }
 
 // -------------------------------------- End ToeflScore Class -------------------------------------- //

@@ -54,12 +54,12 @@ int main()
     getline(ss, s_researchScore, ',');
     researchScore = int(atoi(s_researchScore.c_str()) + 0.5);
     DomesticStudents[i].setResearchScore(atoi(s_researchScore.c_str()));
+    DomesticStudents[i].setUID(stu_count);
 
     cout << "Domestic student " << stu_count << " " << firstName << " "
          << lastName << " from " << province << " province has cgpa of "
          << cgpa << ", and research score of " << researchScore << endl;
 
-    DomesticStudents[i].setUID(stu_count);
     stu_count++;
     i++;
   }
@@ -79,6 +79,7 @@ int main()
   int j = 0;
   int numInternationalStudents = lineCounter(InternationalFile);
   International *InternationalStudents = new International[numInternationalStudents];
+  International *filteredInternational = new International[numInternationalStudents];
   while (getline(InternationalFile, line))
   {
     istringstream ss(line);
@@ -117,6 +118,9 @@ int main()
     writing = atoi(s_writing.c_str());
     InternationalStudents[j].setWriting(atoi(s_writing.c_str()));
 
+    InternationalStudents[j].setToeflScore(reading, listening, speaking, writing);
+    InternationalStudents[j].setUID(numDomesticStudents + stu_inter_count);
+
     cout << "International student " << stu_inter_count << " " << firstNameInt << " "
          << lastNameInt << " from " << country << " has cgpa of "
          << cgpa2 << ", and research score of " << researchScore2
@@ -125,15 +129,64 @@ int main()
          << " Speaking Score: " << speaking << " "
          << " Writing Score: " << writing << endl;
 
-    InternationalStudents[j].setUID(numDomesticStudents + stu_inter_count);
     j++;
     stu_inter_count++;
   }
+
+  // Prints all international students
+  //  for (int i = 0; i < numInternationalStudents; i++)
+  //  {
+  //    cout << setw(5) << left << i + 1 << InternationalStudents[i];
+  //  }
+
+  // Filters and prints all international students who met minimum TOEFL Requirements
+  // bool yes = true;
+  // int filteredIndex = 0;
+  // if (yes)
+  // {
+  //   for (int j = 0; j < numInternationalStudents; j++)
+  //   {
+  //     if (InternationalStudents[j].getTotalScore() >= 93 && InternationalStudents[j].getReading() >= 20 && InternationalStudents[j].getListening() >= 20 && InternationalStudents[j].getSpeaking() >= 20 && InternationalStudents[j].getWriting() >= 20)
+  //     {
+  //       filteredInternational[filteredIndex++] = InternationalStudents[j];
+  //     }
+  //   }
+  // }
+  // else
+  // {
+  //   filteredInternational = InternationalStudents;
+  //   filteredIndex = numInternationalStudents;
+  // }
+
+  // Testing sort: Clearly doesn't work
+  //  cout << filteredIndex << endl;
+  //  for (int i = 0; i < filteredIndex; i++)
+  //  {
+  //    cout << setw(10) << left << i + 1 << filteredInternational[i];
+  //  }
+
+  // MultiSort(DomesticStudents, numDomesticStudents, "CRP");
+  // // print out the results
+  // cout << "\n\nSorted DomesticStudent Array:\n\n";
+  // for (int i = 0; i < numDomesticStudents; i++)
+  // {
+  //   cout << setw(5) << left << DomesticStudents[i];
+  // }
+
+  // char test = 'R';
+  // SingleSort(DomesticStudents, numDomesticStudents, test);
+  // // print out the results
+  // cout << "\n\nSorted DomesticStudent Array:\n\n";
+  // for (int i = 0; i < numDomesticStudents; i++)
+  // {
+  //   cout << setw(5) << left << DomesticStudents[i];
+  // }
 
   domesticFile.close();
   delete[] DomesticStudents;
   InternationalFile.close();
   delete[] InternationalStudents;
+  delete[] filteredInternational;
 
   return 0;
 }
