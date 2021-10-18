@@ -4,6 +4,7 @@
 #include <fstream>  //file processing
 #include <sstream>  //formatted string processing
 #include <cstdlib>  //atof and atoi
+#include <iomanip>
 #include "student.hpp"
 #include "stu_sort.hpp"
 
@@ -54,10 +55,10 @@ int main()
     getline(ss, province, ',');
     DomesticStudents[i].setProvince(province);
     getline(ss, s_cgpa, ',');
-    cgpa = atof(s_cgpa.c_str());
-    DomesticStudents[i].setCGPA(atof(s_cgpa.c_str()));
+    cgpa = float(int(atof(s_cgpa.c_str()) * 10 + 0.5)) / 10;
+    DomesticStudents[i].setCGPA(cgpa);
     getline(ss, s_researchScore, ',');
-    researchScore = atoi(s_researchScore.c_str());
+    researchScore = int(atoi(s_researchScore.c_str()) + 0.5);
     DomesticStudents[i].setResearchScore(atoi(s_researchScore.c_str()));
 
     cout << "Domestic student " << stu_count << " " << firstName << " "
@@ -99,11 +100,11 @@ int main()
     InternationalStudents[j].setCountry(country);
 
     getline(ss, s_cgpa2, ',');
-    cgpa2 = atof(s_cgpa2.c_str());
-    InternationalStudents[j].setCGPA(atof(s_cgpa2.c_str()));
+    cgpa2 = float(int(atof(s_cgpa2.c_str()) * 10 + 0.5)) / 10;
+    InternationalStudents[j].setCGPA(cgpa2);
 
     getline(ss, s_researchScore2, ',');
-    researchScore2 = atoi(s_researchScore2.c_str());
+    researchScore2 = int(atoi(s_researchScore2.c_str()) + 0.5);
     InternationalStudents[j].setResearchScore(atoi(s_researchScore2.c_str()));
 
     getline(ss, s_reading, ',');
