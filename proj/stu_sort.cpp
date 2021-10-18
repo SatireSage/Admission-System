@@ -8,24 +8,38 @@ void MultiSort(Domestic *DomesticStudent, int num)
     {
         for (int j = 0; j < num - 1; j++)
         {
-            if (compareResearchScore(DomesticStudent[j], DomesticStudent[j + 1]) >= 0)
+            if (compareProvince(DomesticStudent[j], DomesticStudent[j + 1]) > 0)
             {
-                if (compareResearchScore(DomesticStudent[j], DomesticStudent[j + 1]) == 0)
-                {
-                    if (compareCGPA(DomesticStudent[j], DomesticStudent[j + 1]) >= 0)
-                    {
-                        if (compareCGPA(DomesticStudent[j], DomesticStudent[j + 1]) == 0)
-                        {
-                            if (compareProvince(DomesticStudent[j], DomesticStudent[j + 1]) > 0)
-                            {
-                                Domestic tmpStudent;
-                                tmpStudent = DomesticStudent[j];
-                                DomesticStudent[j] = DomesticStudent[j + 1];
-                                DomesticStudent[j + 1] = tmpStudent;
-                            }
-                        }
-                    }
-                }
+                Domestic tmpStudent;
+                tmpStudent = DomesticStudent[j];
+                DomesticStudent[j] = DomesticStudent[j + 1];
+                DomesticStudent[j + 1] = tmpStudent;
+            }
+        }
+    }
+    for (int i = 0; i < num; i++)
+    {
+        for (int j = 0; j < num - 1; j++)
+        {
+            if (compareCGPA(DomesticStudent[j], DomesticStudent[j + 1]) > 0)
+            {
+                Domestic tmpStudent;
+                tmpStudent = DomesticStudent[j];
+                DomesticStudent[j] = DomesticStudent[j + 1];
+                DomesticStudent[j + 1] = tmpStudent;
+            }
+        }
+    }
+    for (int i = 0; i < num; i++)
+    {
+        for (int j = 0; j < num - 1; j++)
+        {
+            if (compareResearchScore(DomesticStudent[j], DomesticStudent[j + 1]) > 0)
+            {
+                Domestic tmpStudent;
+                tmpStudent = DomesticStudent[j];
+                DomesticStudent[j] = DomesticStudent[j + 1];
+                DomesticStudent[j + 1] = tmpStudent;
             }
         }
     }
@@ -37,24 +51,38 @@ void MultiSort(International *InternationalStudent, int num)
     {
         for (int j = 0; j < num - 1; j++)
         {
-            if (compareResearchScore(InternationalStudent[j], InternationalStudent[j + 1]) >= 0)
+            if (compareCountry(InternationalStudent[j], InternationalStudent[j + 1]) > 0)
             {
-                if (compareResearchScore(InternationalStudent[j], InternationalStudent[j + 1]) == 0)
-                {
-                    if (compareCGPA(InternationalStudent[j], InternationalStudent[j + 1]) >= 0)
-                    {
-                        if (compareCGPA(InternationalStudent[j], InternationalStudent[j + 1]) == 0)
-                        {
-                            if (compareCountry(InternationalStudent[j], InternationalStudent[j + 1]) > 0)
-                            {
-                                International tmpStudent;
-                                tmpStudent = InternationalStudent[j];
-                                InternationalStudent[j] = InternationalStudent[j + 1];
-                                InternationalStudent[j + 1] = tmpStudent;
-                            }
-                        }
-                    }
-                }
+                International tmpStudent;
+                tmpStudent = InternationalStudent[j];
+                InternationalStudent[j] = InternationalStudent[j + 1];
+                InternationalStudent[j + 1] = tmpStudent;
+            }
+        }
+    }
+    for (int i = 0; i < num; i++)
+    {
+        for (int j = 0; j < num - 1; j++)
+        {
+            if (compareCGPA(InternationalStudent[j], InternationalStudent[j + 1]) > 0)
+            {
+                International tmpStudent;
+                tmpStudent = InternationalStudent[j];
+                InternationalStudent[j] = InternationalStudent[j + 1];
+                InternationalStudent[j + 1] = tmpStudent;
+            }
+        }
+    }
+    for (int i = 0; i < num; i++)
+    {
+        for (int j = 0; j < num - 1; j++)
+        {
+            if (compareResearchScore(InternationalStudent[j], InternationalStudent[j + 1]) > 0)
+            {
+                International tmpStudent;
+                tmpStudent = InternationalStudent[j];
+                InternationalStudent[j] = InternationalStudent[j + 1];
+                InternationalStudent[j + 1] = tmpStudent;
             }
         }
     }

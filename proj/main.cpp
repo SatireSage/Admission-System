@@ -297,7 +297,8 @@ int main()
       cin >> exitCheck;
       if (exitCheck == "Y" || exitCheck == "y" || exitCheck == "YES" || exitCheck == "yes" || exitCheck == "Yes") // Various forms of the so called term "yes" to agree to the terms of exiting the program
       {
-        cout << "\nExiting Script after cleaning up files!\n";
+        cout << "Exiting Script after cleaning up files!";
+        cout << "-----------------------------------------------------------------------------------------------------------------------\n";
         domesticFile.close();
         delete[] DomesticStudents;
         InternationalFile.close();
