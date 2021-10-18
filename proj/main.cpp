@@ -5,8 +5,7 @@
 #include <sstream>  //formatted string processing
 #include <cstdlib>  //atof and atoi
 #include <iomanip>
-#include <sstream> //string stream
-#include <limits>  //numeric limit
+#include <limits> //numeric limit
 #include "student.hpp"
 #include "stu_sort.hpp"
 
@@ -165,7 +164,7 @@ int main()
     if (menu_selector == 0) // main menu
     {
       cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
-      cout << "Lab3: Welcome to 251 Interim! Please select one of the following menu options:\n"
+      cout << "Welcome to 251 Interim Project! Please select one of the following menu options:\n"
            << "Please select one of the folowing:\n"
            << "Select 1: to sort Domestic Students\n"
            << "Select 2: to sort International Students\n"
