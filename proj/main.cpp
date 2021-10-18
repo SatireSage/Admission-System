@@ -242,14 +242,11 @@ int main()
       if (menu_selector == 2)
       {
         SingleSort(InternationalStudents, numInternationalStudents, user_input);
-        int filteredIndex = 0;
-        filteredInternational = InternationalStudents;
-        filteredIndex = numInternationalStudents;
         cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
         cout << "\nAll Sorted International Students:\n";
-        for (int i = 0; i < filteredIndex; i++)
+        for (int i = 0; i < numInternationalStudents; i++)
         {
-          cout << setw(5) << left << filteredInternational[i];
+          cout << setw(5) << left << InternationalStudents[i];
         }
       }
       cin.clear();
