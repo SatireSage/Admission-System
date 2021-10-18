@@ -14,20 +14,14 @@ int lineCounter(ifstream &file)
   string line;
   while (getline(file, line))
     i++;
-  // reset the position in the file for the user
   file.clear();
   file.seekg(0, ios::beg);
   getline(file, line);
   return i;
 }
 
-/*I provide example code here to help you read the input
- *data from a file, so that you can focus on creating
- *and manipulating classes and objects
- */
 int main()
 {
-  // Read the domestic-stu.txt file and exit if failed
   string line;
   ifstream domesticFile("domestic-stu.txt");
   if (!domesticFile.is_open())
@@ -136,7 +130,6 @@ int main()
     stu_inter_count++;
   }
 
-  // close your file
   domesticFile.close();
   delete[] DomesticStudents;
   InternationalFile.close();
