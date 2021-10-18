@@ -212,25 +212,24 @@ int main()
 
     if (menu_selector == 1 || menu_selector == 2)
     {
-      string user_selector;
+      char user_selector;
       cout << "Please enter what you would like to sort by:\n"
            << "Please select one of the folowing:\n"
            << "First Name: F, Last Name: L, CGPA: G, Research Score: R, ";
       if (menu_selector == 1)
       {
-        cout << "Province: P, ";
+        cout << "Province: P";
       }
       if (menu_selector == 2)
       {
-        cout << "Country: C, ";
+        cout << "Country: C";
       }
-      cout << "Or any combination of the above (i.e. LRG).\n"
-           << ">> ";
-      user_selector = Get_String();
-      // cin >> user_selector;
+      cout << "\n>> ";
+      // user_selector = Get_String();
+      cin >> user_selector;
       if (menu_selector == 1)
       {
-        MultiSort(DomesticStudents, numDomesticStudents, user_selector);
+        SingleSort(DomesticStudents, numDomesticStudents, user_selector);
         cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
         cout << "\nAll Sorted Domestic Students:\n";
         for (int i = 0; i < numDomesticStudents; i++)
@@ -240,7 +239,7 @@ int main()
       }
       if (menu_selector == 2)
       {
-        MultiSort(InternationalStudents, numInternationalStudents, user_selector);
+        SingleSort(InternationalStudents, numInternationalStudents, user_selector);
         int filteredIndex = 0;
         filteredInternational = InternationalStudents;
         filteredIndex = numInternationalStudents;
@@ -251,6 +250,8 @@ int main()
           cout << setw(5) << left << filteredInternational[i];
         }
       }
+      cin.clear();
+      cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     if (menu_selector == 3)
