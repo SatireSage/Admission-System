@@ -269,12 +269,12 @@ int main()
         }
       }
       cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
-      cout << "\nAll Sorted Domestic Students:\n";
+      cout << "\nAll Sorted Students:\n";
       for (int i = 0; i < numDomesticStudents; i++)
       {
         cout << setw(5) << left << DomesticStudents[i];
       }
-      cout << "\nAll Sorted International Students:\n";
+      // cout << "\nAll Sorted International Students:\n";
       for (int i = 0; i < filteredIndex; i++)
       {
         cout << setw(5) << left << filteredInternational[i];
