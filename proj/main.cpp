@@ -54,7 +54,7 @@ int main()
     return -1;
   }
   getline(domesticFile, line);
-  // cout << "File format: " << line << endl;
+  cout << "File format: " << line << endl;
   int i = 0;
   int stu_count = 1;
   int numDomesticStudents = lineCounter(domesticFile);
@@ -80,9 +80,9 @@ int main()
     DomesticStudents[i].setResearchScore(atoi(s_researchScore.c_str()));
     DomesticStudents[i].setUID(stu_count);
 
-    // cout << "Domestic student " << stu_count << " " << firstName << " "
-    //      << lastName << " from " << province << " province has cgpa of "
-    //      << cgpa << ", and research score of " << researchScore << endl;
+    cout << "Domestic student " << stu_count << " " << firstName << " "
+         << lastName << " from " << province << " province has cgpa of "
+         << cgpa << ", and research score of " << researchScore << endl;
 
     stu_count++;
     i++;
@@ -96,8 +96,8 @@ int main()
   }
 
   getline(InternationalFile, line);
-  // cout << endl
-  //      << "File format: " << line << endl;
+  cout << endl
+       << "File format: " << line << endl;
 
   int stu_inter_count = 1;
   int j = 0;
@@ -145,13 +145,13 @@ int main()
     InternationalStudents[j].setToeflScore(reading, listening, speaking, writing);
     InternationalStudents[j].setUID(numDomesticStudents + stu_inter_count);
 
-    // cout << "International student " << stu_inter_count << " " << firstNameInt << " "
-    //      << lastNameInt << " from " << country << " has cgpa of "
-    //      << cgpa2 << ", and research score of " << researchScore2
-    //      << " Reading Score: " << reading << " "
-    //      << " Listening Score: " << listening << " "
-    //      << " Speaking Score: " << speaking << " "
-    //      << " Writing Score: " << writing << endl;
+    cout << "International student " << stu_inter_count << " " << firstNameInt << " "
+         << lastNameInt << " from " << country << " has cgpa of "
+         << cgpa2 << ", and research score of " << researchScore2
+         << " Reading Score: " << reading << " "
+         << " Listening Score: " << listening << " "
+         << " Speaking Score: " << speaking << " "
+         << " Writing Score: " << writing << endl;
 
     j++;
     stu_inter_count++;

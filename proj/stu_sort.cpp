@@ -90,19 +90,6 @@ void MultiSort(International *InternationalStudent, int num)
 
 void MultiSort(Student *Students, int num)
 {
-    // for (int i = 0; i < num; i++)
-    // {
-    //     for (int j = 0; j < num - 1; j++)
-    //     {
-    //         if (compareCountry(Students[j], Students[j + 1]) > 0)
-    //         {
-    //             International tmpStudent;
-    //             tmpStudent = InternationalStudent[j];
-    //             InternationalStudent[j] = InternationalStudent[j + 1];
-    //             InternationalStudent[j + 1] = tmpStudent;
-    //         }
-    //     }
-    // }
     for (int i = 0; i < num; i++)
     {
         for (int j = 0; j < num - 1; j++)
