@@ -148,6 +148,7 @@ void Domestic::setProvince(string ProvinceName)
 // Overload operator
 ostream &operator<<(ostream &outs, const Domestic &stuObj)
 {
+    outs << setw(12) << left << stuObj.getUID();
     outs << setw(14) << left << stuObj.getFirstName() << " " << setw(18) << left << stuObj.getLastName();
     outs << setw(10) << left << stuObj.getProvince();
     outs << setw(6) << left << stuObj.getCGPA();
@@ -250,6 +251,7 @@ void International::setWriting(int writing)
 // Overload operator
 ostream &operator<<(ostream &outs, const International &stuObj)
 {
+    outs << setw(12) << left << stuObj.getUID();
     outs << setw(14) << left << stuObj.getFirstName() << " " << setw(18) << left << stuObj.getLastName();
     outs << setw(10) << left << stuObj.getCountry();
     outs << setw(6) << left << stuObj.getCGPA();
