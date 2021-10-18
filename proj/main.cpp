@@ -32,35 +32,35 @@ int Get_Number()
   return user_input;
 }
 
-string Get_String()
-{
-  bool num = false;
-  string line;
-  string user_input;
-  while (getline(cin, line))
-  {
-    for (int i = 0; i < line.length(); i++)
-    {
-      char c = line.at(i); // Get a char from string
-      // if it's NOT within these bounds, then it's not a character
-      if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')))
-      {
-        num = true;
-      }
-      else
-      {
-        num = false;
-      }
-    }
-    if (num == false)
-    {
-      break;
-    }
-    cout << "Please enter a string as input only for the previous input: " << '\n'
-         << ">> ";
-  }
-  return user_input;
-}
+// string Get_String()
+// {
+//   bool num = false;
+//   string line;
+//   string user_input;
+//   while (getline(cin, line))
+//   {
+//     for (int i = 0; i < line.length(); i++)
+//     {
+//       char c = line.at(i); // Get a char from string
+//       // if it's NOT within these bounds, then it's not a character
+//       if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')))
+//       {
+//         num = true;
+//       }
+//       else
+//       {
+//         num = false;
+//       }
+//     }
+//     if (num == false)
+//     {
+//       break;
+//     }
+//     cout << "Please enter a string as input only for the previous input: " << '\n'
+//          << ">> ";
+//   }
+//   return user_input;
+// }
 
 int lineCounter(ifstream &file)
 {
@@ -212,6 +212,7 @@ int main()
 
     if (menu_selector == 1 || menu_selector == 2)
     {
+      // GETCHAR:
       char user_selector;
       cout << "Please enter what you would like to sort by:\n"
            << "Please select one of the folowing:\n"
@@ -227,6 +228,16 @@ int main()
       cout << "\n>> ";
       // user_selector = Get_String();
       cin >> user_selector;
+      // if (user_selector != 'F' || user_selector != 'f' || user_selector != 'L' || user_selector != 'l' || user_selector != 'G' || user_selector != 'g' || user_selector != 'R' || user_selector != 'r' || user_selector != 'P' || user_selector != 'p' && menu_selector == 1)
+      // {
+      //   cout << "Please select the appropriate character only";
+      //   goto GETCHAR;
+      // }
+      // if (user_selector != ('F' | 'f' | 'L' | 'l' | 'G' | 'g' | 'R' | 'r' | 'C' | 'c') && menu_selector == 2)
+      // {
+      //   cout << "Please select the appropriate character only";
+      //   goto GETCHAR;
+      // }
       if (menu_selector == 1)
       {
         SingleSort(DomesticStudents, numDomesticStudents, user_selector);
