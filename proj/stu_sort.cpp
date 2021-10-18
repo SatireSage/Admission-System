@@ -104,20 +104,6 @@ void SingleSort(Domestic *DomesticStudent, int num, char type)
             }
         }
     }
-    if (type == 'G' || type == 'R' || type == 'g' || type == 'r')
-    {
-        int start = 0;
-        int end = num - 1;
-        while (start < end)
-        {
-            Domestic tmpStudent;
-            tmpStudent = DomesticStudent[start];
-            DomesticStudent[start] = DomesticStudent[end];
-            DomesticStudent[end] = tmpStudent;
-            start++;
-            end--;
-        }
-    }
 }
 
 void SingleSort(International *InternationalStudent, int num, char type)
@@ -133,20 +119,6 @@ void SingleSort(International *InternationalStudent, int num, char type)
                 InternationalStudent[j] = InternationalStudent[j + 1];
                 InternationalStudent[j + 1] = tmpStudent;
             }
-        }
-    }
-    if (type == 'G' || type == 'R' || type == 'g' || type == 'r')
-    {
-        int start = 0;
-        int end = num - 1;
-        while (start < end)
-        {
-            International tmpStudent;
-            tmpStudent = InternationalStudent[start];
-            InternationalStudent[start] = InternationalStudent[end];
-            InternationalStudent[end] = tmpStudent;
-            start++;
-            end--;
         }
     }
 }

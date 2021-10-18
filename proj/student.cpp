@@ -69,11 +69,11 @@ void Student::setUID(int UIDValue)
 // Student class friend functions
 int compareCGPA(Student stu1, Student stu2)
 {
-    if (stu1.getCGPA() > stu2.getCGPA())
+    if (stu1.getCGPA() < stu2.getCGPA())
     {
         return 1;
     }
-    if (stu1.getCGPA() < stu2.getCGPA())
+    if (stu1.getCGPA() > stu2.getCGPA())
     {
         return -1;
     }
@@ -85,11 +85,11 @@ int compareCGPA(Student stu1, Student stu2)
 
 int compareResearchScore(Student stu1, Student stu2)
 {
-    if (stu1.getResearchScore() > stu2.getResearchScore())
+    if (stu1.getResearchScore() < stu2.getResearchScore())
     {
         return 1;
     }
-    if (stu1.getResearchScore() < stu2.getResearchScore())
+    if (stu1.getResearchScore() > stu2.getResearchScore())
     {
         return -1;
     }
