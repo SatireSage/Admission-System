@@ -217,7 +217,13 @@ int main()
       {
         SingleSort(DomesticStudents, 0, numDomesticStudents - 1, user_input);
         cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
-        cout << "\nAll Sorted Domestic Students:\n";
+        cout << "\nAll Sorted Domestic Students:\n\n";
+        cout << setw(12) << left << "UID: ";
+        cout << setw(14) << left << "First Name: "
+             << " " << setw(17) << left << "Last Name: ";
+        cout << setw(10) << left << "Province: ";
+        cout << setw(6) << left << "CGPA: ";
+        cout << setw(4) << left << "RS: " << endl;
         for (int i = 0; i < numDomesticStudents; i++)
         {
           cout << setw(5) << left << DomesticStudents[i];
@@ -227,7 +233,18 @@ int main()
       {
         SingleSort(InternationalStudents, 0, numInternationalStudents - 1, user_input);
         cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
-        cout << "\nAll Sorted International Students:\n";
+        cout << "\nAll Sorted International Students:\n\n";
+        cout << setw(12) << left << "UID: ";
+        cout << setw(14) << left << "First Name: "
+             << " " << setw(17) << left << "Last Name: ";
+        cout << setw(10) << left << "Country: ";
+        cout << setw(6) << left << "CGPA: ";
+        cout << setw(4) << left << "RS: ";
+        cout << setw(4) << left << "R: ";
+        cout << setw(4) << left << "L: ";
+        cout << setw(4) << left << "S: ";
+        cout << setw(4) << left << "W: ";
+        cout << "Total Score: " << endl;
         for (int i = 0; i < numInternationalStudents; i++)
         {
           cout << setw(5) << left << InternationalStudents[i];
@@ -275,12 +292,29 @@ int main()
       }
       if (choice == 1)
       {
-        cout << "\nAll Sorted Domestic Students:\n";
+        cout << "\nAll Sorted Domestic Students:\n\n";
+        cout << setw(12) << left << "UID: ";
+        cout << setw(14) << left << "First Name: "
+             << " " << setw(17) << left << "Last Name: ";
+        cout << setw(10) << left << "Province: ";
+        cout << setw(6) << left << "CGPA: ";
+        cout << setw(4) << left << "RS: " << endl;
         for (int i = 0; i < numDomesticStudents; i++)
         {
           cout << setw(5) << left << DomesticStudents[i];
         }
-        cout << "\nAll Sorted International Students:\n";
+        cout << "\nAll Sorted International Students:\n\n";
+        cout << setw(12) << left << "UID: ";
+        cout << setw(14) << left << "First Name: "
+             << " " << setw(17) << left << "Last Name: ";
+        cout << setw(10) << left << "Country: ";
+        cout << setw(6) << left << "CGPA: ";
+        cout << setw(4) << left << "RS: ";
+        cout << setw(4) << left << "R: ";
+        cout << setw(4) << left << "L: ";
+        cout << setw(4) << left << "S: ";
+        cout << setw(4) << left << "W: ";
+        cout << "Total Score: " << endl;
         for (int i = 0; i < filteredIndex; i++)
         {
           cout << setw(5) << left << filteredInternational[i];
@@ -289,7 +323,12 @@ int main()
       }
       if (choice == 2)
       {
-        cout << "\nAll Sorted Students: (Based on Research Score and CGPA only)\n";
+        cout << "\nAll Sorted Students: (Based on Research Score and CGPA only)\n\n";
+        cout << setw(12) << left << "UID: ";
+        cout << setw(14) << left << "First Name: "
+             << " " << setw(17) << left << "Last Name: ";
+        cout << setw(10) << left << "CGPA: ";
+        cout << setw(6) << left << "RS: " << endl;
         for (int i = 0; i < totalIndex; i++)
         {
           cout << setw(5) << left << AllStudents[i];
