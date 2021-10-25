@@ -31,15 +31,15 @@ int Get_Number()
   return user_input;
 }
 
-int lineCounter(ifstream &file)
+int lineCounter(ifstream &fileName)
 {
   int i = 0;
   string line;
-  while (getline(file, line))
+  while (getline(fileName, line))
     i++;
-  file.clear();
-  file.seekg(0, ios::beg);
-  getline(file, line);
+  fileName.clear();
+  fileName.seekg(0, ios::beg);
+  getline(fileName, line);
   return i;
 }
 
