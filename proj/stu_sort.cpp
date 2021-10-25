@@ -4,150 +4,116 @@
 // Multi Sort functions
 void MultiSort(Domestic *DomesticStudent, int num)
 {
-    for (int i = 0; i < num; i++)
+    char sortOptions[] = {'p', 'g', 'r'};
+    for (int sort : sortOptions)
     {
-        for (int j = 0; j < num - 1; j++)
-        {
-            if (compareProvince(DomesticStudent[j], DomesticStudent[j + 1]) > 0)
-            {
-                Domestic tmpStudent;
-                tmpStudent = DomesticStudent[j];
-                DomesticStudent[j] = DomesticStudent[j + 1];
-                DomesticStudent[j + 1] = tmpStudent;
-            }
-        }
-    }
-    for (int i = 0; i < num; i++)
-    {
-        for (int j = 0; j < num - 1; j++)
-        {
-            if (compareCGPA(DomesticStudent[j], DomesticStudent[j + 1]) > 0)
-            {
-                Domestic tmpStudent;
-                tmpStudent = DomesticStudent[j];
-                DomesticStudent[j] = DomesticStudent[j + 1];
-                DomesticStudent[j + 1] = tmpStudent;
-            }
-        }
-    }
-    for (int i = 0; i < num; i++)
-    {
-        for (int j = 0; j < num - 1; j++)
-        {
-            if (compareResearchScore(DomesticStudent[j], DomesticStudent[j + 1]) > 0)
-            {
-                Domestic tmpStudent;
-                tmpStudent = DomesticStudent[j];
-                DomesticStudent[j] = DomesticStudent[j + 1];
-                DomesticStudent[j + 1] = tmpStudent;
-            }
-        }
+        SingleSort(DomesticStudent, 0, num, sort);
     }
 }
 
 void MultiSort(International *InternationalStudent, int num)
 {
-    for (int i = 0; i < num; i++)
+    char sortOptions[] = {'c', 'g', 'r'};
+    for (int sort : sortOptions)
     {
-        for (int j = 0; j < num - 1; j++)
-        {
-            if (compareCountry(InternationalStudent[j], InternationalStudent[j + 1]) > 0)
-            {
-                International tmpStudent;
-                tmpStudent = InternationalStudent[j];
-                InternationalStudent[j] = InternationalStudent[j + 1];
-                InternationalStudent[j + 1] = tmpStudent;
-            }
-        }
-    }
-    for (int i = 0; i < num; i++)
-    {
-        for (int j = 0; j < num - 1; j++)
-        {
-            if (compareCGPA(InternationalStudent[j], InternationalStudent[j + 1]) > 0)
-            {
-                International tmpStudent;
-                tmpStudent = InternationalStudent[j];
-                InternationalStudent[j] = InternationalStudent[j + 1];
-                InternationalStudent[j + 1] = tmpStudent;
-            }
-        }
-    }
-    for (int i = 0; i < num; i++)
-    {
-        for (int j = 0; j < num - 1; j++)
-        {
-            if (compareResearchScore(InternationalStudent[j], InternationalStudent[j + 1]) > 0)
-            {
-                International tmpStudent;
-                tmpStudent = InternationalStudent[j];
-                InternationalStudent[j] = InternationalStudent[j + 1];
-                InternationalStudent[j + 1] = tmpStudent;
-            }
-        }
+        SingleSort(InternationalStudent, 0, num, sort);
     }
 }
 
 void MultiSort(Student *Students, int num)
 {
-    for (int i = 0; i < num; i++)
+    char sortOptions[] = {'g', 'r'};
+    for (int sort : sortOptions)
     {
-        for (int j = 0; j < num - 1; j++)
-        {
-            if (compareCGPA(Students[j], Students[j + 1]) > 0)
-            {
-                Student tmpStudent;
-                tmpStudent = Students[j];
-                Students[j] = Students[j + 1];
-                Students[j + 1] = tmpStudent;
-            }
-        }
-    }
-    for (int i = 0; i < num; i++)
-    {
-        for (int j = 0; j < num - 1; j++)
-        {
-            if (compareResearchScore(Students[j], Students[j + 1]) > 0)
-            {
-                Student tmpStudent;
-                tmpStudent = Students[j];
-                Students[j] = Students[j + 1];
-                Students[j + 1] = tmpStudent;
-            }
-        }
-    }
-}
-// Single Sort functions
-void SingleSort(Domestic *DomesticStudent, int num, char type)
-{
-    for (int i = 0; i < num; i++)
-    {
-        for (int j = 0; j < num - 1; j++)
-        {
-            if (((type == 'F' || type == 'f') && (compareFirstName(DomesticStudent[j], DomesticStudent[j + 1]) > 0)) || ((type == 'L' || type == 'l') && (compareLastName(DomesticStudent[j], DomesticStudent[j + 1]) > 0)) || ((type == 'G' || type == 'g') && (compareCGPA(DomesticStudent[j], DomesticStudent[j + 1]) > 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(DomesticStudent[j], DomesticStudent[j + 1]) > 0)) || ((type == 'P' || type == 'p') && (compareProvince(DomesticStudent[j], DomesticStudent[j + 1]) > 0)))
-            {
-                Domestic tmpStudent;
-                tmpStudent = DomesticStudent[j];
-                DomesticStudent[j] = DomesticStudent[j + 1];
-                DomesticStudent[j + 1] = tmpStudent;
-            }
-        }
+        SingleSort(Students, 0, num, sort);
     }
 }
 
-void SingleSort(International *InternationalStudent, int num, char type)
+// Single Sort functions
+void SingleSort(Domestic *DomesticStudent, int low, int high, char type)
 {
-    for (int i = 0; i < num; i++)
+    if (low < high)
     {
-        for (int j = 0; j < num - 1; j++)
+        int pi;
+        Domestic pivot = DomesticStudent[high];
+        int i = (low - 1);
+
+        for (int j = low; j <= high - 1; j++)
         {
-            if (((type == 'F' || type == 'f') && (compareFirstName(InternationalStudent[j], InternationalStudent[j + 1]) > 0)) || ((type == 'L' || type == 'l') && (compareLastName(InternationalStudent[j], InternationalStudent[j + 1]) > 0)) || ((type == 'G' || type == 'g') && (compareCGPA(InternationalStudent[j], InternationalStudent[j + 1]) > 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(InternationalStudent[j], InternationalStudent[j + 1]) > 0)) || ((type == 'C' || type == 'c') && (compareCountry(InternationalStudent[j], InternationalStudent[j + 1]) > 0)))
+            if (((type == 'F' || type == 'f') && (compareFirstName(DomesticStudent[j], DomesticStudent[high]) < 0)) || ((type == 'L' || type == 'l') && (compareLastName(DomesticStudent[j], DomesticStudent[high]) < 0)) || ((type == 'G' || type == 'g') && (compareCGPA(DomesticStudent[j], DomesticStudent[high]) < 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(DomesticStudent[j], DomesticStudent[high]) < 0)) || ((type == 'P' || type == 'p') && (compareProvince(DomesticStudent[j], DomesticStudent[high]) < 0)))
             {
-                International tmpStudent;
-                tmpStudent = InternationalStudent[j];
-                InternationalStudent[j] = InternationalStudent[j + 1];
-                InternationalStudent[j + 1] = tmpStudent;
+                i++;
+                Domestic tmpStudent;
+                tmpStudent = DomesticStudent[i];
+                DomesticStudent[i] = DomesticStudent[j];
+                DomesticStudent[j] = tmpStudent;
             }
         }
+        Domestic tmpStudent;
+        tmpStudent = DomesticStudent[i + 1];
+        DomesticStudent[i + 1] = DomesticStudent[high];
+        DomesticStudent[high] = tmpStudent;
+        pi = i + 1;
+
+        SingleSort(DomesticStudent, low, pi - 1, type);
+        SingleSort(DomesticStudent, pi + 1, high, type);
+    }
+}
+
+void SingleSort(International *InternationalStudent, int low, int high, char type)
+{
+    if (low < high)
+    {
+        int pi;
+        International pivot = InternationalStudent[high];
+        int i = (low - 1);
+        for (int j = low; j <= high - 1; j++)
+        {
+            if (((type == 'F' || type == 'f') && (compareFirstName(InternationalStudent[j], InternationalStudent[high]) < 0)) || ((type == 'L' || type == 'l') && (compareLastName(InternationalStudent[j], InternationalStudent[high]) < 0)) || ((type == 'G' || type == 'g') && (compareCGPA(InternationalStudent[j], InternationalStudent[high]) < 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(InternationalStudent[j], InternationalStudent[high]) < 0)) || ((type == 'P' || type == 'p') && (compareCountry(InternationalStudent[j], InternationalStudent[high]) < 0)))
+            {
+                i++;
+                International tmpStudent;
+                tmpStudent = InternationalStudent[i];
+                InternationalStudent[i] = InternationalStudent[j];
+                InternationalStudent[j] = tmpStudent;
+            }
+        }
+        International tmpStudent;
+        tmpStudent = InternationalStudent[i + 1];
+        InternationalStudent[i + 1] = InternationalStudent[high];
+        InternationalStudent[high] = tmpStudent;
+        pi = i + 1;
+
+        SingleSort(InternationalStudent, low, pi - 1, type);
+        SingleSort(InternationalStudent, pi + 1, high, type);
+    }
+}
+
+void SingleSort(Student *Students, int low, int high, char type)
+{
+    if (low < high)
+    {
+        int pi;
+        Student pivot = Students[high];
+        int i = (low - 1);
+        for (int j = low; j <= high - 1; j++)
+        {
+            if (((type == 'F' || type == 'f') && (compareFirstName(Students[j], Students[high]) < 0)) || ((type == 'L' || type == 'l') && (compareLastName(Students[j], Students[high]) < 0)) || ((type == 'G' || type == 'g') && (compareCGPA(Students[j], Students[high]) < 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(Students[j], Students[high]) < 0)))
+            {
+                i++;
+                Student tmpStudent;
+                tmpStudent = Students[i];
+                Students[i] = Students[j];
+                Students[j] = tmpStudent;
+            }
+        }
+        Student tmpStudent;
+        tmpStudent = Students[i + 1];
+        Students[i + 1] = Students[high];
+        Students[high] = tmpStudent;
+        pi = i + 1;
+
+        SingleSort(Students, low, pi - 1, type);
+        SingleSort(Students, pi + 1, high, type);
     }
 }

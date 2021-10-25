@@ -53,7 +53,7 @@ int main()
     return -1;
   }
   getline(domesticFile, line);
-  // cout << "File format: " << line << endl;
+
   int i = 0;
   int stu_count = 1;
   int numDomesticStudents = lineCounter(domesticFile);
@@ -78,11 +78,6 @@ int main()
     researchScore = int(atoi(s_researchScore.c_str()) + 0.5);
     DomesticStudents[i].setResearchScore(atoi(s_researchScore.c_str()));
     DomesticStudents[i].setUID(stu_count);
-
-    // cout << "Domestic student " << stu_count << " " << firstName << " "
-    //      << lastName << " from " << province << " province has cgpa of "
-    //      << cgpa << ", and research score of " << researchScore << endl;
-
     stu_count++;
     i++;
   }
@@ -95,8 +90,6 @@ int main()
   }
 
   getline(InternationalFile, line);
-  // cout << endl
-  //      << "File format: " << line << endl;
 
   int stu_inter_count = 1;
   int j = 0;
@@ -143,14 +136,6 @@ int main()
 
     InternationalStudents[j].setToeflScore(reading, listening, speaking, writing);
     InternationalStudents[j].setUID(numDomesticStudents + stu_inter_count);
-
-    // cout << "International student " << stu_inter_count << " " << firstNameInt << " "
-    //      << lastNameInt << " from " << country << " has cgpa of "
-    //      << cgpa2 << ", and research score of " << researchScore2
-    //      << " Reading Score: " << reading << " "
-    //      << " Listening Score: " << listening << " "
-    //      << " Speaking Score: " << speaking << " "
-    //      << " Writing Score: " << writing << endl;
 
     j++;
     stu_inter_count++;
@@ -230,7 +215,7 @@ int main()
       }
       if (menu_selector == 1)
       {
-        SingleSort(DomesticStudents, numDomesticStudents, user_input);
+        SingleSort(DomesticStudents, 0, numDomesticStudents - 1, user_input);
         cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
         cout << "\nAll Sorted Domestic Students:\n";
         for (int i = 0; i < numDomesticStudents; i++)
@@ -240,7 +225,7 @@ int main()
       }
       if (menu_selector == 2)
       {
-        SingleSort(InternationalStudents, numInternationalStudents, user_input);
+        SingleSort(InternationalStudents, 0, numInternationalStudents - 1, user_input);
         cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
         cout << "\nAll Sorted International Students:\n";
         for (int i = 0; i < numInternationalStudents; i++)
@@ -274,7 +259,7 @@ int main()
       {
         AllStudents[totalIndex++] = filteredInternational[k];
       }
-      MultiSort(AllStudents, totalIndex);
+      MultiSort(AllStudents, totalIndex - 1);
     CHOICE:
       int choice = 0;
       cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
@@ -345,6 +330,5 @@ int main()
       }
     }
   }
-
   return 0;
 }

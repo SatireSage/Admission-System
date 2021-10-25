@@ -10,7 +10,8 @@ void MultiSort(International *InternationalStudent, int num);
 void MultiSort(Student *Students, int num);
 
 // Single Sort functions
-void SingleSort(Domestic *DomesticStudent, int num, char type);
-void SingleSort(International *InternationalStudent, int num, char type);
+void SingleSort(Domestic *DomesticStudent, int num, int num2, char type);
+void SingleSort(International *InternationalStudent, int num, int num2, char type);
+void SingleSort(Student *Students, int num, int num2, char type);
 
 #endif
