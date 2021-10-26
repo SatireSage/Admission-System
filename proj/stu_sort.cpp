@@ -98,7 +98,15 @@ void SingleSort(Student *Students, int low, int high, char type)
         int i = (low - 1);
         for (int j = low; j <= high - 1; j++)
         {
-            if (((type == 'F' || type == 'f') && (compareFirstName(Students[j], Students[high]) < 0)) || ((type == 'L' || type == 'l') && (compareLastName(Students[j], Students[high]) < 0)) || ((type == 'G' || type == 'g') && (compareCGPA(Students[j], Students[high]) < 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(Students[j], Students[high]) < 0)))
+            if ((compareResearchScore(Students[j], Students[high]) == 0) && (compareCGPA(Students[j], Students[high]) < 0))
+            {
+                i++;
+                Student tmpStudent;
+                tmpStudent = Students[i];
+                Students[i] = Students[j];
+                Students[j] = tmpStudent;
+            }
+            else if ((compareResearchScore(Students[j], Students[high]) < 0))
             {
                 i++;
                 Student tmpStudent;
