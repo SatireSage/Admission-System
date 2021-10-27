@@ -256,8 +256,9 @@ int main()
 
     if (menu_selector == 3)
     {
-      MultiSort(DomesticStudents, numDomesticStudents);
-      MultiSort(InternationalStudents, numInternationalStudents);
+      //MultiSort(DomesticStudents, numDomesticStudents);
+      MultiSort(DomesticStudents, 0 , numDomesticStudents - 1);
+      MultiSort(InternationalStudents, 0, numInternationalStudents - 1);
       int filteredIndex = 0;
       for (int j = 0; j < numInternationalStudents; j++)
       {

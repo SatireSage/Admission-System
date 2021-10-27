@@ -5,8 +5,8 @@
 #include <string> //you will have to use string in C++
 
 // Multi Sort functions
-void MultiSort(Domestic *DomesticStudent, int num);
-void MultiSort(International *InternationalStudent, int num);
+void MultiSort(Domestic *DomesticStudent, int low, int high);
+void MultiSort(International *InternationalStudent, int low, int high);
 void MultiSort(Student *Students, int num);
 
 // Single Sort functions

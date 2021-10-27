@@ -2,6 +2,7 @@
 #include "stu_sort.hpp"
 
 // Multi Sort functions
+/*
 void MultiSort(Domestic *DomesticStudent, int num)
 {
     char sortOptions[] = {'p', 'g', 'r'};
@@ -10,13 +11,103 @@ void MultiSort(Domestic *DomesticStudent, int num)
         SingleSort(DomesticStudent, 0, num, sort);
     }
 }
+*/
+void MultiSort(Domestic *DomesticStudent, int low, int high)
+{
+    if (low < high)
+    {
+        int pi;
+        Domestic pivot = DomesticStudent[high];
+        int i = (low - 1);
+        for (int j = low; j <= high - 1; j++)
+        {
+            if ((compareResearchScore(DomesticStudent[j], DomesticStudent[high]) == 0) && (compareCGPA(DomesticStudent[j], DomesticStudent[high]) == 0) && (compareProvince(DomesticStudent[j], DomesticStudent[high]) < 0))
+            {
+                i++;
+                Domestic tmpStudent;
+                tmpStudent = DomesticStudent[i];
+                DomesticStudent[i] = DomesticStudent[j];
+                DomesticStudent[j] = tmpStudent;
+            }
+            else if ((compareResearchScore(DomesticStudent[j], DomesticStudent[high]) == 0) && (compareCGPA(DomesticStudent[j], DomesticStudent[high]) < 0))
+            {
+                i++;
+                Domestic tmpStudent;
+                tmpStudent = DomesticStudent[i];
+                DomesticStudent[i] = DomesticStudent[j];
+                DomesticStudent[j] = tmpStudent;
+            }
+            else if (compareResearchScore(DomesticStudent[j], DomesticStudent[high]) < 0)
+            {
+                i++;
+                Domestic tmpStudent;
+                tmpStudent = DomesticStudent[i];
+                DomesticStudent[i] = DomesticStudent[j];
+                DomesticStudent[j] = tmpStudent;
+            }
+        }
+        Domestic tmpStudent;
+        tmpStudent = DomesticStudent[i + 1];
+        DomesticStudent[i + 1] = DomesticStudent[high];
+        DomesticStudent[high] = tmpStudent;
+        pi = i + 1;
 
+        MultiSort(DomesticStudent, low, pi - 1);
+        MultiSort(DomesticStudent, pi + 1, high);
+    }
+}
+/*
 void MultiSort(International *InternationalStudent, int num)
 {
     char sortOptions[] = {'c', 'g', 'r'};
     for (int sort : sortOptions)
     {
         SingleSort(InternationalStudent, 0, num, sort);
+    }
+}
+*/
+void MultiSort(International *InternationalStudent, int low, int high)
+{
+    if (low < high)
+    {
+        int pi;
+        International pivot = InternationalStudent[high];
+        int i = (low - 1);
+        for (int j = low; j <= high - 1; j++)
+        {
+            if ((compareResearchScore(InternationalStudent[j], InternationalStudent[high]) == 0) && (compareCGPA(InternationalStudent[j], InternationalStudent[high]) == 0) && (compareCountry(InternationalStudent[j], InternationalStudent[high]) < 0))
+            {
+                i++;
+                International tmpStudent;
+                tmpStudent = InternationalStudent[i];
+                InternationalStudent[i] = InternationalStudent[j];
+                InternationalStudent[j] = tmpStudent;
+            }
+            else if ((compareResearchScore(InternationalStudent[j], InternationalStudent[high]) == 0) && (compareCGPA(InternationalStudent[j], InternationalStudent[high]) < 0))
+            {
+                i++;
+                International tmpStudent;
+                tmpStudent = InternationalStudent[i];
+                InternationalStudent[i] = InternationalStudent[j];
+                InternationalStudent[j] = tmpStudent;
+            }
+            else if (compareResearchScore(InternationalStudent[j], InternationalStudent[high]) < 0)
+            {
+                i++;
+                International tmpStudent;
+                tmpStudent = InternationalStudent[i];
+                InternationalStudent[i] = InternationalStudent[j];
+                InternationalStudent[j] = tmpStudent;
+            }
+        }
+        International tmpStudent;
+        tmpStudent = InternationalStudent[i + 1];
+        InternationalStudent[i + 1] = InternationalStudent[high];
+        InternationalStudent[high] = tmpStudent;
+        pi = i + 1;
+
+        MultiSort(InternationalStudent, low, pi - 1);
+        MultiSort(InternationalStudent, pi + 1, high);
     }
 }
 
