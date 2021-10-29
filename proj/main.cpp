@@ -11,7 +11,7 @@
 
 using namespace std;
 
-int Get_Number()
+int Get_Number() // checks validity of input
 {
   string line;
   int user_input;
@@ -31,7 +31,7 @@ int Get_Number()
   return user_input;
 }
 
-int lineCounter(ifstream &fileName)
+int lineCounter(ifstream &fileName) // counts number of lines (students) in a file
 {
   int i = 0;
   string line;
@@ -46,8 +46,8 @@ int lineCounter(ifstream &fileName)
 int main()
 {
   string line;
-  ifstream domesticFile("domestic-stu.txt");
-  if (!domesticFile.is_open())
+  ifstream domesticFile("domestic-stu.txt"); // connects files with domestic student information
+  if (!domesticFile.is_open()) // error return in case of file not opening
   {
     cout << "Unable to open file domestic-stu.txt" << endl;
     return -1;
@@ -58,7 +58,7 @@ int main()
   int stu_count = 1;
   int numDomesticStudents = lineCounter(domesticFile);
   Domestic *DomesticStudents = new Domestic[numDomesticStudents];
-  while (getline(domesticFile, line))
+  while (getline(domesticFile, line)) // creates first name, last name, province, gpa, and RS for each domestic student
   {
     istringstream ss(line);
     string firstName, lastName, province, s_cgpa, s_researchScore;
@@ -82,8 +82,8 @@ int main()
     i++;
   }
 
-  ifstream InternationalFile("international-stu.txt");
-  if (!InternationalFile.is_open())
+  ifstream InternationalFile("international-stu.txt"); // connects file with international student info
+  if (!InternationalFile.is_open()) // error return in case of file not opening
   {
     cout << "Unable to open file international-stu.txt" << endl;
     return -1;
@@ -96,7 +96,7 @@ int main()
   int numInternationalStudents = lineCounter(InternationalFile);
   International *InternationalStudents = new International[numInternationalStudents];
   International *filteredInternational = new International[numInternationalStudents];
-  while (getline(InternationalFile, line))
+  while (getline(InternationalFile, line)) // creates first name, last name, province, gpa, and RS for each international student
   {
     istringstream ss(line);
     string firstNameInt, lastNameInt, country, s_cgpa2, s_researchScore2, s_reading, s_listening, s_speaking, s_writing;
@@ -142,7 +142,7 @@ int main()
   }
 
   string exitCheck;
-  while (true)
+  while (true) //menu system
   {
     int menu_selector = 0; // resets menu selection value to 0 when loop begins
 
@@ -164,7 +164,7 @@ int main()
       cout << "You have selected an invalid menu option. Returning to main menu.\n"; // If user selects invalid menu slection, print error and return to menu
     }
 
-    if (menu_selector == 1 || menu_selector == 2)
+    if (menu_selector == 1 || menu_selector == 2) // allows user to select which sorting method to sort students by
     {
       bool check = true;
       char user_input;
@@ -213,7 +213,7 @@ int main()
           }
         }
       }
-      if (menu_selector == 1)
+      if (menu_selector == 1) // selects domestic students 
       {
         SingleSort(DomesticStudents, 0, numDomesticStudents - 1, user_input);
         cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
@@ -229,7 +229,7 @@ int main()
           cout << setw(5) << left << DomesticStudents[i];
         }
       }
-      if (menu_selector == 2)
+      if (menu_selector == 2) // selects international students
       {
         SingleSort(InternationalStudents, 0, numInternationalStudents - 1, user_input);
         cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
@@ -254,7 +254,7 @@ int main()
       cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
-    if (menu_selector == 3)
+    if (menu_selector == 3) // sorts all students
     {
       //MultiSort(DomesticStudents, numDomesticStudents);
       MultiSort(DomesticStudents, 0 , numDomesticStudents - 1);
@@ -279,9 +279,9 @@ int main()
       }
       MultiSort(AllStudents, totalIndex - 1);
     CHOICE:
-      int choice = 0;
+      int choice = 0; 
       cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
-      cout << "Please select one of the folowing:\n"
+      cout << "Please select one of the folowing:\n" 
            << "Select 1: to view Domestic and International Students Spearately\n"
            << "Select 2: to view all sorted students (Based on Research Score and CGPA only)\n"
            << ">> ";
