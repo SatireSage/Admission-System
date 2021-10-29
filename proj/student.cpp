@@ -76,7 +76,7 @@ ostream &operator<<(ostream &outs, const Student &stuObj)
     outs << setw(6) << left << stuObj.getResearchScore() << endl;
     return outs;
 }
-
+// compares CGPA of students
 int compareCGPA(Student stu1, Student stu2)
 {
     if (stu1.getCGPA() < stu2.getCGPA())
@@ -92,7 +92,7 @@ int compareCGPA(Student stu1, Student stu2)
         return 0;
     }
 }
-
+// compares RS of students
 int compareResearchScore(Student stu1, Student stu2)
 {
     if (stu1.getResearchScore() < stu2.getResearchScore())
@@ -108,7 +108,7 @@ int compareResearchScore(Student stu1, Student stu2)
         return 0;
     }
 }
-
+// compares first names of students alphabetically
 int compareFirstName(Student stu1, Student stu2)
 {
     string student1 = stu1.getFirstName();
@@ -121,7 +121,7 @@ int compareFirstName(Student stu1, Student stu2)
             student2[i] -= ('a' - 'A');
     return student1.compare(student2);
 }
-
+// compares last names of students alphabetically
 int compareLastName(Student stu1, Student stu2)
 {
     string student1 = stu1.getLastName();
@@ -166,7 +166,7 @@ ostream &operator<<(ostream &outs, const Domestic &stuObj)
     outs << setw(4) << left << stuObj.getResearchScore() << endl;
     return outs;
 }
-
+// compares provinces of domestic students alphabetically
 int compareProvince(Domestic stu1, Domestic stu2)
 {
     string student1 = stu1.getProvince();
@@ -235,7 +235,7 @@ void International::setCountry(string countryValue)
 {
     Country = countryValue;
 }
-
+// creates total score for international students
 void International::setToeflScore(int reading, int listening, int speaking, int writing)
 {
     toeflScore.setReading(reading);
@@ -301,7 +301,7 @@ ostream &operator<<(ostream &outs, const International &stuObj)
     outs << stuObj.getTotalScore() << endl;
     return outs;
 }
-
+// compares countries alphabetically
 int compareCountry(International stu1, International stu2)
 {
     string student1 = stu1.getCountry();
