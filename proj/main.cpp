@@ -4,7 +4,7 @@
 #include <fstream>  //file processing
 #include <sstream>  //formatted string processing
 #include <cstdlib>  //atof and atoi
-#include <iomanip>
+#include <iomanip> // formatting
 #include <limits> //numeric limit
 #include "student.hpp"
 #include "stu_sort.hpp"
@@ -43,7 +43,7 @@ int lineCounter(ifstream &fileName) // counts number of lines (students) in a fi
   return i;
 }
 
-int main()
+int main() // main function
 {
   string line;
   ifstream domesticFile("domestic-stu.txt"); // connects files with domestic student information
@@ -65,6 +65,7 @@ int main()
     float cgpa;
     int researchScore;
 
+    //takes data from txt file and sets object member variables
     getline(ss, firstName, ',');
     DomesticStudents[i].setFirstName(firstName);
     getline(ss, lastName, ',');
@@ -103,6 +104,7 @@ int main()
     float cgpa2;
     int researchScore2, reading, listening, speaking, writing;
 
+    //sets object member variables
     getline(ss, firstNameInt, ',');
     InternationalStudents[j].setFirstName(firstNameInt);
     getline(ss, lastNameInt, ',');
@@ -256,11 +258,10 @@ int main()
 
     if (menu_selector == 3) // sorts all students
     {
-      //MultiSort(DomesticStudents, numDomesticStudents);
       MultiSort(DomesticStudents, 0 , numDomesticStudents - 1);
       MultiSort(InternationalStudents, 0, numInternationalStudents - 1);
       int filteredIndex = 0;
-      for (int j = 0; j < numInternationalStudents; j++)
+      for (int j = 0; j < numInternationalStudents; j++) //removes international students not meeting requirements
       {
         if (InternationalStudents[j].getTotalScore() >= 93 && InternationalStudents[j].getReading() >= 20 && InternationalStudents[j].getListening() >= 20 && InternationalStudents[j].getSpeaking() >= 20 && InternationalStudents[j].getWriting() >= 20)
         {
@@ -268,7 +269,7 @@ int main()
         }
       }
       int totalIndex = 0;
-      Student *AllStudents = new Student[numDomesticStudents + filteredIndex];
+      Student *AllStudents = new Student[numDomesticStudents + filteredIndex]; //takes filtered students and implements them into new array
       for (int k = 0; k < numDomesticStudents; k++)
       {
         AllStudents[totalIndex++] = DomesticStudents[k];

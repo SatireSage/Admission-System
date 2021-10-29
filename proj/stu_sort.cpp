@@ -1,17 +1,9 @@
 // stu_sort.cpp to implement your sorting functions
 #include "stu_sort.hpp"
 
-// Multi Sort functions
-/*
-void MultiSort(Domestic *DomesticStudent, int num)
-{
-    char sortOptions[] = {'p', 'g', 'r'};
-    for (int sort : sortOptions)
-    {
-        SingleSort(DomesticStudent, 0, num, sort);
-    }
-}
-*/
+// Using quick sort for sorting alg
+
+// sorts domestic by RS then gpa then province
 void MultiSort(Domestic *DomesticStudent, int low, int high)
 {
     if (low < high)
@@ -56,16 +48,8 @@ void MultiSort(Domestic *DomesticStudent, int low, int high)
         MultiSort(DomesticStudent, pi + 1, high);
     }
 }
-/*
-void MultiSort(International *InternationalStudent, int num)
-{
-    char sortOptions[] = {'c', 'g', 'r'};
-    for (int sort : sortOptions)
-    {
-        SingleSort(InternationalStudent, 0, num, sort);
-    }
-}
-*/
+
+// sorts international students by RS then Gpa then country
 void MultiSort(International *InternationalStudent, int low, int high)
 {
     if (low < high)
@@ -111,6 +95,7 @@ void MultiSort(International *InternationalStudent, int low, int high)
     }
 }
 
+// sort all students
 void MultiSort(Student *Students, int num)
 {
     char sortOptions[] = {'g', 'r'};
@@ -120,7 +105,7 @@ void MultiSort(Student *Students, int num)
     }
 }
 
-// Single Sort functions
+// Single Sort domestic for one parameter sorting
 void SingleSort(Domestic *DomesticStudent, int low, int high, char type)
 {
     if (low < high)
@@ -129,7 +114,7 @@ void SingleSort(Domestic *DomesticStudent, int low, int high, char type)
         Domestic pivot = DomesticStudent[high];
         int i = (low - 1);
 
-        for (int j = low; j <= high - 1; j++)
+        for (int j = low; j <= high - 1; j++) // sorts based on user selection
         {
             if (((type == 'F' || type == 'f') && (compareFirstName(DomesticStudent[j], DomesticStudent[high]) < 0)) || ((type == 'L' || type == 'l') && (compareLastName(DomesticStudent[j], DomesticStudent[high]) < 0)) || ((type == 'G' || type == 'g') && (compareCGPA(DomesticStudent[j], DomesticStudent[high]) < 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(DomesticStudent[j], DomesticStudent[high]) < 0)) || ((type == 'P' || type == 'p') && (compareProvince(DomesticStudent[j], DomesticStudent[high]) < 0)))
             {
@@ -151,6 +136,7 @@ void SingleSort(Domestic *DomesticStudent, int low, int high, char type)
     }
 }
 
+// single sort for international students based on a single sorting parameter
 void SingleSort(International *InternationalStudent, int low, int high, char type)
 {
     if (low < high)
@@ -158,7 +144,7 @@ void SingleSort(International *InternationalStudent, int low, int high, char typ
         int pi;
         International pivot = InternationalStudent[high];
         int i = (low - 1);
-        for (int j = low; j <= high - 1; j++)
+        for (int j = low; j <= high - 1; j++) // sorts based on user parameter
         {
             if (((type == 'F' || type == 'f') && (compareFirstName(InternationalStudent[j], InternationalStudent[high]) < 0)) || ((type == 'L' || type == 'l') && (compareLastName(InternationalStudent[j], InternationalStudent[high]) < 0)) || ((type == 'G' || type == 'g') && (compareCGPA(InternationalStudent[j], InternationalStudent[high]) < 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(InternationalStudent[j], InternationalStudent[high]) < 0)) || ((type == 'C' || type == 'c') && (compareCountry(InternationalStudent[j], InternationalStudent[high]) < 0)))
             {
@@ -180,6 +166,7 @@ void SingleSort(International *InternationalStudent, int low, int high, char typ
     }
 }
 
+// sort all students
 void SingleSort(Student *Students, int low, int high, char type)
 {
     if (low < high)
