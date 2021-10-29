@@ -174,17 +174,17 @@ int main()
         cout << "Please enter what you would like to sort by:\n"
              << "Please select one of the folowing:\n"
              << "First Name: F, Last Name: L, CGPA: G, Research Score: R, ";
-        if (menu_selector == 1)
+        if (menu_selector == 1) // uses province in the case of domestic students
         {
           cout << "Province: P";
         }
-        if (menu_selector == 2)
+        if (menu_selector == 2) // uses country in the case of international students
         {
           cout << "Country: C";
         }
         cout << "\n>> ";
         cin >> user_selector;
-        if (menu_selector == 1)
+        if (menu_selector == 1) // user input to select which option, case insensitive
         {
           if (user_selector == 'F' || user_selector == 'f' || user_selector == 'L' || user_selector == 'l' || user_selector == 'G' || user_selector == 'g' || user_selector == 'R' || user_selector == 'r' || user_selector == 'P' || user_selector == 'p')
           {
@@ -198,7 +198,7 @@ int main()
             check = true;
           }
         }
-        if (menu_selector == 2)
+        if (menu_selector == 2) // user input to select which option, case insensitive
         {
           if (user_selector == 'F' || user_selector == 'f' || user_selector == 'L' || user_selector == 'l' || user_selector == 'G' || user_selector == 'g' || user_selector == 'R' || user_selector == 'r' || user_selector == 'C' || user_selector == 'c')
           {
@@ -281,17 +281,17 @@ int main()
     CHOICE:
       int choice = 0; 
       cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
-      cout << "Please select one of the folowing:\n" 
+      cout << "Please select one of the folowing:\n" // presents users with two options
            << "Select 1: to view Domestic and International Students Spearately\n"
            << "Select 2: to view all sorted students (Based on Research Score and CGPA only)\n"
            << ">> ";
       choice = Get_Number();
-      if (choice < 1 || choice > 2)
+      if (choice < 1 || choice > 2) // error checking
       {
         cout << "You have selected an invalid menu option. Returning to selection.\n"; // If user selects invalid menu slection, print error and return to menu
         goto CHOICE;
       }
-      if (choice == 1)
+      if (choice == 1) // choice 1: view separately
       {
         cout << "\nAll Sorted Domestic Students:\n\n";
         cout << setw(12) << left << "UID: ";
@@ -322,7 +322,7 @@ int main()
         }
         cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
       }
-      if (choice == 2)
+      if (choice == 2) // choice 2: sort all students 
       {
         cout << "\nAll Sorted Students: (Based on Research Score and CGPA only)\n\n";
         cout << setw(12) << left << "UID: ";
