@@ -129,4 +129,142 @@ public:
     friend int compareCountry(International stu1, International stu2);
 };
 
+// Student node
+// class StudentNode
+// {
+// public:
+//     int StuID;
+//     StudentNode *head;
+//     StudentNode *tail;
+// };
+// typedef class StudentNode *StuPtr;
+
+// class StudentNodeList
+// {
+// private:
+//     Domestic domesticStudent;
+//     International internationalStudent;
+//     StuPtr Node;
+
+// protected:
+//     StuPtr newNodeDom(Domestic StuObj, StuPtr Stu1);
+//     StuPtr newNodeInt(International StuObj, StuPtr Stu1);
+//     StuPtr DelNodeDom(Domestic StuObj, StuPtr Stu1);
+//     StuPtr DelNodeInt(International StuObj, StuPtr Stu1);
+
+//     string FindName(StuPtr Stu1, StuPtr Stu2);
+//     string FindFirstName(StuPtr Stu1, StuPtr Stu2);
+//     string FindLastName(StuPtr Stu1, StuPtr Stu2);
+//     int FindCGPA(StuPtr Stu1, StuPtr Stu2);
+//     int FindResearchScore(StuPtr Stu1, StuPtr Stu2);
+//     int FindUID(StuPtr Stu1, StuPtr Stu2);
+//     string compareStudentTypes(StuPtr Stu1, StuPtr Stu2);
+
+// public:
+//     StudentNodeList();
+
+//     StuPtr newNodeDom(Domestic StuObj);
+//     StuPtr newNodeInt(International StuObj);
+//     StuPtr DelNodeDom(Domestic StuObj);
+//     StuPtr DelNodeInt(International StuObj);
+// };
+
+// Domestic student linked-list class
+class DomesticStudentList
+{
+    // protected:
+    //     DomesticStudentList *newNodeDom(Domestic StuObj, DomesticStudentList *Stu1);
+    //     DomesticStudentList *DelNodeDom(Domestic StuObj, DomesticStudentList *Stu1);
+    //     DomesticStudentList *removeHeadTailNodes(Domestic StuObj, DomesticStudentList *Stu1);
+
+    //     string FindName(DomesticStudentList *Stu1, DomesticStudentList *Stu2, string FirstName, string LastName);
+
+    //     string FindFirstName(DomesticStudentList *Stu1, DomesticStudentList *Stu2, string FirstName);
+    //     string FindLastName(DomesticStudentList *Stu1, DomesticStudentList *Stu2, string LastName);
+    //     int FindCGPA(DomesticStudentList *Stu1, DomesticStudentList *Stu2, int CGPA_VALUE);
+    //     int FindResearchScore(DomesticStudentList *Stu1, DomesticStudentList *Stu2, int researchScore_VALUE);
+    //     int FindUID(DomesticStudentList *Stu1, DomesticStudentList *Stu2, int UIDValue);
+    //     string compareStudentTypes(DomesticStudentList *Stu1, DomesticStudentList *Stu2);
+
+public:
+    Domestic domesticStudent;
+    DomesticStudentList *next, *head, *tail;
+
+    void friend pushDom(DomesticStudentList **head_ref, Domestic new_data);
+    void friend appendDoms(DomesticStudentList **head_ref, Domestic new_data);
+    void friend printDom(DomesticStudentList *node);
+
+    // string friend FindName(DomesticStudentList *Stu, string FirstName, string LastName);
+
+    // DomesticStudentList *newNodeDom(Domestic StuObj);
+    // DomesticStudentList *DelNodeDom(Domestic StuObj);
+    // DomesticStudentList *removeHeadTailNodes(Domestic StuObj);
+};
+
+// International student linked-list class
+class InternationalStudentList
+{
+    // protected:
+    //     InternationalStudentList *newNodeInt(International StuObj, InternationalStudentList *Stu1);
+    //     InternationalStudentList *DelNodeInt(International StuObj, InternationalStudentList *Stu1);
+    //     InternationalStudentList *removeHeadTailNodes(International StuObj, InternationalStudentList *Stu1);
+
+    //     string FindName(InternationalStudentList *Stu1, InternationalStudentList *Stu2, string FirstName, string LastName);
+    //     string FindFirstName(InternationalStudentList *Stu1, InternationalStudentList *Stu2, string FirstName);
+    //     string FindLastName(InternationalStudentList *Stu1, InternationalStudentList *Stu2, string LastName);
+    //     int FindCGPA(InternationalStudentList *Stu1, InternationalStudentList *Stu2, int CGPA_VALUE);
+    //     int FindResearchScore(InternationalStudentList *Stu1, InternationalStudentList *Stu2, int researchScore_VALUE);
+    //     int FindUID(InternationalStudentList *Stu1, InternationalStudentList *Stu2, int UIDValue);
+    //     string compareStudentTypes(InternationalStudentList *Stu1, InternationalStudentList *Stu2);
+
+public:
+    International internationalStudent;
+    InternationalStudentList *next;
+    InternationalStudentList *head;
+    InternationalStudentList *tail;
+
+    // InternationalStudentList();
+
+    void friend pushInt(InternationalStudentList **head_ref, International new_data);
+    void friend appendInt(InternationalStudentList **head_ref, International new_data);
+    void friend printInt(InternationalStudentList *node);
+
+    // InternationalStudentList *newNodeInt(International StuObj);
+    // InternationalStudentList *DelNodeInt(International StuObj);
+    // InternationalStudentList *removeHeadTailNodes(International StuObj);
+};
+
+// Merged student linked-list class
+class StudentList
+{
+    // protected:
+    //     StudentList *newNodeInt(Student StuObj, InternationalStudentList *Stu1);
+    //     StudentList *DelNodeInt(Student StuObj, InternationalStudentList *Stu1);
+    //     StudentList *removeHeadTailNodes(Student StuObj, InternationalStudentList *Stu1);
+
+    //     string FindName(StudentList *Stu1, StudentList *Stu2, string FirstName, string LastName);
+    //     string FindFirstName(StudentList *Stu1, StudentList *Stu2, string FirstName);
+    //     string FindLastName(StudentList *Stu1, StudentList *Stu2, string LastName);
+    //     int FindCGPA(StudentList *Stu1, StudentList *Stu2, int CGPA_VALUE);
+    //     int FindResearchScore(StudentList *Stu1, StudentList *Stu2, int researchScore_VALUE);
+    //     int FindUID(StudentList *Stu1, StudentList *Stu2, int UIDValue);
+    //     string compareStudentTypes(StudentList *Stu1, StudentList *Stu2);
+
+public:
+    Student Students;
+    StudentList *next;
+    StudentList *head;
+    StudentList *tail;
+
+    // StudentList();
+
+    void friend pushMerge(StudentList **head_ref, Student new_data);
+    void friend appendMerge(StudentList **head_ref, Student new_data);
+    void friend printMerge(StudentList *node);
+
+    // StudentList *newNodeInt(Student StuObj);
+    // StudentList *DelNodeInt(Student StuObj);
+    // StudentList *removeHeadTailNodes(Student StuObj);
+};
+
 #endif

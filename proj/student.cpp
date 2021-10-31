@@ -1,6 +1,8 @@
 // student.cpp to implement your classes
 #include "student.hpp"
 #include <iomanip>
+#include <iostream>
+#include <vector>
 using namespace std; // use namespace std
 // -------------------------------------- Student Class -------------------------------------- //
 
@@ -380,3 +382,245 @@ void ToeflScore::setTotalScore(int totalScore)
 }
 
 // -------------------------------------- End ToeflScore Class -------------------------------------- //
+// -------------------------------------- Domestic Student Linked List Class -------------------------------------- //
+
+void pushDom(DomesticStudentList **head_ref, Domestic new_data)
+{
+    DomesticStudentList *new_node = new DomesticStudentList();
+    new_node->domesticStudent = new_data;
+    new_node->next = (*head_ref);
+    (*head_ref) = new_node;
+};
+
+// void appendDom(DomesticStudentList **head_ref, Domestic new_data)
+// {
+//     DomesticStudentList *new_node = new DomesticStudentList();
+//     DomesticStudentList *last = *head_ref;
+//     new_node->domesticStudent = new_data;
+//     new_node->next = NULL;
+//     if (*head_ref == NULL)
+//     {
+//         *head_ref = new_node;
+//         return;
+//     }
+//     while (last->next != NULL)
+//     {
+//         last = last->next;
+//     }
+//     last->next = new_node;
+//     return;
+// }
+
+void appendDoms(DomesticStudentList **root, Domestic item)
+{
+    DomesticStudentList *temp = new DomesticStudentList;
+    DomesticStudentList *current;
+    temp->domesticStudent = item;
+    temp->next = NULL;
+    temp->head = NULL;
+    temp->tail = NULL;
+
+    if (*root == NULL)
+    {
+        temp->head = temp;
+        temp->tail = temp;
+        *root = temp;
+    }
+    else
+    {
+        current = *root;
+        while (current->next != NULL)
+            current = current->next;
+        temp->head = current->head;
+        temp->tail = temp;
+        (*root)->tail = temp;
+        current->next = temp;
+        current->tail = current->next;
+    }
+}
+
+void printDom(DomesticStudentList *node)
+{
+    while (node != NULL)
+    {
+        cout << " " << node->domesticStudent;
+        node = node->next;
+    }
+}
+
+// string FindName(DomesticStudentList *Stu, string FirstName, string LastName)
+// {
+//     string string1, string2;
+//     DomesticStudentList *current;
+//     vector<Domestic> storeDom;
+//     bool found = false;
+
+//     if (Stu == nullptr)
+//     {
+//         std::cout << "\n Does not exist.";
+//     }
+//     else
+//     {
+//         current = Stu;
+//         int counter = 0;
+//         while (current->next != NULL)
+//         {
+//             current = current->next;
+//             string1 = current->domesticStudent.getFirstName();
+//             string2 = current->domesticStudent.getLastName();
+//             for (int i = 0; i < string1.size(); i++)
+//                 if (string1[i] >= 'a' && string1[i] <= 'z')
+//                     string1[i] -= ('a' - 'A');
+//             for (int i = 0; i < string2.size(); i++)
+//                 if (string2[i] >= 'a' && string2[i] <= 'z')
+//                     string2[i] -= ('a' - 'A');
+//             int comparator = string1.compare(string2);
+//             if (comparator >= 0)
+//             {
+//                 storeDom.push_back(current->domesticStudent);
+//             }
+//         }
+//     }
+
+//     for (int i = 0; i < storeDom.size(); i++)
+//     {
+//         cout << storeDom.at(i) << endl;
+//     }
+// }
+// -------------------------------------- End Domestic Student Linked List Class -------------------------------------- //
+// -------------------------------------- International Student Linked List Class -------------------------------------- //
+
+void pushInt(InternationalStudentList **head_ref, International new_data)
+{
+    InternationalStudentList *new_node = new InternationalStudentList();
+    new_node->internationalStudent = new_data;
+    new_node->next = (*head_ref);
+    (*head_ref) = new_node;
+};
+
+// void appendInt(InternationalStudentList **head_ref, International new_data)
+// {
+//     InternationalStudentList *new_node = new InternationalStudentList();
+//     InternationalStudentList *last = *head_ref;
+//     new_node->internationalStudent = new_data;
+//     new_node->next = NULL;
+//     if (*head_ref == NULL)
+//     {
+//         *head_ref = new_node;
+//         return;
+//     }
+//     while (last->next != NULL)
+//     {
+//         last = last->next;
+//     }
+//     last->next = new_node;
+//     return;
+// }
+
+void appendInt(InternationalStudentList **root, International item)
+{
+    InternationalStudentList *temp = new InternationalStudentList;
+    InternationalStudentList *current;
+    temp->internationalStudent = item;
+    temp->next = NULL;
+    temp->head = NULL;
+    temp->tail = NULL;
+
+    if (*root == NULL)
+    {
+        temp->head = temp;
+        temp->tail = temp;
+        *root = temp;
+    }
+    else
+    {
+        current = *root;
+        while (current->next != NULL)
+            current = current->next;
+        temp->head = current->head;
+        temp->tail = temp;
+        (*root)->tail = temp;
+        current->next = temp;
+        current->tail = current->next;
+    }
+}
+
+void printInt(InternationalStudentList *node)
+{
+    while (node != NULL)
+    {
+        cout << " " << node->internationalStudent;
+        node = node->next;
+    }
+    // cout << "\nHead is: " << node->head->internationalStudent;
+    // cout << "Tail is: " << node->tail->internationalStudent;
+}
+
+// -------------------------------------- End International Student Linked List Class -------------------------------------- //
+// -------------------------------------- Merged Student Linked List Class -------------------------------------- //
+
+void pushMerge(StudentList **head_ref, Student new_data)
+{
+    StudentList *new_node = new StudentList();
+    new_node->Students = new_data;
+    new_node->next = (*head_ref);
+    (*head_ref) = new_node;
+};
+
+// void appendMerge(StudentList **head_ref, Student new_data)
+// {
+//     StudentList *new_node = new StudentList();
+//     StudentList *last = *head_ref;
+//     new_node->Students = new_data;
+//     new_node->next = NULL;
+//     if (*head_ref == NULL)
+//     {
+//         *head_ref = new_node;
+//         return;
+//     }
+//     while (last->next != NULL)
+//     {
+//         last = last->next;
+//     }
+//     last->next = new_node;
+//     return;
+// }
+
+void appendMerge(StudentList **root, Student item)
+{
+    StudentList *temp = new StudentList;
+    StudentList *current;
+    temp->Students = item;
+    temp->next = NULL;
+    temp->head = NULL;
+    temp->tail = NULL;
+
+    if (*root == NULL)
+    {
+        temp->head = temp;
+        temp->tail = temp;
+        *root = temp;
+    }
+    else
+    {
+        current = *root;
+        while (current->next != NULL)
+            current = current->next;
+        temp->head = current->head;
+        temp->tail = temp;
+        (*root)->tail = temp;
+        current->next = temp;
+        current->tail = current->next;
+    }
+}
+
+void printMerge(StudentList *node)
+{
+    while (node != NULL)
+    {
+        cout << " " << node->Students;
+        node = node->next;
+    }
+    // cout << "\nHead is: " << node->head->Students;
+    // cout << "Tail is: " << node->tail->Students;
+}

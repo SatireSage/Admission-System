@@ -4,12 +4,58 @@
 #include <fstream>  //file processing
 #include <sstream>  //formatted string processing
 #include <cstdlib>  //atof and atoi
-#include <iomanip> // formatting
-#include <limits> //numeric limit
+#include <iomanip>  // formatting
+#include <limits>   //numeric limit
 #include "student.hpp"
 #include "stu_sort.hpp"
 
 using namespace std;
+
+DomesticStudentList *arrayToListDom(Domestic arr[], int n)
+{
+  DomesticStudentList *root = NULL;
+  for (int i = 0; i < n; i++)
+  {
+    appendDoms(&root, arr[i]);
+  }
+  return root;
+};
+
+StudentList *arrayToListStu(Student arr[], int n)
+{
+  StudentList *root = NULL;
+  for (int i = 0; i < n; i++)
+  {
+    // if (i == 0)
+    // {
+    //   root->head->Students = arr[i];
+    // }
+    // else if (i == (n - 1))
+    // {
+    //   root->tail->Students = arr[i];
+    // }
+    appendMerge(&root, arr[i]);
+  }
+  return root;
+};
+
+InternationalStudentList *arrayToListInt(International arr[], int n)
+{
+  InternationalStudentList *root = NULL;
+  for (int i = 0; i < n; i++)
+  {
+    // if (i == 0)
+    // {
+    //   root->head->internationalStudent = arr[i];
+    // }
+    // else if (i == (n - 1))
+    // {
+    //   root->tail->internationalStudent = arr[i];
+    // }
+    appendInt(&root, arr[i]);
+  }
+  return root;
+};
 
 int Get_Number() // checks validity of input
 {
@@ -29,7 +75,7 @@ int Get_Number() // checks validity of input
          << ">> ";
   }
   return user_input;
-}
+};
 
 int lineCounter(ifstream &fileName) // counts number of lines (students) in a file
 {
@@ -41,13 +87,13 @@ int lineCounter(ifstream &fileName) // counts number of lines (students) in a fi
   fileName.seekg(0, ios::beg);
   getline(fileName, line);
   return i;
-}
+};
 
 int main() // main function
 {
   string line;
   ifstream domesticFile("domestic-stu.txt"); // connects files with domestic student information
-  if (!domesticFile.is_open()) // error return in case of file not opening
+  if (!domesticFile.is_open())               // error return in case of file not opening
   {
     cout << "Unable to open file domestic-stu.txt" << endl;
     return -1;
@@ -65,7 +111,7 @@ int main() // main function
     float cgpa;
     int researchScore;
 
-    //takes data from txt file and sets object member variables
+    // takes data from txt file and sets object member variables
     getline(ss, firstName, ',');
     DomesticStudents[i].setFirstName(firstName);
     getline(ss, lastName, ',');
@@ -84,7 +130,7 @@ int main() // main function
   }
 
   ifstream InternationalFile("international-stu.txt"); // connects file with international student info
-  if (!InternationalFile.is_open()) // error return in case of file not opening
+  if (!InternationalFile.is_open())                    // error return in case of file not opening
   {
     cout << "Unable to open file international-stu.txt" << endl;
     return -1;
@@ -104,7 +150,7 @@ int main() // main function
     float cgpa2;
     int researchScore2, reading, listening, speaking, writing;
 
-    //sets object member variables
+    // sets object member variables
     getline(ss, firstNameInt, ',');
     InternationalStudents[j].setFirstName(firstNameInt);
     getline(ss, lastNameInt, ',');
@@ -144,7 +190,7 @@ int main() // main function
   }
 
   string exitCheck;
-  while (true) //menu system
+  while (true) // menu system
   {
     int menu_selector = 0; // resets menu selection value to 0 when loop begins
 
@@ -215,7 +261,7 @@ int main() // main function
           }
         }
       }
-      if (menu_selector == 1) // selects domestic students 
+      if (menu_selector == 1) // selects domestic students
       {
         SingleSort(DomesticStudents, 0, numDomesticStudents - 1, user_input);
         cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
@@ -258,10 +304,10 @@ int main() // main function
 
     if (menu_selector == 3) // sorts all students
     {
-      MultiSort(DomesticStudents, 0 , numDomesticStudents - 1);
+      MultiSort(DomesticStudents, 0, numDomesticStudents - 1);
       MultiSort(InternationalStudents, 0, numInternationalStudents - 1);
       int filteredIndex = 0;
-      for (int j = 0; j < numInternationalStudents; j++) //removes international students not meeting requirements
+      for (int j = 0; j < numInternationalStudents; j++) // removes international students not meeting requirements
       {
         if (InternationalStudents[j].getTotalScore() >= 93 && InternationalStudents[j].getReading() >= 20 && InternationalStudents[j].getListening() >= 20 && InternationalStudents[j].getSpeaking() >= 20 && InternationalStudents[j].getWriting() >= 20)
         {
@@ -269,7 +315,7 @@ int main() // main function
         }
       }
       int totalIndex = 0;
-      Student *AllStudents = new Student[numDomesticStudents + filteredIndex]; //takes filtered students and implements them into new array
+      Student *AllStudents = new Student[numDomesticStudents + filteredIndex]; // takes filtered students and implements them into new array
       for (int k = 0; k < numDomesticStudents; k++)
       {
         AllStudents[totalIndex++] = DomesticStudents[k];
@@ -279,8 +325,64 @@ int main() // main function
         AllStudents[totalIndex++] = filteredInternational[k];
       }
       MultiSort(AllStudents, totalIndex - 1);
+
+      // Append objects to linked list
+      DomesticStudentList *DomHead = arrayToListDom(DomesticStudents, numDomesticStudents);
+      InternationalStudentList *IntHead = arrayToListInt(filteredInternational, filteredIndex);
+      StudentList *StuHead = arrayToListStu(AllStudents, totalIndex);
+
+      cout << "\nHead is: " << DomHead->head->domesticStudent;
+      cout << "Tail is: " << DomHead->tail->domesticStudent;
+      cout << "\nHead is: " << IntHead->head->internationalStudent;
+      cout << "Tail is: " << IntHead->tail->internationalStudent;
+      cout << "\nHead is: " << StuHead->head->Students;
+      cout << "Tail is: " << StuHead->tail->Students;
+      cout << endl;
+      // FindName(DomHead, "Jacob", "Rivera");
+      // for (int i = 0; i < numDomesticStudents; i++)
+      // {
+      //   if (i == 0)
+      //   {
+      //     pushDom(&DomHead, DomesticStudents[i]);
+      //   }
+      //   else
+      //   {
+      //     appendDom(&DomHead, DomesticStudents[i]);
+      //   }
+      // }
+
+      // for (int i = 0; i < filteredIndex; i++)
+      // {
+      //   if (i == 0)
+      //   {
+      //     pushInt(&IntHead, filteredInternational[i]);
+      //   }
+      //   else
+      //   {
+      //     appendInt(&IntHead, filteredInternational[i]);
+      //   }
+      // }
+
+      // for (int i = 0; i < totalIndex; i++)
+      // {
+      //   if (i == 0)
+      //   {
+      //     pushMerge(&StuHead, AllStudents[i]);
+      //   }
+      //   else
+      //   {
+      //     appendMerge(&StuHead, filteredInternational[i]);
+      //   }
+      // }
+
+      printDom(DomHead);
+      cout << endl;
+      printInt(IntHead);
+      cout << endl;
+      printMerge(StuHead);
+      cout << endl;
     CHOICE:
-      int choice = 0; 
+      int choice = 0;
       cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
       cout << "Please select one of the folowing:\n" // presents users with two options
            << "Select 1: to view Domestic and International Students Spearately\n"
@@ -323,7 +425,7 @@ int main() // main function
         }
         cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
       }
-      if (choice == 2) // choice 2: sort all students 
+      if (choice == 2) // choice 2: sort all students
       {
         cout << "\nAll Sorted Students: (Based on Research Score and CGPA only)\n\n";
         cout << setw(12) << left << "UID: ";
