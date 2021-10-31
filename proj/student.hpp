@@ -194,7 +194,7 @@ public:
     void friend appendDoms(DomesticStudentList **head_ref, Domestic new_data);
     void friend printDom(DomesticStudentList *node);
 
-    // string friend FindName(DomesticStudentList *Stu, string FirstName, string LastName);
+    void friend FindName(DomesticStudentList *Stu, string FirstName, string LastName);
 
     // DomesticStudentList *newNodeDom(Domestic StuObj);
     // DomesticStudentList *DelNodeDom(Domestic StuObj);

@@ -448,45 +448,50 @@ void printDom(DomesticStudentList *node)
     }
 }
 
-// string FindName(DomesticStudentList *Stu, string FirstName, string LastName)
-// {
-//     string string1, string2;
-//     DomesticStudentList *current;
-//     vector<Domestic> storeDom;
-//     bool found = false;
+void FindName(DomesticStudentList *Stu, string FirstName, string LastName)
+{
+    string string1, string2;
+    DomesticStudentList *current;
+    vector<Domestic> storeDom;
+    bool found = false;
 
-//     if (Stu == nullptr)
-//     {
-//         std::cout << "\n Does not exist.";
-//     }
-//     else
-//     {
-//         current = Stu;
-//         int counter = 0;
-//         while (current->next != NULL)
-//         {
-//             current = current->next;
-//             string1 = current->domesticStudent.getFirstName();
-//             string2 = current->domesticStudent.getLastName();
-//             for (int i = 0; i < string1.size(); i++)
-//                 if (string1[i] >= 'a' && string1[i] <= 'z')
-//                     string1[i] -= ('a' - 'A');
-//             for (int i = 0; i < string2.size(); i++)
-//                 if (string2[i] >= 'a' && string2[i] <= 'z')
-//                     string2[i] -= ('a' - 'A');
-//             int comparator = string1.compare(string2);
-//             if (comparator >= 0)
-//             {
-//                 storeDom.push_back(current->domesticStudent);
-//             }
-//         }
-//     }
+    if (Stu == nullptr)
+    {
+        std::cout << "\n Does not exist.";
+    }
+    else
+    {
+        current = Stu;
+        int counter = 0;
+        while (current->next != NULL)
+        {
+            current = current->next;
+            string1 = current->domesticStudent.getFirstName();
+            string2 = current->domesticStudent.getLastName();
+            for (int i = 0; i < string1.size(); i++)
+                if (string1[i] >= 'a' && string1[i] <= 'z')
+                    string1[i] -= ('a' - 'A');
+            for (int i = 0; i < FirstName.size(); i++)
+                if (FirstName[i] >= 'a' && FirstName[i] <= 'z')
+                    FirstName[i] -= ('a' - 'A');
+            for (int i = 0; i < string2.size(); i++)
+                if (string2[i] >= 'a' && string2[i] <= 'z')
+                    string2[i] -= ('a' - 'A');
+            for (int i = 0; i < LastName.size(); i++)
+                if (LastName[i] >= 'a' && LastName[i] <= 'z')
+                    LastName[i] -= ('a' - 'A');
+            int comparatorFirstName = FirstName.compare(string1);
+            int comparatorLastName = LastName.compare(string2);
+            if ((comparatorFirstName == 0) && (comparatorLastName == 0))
+            {
+                storeDom.push_back(current->domesticStudent);
+            }
+        }
+    }
 
-//     for (int i = 0; i < storeDom.size(); i++)
-//     {
-//         cout << storeDom.at(i) << endl;
-//     }
-// }
+    for (int i = 0; i < storeDom.size(); i++)
+        cout << storeDom.at(i) << ' ';
+}
 // -------------------------------------- End Domestic Student Linked List Class -------------------------------------- //
 // -------------------------------------- International Student Linked List Class -------------------------------------- //
 

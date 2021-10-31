@@ -338,7 +338,7 @@ int main() // main function
       cout << "\nHead is: " << StuHead->head->Students;
       cout << "Tail is: " << StuHead->tail->Students;
       cout << endl;
-      // FindName(DomHead, "Jacob", "Rivera");
+
       // for (int i = 0; i < numDomesticStudents; i++)
       // {
       //   if (i == 0)
@@ -381,6 +381,8 @@ int main() // main function
       cout << endl;
       printMerge(StuHead);
       cout << endl;
+
+      FindName(DomHead, "Jacob", "Rivera");
     CHOICE:
       int choice = 0;
       cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
