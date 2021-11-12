@@ -28,8 +28,7 @@ DomesticStudentList *SortedMergeDom(DomesticStudentList *stu1, DomesticStudentLi
     else if (stu2 == NULL)
         return (stu1);
 
-    if (stu1->domesticStudent.getCGPA() >= stu1->domesticStudent.getCGPA())
-    // if (((type == 'F' || type == 'f') && (compareFirstName(stu1->domesticStudent.getFirstName(), stu2->domesticStudent.getFirstName()) < 0)) || ((type == 'L' || type == 'l') && (compareLastName(stu1->domesticStudent.getLastName(), stu2->domesticStudent.getLastName()) < 0)) || ((type == 'G' || type == 'g') && (compareCGPA(stu1->domesticStudent.getCGPA(), stu2->domesticStudent.getCGPA()) < 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(stu1->domesticStudent.getResearchScore(), stu2->domesticStudent.getResearchScore()) < 0)) || ((type == 'P' || type == 'p') && (compareProvince(stu1->domesticStudent.getProvince(), stu2->domesticStudent.getProvince()) < 0)))
+    if (((type == 'F' || type == 'f') && (compareFirstName(stu1->domesticStudent, stu2->domesticStudent) < 0)) || ((type == 'L' || type == 'l') && (compareLastName(stu1->domesticStudent, stu2->domesticStudent) < 0)) || ((type == 'G' || type == 'g') && (compareCGPA(stu1->domesticStudent, stu2->domesticStudent) < 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(stu1->domesticStudent, stu2->domesticStudent) < 0)) || ((type == 'P' || type == 'p') && (compareProvince(stu1->domesticStudent, stu2->domesticStudent) < 0)))
     {
         result = stu1;
         result->next = SortedMergeDom(stu1->next, stu2, type);
@@ -91,8 +90,7 @@ InternationalStudentList *SortedMergeInt(InternationalStudentList *stu1, Interna
     else if (stu2 == NULL)
         return (stu1);
 
-    // if (((type == 'F' || type == 'f') && (compareFirstName(stu1->internationalStudent.getFirstName(), stu2->internationalStudent.getFirstName()) < 0)) || ((type == 'L' || type == 'l') && (compareLastName(stu1->internationalStudent.getLastName(), stu2->internationalStudent.getLastName()) < 0)) || ((type == 'G' || type == 'g') && (compareCGPA(stu1->internationalStudent.getCGPA(), stu2->internationalStudent.getCGPA()) < 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(stu1->internationalStudent.getResearchScore(), stu2->internationalStudent.getResearchScore()) < 0)) || ((type == 'P' || type == 'p') && (compareCountry(stu1->internationalStudent.getCountry(), stu2->internationalStudent.getCountry()) < 0)))
-    if (stu1->internationalStudent.getCGPA() >= stu1->internationalStudent.getCGPA())
+    if (((type == 'F' || type == 'f') && (compareFirstName(stu1->internationalStudent, stu2->internationalStudent) < 0)) || ((type == 'L' || type == 'l') && (compareLastName(stu1->internationalStudent, stu2->internationalStudent) < 0)) || ((type == 'G' || type == 'g') && (compareCGPA(stu1->internationalStudent, stu2->internationalStudent) < 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(stu1->internationalStudent, stu2->internationalStudent) < 0)) || ((type == 'P' || type == 'p') && (compareCountry(stu1->internationalStudent, stu2->internationalStudent) < 0)))
     {
         result = stu1;
         result->next = SortedMergeInt(stu1->next, stu2, type);
@@ -154,8 +152,7 @@ StudentList *SortedMergeAll(StudentList *stu1, StudentList *stu2, char type)
     else if (stu2 == NULL)
         return (stu1);
 
-    // if (((type == 'F' || type == 'f') && (compareFirstName(stu1->Students.getFirstName(), stu2->Students.getFirstName()) < 0)) || ((type == 'L' || type == 'l') && (compareLastName(stu1->Students.getLastName(), stu2->Students.getLastName()) < 0)) || ((type == 'G' || type == 'g') && (compareCGPA(stu1->Students.getCGPA(), stu2->Students.getCGPA()) < 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(stu1->Students.getResearchScore(), stu2->Students.getResearchScore()) < 0)))
-    if (stu1->Students.getCGPA() >= stu1->Students.getCGPA())
+    if (((type == 'F' || type == 'f') && (compareFirstName(stu1->Students, stu2->Students) < 0)) || ((type == 'L' || type == 'l') && (compareLastName(stu1->Students, stu2->Students) < 0)) || ((type == 'G' || type == 'g') && (compareCGPA(stu1->Students, stu2->Students) < 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(stu1->Students, stu2->Students) < 0)))
     {
         result = stu1;
         result->next = SortedMergeAll(stu1->next, stu2, type);
