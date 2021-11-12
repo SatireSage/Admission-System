@@ -433,7 +433,7 @@ void DomFindName(DomesticStudentList *Stu, string FirstName, string LastName)
     else
     {
         current = Stu;
-        while (current->next != NULL)
+        while (current != NULL)
         {
             string1 = current->domesticStudent.getFirstName();
             string2 = current->domesticStudent.getLastName();
@@ -479,7 +479,7 @@ void DomFindCGPA(DomesticStudentList *Stu, int CGPA_VALUE)
     else
     {
         current = Stu;
-        while (current->next != NULL)
+        while (current != NULL)
         {
             storeCGPA = current->domesticStudent.getCGPA();
             if (storeCGPA == CGPA_VALUE)
@@ -510,7 +510,7 @@ void DomFindResearchScore(DomesticStudentList *Stu, int researchScore_VALUE)
     else
     {
         current = Stu;
-        while (current->next != NULL)
+        while (current != NULL)
         {
             storeRScore = current->domesticStudent.getResearchScore();
             if (storeRScore == researchScore_VALUE)
@@ -541,7 +541,7 @@ void DomFindUID(DomesticStudentList *Stu, int UIDValue)
     else
     {
         current = Stu;
-        while (current->next != NULL)
+        while (current != NULL)
         {
             storeID = current->domesticStudent.getUID();
             if (storeID == UIDValue)
@@ -619,7 +619,7 @@ void IntFindName(InternationalStudentList *Stu, string FirstName, string LastNam
     else
     {
         current = Stu;
-        while (current->next != NULL)
+        while (current != NULL)
         {
             string1 = current->internationalStudent.getFirstName();
             string2 = current->internationalStudent.getLastName();
@@ -665,7 +665,7 @@ void IntFindCGPA(InternationalStudentList *Stu, int CGPA_VALUE)
     else
     {
         current = Stu;
-        while (current->next != NULL)
+        while (current != NULL)
         {
             storeCGPA = current->internationalStudent.getCGPA();
             if (storeCGPA == CGPA_VALUE)
@@ -696,7 +696,7 @@ void IntFindResearchScore(InternationalStudentList *Stu, int researchScore_VALUE
     else
     {
         current = Stu;
-        while (current->next != NULL)
+        while (current != NULL)
         {
             storeRScore = current->internationalStudent.getResearchScore();
             if (storeRScore == researchScore_VALUE)
@@ -727,7 +727,7 @@ void IntFindUID(InternationalStudentList *Stu, int UIDValue)
     else
     {
         current = Stu;
-        while (current->next != NULL)
+        while (current != NULL)
         {
             storeID = current->internationalStudent.getUID();
             if (storeID == UIDValue)
@@ -805,7 +805,7 @@ void FindName(StudentList *Stu, string FirstName, string LastName)
     else
     {
         current = Stu;
-        while (current->next != NULL)
+        while (current != NULL)
         {
             string1 = current->Students.getFirstName();
             string2 = current->Students.getLastName();
@@ -851,7 +851,7 @@ void FindCGPA(StudentList *Stu, int CGPA_VALUE)
     else
     {
         current = Stu;
-        while (current->next != NULL)
+        while (current != NULL)
         {
             storeCGPA = current->Students.getCGPA();
             if (storeCGPA == CGPA_VALUE)
@@ -882,7 +882,7 @@ void FindResearchScore(StudentList *Stu, int researchScore_VALUE)
     else
     {
         current = Stu;
-        while (current->next != NULL)
+        while (current != NULL)
         {
             storeRScore = current->Students.getResearchScore();
             if (storeRScore == researchScore_VALUE)
@@ -913,7 +913,7 @@ void FindUID(StudentList *Stu, int UIDValue)
     else
     {
         current = Stu;
-        while (current->next != NULL)
+        while (current != NULL)
         {
             storeID = current->Students.getUID();
             if (storeID == UIDValue)
