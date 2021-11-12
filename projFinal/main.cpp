@@ -327,8 +327,8 @@ int main() // main function
 
     if (menu_selector == 3) // sorts all students
     {
-      MultiSort(&DomHead);
-      MultiSort(&IntHead);
+      // MultiSort(&DomHead);
+      // MultiSort(&IntHead);
       cout << "\nHead is: " << DomHead->head->domesticStudent;
       cout << "Tail is: " << DomHead->tail->domesticStudent;
       cout << "\nHead is: " << IntHead->head->internationalStudent;
@@ -353,6 +353,9 @@ int main() // main function
       printDom(DomHead);
       cout << endl;
 
+      DomFindUID(DomHead, 20210099);
+      cout << endl;
+
       Domestic NewStudent;
       NewStudent.setCGPA(4.3);
       NewStudent.setResearchScore(100);
@@ -362,11 +365,14 @@ int main() // main function
       NewStudent.setProvince("BC");
 
       appendDom(&DomHead, NewStudent);
-      MultiSort(&DomHead);
+      MergeSortDom(&DomHead, 'g');
       printDom(DomHead);
 
       cout << endl;
+      DomFindUID(DomHead, 20210099);
       DomFindUID(DomHead, 20210100);
+      cout << "\nHead is: " << DomHead->head->domesticStudent;
+      cout << "Tail is: " << DomHead->tail->domesticStudent;
       cout << endl;
 
     CHOICE:
