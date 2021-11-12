@@ -14,4 +14,9 @@ void SingleSort(Domestic *DomesticStudent, int num, int num2, char type);
 void SingleSort(International *InternationalStudent, int num, int num2, char type);
 void SingleSort(Student *Students, int num, int num2, char type);
 
+void MergeSort(DomesticStudentList **headRef);
+DomesticStudentList *SortedMerge(DomesticStudentList *a, DomesticStudentList *b);
+void FrontBackSplit(DomesticStudentList *source,
+                    DomesticStudentList **frontRef, DomesticStudentList **backRef);
+
 #endif

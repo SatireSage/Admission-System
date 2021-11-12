@@ -65,22 +65,46 @@ DomesticStudentList **arrayToListDom(Domestic arr[], int n, DomesticStudentList 
   return root;
 };
 
-StudentList *arrayToListStu(Student arr[], int n)
+InternationalStudentList **arrayToListInt(International arr[], int n, InternationalStudentList **root)
 {
-  StudentList *root = NULL;
+  if (root != NULL)
+  {
+    InternationalStudentList *current = *root;
+    InternationalStudentList *next = NULL;
+    while (current != NULL)
+    {
+      next = current->next;
+      free(current);
+      current = next;
+    }
+    *root = NULL;
+  }
+  // DomesticStudentList *root = NULL;
   for (int i = 0; i < n; i++)
   {
-    appendMerge(&root, arr[i]);
+    appendInt(root, arr[i]);
   }
   return root;
 };
 
-InternationalStudentList *arrayToListInt(International arr[], int n)
+StudentList **arrayToListStu(Student arr[], int n, StudentList **root)
 {
-  InternationalStudentList *root = NULL;
+  if (root != NULL)
+  {
+    StudentList *current = *root;
+    StudentList *next = NULL;
+    while (current != NULL)
+    {
+      next = current->next;
+      free(current);
+      current = next;
+    }
+    *root = NULL;
+  }
+  // DomesticStudentList *root = NULL;
   for (int i = 0; i < n; i++)
   {
-    appendInt(&root, arr[i]);
+    appendMerge(root, arr[i]);
   }
   return root;
 };
@@ -125,6 +149,11 @@ int main() // main function
     i++;
   }
 
+  DomesticStudentList *DomHead = nullptr;
+  arrayToListDom(DomesticStudents, numDomesticStudents, &DomHead);
+  domesticFile.close();
+  delete[] DomesticStudents;
+
   ifstream InternationalFile("international-stu.txt"); // connects file with international student info
   if (!InternationalFile.is_open())                    // error return in case of file not opening
   {
@@ -138,7 +167,6 @@ int main() // main function
   int j = 0;
   int numInternationalStudents = lineCounter(InternationalFile);
   International *InternationalStudents = new International[numInternationalStudents];
-  International *filteredInternational = new International[numInternationalStudents];
   while (getline(InternationalFile, line)) // creates first name, last name, province, gpa, and RS for each international student
   {
     istringstream ss(line);
@@ -184,6 +212,11 @@ int main() // main function
     j++;
     stu_inter_count++;
   }
+
+  InternationalStudentList *IntHead = nullptr;
+  arrayToListInt(InternationalStudents, numInternationalStudents, &IntHead);
+  InternationalFile.close();
+  delete[] InternationalStudents;
 
   string exitCheck;
   while (true) // menu system
@@ -259,7 +292,7 @@ int main() // main function
       }
       if (menu_selector == 1) // selects domestic students
       {
-        SingleSort(DomesticStudents, 0, numDomesticStudents - 1, user_input);
+        MergeSortDom(&DomHead, user_input);
         cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
         cout << "\nAll Sorted Domestic Students:\n\n";
         cout << setw(12) << left << "UID: ";
@@ -268,14 +301,11 @@ int main() // main function
         cout << setw(10) << left << "Province: ";
         cout << setw(6) << left << "CGPA: ";
         cout << setw(4) << left << "RS: " << endl;
-        for (int i = 0; i < numDomesticStudents; i++)
-        {
-          cout << setw(5) << left << DomesticStudents[i];
-        }
+        printDom(DomHead);
       }
       if (menu_selector == 2) // selects international students
       {
-        SingleSort(InternationalStudents, 0, numInternationalStudents - 1, user_input);
+        MergeSortInt(&IntHead, user_input);
         cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
         cout << "\nAll Sorted International Students:\n\n";
         cout << setw(12) << left << "UID: ";
@@ -289,10 +319,7 @@ int main() // main function
         cout << setw(4) << left << "S: ";
         cout << setw(4) << left << "W: ";
         cout << "Total Score: " << endl;
-        for (int i = 0; i < numInternationalStudents; i++)
-        {
-          cout << setw(5) << left << InternationalStudents[i];
-        }
+        printInt(IntHead);
       }
       cin.clear();
       cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -300,47 +327,17 @@ int main() // main function
 
     if (menu_selector == 3) // sorts all students
     {
-      MultiSort(DomesticStudents, 0, numDomesticStudents - 1);
-      MultiSort(InternationalStudents, 0, numInternationalStudents - 1);
-      int filteredIndex = 0;
-      for (int j = 0; j < numInternationalStudents; j++) // removes international students not meeting requirements
-      {
-        if (InternationalStudents[j].getTotalScore() >= 93 && InternationalStudents[j].getReading() >= 20 && InternationalStudents[j].getListening() >= 20 && InternationalStudents[j].getSpeaking() >= 20 && InternationalStudents[j].getWriting() >= 20)
-        {
-          filteredInternational[filteredIndex++] = InternationalStudents[j];
-        }
-      }
-      int totalIndex = 0;
-      Student *AllStudents = new Student[numDomesticStudents + filteredIndex]; // takes filtered students and implements them into new array
-      for (int k = 0; k < numDomesticStudents; k++)
-      {
-        AllStudents[totalIndex++] = DomesticStudents[k];
-      }
-      for (int k = 0; k < filteredIndex; k++)
-      {
-        AllStudents[totalIndex++] = filteredInternational[k];
-      }
-      MultiSort(AllStudents, totalIndex - 1);
-
-      // Append objects to linked list
-      DomesticStudentList *DomHead = nullptr;
-      arrayToListDom(DomesticStudents, numDomesticStudents, &DomHead);
-      InternationalStudentList *IntHead = arrayToListInt(filteredInternational, filteredIndex);
-      StudentList *StuHead = arrayToListStu(AllStudents, totalIndex);
-
+      MultiSort(&DomHead);
+      MultiSort(&IntHead);
       cout << "\nHead is: " << DomHead->head->domesticStudent;
       cout << "Tail is: " << DomHead->tail->domesticStudent;
       cout << "\nHead is: " << IntHead->head->internationalStudent;
       cout << "Tail is: " << IntHead->tail->internationalStudent;
-      cout << "\nHead is: " << StuHead->head->Students;
-      cout << "Tail is: " << StuHead->tail->Students;
       cout << endl;
 
       printDom(DomHead);
       cout << endl;
       printInt(IntHead);
-      cout << endl;
-      printMerge(StuHead);
       cout << endl;
 
       DomFindName(DomHead, "Jacob", "Rivera");
@@ -356,39 +353,21 @@ int main() // main function
       printDom(DomHead);
       cout << endl;
 
-      numDomesticStudents = numDomesticStudents + 1;
-      Domestic *NewDomestic = new Domestic[numDomesticStudents];
-      for (int i = 0; i < numDomesticStudents; i++)
-      {
-        NewDomestic[i] = DomesticStudents[i];
-      }
-      delete[] DomesticStudents;
-      Domestic *DomesticStudents = new Domestic[numDomesticStudents];
-      for (int i = 0; i < numDomesticStudents; i++)
-      {
-        DomesticStudents[i] = NewDomestic[i];
-      }
-      delete[] NewDomestic;
-      DomesticStudents[numDomesticStudents - 1].setCGPA(4.3);
-      DomesticStudents[numDomesticStudents - 1].setResearchScore(100);
-      DomesticStudents[numDomesticStudents - 1].setFirstName("Gabus");
-      DomesticStudents[numDomesticStudents - 1].setLastName("Anus");
-      DomesticStudents[numDomesticStudents - 1].setUID(stu_count++);
-      DomesticStudents[numDomesticStudents - 1].setProvince("BC");
+      Domestic NewStudent;
+      NewStudent.setCGPA(4.3);
+      NewStudent.setResearchScore(100);
+      NewStudent.setFirstName("Gabus");
+      NewStudent.setLastName("Anus");
+      NewStudent.setUID(stu_count++);
+      NewStudent.setProvince("BC");
 
-      MultiSort(DomesticStudents, 0, numDomesticStudents - 1);
-      MultiSort(filteredInternational, 0, filteredIndex - 1);
-      arrayToListDom(DomesticStudents, numDomesticStudents, &DomHead);
-      // InternationalStudentList *IntHead = arrayToListInt(filteredInternational, filteredIndex);
+      appendDom(&DomHead, NewStudent);
+      MultiSort(&DomHead);
       printDom(DomHead);
+
       cout << endl;
       DomFindUID(DomHead, 20210100);
-
-      MergeSort(&DomHead);
       cout << endl;
-      printDom(DomHead);
-      // printInt(IntHead);
-      // cout << endl;
 
     CHOICE:
       int choice = 0;
@@ -412,10 +391,7 @@ int main() // main function
         cout << setw(10) << left << "Province: ";
         cout << setw(6) << left << "CGPA: ";
         cout << setw(4) << left << "RS: " << endl;
-        for (int i = 0; i < numDomesticStudents; i++)
-        {
-          cout << setw(5) << left << DomesticStudents[i];
-        }
+        printDom(DomHead);
         cout << "\nAll Sorted International Students:\n\n";
         cout << setw(12) << left << "UID: ";
         cout << setw(14) << left << "First Name: "
@@ -428,10 +404,7 @@ int main() // main function
         cout << setw(4) << left << "S: ";
         cout << setw(4) << left << "W: ";
         cout << "Total Score: " << endl;
-        for (int i = 0; i < filteredIndex; i++)
-        {
-          cout << setw(5) << left << filteredInternational[i];
-        }
+        printInt(IntHead);
         cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
       }
       if (choice == 2) // choice 2: sort all students
@@ -442,10 +415,7 @@ int main() // main function
              << " " << setw(17) << left << "Last Name: ";
         cout << setw(10) << left << "CGPA: ";
         cout << setw(6) << left << "RS: " << endl;
-        for (int i = 0; i < totalIndex; i++)
-        {
-          cout << setw(5) << left << AllStudents[i];
-        }
+        // printMerge(/**/);
         cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
       }
     }
@@ -459,11 +429,6 @@ int main() // main function
       {
         cout << "Exiting Script after cleaning up files!";
         cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
-        domesticFile.close();
-        delete[] DomesticStudents;
-        InternationalFile.close();
-        delete[] InternationalStudents;
-        delete[] filteredInternational;
         break;
       }
       else if (exitCheck == "N" || exitCheck == "n" || exitCheck == "NO" || exitCheck == "no" || exitCheck == "No") // various forms of the so called term "no" to return to go through the main menu cycle from the beginiinng
