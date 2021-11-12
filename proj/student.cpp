@@ -392,26 +392,7 @@ void pushDom(DomesticStudentList **head_ref, Domestic new_data)
     (*head_ref) = new_node;
 };
 
-// void appendDom(DomesticStudentList **head_ref, Domestic new_data)
-// {
-//     DomesticStudentList *new_node = new DomesticStudentList();
-//     DomesticStudentList *last = *head_ref;
-//     new_node->domesticStudent = new_data;
-//     new_node->next = NULL;
-//     if (*head_ref == NULL)
-//     {
-//         *head_ref = new_node;
-//         return;
-//     }
-//     while (last->next != NULL)
-//     {
-//         last = last->next;
-//     }
-//     last->next = new_node;
-//     return;
-// }
-
-void appendDoms(DomesticStudentList **root, Domestic item)
+void appendDom(DomesticStudentList **root, Domestic item)
 {
     DomesticStudentList *temp = new DomesticStudentList;
     DomesticStudentList *current;
@@ -448,24 +429,21 @@ void printDom(DomesticStudentList *node)
     }
 }
 
-void FindName(DomesticStudentList *Stu, string FirstName, string LastName)
+void DomFindName(DomesticStudentList *Stu, string FirstName, string LastName)
 {
     string string1, string2;
     DomesticStudentList *current;
     vector<Domestic> storeDom;
-    bool found = false;
 
     if (Stu == nullptr)
     {
-        std::cout << "\n Does not exist.";
+        cout << "\n Does not exist.";
     }
     else
     {
         current = Stu;
-        int counter = 0;
         while (current->next != NULL)
         {
-            current = current->next;
             string1 = current->domesticStudent.getFirstName();
             string2 = current->domesticStudent.getLastName();
             for (int i = 0; i < string1.size(); i++)
@@ -486,8 +464,105 @@ void FindName(DomesticStudentList *Stu, string FirstName, string LastName)
             {
                 storeDom.push_back(current->domesticStudent);
             }
+            current = current->next;
         }
     }
+
+    if (storeDom.size() == 0)
+        cout << "No such student found." << endl;
+
+    for (int i = 0; i < storeDom.size(); i++)
+        cout << storeDom.at(i) << ' ';
+}
+
+void DomFindCGPA(DomesticStudentList *Stu, int CGPA_VALUE)
+{
+    int storeCGPA;
+    DomesticStudentList *current;
+    vector<Domestic> storeDom;
+
+    if (Stu == nullptr)
+    {
+        cout << "\n Does not exist.";
+    }
+    else
+    {
+        current = Stu;
+        while (current->next != NULL)
+        {
+            storeCGPA = current->domesticStudent.getCGPA();
+            if (storeCGPA == CGPA_VALUE)
+            {
+                storeDom.push_back(current->domesticStudent);
+            }
+            current = current->next;
+        }
+    }
+
+    if (storeDom.size() == 0)
+        cout << "No such student found." << endl;
+
+    for (int i = 0; i < storeDom.size(); i++)
+        cout << storeDom.at(i) << ' ';
+}
+
+void DomFindResearchScore(DomesticStudentList *Stu, int researchScore_VALUE)
+{
+    int storeRScore;
+    DomesticStudentList *current;
+    vector<Domestic> storeDom;
+
+    if (Stu == nullptr)
+    {
+        cout << "\n Does not exist.";
+    }
+    else
+    {
+        current = Stu;
+        while (current->next != NULL)
+        {
+            storeRScore = current->domesticStudent.getResearchScore();
+            if (storeRScore == researchScore_VALUE)
+            {
+                storeDom.push_back(current->domesticStudent);
+            }
+            current = current->next;
+        }
+    }
+
+    if (storeDom.size() == 0)
+        cout << "No such student found." << endl;
+
+    for (int i = 0; i < storeDom.size(); i++)
+        cout << storeDom.at(i) << ' ';
+}
+
+void DomFindUID(DomesticStudentList *Stu, int UIDValue)
+{
+    int storeID;
+    DomesticStudentList *current;
+    vector<Domestic> storeDom;
+
+    if (Stu == nullptr)
+    {
+        cout << "\n Does not exist.";
+    }
+    else
+    {
+        current = Stu;
+        while (current->next != NULL)
+        {
+            storeID = current->domesticStudent.getUID();
+            if (storeID == UIDValue)
+            {
+                storeDom.push_back(current->domesticStudent);
+            }
+            current = current->next;
+        }
+    }
+
+    if (storeDom.size() == 0)
+        cout << "No such student found." << endl;
 
     for (int i = 0; i < storeDom.size(); i++)
         cout << storeDom.at(i) << ' ';

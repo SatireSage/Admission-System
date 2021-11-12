@@ -11,52 +11,6 @@
 
 using namespace std;
 
-DomesticStudentList *arrayToListDom(Domestic arr[], int n)
-{
-  DomesticStudentList *root = NULL;
-  for (int i = 0; i < n; i++)
-  {
-    appendDoms(&root, arr[i]);
-  }
-  return root;
-};
-
-StudentList *arrayToListStu(Student arr[], int n)
-{
-  StudentList *root = NULL;
-  for (int i = 0; i < n; i++)
-  {
-    // if (i == 0)
-    // {
-    //   root->head->Students = arr[i];
-    // }
-    // else if (i == (n - 1))
-    // {
-    //   root->tail->Students = arr[i];
-    // }
-    appendMerge(&root, arr[i]);
-  }
-  return root;
-};
-
-InternationalStudentList *arrayToListInt(International arr[], int n)
-{
-  InternationalStudentList *root = NULL;
-  for (int i = 0; i < n; i++)
-  {
-    // if (i == 0)
-    // {
-    //   root->head->internationalStudent = arr[i];
-    // }
-    // else if (i == (n - 1))
-    // {
-    //   root->tail->internationalStudent = arr[i];
-    // }
-    appendInt(&root, arr[i]);
-  }
-  return root;
-};
-
 int Get_Number() // checks validity of input
 {
   string line;
@@ -87,6 +41,48 @@ int lineCounter(ifstream &fileName) // counts number of lines (students) in a fi
   fileName.seekg(0, ios::beg);
   getline(fileName, line);
   return i;
+};
+
+DomesticStudentList **arrayToListDom(Domestic arr[], int n, DomesticStudentList **root)
+{
+  if (root != NULL)
+  {
+    DomesticStudentList *current = *root;
+    DomesticStudentList *next = NULL;
+    while (current != NULL)
+    {
+      next = current->next;
+      free(current);
+      current = next;
+    }
+    *root = NULL;
+  }
+  // DomesticStudentList *root = NULL;
+  for (int i = 0; i < n; i++)
+  {
+    appendDom(root, arr[i]);
+  }
+  return root;
+};
+
+StudentList *arrayToListStu(Student arr[], int n)
+{
+  StudentList *root = NULL;
+  for (int i = 0; i < n; i++)
+  {
+    appendMerge(&root, arr[i]);
+  }
+  return root;
+};
+
+InternationalStudentList *arrayToListInt(International arr[], int n)
+{
+  InternationalStudentList *root = NULL;
+  for (int i = 0; i < n; i++)
+  {
+    appendInt(&root, arr[i]);
+  }
+  return root;
 };
 
 int main() // main function
@@ -327,7 +323,8 @@ int main() // main function
       MultiSort(AllStudents, totalIndex - 1);
 
       // Append objects to linked list
-      DomesticStudentList *DomHead = arrayToListDom(DomesticStudents, numDomesticStudents);
+      DomesticStudentList *DomHead = nullptr;
+      arrayToListDom(DomesticStudents, numDomesticStudents, &DomHead);
       InternationalStudentList *IntHead = arrayToListInt(filteredInternational, filteredIndex);
       StudentList *StuHead = arrayToListStu(AllStudents, totalIndex);
 
@@ -339,42 +336,6 @@ int main() // main function
       cout << "Tail is: " << StuHead->tail->Students;
       cout << endl;
 
-      // for (int i = 0; i < numDomesticStudents; i++)
-      // {
-      //   if (i == 0)
-      //   {
-      //     pushDom(&DomHead, DomesticStudents[i]);
-      //   }
-      //   else
-      //   {
-      //     appendDom(&DomHead, DomesticStudents[i]);
-      //   }
-      // }
-
-      // for (int i = 0; i < filteredIndex; i++)
-      // {
-      //   if (i == 0)
-      //   {
-      //     pushInt(&IntHead, filteredInternational[i]);
-      //   }
-      //   else
-      //   {
-      //     appendInt(&IntHead, filteredInternational[i]);
-      //   }
-      // }
-
-      // for (int i = 0; i < totalIndex; i++)
-      // {
-      //   if (i == 0)
-      //   {
-      //     pushMerge(&StuHead, AllStudents[i]);
-      //   }
-      //   else
-      //   {
-      //     appendMerge(&StuHead, filteredInternational[i]);
-      //   }
-      // }
-
       printDom(DomHead);
       cout << endl;
       printInt(IntHead);
@@ -382,7 +343,49 @@ int main() // main function
       printMerge(StuHead);
       cout << endl;
 
-      FindName(DomHead, "Jacob", "Rivera");
+      DomFindName(DomHead, "Jacob", "Rivera");
+      cout << endl;
+      DomFindCGPA(DomHead, 2.9);
+      cout << endl;
+      DomFindResearchScore(DomHead, 101);
+      cout << endl;
+      DomFindUID(DomHead, 20210069);
+      cout << endl;
+      DomFindName(DomHead, "Aurora", "Foster");
+      cout << endl;
+      printDom(DomHead);
+      cout << endl;
+
+      numDomesticStudents = numDomesticStudents + 1;
+      Domestic *NewDomestic = new Domestic[numDomesticStudents];
+      for (int i = 0; i < numDomesticStudents; i++)
+      {
+        NewDomestic[i] = DomesticStudents[i];
+      }
+      delete[] DomesticStudents;
+      Domestic *DomesticStudents = new Domestic[numDomesticStudents];
+      for (int i = 0; i < numDomesticStudents; i++)
+      {
+        DomesticStudents[i] = NewDomestic[i];
+      }
+      delete[] NewDomestic;
+      DomesticStudents[numDomesticStudents - 1].setCGPA(4.3);
+      DomesticStudents[numDomesticStudents - 1].setResearchScore(100);
+      DomesticStudents[numDomesticStudents - 1].setFirstName("Gabus");
+      DomesticStudents[numDomesticStudents - 1].setLastName("Anus");
+      DomesticStudents[numDomesticStudents - 1].setUID(stu_count++);
+      DomesticStudents[numDomesticStudents - 1].setProvince("BC");
+
+      MultiSort(DomesticStudents, 0, numDomesticStudents - 1);
+      MultiSort(filteredInternational, 0, filteredIndex - 1);
+      arrayToListDom(DomesticStudents, numDomesticStudents, &DomHead);
+      // InternationalStudentList *IntHead = arrayToListInt(filteredInternational, filteredIndex);
+      printDom(DomHead);
+      cout << endl;
+      DomFindUID(DomHead, 20210100);
+      // printInt(IntHead);
+      // cout << endl;
+
     CHOICE:
       int choice = 0;
       cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";

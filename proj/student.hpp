@@ -172,18 +172,22 @@ public:
 // Domestic student linked-list class
 class DomesticStudentList
 {
-    // protected:
+protected:
     //     DomesticStudentList *newNodeDom(Domestic StuObj, DomesticStudentList *Stu1);
     //     DomesticStudentList *DelNodeDom(Domestic StuObj, DomesticStudentList *Stu1);
     //     DomesticStudentList *removeHeadTailNodes(Domestic StuObj, DomesticStudentList *Stu1);
 
+    void friend DomFindName(DomesticStudentList *Stu, string FirstName, string LastName);
+    void friend DomFindCGPA(DomesticStudentList *Stu1, int CGPA_VALUE);
+    void friend DomFindResearchScore(DomesticStudentList *Stu1, int researchScore_VALUE);
+    void friend DomFindUID(DomesticStudentList *Stu1, int UIDValue);
     //     string FindName(DomesticStudentList *Stu1, DomesticStudentList *Stu2, string FirstName, string LastName);
-
-    //     string FindFirstName(DomesticStudentList *Stu1, DomesticStudentList *Stu2, string FirstName);
-    //     string FindLastName(DomesticStudentList *Stu1, DomesticStudentList *Stu2, string LastName);
     //     int FindCGPA(DomesticStudentList *Stu1, DomesticStudentList *Stu2, int CGPA_VALUE);
     //     int FindResearchScore(DomesticStudentList *Stu1, DomesticStudentList *Stu2, int researchScore_VALUE);
     //     int FindUID(DomesticStudentList *Stu1, DomesticStudentList *Stu2, int UIDValue);
+
+    //     string FindFirstName(DomesticStudentList *Stu1, DomesticStudentList *Stu2, string FirstName);
+    //     string FindLastName(DomesticStudentList *Stu1, DomesticStudentList *Stu2, string LastName);
     //     string compareStudentTypes(DomesticStudentList *Stu1, DomesticStudentList *Stu2);
 
 public:
@@ -191,10 +195,8 @@ public:
     DomesticStudentList *next, *head, *tail;
 
     void friend pushDom(DomesticStudentList **head_ref, Domestic new_data);
-    void friend appendDoms(DomesticStudentList **head_ref, Domestic new_data);
+    void friend appendDom(DomesticStudentList **head_ref, Domestic new_data);
     void friend printDom(DomesticStudentList *node);
-
-    void friend FindName(DomesticStudentList *Stu, string FirstName, string LastName);
 
     // DomesticStudentList *newNodeDom(Domestic StuObj);
     // DomesticStudentList *DelNodeDom(Domestic StuObj);

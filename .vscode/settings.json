@@ -8,6 +8,11 @@
         "random": "cpp",
         "limits": "cpp",
         "*.tcc": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "iterator": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "new": "cpp"
     }
 }
