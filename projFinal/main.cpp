@@ -213,10 +213,34 @@ int main() // main function
     stu_inter_count++;
   }
 
+  International *filteredInternational = new International[numInternationalStudents];
+  International *rejectedInternational = new International[numInternationalStudents];
+  int filteredIndex = 0;
+  int rejectedIndex = 0;
+  for (int j = 0; j < numInternationalStudents; j++) // removes international students not meeting requirements
+  {
+    if (InternationalStudents[j].getTotalScore() >= 93 && InternationalStudents[j].getReading() >= 20 && InternationalStudents[j].getListening() >= 20 && InternationalStudents[j].getSpeaking() >= 20 && InternationalStudents[j].getWriting() >= 20)
+    {
+      filteredInternational[filteredIndex++] = InternationalStudents[j];
+    }
+  }
+  for (int j = 0; j < numInternationalStudents; j++) // removes international students not meeting requirements
+  {
+    if (InternationalStudents[j].getTotalScore() < 93 && InternationalStudents[j].getReading() < 20 && InternationalStudents[j].getListening() < 20 && InternationalStudents[j].getSpeaking() < 20 && InternationalStudents[j].getWriting() < 20)
+    {
+      rejectedInternational[rejectedIndex++] = InternationalStudents[j];
+    }
+  }
   InternationalStudentList *IntHead = nullptr;
+  InternationalStudentList *IntHeadFiltered = nullptr;
+  InternationalStudentList *IntHeadRejected = nullptr;
   arrayToListInt(InternationalStudents, numInternationalStudents, &IntHead);
+  arrayToListInt(filteredInternational, filteredIndex, &IntHeadFiltered);
+  arrayToListInt(rejectedInternational, rejectedIndex, &IntHeadRejected);
   InternationalFile.close();
   delete[] InternationalStudents;
+  delete[] filteredInternational;
+  delete[] rejectedInternational;
 
   string exitCheck;
   while (true) // menu system
@@ -356,15 +380,29 @@ int main() // main function
       DomFindUID(DomHead, 20210099);
       cout << endl;
 
-      Domestic NewStudent;
-      NewStudent.setCGPA(4.3);
-      NewStudent.setResearchScore(100);
-      NewStudent.setFirstName("Gabus");
-      NewStudent.setLastName("Anus");
-      NewStudent.setUID(stu_count++);
-      NewStudent.setProvince("BC");
+      Domestic NewStudentDom;
+      NewStudentDom.setCGPA(4.3);
+      NewStudentDom.setResearchScore(100);
+      NewStudentDom.setFirstName("Gabus");
+      NewStudentDom.setLastName("Anus");
+      NewStudentDom.setUID(stu_count++);
+      NewStudentDom.setProvince("BC");
 
-      appendDom(&DomHead, NewStudent);
+      International NewStudentInt;
+      appendInt(&IntHead, NewStudentInt);
+      if (NewStudentInt.getTotalScore() >= 93 && NewStudentInt.getReading() >= 20 && NewStudentInt.getListening() >= 20 && NewStudentInt.getSpeaking() >= 20 && NewStudentInt.getWriting() >= 20)
+      {
+        appendInt(&IntHeadFiltered, NewStudentInt);
+      }
+      else
+      {
+        appendInt(&IntHeadRejected, NewStudentInt);
+      }
+      MergeSortInt(&IntHeadFiltered, 'g');
+      updateIntHD(&IntHeadFiltered);
+      printInt(IntHeadFiltered);
+
+      appendDom(&DomHead, NewStudentDom);
       MergeSortDom(&DomHead, 'r');
       updateDomHD(&DomHead);
       printDom(DomHead);
