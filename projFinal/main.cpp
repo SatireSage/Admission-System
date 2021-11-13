@@ -365,33 +365,38 @@ int main() // main function
       NewStudent.setProvince("BC");
 
       appendDom(&DomHead, NewStudent);
-      // MergeSortDom(&DomHead, 'r');
+      MergeSortDom(&DomHead, 'r');
       printDom(DomHead);
+      cout << "\nHead is: " << DomHead->head->domesticStudent;
+      cout << "Tail is: " << DomHead->tail->domesticStudent;
+      cout << endl;
 
       cout << endl;
       DomFindUID(DomHead, 20210099);
       DomFindUID(DomHead, 20210100);
-      cout << "\nHead is: " << DomHead->head->domesticStudent;
-      cout << "Tail is: " << DomHead->tail->domesticStudent;
       cout << endl;
 
       deleteDom(&DomHead, "Gabus", "Anus");
-      // MergeSortDom(&DomHead, 'r');
+      MergeSortDom(&DomHead, 'r');
       printDom(DomHead);
+      cout << "\nHead is: " << DomHead->head->domesticStudent;
+      //*********** THIS TAIL IS NOT CORRECT AFAIK
+      cout << "Tail is: " << DomHead->tail->domesticStudent;
+      cout << endl;
 
       cout << endl;
       DomFindUID(DomHead, 20210099);
       DomFindUID(DomHead, 20210100);
-      cout << "\nHead is: " << DomHead->head->domesticStudent;
-      cout << "Tail is: " << DomHead->tail->domesticStudent;
       cout << endl;
 
       deleteDomHD(&DomHead);
       printDom(DomHead);
-
+      //*********** THIS HEAD NOT CORRECT AFAIK
       cout << "\nHead is: " << DomHead->head->domesticStudent;
+      //*********** THIS TAIL IS CORRECT BUT ONLY ACCORDING TO THE SORTED LIST
       cout << "Tail is: " << DomHead->tail->domesticStudent;
       cout << endl;
+
     CHOICE:
       int choice = 0;
       cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
