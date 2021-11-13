@@ -365,7 +365,7 @@ int main() // main function
       NewStudent.setProvince("BC");
 
       appendDom(&DomHead, NewStudent);
-      MergeSortDom(&DomHead, 'g');
+      // MergeSortDom(&DomHead, 'r');
       printDom(DomHead);
 
       cout << endl;
@@ -376,7 +376,7 @@ int main() // main function
       cout << endl;
 
       deleteDom(&DomHead, "Gabus", "Anus");
-      MergeSortDom(&DomHead, 'g');
+      // MergeSortDom(&DomHead, 'r');
       printDom(DomHead);
 
       cout << endl;
@@ -387,6 +387,7 @@ int main() // main function
       cout << endl;
 
       deleteDomHD(&DomHead);
+      printDom(DomHead);
 
       cout << "\nHead is: " << DomHead->head->domesticStudent;
       cout << "Tail is: " << DomHead->tail->domesticStudent;

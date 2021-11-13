@@ -393,6 +393,12 @@ void deleteDom(DomesticStudentList **head_ref, string FirstName, string LastName
     {
         *head_ref = temp->next; // Changed head
         delete temp;            // free old head
+
+        DomesticStudentList *second_last = *head_ref;
+        while (second_last->next != NULL)
+            second_last = second_last->next;
+        (*head_ref)->head = second_last->head;
+        (*head_ref)->tail = second_last;
         return;
     }
 
@@ -409,6 +415,11 @@ void deleteDom(DomesticStudentList **head_ref, string FirstName, string LastName
 
         prev->next = temp->next;
         delete temp;
+        DomesticStudentList *second_last = *head_ref;
+        while (second_last->next != NULL)
+            second_last = second_last->next;
+        (*head_ref)->head = temp->head;
+        (*head_ref)->tail = second_last;
     }
 }
 
@@ -590,28 +601,20 @@ void printDom(DomesticStudentList *node)
 
 void deleteDomHD(DomesticStudentList **head_ref)
 {
+    DomesticStudentList *temp = *head_ref;
     if (head_ref == NULL)
         return;
 
-    DomesticStudentList *temp = *head_ref;
-    DomesticStudentList *swap = *head_ref;
-    delete temp->head;
-    temp->head = swap->head->next;
-    *head_ref = temp;
-
-    DomesticStudentList *temp2 = *head_ref;
-    if (temp2->next == NULL)
-    {
-        delete head_ref;
-        return;
-    }
+    delete (*head_ref)->head;
+    (*head_ref)->head = temp->head->next;
 
     DomesticStudentList *second_last = *head_ref;
     while (second_last->next->next != NULL)
         second_last = second_last->next;
 
-    delete (second_last->next);
-    second_last->next = NULL;
+    delete (*head_ref)->tail;
+    (*head_ref)->tail = second_last;
+    (*head_ref)->tail->next = NULL;
 }
 // -------------------------------------- End Domestic Student Linked List Class -------------------------------------- //
 // -------------------------------------- International Student Linked List Class -------------------------------------- //
@@ -625,6 +628,12 @@ void deleteInt(InternationalStudentList **head_ref, string FirstName, string Las
     {
         *head_ref = temp->next; // Changed head
         delete temp;            // free old head
+
+        InternationalStudentList *second_last = *head_ref;
+        while (second_last->next != NULL)
+            second_last = second_last->next;
+        (*head_ref)->head = second_last->head;
+        (*head_ref)->tail = second_last;
         return;
     }
 
@@ -641,6 +650,11 @@ void deleteInt(InternationalStudentList **head_ref, string FirstName, string Las
 
         prev->next = temp->next;
         delete temp;
+        InternationalStudentList *second_last = *head_ref;
+        while (second_last->next != NULL)
+            second_last = second_last->next;
+        (*head_ref)->head = temp->head;
+        (*head_ref)->tail = second_last;
     }
 }
 
@@ -822,28 +836,20 @@ void printInt(InternationalStudentList *node)
 
 void deleteIntHD(InternationalStudentList **head_ref)
 {
+    InternationalStudentList *temp = *head_ref;
     if (head_ref == NULL)
         return;
 
-    InternationalStudentList *temp = *head_ref;
-    InternationalStudentList *swap = *head_ref;
-    delete temp->head;
-    temp->head = swap->head->next;
-    *head_ref = temp;
-
-    InternationalStudentList *temp2 = *head_ref;
-    if (temp2->next == NULL)
-    {
-        delete head_ref;
-        return;
-    }
+    delete (*head_ref)->head;
+    (*head_ref)->head = temp->head->next;
 
     InternationalStudentList *second_last = *head_ref;
     while (second_last->next->next != NULL)
         second_last = second_last->next;
 
-    delete (second_last->next);
-    second_last->next = NULL;
+    delete (*head_ref)->tail;
+    (*head_ref)->tail = second_last;
+    (*head_ref)->tail->next = NULL;
 }
 // -------------------------------------- End International Student Linked List Class -------------------------------------- //
 // -------------------------------------- Merged Student Linked List Class -------------------------------------- //
@@ -856,6 +862,12 @@ void deleteMerge(StudentList **head_ref, string FirstName, string LastName)
     {
         *head_ref = temp->next; // Changed head
         delete temp;            // free old head
+
+        StudentList *second_last = *head_ref;
+        while (second_last->next != NULL)
+            second_last = second_last->next;
+        (*head_ref)->head = second_last->head;
+        (*head_ref)->tail = second_last;
         return;
     }
 
@@ -872,6 +884,11 @@ void deleteMerge(StudentList **head_ref, string FirstName, string LastName)
 
         prev->next = temp->next;
         delete temp;
+        StudentList *second_last = *head_ref;
+        while (second_last->next != NULL)
+            second_last = second_last->next;
+        (*head_ref)->head = temp->head;
+        (*head_ref)->tail = second_last;
     }
 }
 
@@ -1053,26 +1070,18 @@ void printMerge(StudentList *node)
 
 void deleteMergeHD(StudentList **head_ref)
 {
+    StudentList *temp = *head_ref;
     if (head_ref == NULL)
         return;
 
-    StudentList *temp = *head_ref;
-    StudentList *swap = *head_ref;
-    delete temp->head;
-    temp->head = swap->head->next;
-    *head_ref = temp;
-
-    StudentList *temp2 = *head_ref;
-    if (temp2->next == NULL)
-    {
-        delete head_ref;
-        return;
-    }
+    delete (*head_ref)->head;
+    (*head_ref)->head = temp->head->next;
 
     StudentList *second_last = *head_ref;
     while (second_last->next->next != NULL)
         second_last = second_last->next;
 
-    delete (second_last->next);
-    second_last->next = NULL;
+    delete (*head_ref)->tail;
+    (*head_ref)->tail = second_last;
+    (*head_ref)->tail->next = NULL;
 }
