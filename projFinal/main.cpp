@@ -380,6 +380,25 @@ int main() // main function
       DomFindUID(DomHead, 20210099);
       cout << endl;
 
+      StudentList *StuHead = nullptr;
+      DomesticStudentList *currentDom = DomHead;
+      InternationalStudentList *currentInt = IntHeadFiltered;
+      while (currentDom != NULL)
+      {
+        appendMerge(&StuHead, currentDom->domesticStudent);
+        currentDom = currentDom->next;
+      }
+      while (currentInt != NULL)
+      {
+        appendMerge(&StuHead, currentInt->internationalStudent);
+        currentInt = currentInt->next;
+      }
+      updateMergeHD(&StuHead);
+      printMerge(StuHead);
+      cout << "\nHead is: " << StuHead->head->Students;
+      cout << "Tail is: " << StuHead->tail->Students;
+      cout << endl;
+
       Domestic NewStudentDom;
       NewStudentDom.setCGPA(4.3);
       NewStudentDom.setResearchScore(100);
