@@ -382,7 +382,6 @@ int main() // main function
       updateDomHD(&DomHead);
       printDom(DomHead);
       cout << "\nHead is: " << DomHead->head->domesticStudent;
-      //*********** THIS TAIL IS NOT CORRECT AFAIK
       cout << "Tail is: " << DomHead->tail->domesticStudent;
       cout << endl;
 
@@ -394,9 +393,7 @@ int main() // main function
       deleteDomHD(&DomHead);
       updateDomHD(&DomHead);
       printDom(DomHead);
-      //*********** THIS HEAD NOT CORRECT AFAIK
       cout << "\nHead is: " << DomHead->head->domesticStudent;
-      //*********** THIS TAIL IS CORRECT BUT ONLY ACCORDING TO THE SORTED LIST
       cout << "Tail is: " << DomHead->tail->domesticStudent;
       cout << endl;
 
