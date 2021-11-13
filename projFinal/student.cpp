@@ -601,12 +601,10 @@ void printDom(DomesticStudentList *node)
 
 void deleteDomHD(DomesticStudentList **head_ref)
 {
-    DomesticStudentList *temp = *head_ref;
     if (head_ref == NULL)
         return;
 
-    delete (*head_ref)->head;
-    (*head_ref)->head = temp->head->next;
+    deleteDom(&(*head_ref), (*head_ref)->domesticStudent.getFirstName(), (*head_ref)->domesticStudent.getLastName());
 
     DomesticStudentList *second_last = *head_ref;
     while (second_last->next->next != NULL)
@@ -615,6 +613,18 @@ void deleteDomHD(DomesticStudentList **head_ref)
     delete (*head_ref)->tail;
     (*head_ref)->tail = second_last;
     (*head_ref)->tail->next = NULL;
+}
+
+void updateDomHD(DomesticStudentList **head_ref)
+{
+    DomesticStudentList *temp = *head_ref;
+    cout << endl
+         << "CHECK HEAD: " << temp->domesticStudent << endl;
+    (*head_ref)->head = temp;
+    DomesticStudentList *last = *head_ref;
+    while (last->next != NULL)
+        last = last->next;
+    (*head_ref)->tail = last;
 }
 // -------------------------------------- End Domestic Student Linked List Class -------------------------------------- //
 // -------------------------------------- International Student Linked List Class -------------------------------------- //
@@ -836,12 +846,10 @@ void printInt(InternationalStudentList *node)
 
 void deleteIntHD(InternationalStudentList **head_ref)
 {
-    InternationalStudentList *temp = *head_ref;
     if (head_ref == NULL)
         return;
 
-    delete (*head_ref)->head;
-    (*head_ref)->head = temp->head->next;
+    deleteInt(&(*head_ref), (*head_ref)->internationalStudent.getFirstName(), (*head_ref)->internationalStudent.getLastName());
 
     InternationalStudentList *second_last = *head_ref;
     while (second_last->next->next != NULL)
@@ -850,6 +858,18 @@ void deleteIntHD(InternationalStudentList **head_ref)
     delete (*head_ref)->tail;
     (*head_ref)->tail = second_last;
     (*head_ref)->tail->next = NULL;
+}
+
+void updateIntHD(InternationalStudentList **head_ref)
+{
+    InternationalStudentList *temp = *head_ref;
+    cout << endl
+         << "CHECK HEAD: " << temp->internationalStudent << endl;
+    (*head_ref)->head = temp;
+    InternationalStudentList *last = *head_ref;
+    while (last->next != NULL)
+        last = last->next;
+    (*head_ref)->tail = last;
 }
 // -------------------------------------- End International Student Linked List Class -------------------------------------- //
 // -------------------------------------- Merged Student Linked List Class -------------------------------------- //
@@ -887,7 +907,7 @@ void deleteMerge(StudentList **head_ref, string FirstName, string LastName)
         StudentList *second_last = *head_ref;
         while (second_last->next != NULL)
             second_last = second_last->next;
-        (*head_ref)->head = temp->head;
+        (*head_ref)->head = second_last->head;
         (*head_ref)->tail = second_last;
     }
 }
@@ -1070,12 +1090,10 @@ void printMerge(StudentList *node)
 
 void deleteMergeHD(StudentList **head_ref)
 {
-    StudentList *temp = *head_ref;
     if (head_ref == NULL)
         return;
 
-    delete (*head_ref)->head;
-    (*head_ref)->head = temp->head->next;
+    deleteMerge(&(*head_ref), (*head_ref)->Students.getFirstName(), (*head_ref)->Students.getLastName());
 
     StudentList *second_last = *head_ref;
     while (second_last->next->next != NULL)
@@ -1084,4 +1102,16 @@ void deleteMergeHD(StudentList **head_ref)
     delete (*head_ref)->tail;
     (*head_ref)->tail = second_last;
     (*head_ref)->tail->next = NULL;
+}
+
+void updateMergeHD(StudentList **head_ref)
+{
+    StudentList *temp = *head_ref;
+    cout << endl
+         << "CHECK HEAD: " << temp->Students << endl;
+    (*head_ref)->head = temp;
+    StudentList *last = *head_ref;
+    while (last->next != NULL)
+        last = last->next;
+    (*head_ref)->tail = last;
 }

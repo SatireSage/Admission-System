@@ -366,6 +366,7 @@ int main() // main function
 
       appendDom(&DomHead, NewStudent);
       MergeSortDom(&DomHead, 'r');
+      updateDomHD(&DomHead);
       printDom(DomHead);
       cout << "\nHead is: " << DomHead->head->domesticStudent;
       cout << "Tail is: " << DomHead->tail->domesticStudent;
@@ -378,6 +379,7 @@ int main() // main function
 
       deleteDom(&DomHead, "Gabus", "Anus");
       MergeSortDom(&DomHead, 'r');
+      updateDomHD(&DomHead);
       printDom(DomHead);
       cout << "\nHead is: " << DomHead->head->domesticStudent;
       //*********** THIS TAIL IS NOT CORRECT AFAIK
@@ -390,6 +392,7 @@ int main() // main function
       cout << endl;
 
       deleteDomHD(&DomHead);
+      updateDomHD(&DomHead);
       printDom(DomHead);
       //*********** THIS HEAD NOT CORRECT AFAIK
       cout << "\nHead is: " << DomHead->head->domesticStudent;
