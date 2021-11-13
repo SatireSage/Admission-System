@@ -375,6 +375,22 @@ int main() // main function
       cout << "Tail is: " << DomHead->tail->domesticStudent;
       cout << endl;
 
+      deleteDom(&DomHead, "Gabus", "Anus");
+      MergeSortDom(&DomHead, 'g');
+      printDom(DomHead);
+
+      cout << endl;
+      DomFindUID(DomHead, 20210099);
+      DomFindUID(DomHead, 20210100);
+      cout << "\nHead is: " << DomHead->head->domesticStudent;
+      cout << "Tail is: " << DomHead->tail->domesticStudent;
+      cout << endl;
+
+      deleteDomHD(&DomHead);
+
+      cout << "\nHead is: " << DomHead->head->domesticStudent;
+      cout << "Tail is: " << DomHead->tail->domesticStudent;
+      cout << endl;
     CHOICE:
       int choice = 0;
       cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";

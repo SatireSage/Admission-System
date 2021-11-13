@@ -384,13 +384,33 @@ void ToeflScore::setTotalScore(int totalScore)
 // -------------------------------------- End ToeflScore Class -------------------------------------- //
 // -------------------------------------- Domestic Student Linked List Class -------------------------------------- //
 
-void pushDom(DomesticStudentList **head_ref, Domestic new_data)
+void deleteDom(DomesticStudentList **head_ref, string FirstName, string LastName)
 {
-    DomesticStudentList *new_node = new DomesticStudentList();
-    new_node->domesticStudent = new_data;
-    new_node->next = (*head_ref);
-    (*head_ref) = new_node;
-};
+    DomesticStudentList *temp = *head_ref;
+    DomesticStudentList *prev = NULL;
+
+    if (temp != NULL && temp->domesticStudent.getFirstName() == FirstName && temp->domesticStudent.getLastName() == LastName)
+    {
+        *head_ref = temp->next; // Changed head
+        delete temp;            // free old head
+        return;
+    }
+
+    else
+    {
+        while (temp != NULL && temp->domesticStudent.getFirstName() != FirstName && temp->domesticStudent.getLastName() != LastName)
+        {
+            prev = temp;
+            temp = temp->next;
+        }
+
+        if (temp == NULL)
+            return;
+
+        prev->next = temp->next;
+        delete temp;
+    }
+}
 
 void appendDom(DomesticStudentList **root, Domestic item)
 {
@@ -567,16 +587,62 @@ void printDom(DomesticStudentList *node)
         node = node->next;
     }
 }
+
+void deleteDomHD(DomesticStudentList **head_ref)
+{
+    if (head_ref == NULL)
+        return;
+
+    DomesticStudentList *temp = *head_ref;
+    DomesticStudentList *swap = *head_ref;
+    delete temp->head;
+    temp->head = swap->head->next;
+    *head_ref = temp;
+
+    DomesticStudentList *temp2 = *head_ref;
+    if (temp2->next == NULL)
+    {
+        delete head_ref;
+        return;
+    }
+
+    DomesticStudentList *second_last = *head_ref;
+    while (second_last->next->next != NULL)
+        second_last = second_last->next;
+
+    delete (second_last->next);
+    second_last->next = NULL;
+}
 // -------------------------------------- End Domestic Student Linked List Class -------------------------------------- //
 // -------------------------------------- International Student Linked List Class -------------------------------------- //
 
-void pushInt(InternationalStudentList **head_ref, International new_data)
+void deleteInt(InternationalStudentList **head_ref, string FirstName, string LastName)
 {
-    InternationalStudentList *new_node = new InternationalStudentList();
-    new_node->internationalStudent = new_data;
-    new_node->next = (*head_ref);
-    (*head_ref) = new_node;
-};
+    InternationalStudentList *temp = *head_ref;
+    InternationalStudentList *prev = NULL;
+
+    if (temp != NULL && temp->internationalStudent.getFirstName() == FirstName && temp->internationalStudent.getLastName() == LastName)
+    {
+        *head_ref = temp->next; // Changed head
+        delete temp;            // free old head
+        return;
+    }
+
+    else
+    {
+        while (temp != NULL && temp->internationalStudent.getFirstName() != FirstName && temp->internationalStudent.getLastName() != LastName)
+        {
+            prev = temp;
+            temp = temp->next;
+        }
+
+        if (temp == NULL)
+            return;
+
+        prev->next = temp->next;
+        delete temp;
+    }
+}
 
 void appendInt(InternationalStudentList **root, International item)
 {
@@ -754,15 +820,60 @@ void printInt(InternationalStudentList *node)
     }
 }
 
+void deleteIntHD(InternationalStudentList **head_ref)
+{
+    if (head_ref == NULL)
+        return;
+
+    InternationalStudentList *temp = *head_ref;
+    InternationalStudentList *swap = *head_ref;
+    delete temp->head;
+    temp->head = swap->head->next;
+    *head_ref = temp;
+
+    InternationalStudentList *temp2 = *head_ref;
+    if (temp2->next == NULL)
+    {
+        delete head_ref;
+        return;
+    }
+
+    InternationalStudentList *second_last = *head_ref;
+    while (second_last->next->next != NULL)
+        second_last = second_last->next;
+
+    delete (second_last->next);
+    second_last->next = NULL;
+}
 // -------------------------------------- End International Student Linked List Class -------------------------------------- //
 // -------------------------------------- Merged Student Linked List Class -------------------------------------- //
-void pushMerge(StudentList **head_ref, Student new_data)
+void deleteMerge(StudentList **head_ref, string FirstName, string LastName)
 {
-    StudentList *new_node = new StudentList();
-    new_node->Students = new_data;
-    new_node->next = (*head_ref);
-    (*head_ref) = new_node;
-};
+    StudentList *temp = *head_ref;
+    StudentList *prev = NULL;
+
+    if (temp != NULL && temp->Students.getFirstName() == FirstName && temp->Students.getLastName() == LastName)
+    {
+        *head_ref = temp->next; // Changed head
+        delete temp;            // free old head
+        return;
+    }
+
+    else
+    {
+        while (temp != NULL && temp->Students.getFirstName() != FirstName && temp->Students.getLastName() != LastName)
+        {
+            prev = temp;
+            temp = temp->next;
+        }
+
+        if (temp == NULL)
+            return;
+
+        prev->next = temp->next;
+        delete temp;
+    }
+}
 
 void appendMerge(StudentList **root, Student item)
 {
@@ -938,4 +1049,30 @@ void printMerge(StudentList *node)
         cout << " " << node->Students;
         node = node->next;
     }
+}
+
+void deleteMergeHD(StudentList **head_ref)
+{
+    if (head_ref == NULL)
+        return;
+
+    StudentList *temp = *head_ref;
+    StudentList *swap = *head_ref;
+    delete temp->head;
+    temp->head = swap->head->next;
+    *head_ref = temp;
+
+    StudentList *temp2 = *head_ref;
+    if (temp2->next == NULL)
+    {
+        delete head_ref;
+        return;
+    }
+
+    StudentList *second_last = *head_ref;
+    while (second_last->next->next != NULL)
+        second_last = second_last->next;
+
+    delete (second_last->next);
+    second_last->next = NULL;
 }

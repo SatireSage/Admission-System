@@ -13,6 +13,7 @@
         "deque": "cpp",
         "string": "cpp",
         "vector": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "concepts": "cpp"
     }
 }

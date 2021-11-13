@@ -143,9 +143,10 @@ public:
     Domestic domesticStudent;
     DomesticStudentList *next, *head, *tail;
 
-    void friend pushDom(DomesticStudentList **head_ref, Domestic new_data);
+    void friend deleteDom(DomesticStudentList **head_ref, string FirstName, string LastName);
     void friend appendDom(DomesticStudentList **head_ref, Domestic new_data);
     void friend printDom(DomesticStudentList *node);
+    void friend deleteDomHD(DomesticStudentList **head_ref);
 };
 
 // International student linked-list class
@@ -162,9 +163,10 @@ public:
     International internationalStudent;
     InternationalStudentList *next, *head, *tail;
 
-    void friend pushInt(InternationalStudentList **head_ref, International new_data);
+    void friend deleteInt(InternationalStudentList **head_ref, string FirstName, string LastName);
     void friend appendInt(InternationalStudentList **head_ref, International new_data);
     void friend printInt(InternationalStudentList *node);
+    void friend deleteIntHD(InternationalStudentList **head_ref);
 };
 
 // Merged student linked-list class
@@ -181,9 +183,10 @@ public:
     Student Students;
     StudentList *next, *head, *tail;
 
-    void friend pushMerge(StudentList **head_ref, Student new_data);
+    void friend deleteMerge(StudentList **head_ref, string FirstName, string LastName);
     void friend appendMerge(StudentList **head_ref, Student new_data);
     void friend printMerge(StudentList *node);
+    void friend deleteMergeHD(StudentList **head_ref);
 };
 
 #endif
