@@ -11,62 +11,37 @@ Student::Student()
 {
     setFirstName("");
     setLastName("");
+    setType("");
     setCGPA(0.0);
     setResearchScore(0);
     setUID(0);
 }
 
 // Student class get-functions
-string Student::getFirstName() const
-{
-    return firstName;
-}
+string Student::getFirstName() const { return firstName; }
 
-string Student::getLastName() const
-{
-    return lastName;
-}
+string Student::getLastName() const { return lastName; }
 
-float Student::getCGPA() const
-{
-    return CGPA;
-}
+string Student::getType() const { return type; }
 
-int Student::getResearchScore() const
-{
-    return RScore;
-}
+float Student::getCGPA() const { return CGPA; }
 
-int Student::getUID() const
-{
-    return UID;
-}
+int Student::getResearchScore() const { return RScore; }
+
+int Student::getUID() const { return UID; }
 
 // Student class Set-functions
-void Student::setFirstName(string firstNameValue)
-{
-    firstName = firstNameValue;
-}
+void Student::setFirstName(string firstNameValue) { firstName = firstNameValue; }
 
-void Student::setLastName(string lastNameValue)
-{
-    lastName = lastNameValue;
-}
+void Student::setLastName(string lastNameValue) { lastName = lastNameValue; }
 
-void Student::setCGPA(float cgpaValue)
-{
-    CGPA = cgpaValue;
-}
+void Student::setType(string typeValue) { type = typeValue; }
 
-void Student::setResearchScore(int researchScoreValue)
-{
-    RScore = researchScoreValue;
-}
+void Student::setCGPA(float cgpaValue) { CGPA = cgpaValue; }
 
-void Student::setUID(int UIDValue)
-{
-    UID = 20210000 + UIDValue - 1;
-}
+void Student::setResearchScore(int researchScoreValue) { RScore = researchScoreValue; }
+
+void Student::setUID(int UIDValue) { UID = 20210000 + UIDValue - 1; }
 
 // Student class friend functions
 // Overload operator
@@ -75,7 +50,8 @@ ostream &operator<<(ostream &outs, const Student &stuObj)
     outs << setw(12) << left << stuObj.getUID();
     outs << setw(14) << left << stuObj.getFirstName() << " " << setw(17) << left << stuObj.getLastName();
     outs << setw(10) << left << stuObj.getCGPA();
-    outs << setw(6) << left << stuObj.getResearchScore() << endl;
+    outs << setw(6) << left << stuObj.getResearchScore();
+    outs << setw(2) << left << stuObj.getType() << endl;
     return outs;
 }
 // compares CGPA of students
@@ -135,6 +111,23 @@ int compareLastName(Student stu1, Student stu2)
         if (student2[i] >= 'a' && student2[i] <= 'z')
             student2[i] -= ('a' - 'A');
     return student1.compare(student2);
+}
+
+// compares the type of students
+int compareType(Student stu1, Student stu2)
+{
+    if (stu1.getType() == "International" && stu2.getType() == "Domestic")
+    {
+        return 1;
+    }
+    if (stu1.getType() == "Domestic" && stu2.getType() == "International")
+    {
+        return -1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 // -------------------------------------- End Student Class -------------------------------------- //

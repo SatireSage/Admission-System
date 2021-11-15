@@ -10,7 +10,7 @@ class Student
 {
 private:
     // Student class private memeber variables
-    string firstName, lastName;
+    string firstName, lastName, type;
     float CGPA;
     int RScore, UID;
 
@@ -21,6 +21,7 @@ public:
     // Student class get functions
     string getFirstName() const;
     string getLastName() const;
+    string getType() const;
     float getCGPA() const;
     int getResearchScore() const;
     int getUID() const;
@@ -28,6 +29,7 @@ public:
     // Student class set functions
     void setFirstName(string firstNameValue);
     void setLastName(string lastNameValue);
+    void setType(string typeValue);
     void setCGPA(float cgpaValue);
     void setResearchScore(int researchScoreValue);
     void setUID(int UIDValue);
@@ -39,6 +41,7 @@ public:
     friend int compareResearchScore(Student stu1, Student stu2);
     friend int compareFirstName(Student stu1, Student stu2);
     friend int compareLastName(Student stu1, Student stu2);
+    friend int compareType(Student stu1, Student stu2);
     friend ostream &operator<<(ostream &outs, const Student &stuObj);
 };
 

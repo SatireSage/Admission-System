@@ -145,6 +145,7 @@ int main() // main function
     researchScore = int(atoi(s_researchScore.c_str()) + 0.5);
     DomesticStudents[i].setResearchScore(atoi(s_researchScore.c_str()));
     DomesticStudents[i].setUID(stu_count);
+    DomesticStudents[i].setType("Domestic");
     stu_count++;
     i++;
   }
@@ -208,7 +209,7 @@ int main() // main function
 
     InternationalStudents[j].setToeflScore(reading, listening, speaking, writing);
     InternationalStudents[j].setUID(numDomesticStudents + stu_inter_count);
-
+    InternationalStudents[j].setType("International");
     j++;
     stu_inter_count++;
   }
@@ -395,6 +396,14 @@ int main() // main function
       }
       updateMergeHD(&StuHead);
       printMerge(StuHead);
+      cout << "\nHead is: " << StuHead->head->Students;
+      cout << "Tail is: " << StuHead->tail->Students;
+      cout << endl;
+
+      MergeSortAll(&StuHead, 'g');
+      MergeSortAll(&StuHead, 'r');
+      printMerge(StuHead);
+      updateMergeHD(&StuHead);
       cout << "\nHead is: " << StuHead->head->Students;
       cout << "Tail is: " << StuHead->tail->Students;
       cout << endl;

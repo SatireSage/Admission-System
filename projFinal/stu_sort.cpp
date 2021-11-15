@@ -90,7 +90,7 @@ InternationalStudentList *SortedMergeInt(InternationalStudentList *stu1, Interna
     else if (stu2 == NULL)
         return (stu1);
 
-    if (((type == 'F' || type == 'f') && (compareFirstName(stu1->internationalStudent, stu2->internationalStudent) < 0)) || ((type == 'L' || type == 'l') && (compareLastName(stu1->internationalStudent, stu2->internationalStudent) < 0)) || ((type == 'G' || type == 'g') && (compareCGPA(stu1->internationalStudent, stu2->internationalStudent) < 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(stu1->internationalStudent, stu2->internationalStudent) < 0)) || ((type == 'P' || type == 'p') && (compareCountry(stu1->internationalStudent, stu2->internationalStudent) < 0)))
+    if (((type == 'F' || type == 'f') && (compareFirstName(stu1->internationalStudent, stu2->internationalStudent) < 0)) || ((type == 'L' || type == 'l') && (compareLastName(stu1->internationalStudent, stu2->internationalStudent) < 0)) || ((type == 'G' || type == 'g') && (compareCGPA(stu1->internationalStudent, stu2->internationalStudent) < 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(stu1->internationalStudent, stu2->internationalStudent) < 0)) || ((type == 'C' || type == 'c') && (compareCountry(stu1->internationalStudent, stu2->internationalStudent) < 0)))
     {
         result = stu1;
         result->next = SortedMergeInt(stu1->next, stu2, type);
@@ -152,7 +152,7 @@ StudentList *SortedMergeAll(StudentList *stu1, StudentList *stu2, char type)
     else if (stu2 == NULL)
         return (stu1);
 
-    if (((type == 'F' || type == 'f') && (compareFirstName(stu1->Students, stu2->Students) < 0)) || ((type == 'L' || type == 'l') && (compareLastName(stu1->Students, stu2->Students) < 0)) || ((type == 'G' || type == 'g') && (compareCGPA(stu1->Students, stu2->Students) < 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(stu1->Students, stu2->Students) < 0)))
+    if (((type == 'F' || type == 'f') && (compareFirstName(stu1->Students, stu2->Students) < 0)) || ((type == 'L' || type == 'l') && (compareLastName(stu1->Students, stu2->Students) < 0)) || ((type == 'G' || type == 'g') && (compareCGPA(stu1->Students, stu2->Students) < 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(stu1->Students, stu2->Students) < 0)) || ((type == 'T' || type == 't') && (compareType(stu1->Students, stu2->Students) < 0)))
     {
         result = stu1;
         result->next = SortedMergeAll(stu1->next, stu2, type);
