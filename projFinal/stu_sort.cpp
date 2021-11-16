@@ -143,6 +143,23 @@ void MergeSortAll(StudentList **headRef, char type)
     *headRef = SortedMergeAll(stu1, stu2, type);
 }
 
+void MergeSortAll(StudentList **headRef)
+{
+    StudentList *head = *headRef;
+    StudentList *stu1;
+    StudentList *stu2;
+
+    if ((head == NULL) || (head->next == NULL))
+    {
+        return;
+    }
+    FrontBackSplitAll(head, &stu1, &stu2);
+    MergeSortAll(&stu1);
+    MergeSortAll(&stu2);
+
+    *headRef = SortedMergeAll(stu1, stu2);
+}
+
 StudentList *SortedMergeAll(StudentList *stu1, StudentList *stu2, char type)
 {
     StudentList *result = NULL;
@@ -161,6 +178,38 @@ StudentList *SortedMergeAll(StudentList *stu1, StudentList *stu2, char type)
     {
         result = stu2;
         result->next = SortedMergeAll(stu1, stu2->next, type);
+    }
+    return (result);
+}
+
+StudentList *SortedMergeAll(StudentList *stu1, StudentList *stu2)
+{
+    StudentList *result = NULL;
+
+    if (stu1 == NULL)
+        return (stu2);
+    else if (stu2 == NULL)
+        return (stu1);
+
+    if ((compareResearchScore(stu1->Students, stu2->Students) == 0) && (compareCGPA(stu1->Students, stu2->Students) == 0) && (compareType(stu1->Students, stu2->Students) < 0))
+    {
+        result = stu1;
+        result->next = SortedMergeAll(stu1->next, stu2);
+    }
+    else if ((compareResearchScore(stu1->Students, stu2->Students) == 0) && (compareCGPA(stu1->Students, stu2->Students) < 0))
+    {
+        result = stu1;
+        result->next = SortedMergeAll(stu1->next, stu2);
+    }
+    else if (compareResearchScore(stu1->Students, stu2->Students) < 0)
+    {
+        result = stu1;
+        result->next = SortedMergeAll(stu1->next, stu2);
+    }
+    else
+    {
+        result = stu2;
+        result->next = SortedMergeAll(stu1, stu2->next);
     }
     return (result);
 }

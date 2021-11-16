@@ -431,7 +431,7 @@ int main() // main function
 
         DomFindName(DomHead, "Jacob", "Rivera");
         cout << endl;
-        DomFindCGPA(DomHead, 2.9);
+        DomFindCGPA(DomHead, 3.1);
         cout << endl;
         DomFindResearchScore(DomHead, 101);
         cout << endl;
@@ -464,13 +464,16 @@ int main() // main function
         cout << "Tail is: " << StuHead->tail->Students;
         cout << endl;
 
-        MergeSortAll(&StuHead, 'g');
-        MergeSortAll(&StuHead, 'r');
+        // MergeSortAll(&StuHead, 'g');
+        // MergeSortAll(&StuHead, 'r');
+        MergeSortAll(&StuHead);
         printMerge(StuHead);
         updateMergeHD(&StuHead);
         cout << "\nHead is: " << StuHead->head->Students;
         cout << "Tail is: " << StuHead->tail->Students;
         cout << endl;
+
+        threshold(StuHead, 3.9, 90);
 
         Domestic NewStudentDom;
         NewStudentDom.setCGPA(4.3);

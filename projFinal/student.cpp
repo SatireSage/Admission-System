@@ -490,9 +490,9 @@ void DomFindName(DomesticStudentList *Stu, string FirstName, string LastName)
         cout << storeDom.at(i) << ' ';
 }
 
-void DomFindCGPA(DomesticStudentList *Stu, int CGPA_VALUE)
+void DomFindCGPA(DomesticStudentList *Stu, float CGPA_VALUE)
 {
-    int storeCGPA;
+    float storeCGPA;
     DomesticStudentList *current;
     vector<Domestic> storeDom;
 
@@ -735,9 +735,9 @@ void IntFindName(InternationalStudentList *Stu, string FirstName, string LastNam
         cout << storeInt.at(i) << ' ';
 }
 
-void IntFindCGPA(InternationalStudentList *Stu, int CGPA_VALUE)
+void IntFindCGPA(InternationalStudentList *Stu, float CGPA_VALUE)
 {
-    int storeCGPA;
+    float storeCGPA;
     InternationalStudentList *current;
     vector<International> storeInt;
 
@@ -979,9 +979,9 @@ void FindName(StudentList *Stu, string FirstName, string LastName)
         cout << storeStu.at(i) << ' ';
 }
 
-void FindCGPA(StudentList *Stu, int CGPA_VALUE)
+void FindCGPA(StudentList *Stu, float CGPA_VALUE)
 {
-    int storeCGPA;
+    float storeCGPA;
     StudentList *current;
     vector<Student> storeStu;
 
@@ -1058,6 +1058,101 @@ void FindUID(StudentList *Stu, int UIDValue)
         {
             storeID = current->Students.getUID();
             if (storeID == UIDValue)
+            {
+                storeStu.push_back(current->Students);
+            }
+            current = current->next;
+        }
+    }
+
+    if (storeStu.size() == 0)
+        cout << "No such student found." << endl;
+
+    for (int i = 0; i < storeStu.size(); i++)
+        cout << storeStu.at(i) << ' ';
+}
+
+void threshold(StudentList *Stu, float CGPA_VALUE, int researchScore_VALUE)
+{
+    int storeRScore;
+    float storeCGPA;
+    StudentList *current;
+    vector<Student> storeStu;
+
+    if (Stu == nullptr)
+    {
+        cout << "\n Does not exist.";
+    }
+    else
+    {
+        current = Stu;
+        while (current != NULL)
+        {
+            storeRScore = current->Students.getResearchScore();
+            storeCGPA = current->Students.getCGPA();
+            if (CGPA_VALUE <= storeCGPA && researchScore_VALUE <= storeRScore)
+            {
+                storeStu.push_back(current->Students);
+            }
+            current = current->next;
+        }
+    }
+
+    if (storeStu.size() == 0)
+        cout << "No such student found." << endl;
+
+    for (int i = 0; i < storeStu.size(); i++)
+        cout << storeStu.at(i) << ' ';
+}
+
+void threshold(StudentList *Stu, int researchScore_VALUE)
+{
+    int storeRScore;
+    StudentList *current;
+    vector<Student> storeStu;
+
+    if (Stu == nullptr)
+    {
+        cout << "\n Does not exist.";
+    }
+    else
+    {
+        current = Stu;
+        while (current != NULL)
+        {
+            storeRScore = current->Students.getResearchScore();
+            if (researchScore_VALUE <= storeRScore)
+            {
+                storeStu.push_back(current->Students);
+            }
+            current = current->next;
+        }
+    }
+
+    if (storeStu.size() == 0)
+        cout << "No such student found." << endl;
+
+    for (int i = 0; i < storeStu.size(); i++)
+        cout << storeStu.at(i) << ' ';
+}
+
+void threshold(StudentList *Stu, float CGPA_VALUE)
+{
+    float storeCGPA;
+    StudentList *current;
+    vector<Student> storeStu;
+
+    if (Stu == nullptr)
+    {
+        cout << "\n Does not exist.";
+    }
+    else
+    {
+        current = Stu;
+        while (current != NULL)
+        {
+            storeCGPA = current->Students.getCGPA();
+            if (CGPA_VALUE <= storeCGPA)
             {
                 storeStu.push_back(current->Students);
             }

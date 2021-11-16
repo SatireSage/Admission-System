@@ -5,9 +5,10 @@
 #include <string> //you will have to use string in C++
 
 // Multi Sort functions
-void MultiSort(DomesticStudentList **headRef);
-void MultiSort(InternationalStudentList **headRef);
-void MultiSort(StudentList **headRef);
+// void MultiSort(DomesticStudentList **headRef);
+// void MultiSort(InternationalStudentList **headRef);
+void MergeSortAll(StudentList **headRef);
+StudentList *SortedMergeAll(StudentList *stu1, StudentList *stu2);
 
 // Single Sort functions
 void MergeSortDom(DomesticStudentList **headRef, char type);

@@ -43,6 +43,10 @@ public:
     friend int compareLastName(Student stu1, Student stu2);
     friend int compareType(Student stu1, Student stu2);
     friend ostream &operator<<(ostream &outs, const Student &stuObj);
+
+    // virtual void threshold(StudentList *Stu, float CGPA_VALUE, int researchScore_VALUE);
+    // virtual void threshold(StudentList *Stu, float CGPA_VALUE);
+    // virtual void threshold(StudentList *Stu, int researchScore_VALUE);
 };
 
 // Domestic student sub-class
@@ -138,7 +142,7 @@ class DomesticStudentList
 {
 protected:
     void friend DomFindName(DomesticStudentList *Stu, string FirstName, string LastName);
-    void friend DomFindCGPA(DomesticStudentList *Stu1, int CGPA_VALUE);
+    void friend DomFindCGPA(DomesticStudentList *Stu1, float CGPA_VALUE);
     void friend DomFindResearchScore(DomesticStudentList *Stu1, int researchScore_VALUE);
     void friend DomFindUID(DomesticStudentList *Stu1, int UIDValue);
 
@@ -159,7 +163,7 @@ class InternationalStudentList
 {
 protected:
     void friend IntFindName(InternationalStudentList *Stu, string FirstName, string LastName);
-    void friend IntFindCGPA(InternationalStudentList *Stu1, int CGPA_VALUE);
+    void friend IntFindCGPA(InternationalStudentList *Stu1, float CGPA_VALUE);
     void friend IntFindResearchScore(InternationalStudentList *Stu1, int researchScore_VALUE);
     void friend IntFindUID(InternationalStudentList *Stu1, int UIDValue);
 
@@ -180,9 +184,12 @@ class StudentList
 {
 protected:
     void friend FindName(StudentList *Stu, string FirstName, string LastName);
-    void friend FindCGPA(StudentList *Stu1, int CGPA_VALUE);
+    void friend FindCGPA(StudentList *Stu1, float CGPA_VALUE);
     void friend FindResearchScore(StudentList *Stu1, int researchScore_VALUE);
     void friend FindUID(StudentList *Stu1, int UIDValue);
+    void friend threshold(StudentList *Stu, float CGPA_VALUE, int researchScore_VALUE);
+    void friend threshold(StudentList *Stu, float CGPA_VALUE);
+    void friend threshold(StudentList *Stu, int researchScore_VALUE);
 
 public:
     Student Students;
