@@ -5,6 +5,9 @@
 5. Do the unit test cases (I have done most of em in line 419 to 531 in main.cpp)
 6. Try-throw-catch added but idk if it works
 7. Make example errors and show that code catches them
+8. Change the code for the sorting fucntions in the sort.cpp coz i used geeksforgeeks
 
 If possible, get this completed a few days before the project is due so I can clean the code up.
 Ideally, get it done by next week coz its not a lot.
+
+Slides need to be done as well
