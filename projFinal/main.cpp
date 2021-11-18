@@ -431,7 +431,7 @@ int main() // main function
 
         DomFindName(DomHead, "Jacob", "Rivera");
         cout << endl;
-        DomFindCGPA(DomHead, 3.1);
+        DomFindCGPA(DomHead, 2.9);
         cout << endl;
         DomFindResearchScore(DomHead, 101);
         cout << endl;
@@ -498,7 +498,7 @@ int main() // main function
         printInt(IntHeadFiltered);
 
         appendDom(&DomHead, NewStudentDom);
-        MergeSortDom(&DomHead, 'r');
+        MergeSortDom(&DomHead, 'g');
         updateDomHD(&DomHead);
         printDom(DomHead);
         cout << "\nHead is: " << DomHead->head->domesticStudent;
@@ -533,7 +533,7 @@ int main() // main function
       CHOICE:
         int choice = 0;
         cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
-        cout << "Please select one of the folowing:\n" // presents users with two options
+        cout << "Please select one of the following:\n" // presents users with two options
              << "Select 1: to view Domestic and International Students Spearately\n"
              << "Select 2: to view all sorted students (Based on Research Score and CGPA only)\n"
              << ">> ";
