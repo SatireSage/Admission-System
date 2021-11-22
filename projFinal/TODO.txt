@@ -1,6 +1,6 @@
 1. Overall sorting the domestic and international students
 2. Make threshold functions virtual and get rid of all the friend functions
-3. Divide all the classes into different files
+        DONE Divide all the classes into different files
 4. Make a working menu for the project
 5. Do the unit test cases (I have done most of em in line 419 to 531 in main.cpp)
 6. Try-throw-catch added but idk if it works
