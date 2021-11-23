@@ -10,4 +10,4 @@ Slides
 
 Anyone:
 1. Edit Menu (Added most afaik and they work just check the doc)
-2. Edit Test Cases (I have done most of em in line 419 to 531 in main.cpp)
+2. Edit Test Cases (I have done most of em in main.cpp as part 4 of the menu)
