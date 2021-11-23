@@ -2,7 +2,8 @@
 #ifndef DOMSTUDENT_HPP
 #define DOMSTUDENT_HPP
 
-#include <string>    //you will have to use string in C++
+#include <string> //you will have to use string in C++
+#include "domestic.hpp"
 using namespace std; // use namespace std
 
 // Domestic student linked-list class

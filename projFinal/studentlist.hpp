@@ -1,14 +1,14 @@
 // header file studentlist.hpp to declare your classes
-#include "student.hpp"
 #ifndef STUDENTLIST_HPP
 #define STUDENTLIST_HPP
 
-#include <string>    //you will have to use string in C++
+#include <string> //you will have to use string in C++
+#include "student.hpp"
 using namespace std; // use namespace std
 
 // Merged student linked-list class
 // class StudentList : public Student
-class StudentList: public Student  
+class StudentList : public Student
 {
 protected:
     void friend FindName(StudentList *Stu, string FirstName, string LastName);
@@ -28,7 +28,7 @@ public:
     void friend printMerge(StudentList *node);
     void friend deleteMergeHD(StudentList **head_ref);
     void friend updateMergeHD(StudentList **head_ref);
-    //virtual void threshold(StudentList *Stu, float CGPA_VALUE, int researchScore_VALUE); 
+    // virtual void threshold(StudentList *Stu, float CGPA_VALUE, int researchScore_VALUE);
 };
 
 #endif

@@ -2,7 +2,8 @@
 #ifndef INTSTUDENT_HPP
 #define INTSTUDENT_HPP
 
-#include <string>    //you will have to use string in C++
+#include <string> //you will have to use string in C++
+#include "international.hpp"
 using namespace std; // use namespace std
 
 // International student linked-list class

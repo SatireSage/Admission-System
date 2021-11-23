@@ -50,36 +50,4 @@ public:
     // virtual void threshold(StudentList *Stu, int researchScore_VALUE);
 };
 
-
-
-// TOEFL class for international students
-class ToeflScore
-{
-private:
-    // ToeflScore class private memeber variables
-    int reading, listening, speaking, writing, cummulative;
-
-public:
-    // ToeflScore class constructor
-    ToeflScore();
-
-    // ToeflScore class get function
-    int getReading() const;
-    int getListening() const;
-    int getSpeaking() const;
-    int getWriting() const;
-    int getTotalScore() const;
-
-    // ToeflScore class set function
-    void setReading(int readingScore);
-    void setListening(int listeningScore);
-    void setSpeaking(int speakingScore);
-    void setWriting(int writingScore);
-    void setTotalScore(int totalScore);
-};
-
-
-
-
-
 #endif

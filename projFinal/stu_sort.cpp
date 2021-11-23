@@ -10,11 +10,28 @@ void MergeSortDom(DomesticStudentList **headRef, char type)
 
     if ((head != NULL) && (head->next != NULL))
     {
-        FrontBackSplitDom(head, &stu1, &stu2);
+        FrontBackSplit(head, &stu1, &stu2);
         MergeSortDom(&stu1, type);
         MergeSortDom(&stu2, type);
 
         *headRef = SortedMergeDom(stu1, stu2, type);
+    }
+}
+
+// Single Sort Functions
+void MergeSortDom(DomesticStudentList **headRef)
+{
+    DomesticStudentList *head = *headRef;
+    DomesticStudentList *stu1;
+    DomesticStudentList *stu2;
+
+    if ((head != NULL) && (head->next != NULL))
+    {
+        FrontBackSplit(head, &stu1, &stu2);
+        MergeSortDom(&stu1);
+        MergeSortDom(&stu2);
+
+        *headRef = SortedMergeDom(stu1, stu2);
     }
 }
 
@@ -43,7 +60,43 @@ DomesticStudentList *SortedMergeDom(DomesticStudentList *stu1, DomesticStudentLi
     return (result);
 }
 
-void FrontBackSplitDom(DomesticStudentList *source, DomesticStudentList **frontRef, DomesticStudentList **backRef)
+DomesticStudentList *SortedMergeDom(DomesticStudentList *stu1, DomesticStudentList *stu2)
+{
+    DomesticStudentList *result = NULL;
+
+    if (stu1 == NULL)
+    {
+        return (stu2);
+    }
+    else if (stu2 == NULL)
+    {
+        return (stu1);
+    }
+
+    if ((compareResearchScore(stu1->domesticStudent, stu2->domesticStudent) == 0) && (compareCGPA(stu1->domesticStudent, stu2->domesticStudent) == 0) && (compareProvince(stu1->domesticStudent, stu2->domesticStudent) < 0))
+    {
+        result = stu1;
+        result->next = SortedMergeDom(stu1->next, stu2);
+    }
+    else if ((compareResearchScore(stu1->domesticStudent, stu2->domesticStudent) == 0) && (compareCGPA(stu1->domesticStudent, stu2->domesticStudent) < 0))
+    {
+        result = stu1;
+        result->next = SortedMergeDom(stu1->next, stu2);
+    }
+    else if (compareResearchScore(stu1->domesticStudent, stu2->domesticStudent) < 0)
+    {
+        result = stu1;
+        result->next = SortedMergeDom(stu1->next, stu2);
+    }
+    else
+    {
+        result = stu2;
+        result->next = SortedMergeDom(stu1, stu2->next);
+    }
+    return (result);
+}
+
+void FrontBackSplit(DomesticStudentList *source, DomesticStudentList **frontRef, DomesticStudentList **backRef)
 {
     DomesticStudentList *a, *b;
     b = source;
@@ -72,11 +125,27 @@ void MergeSortInt(InternationalStudentList **headRef, char type)
 
     if ((head != NULL) && (head->next != NULL))
     {
-        FrontBackSplitInt(head, &stu1, &stu2);
+        FrontBackSplit(head, &stu1, &stu2);
         MergeSortInt(&stu1, type);
         MergeSortInt(&stu2, type);
 
         *headRef = SortedMergeInt(stu1, stu2, type);
+    }
+}
+
+void MergeSortInt(InternationalStudentList **headRef)
+{
+    InternationalStudentList *head = *headRef;
+    InternationalStudentList *stu1;
+    InternationalStudentList *stu2;
+
+    if ((head != NULL) && (head->next != NULL))
+    {
+        FrontBackSplit(head, &stu1, &stu2);
+        MergeSortInt(&stu1);
+        MergeSortInt(&stu2);
+
+        *headRef = SortedMergeInt(stu1, stu2);
     }
 }
 
@@ -85,9 +154,13 @@ InternationalStudentList *SortedMergeInt(InternationalStudentList *stu1, Interna
     InternationalStudentList *result = NULL;
 
     if (stu1 == NULL)
+    {
         return (stu2);
+    }
     else if (stu2 == NULL)
+    {
         return (stu1);
+    }
 
     if (((type == 'F' || type == 'f') && (compareFirstName(stu1->internationalStudent, stu2->internationalStudent) < 0)) || ((type == 'L' || type == 'l') && (compareLastName(stu1->internationalStudent, stu2->internationalStudent) < 0)) || ((type == 'G' || type == 'g') && (compareCGPA(stu1->internationalStudent, stu2->internationalStudent) < 0)) || ((type == 'R' || type == 'r') && (compareResearchScore(stu1->internationalStudent, stu2->internationalStudent) < 0)) || ((type == 'C' || type == 'c') && (compareCountry(stu1->internationalStudent, stu2->internationalStudent) < 0)))
     {
@@ -102,8 +175,44 @@ InternationalStudentList *SortedMergeInt(InternationalStudentList *stu1, Interna
     return (result);
 }
 
-void FrontBackSplitInt(InternationalStudentList *source,
-                       InternationalStudentList **frontRef, InternationalStudentList **backRef)
+InternationalStudentList *SortedMergeInt(InternationalStudentList *stu1, InternationalStudentList *stu2)
+{
+    InternationalStudentList *result = NULL;
+
+    if (stu1 == NULL)
+    {
+        return (stu2);
+    }
+    else if (stu2 == NULL)
+    {
+        return (stu1);
+    }
+
+    if ((compareResearchScore(stu1->internationalStudent, stu2->internationalStudent) == 0) && (compareCGPA(stu1->internationalStudent, stu2->internationalStudent) == 0) && (compareCountry(stu1->internationalStudent, stu2->internationalStudent) < 0))
+    {
+        result = stu1;
+        result->next = SortedMergeInt(stu1->next, stu2);
+    }
+    else if ((compareResearchScore(stu1->internationalStudent, stu2->internationalStudent) == 0) && (compareCGPA(stu1->internationalStudent, stu2->internationalStudent) < 0))
+    {
+        result = stu1;
+        result->next = SortedMergeInt(stu1->next, stu2);
+    }
+    else if (compareResearchScore(stu1->internationalStudent, stu2->internationalStudent) < 0)
+    {
+        result = stu1;
+        result->next = SortedMergeInt(stu1->next, stu2);
+    }
+    else
+    {
+        result = stu2;
+        result->next = SortedMergeInt(stu1, stu2->next);
+    }
+    return (result);
+}
+
+void FrontBackSplit(InternationalStudentList *source,
+                    InternationalStudentList **frontRef, InternationalStudentList **backRef)
 {
     InternationalStudentList *fast;
     InternationalStudentList *slow;
@@ -135,7 +244,7 @@ void MergeSortAll(StudentList **headRef, char type)
     {
         return;
     }
-    FrontBackSplitAll(head, &stu1, &stu2);
+    FrontBackSplit(head, &stu1, &stu2);
     MergeSortAll(&stu1, type);
     MergeSortAll(&stu2, type);
 
@@ -148,9 +257,9 @@ void MergeSortAll(StudentList **headRef)
     StudentList *stu1;
     StudentList *stu2;
 
-    if ((head != NULL) &&  (head->next != NULL))
+    if ((head != NULL) && (head->next != NULL))
     {
-        FrontBackSplitAll(head, &stu1, &stu2);
+        FrontBackSplit(head, &stu1, &stu2);
         MergeSortAll(&stu1);
         MergeSortAll(&stu2);
 
@@ -220,23 +329,23 @@ StudentList *SortedMergeAll(StudentList *stu1, StudentList *stu2)
     return (result);
 }
 
-void FrontBackSplitAll(StudentList *source, StudentList **frontRef, StudentList **backRef)
+void FrontBackSplit(StudentList *source, StudentList **frontRef, StudentList **backRef)
 {
-    StudentList *a, *b;
-    b = source;
-    a = source->next;
+    StudentList *first, *second;
+    second = source;
+    first = source->next;
 
-    while (a != NULL)
+    while (first != NULL)
     {
-        a = a->next;
-        if (a != NULL)
+        first = first->next;
+        if (first != NULL)
         {
-            b = b->next;
-            a = a->next;
+            second = second->next;
+            first = first->next;
         }
     }
 
     *frontRef = source;
-    *backRef = b->next;
-    b->next = NULL;
+    *backRef = second->next;
+    second->next = NULL;
 }

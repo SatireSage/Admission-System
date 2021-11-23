@@ -2,7 +2,8 @@
 #ifndef DOMESTIC_HPP
 #define DOMESTIC_HPP
 
-#include <string>    //you will have to use string in C++
+#include <string> //you will have to use string in C++
+#include "student.hpp"
 using namespace std; // use namespace std
 
 // Domestic student sub-class

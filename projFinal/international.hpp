@@ -1,13 +1,14 @@
 // header file international.hpp to declare your classes
 #ifndef INTERNATIONAL_HPP
-#define INTERNSTIONAL_HPP
+#define INTERNATIONAL_HPP
 
-#include <string>    //you will have to use string in C++
+#include <string> //you will have to use string in C++
+#include "student.hpp"
+#include "toeflscore.hpp"
 using namespace std; // use namespace std
 
-
 // International student sub-class
-class International : public Student
+class International : public Student, public ToeflScore
 {
 private:
     // International class private memeber variables
