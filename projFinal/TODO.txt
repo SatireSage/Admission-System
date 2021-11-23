@@ -4,6 +4,7 @@ Zach:
 
 Nick:
 1. Make the threshold functions virtual (the threshold functions already made) and get rid of all the friend functions
+2. Non-default constructor for domestic and international classes (i did it for international)
 
 Daniel:
 Slides
