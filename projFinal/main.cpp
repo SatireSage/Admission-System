@@ -176,9 +176,9 @@ int main() // main function
         stu_count++;
         i++;
       }  
-      catch (string errorEmpty)
+      catch (string errorEmptyField)
       {
-        cout << "There are field(s) missing" << endl;
+        cout << "There are field(s) missing in domestic file" << endl;
         exit(1);
       }
     }
@@ -207,77 +207,83 @@ int main() // main function
       string firstNameInt, lastNameInt, country, s_cgpa2, s_researchScore2, s_reading, s_listening, s_speaking, s_writing;
       float cgpa2;
       int researchScore2, reading, listening, speaking, writing;
-
-      // sets object member variables
-      getline(ss, firstNameInt, ',');
-      if (firstNameInt == "")
-        cout << "Warning: First name is missing" << endl;
-      InternationalStudents[j].setFirstName(firstNameInt);
-      getline(ss, lastNameInt, ',');
-      if (lastNameInt == "")
-        cout << "Warning: Last name is missing" << endl;
-      InternationalStudents[j].setLastName(lastNameInt);
-      getline(ss, country, ',');
-      if ((country != "Canada") && (country != "China") && (country != "India") && (country != "Iran") && (country != "Korea"))
-      {
-        if (country == "Idian")
+      try {
+        // sets object member variables
+        getline(ss, firstNameInt, ',');
+        if (firstNameInt == "")
+          throw (firstNameInt);
+        InternationalStudents[j].setFirstName(firstNameInt);
+        getline(ss, lastNameInt, ',');
+        if (lastNameInt == "")
+          throw (lastNameInt);
+        InternationalStudents[j].setLastName(lastNameInt);
+        getline(ss, country, ',');
+        if ((country != "Canada") && (country != "China") && (country != "India") && (country != "Iran") && (country != "Korea"))
         {
-          // output warning message
-          cout << "Error: India was misspelled. Correcting error\n";
-          country = "India";
-          InternationalStudents[j].setCountry(country);
+          if (country == "Idian")
+          {
+            // output warning message
+            cout << "Error: India was misspelled. Correcting error\n";
+            country = "India";
+            InternationalStudents[j].setCountry(country);
+          }
+          else
+          {
+            // output error because country isnt valid
+            cout << "Error: An invalid country was entered: " << country;
+            exit(1);
+          }
+        }
+        else if (country == "")
+        {
+          throw (country);
         }
         else
         {
-          // output error because country isnt valid
-          cout << "Error: An invalid country was entered: " << country;
-          exit(1);
+          InternationalStudents[j].setCountry(country);
         }
-      }
-      else if (country == "")
+
+        getline(ss, s_cgpa2, ',');
+        if (s_cgpa2 == "")
+          throw (s_cgpa2);
+        cgpa2 = float(int(atof(s_cgpa2.c_str()) * 10 + 0.5)) / 10;
+        InternationalStudents[j].setCGPA(cgpa2);
+
+        getline(ss, s_researchScore2, ',');
+        if (s_researchScore2 == "")
+          throw (s_researchScore2);
+        researchScore2 = int(atoi(s_researchScore2.c_str()) + 0.5);
+        InternationalStudents[j].setResearchScore(atoi(s_researchScore2.c_str()));
+
+        getline(ss, s_reading, ',');
+        if (s_reading == "")
+          throw (s_reading);
+        reading = atoi(s_reading.c_str());
+        InternationalStudents[j].setReading(atoi(s_reading.c_str()));
+
+        getline(ss, s_listening, ',');
+        if (s_listening == "")
+          throw (s_listening);
+        listening = atoi(s_listening.c_str());
+        InternationalStudents[j].setListening(atoi(s_listening.c_str()));
+
+        getline(ss, s_speaking, ',');
+        if (s_speaking == "")
+          throw (s_speaking);
+        speaking = atoi(s_speaking.c_str());
+        InternationalStudents[j].setSpeaking(atoi(s_speaking.c_str()));
+
+        getline(ss, s_writing, ',');
+        if (s_writing == "")
+          throw (s_writing);
+        writing = atoi(s_writing.c_str());
+        InternationalStudents[j].setWriting(atoi(s_writing.c_str()));
+      }  
+      catch (string errorField)
       {
-        cout << "Warning: Country is missing" << endl;
+        cout << "There are field(s) missing in international file" << endl;
+        exit(1);
       }
-      else
-      {
-        InternationalStudents[j].setCountry(country);
-      }
-
-      getline(ss, s_cgpa2, ',');
-      if (s_cgpa2 == "")
-        cout << "Warning: CGPA is missing" << endl;
-      cgpa2 = float(int(atof(s_cgpa2.c_str()) * 10 + 0.5)) / 10;
-      InternationalStudents[j].setCGPA(cgpa2);
-
-      getline(ss, s_researchScore2, ',');
-      if (s_researchScore2 == "")
-        cout << "Warning: Research score is missing" << endl;
-      researchScore2 = int(atoi(s_researchScore2.c_str()) + 0.5);
-      InternationalStudents[j].setResearchScore(atoi(s_researchScore2.c_str()));
-
-      getline(ss, s_reading, ',');
-      if (s_reading == "")
-        cout << "Warning: Reading score is missing" << endl;
-      reading = atoi(s_reading.c_str());
-      InternationalStudents[j].setReading(atoi(s_reading.c_str()));
-
-      getline(ss, s_listening, ',');
-      if (s_listening == "")
-        cout << "Warning: Listening score is missing" << endl;
-      listening = atoi(s_listening.c_str());
-      InternationalStudents[j].setListening(atoi(s_listening.c_str()));
-
-      getline(ss, s_speaking, ',');
-      if (s_speaking == "")
-        cout << "Warning: Speaking score is missing" << endl;
-      speaking = atoi(s_speaking.c_str());
-      InternationalStudents[j].setSpeaking(atoi(s_speaking.c_str()));
-
-      getline(ss, s_writing, ',');
-      if (s_writing == "")
-        cout << "Warning: Writing score is missing" << endl;
-      writing = atoi(s_writing.c_str());
-      InternationalStudents[j].setWriting(atoi(s_writing.c_str()));
 
       InternationalStudents[j].setToeflScore(reading, listening, speaking, writing);
       InternationalStudents[j].setUID(numDomesticStudents + stu_inter_count);
