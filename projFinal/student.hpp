@@ -15,8 +15,10 @@ private:
     int RScore, UID;
 
 public:
+    static int StudentUIDcounter;
     //  Studnet class constructor
     Student();
+    Student(string FirstNameValue, string LastNameValue, string TypeValue, float CGPAValue, int researchScoreValue);
 
     // Student class get functions
     string getFirstName() const;
@@ -32,7 +34,6 @@ public:
     void setType(string typeValue);
     void setCGPA(float cgpaValue);
     void setResearchScore(int researchScoreValue);
-    void setUID(int UIDValue);
     // each student should have an 8-digit unique application id with int type, starting with 20210000.
     // We assume there are less than 10,000 applicants in our system.
 

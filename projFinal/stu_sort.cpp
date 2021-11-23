@@ -98,23 +98,23 @@ DomesticStudentList *SortedMergeDom(DomesticStudentList *stu1, DomesticStudentLi
 
 void FrontBackSplit(DomesticStudentList *source, DomesticStudentList **frontRef, DomesticStudentList **backRef)
 {
-    DomesticStudentList *a, *b;
-    b = source;
-    a = source->next;
+    DomesticStudentList *first, *second;
+    second = source;
+    first = source->next;
 
-    while (a != NULL)
+    while (first != NULL)
     {
-        a = a->next;
-        if (a != NULL)
+        first = first->next;
+        if (first != NULL)
         {
-            b = b->next;
-            a = a->next;
+            second = second->next;
+            first = first->next;
         }
     }
 
     *frontRef = source;
-    *backRef = b->next;
-    b->next = NULL;
+    *backRef = second->next;
+    second->next = NULL;
 }
 
 void MergeSortInt(InternationalStudentList **headRef, char type)
@@ -214,24 +214,23 @@ InternationalStudentList *SortedMergeInt(InternationalStudentList *stu1, Interna
 void FrontBackSplit(InternationalStudentList *source,
                     InternationalStudentList **frontRef, InternationalStudentList **backRef)
 {
-    InternationalStudentList *fast;
-    InternationalStudentList *slow;
-    slow = source;
-    fast = source->next;
+    InternationalStudentList *first, *second;
+    second = source;
+    first = source->next;
 
-    while (fast != NULL)
+    while (first != NULL)
     {
-        fast = fast->next;
-        if (fast != NULL)
+        first = first->next;
+        if (first != NULL)
         {
-            slow = slow->next;
-            fast = fast->next;
+            second = second->next;
+            first = first->next;
         }
     }
 
     *frontRef = source;
-    *backRef = slow->next;
-    slow->next = NULL;
+    *backRef = second->next;
+    second->next = NULL;
 }
 
 void MergeSortAll(StudentList **headRef, char type)

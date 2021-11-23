@@ -125,7 +125,6 @@ int main() // main function
     getline(domesticFile, line);
 
     int i = 0;
-    int stu_count = 1;
     int numDomesticStudents = lineCounter(domesticFile);
 
     Domestic *DomesticStudents = new Domestic[numDomesticStudents];
@@ -137,15 +136,15 @@ int main() // main function
       int researchScore;
       string Provinces[] = {"NL", "PE", "NS", "NB", "QC", "ON", "MB", "SK", "AB", "BC", "YT", "NT", "NU"};
       // takes data from txt file and sets object member variables
-      try 
+      try
       {
         getline(ss, firstName, ',');
         if (firstName == "")
-          throw (firstName);
+          throw(firstName);
         DomesticStudents[i].setFirstName(firstName);
         getline(ss, lastName, ',');
         if (lastName == "")
-          throw (lastName);
+          throw(lastName);
         DomesticStudents[i].setLastName(lastName);
         getline(ss, province, ',');
         if (find(begin(Provinces), end(Provinces), province) != end(Provinces))
@@ -154,7 +153,7 @@ int main() // main function
         }
         else if (province == "")
         {
-          throw (province);
+          throw(province);
         }
         else
         {
@@ -163,30 +162,23 @@ int main() // main function
         }
         getline(ss, s_cgpa, ',');
         if (s_cgpa == "")
-          throw (s_cgpa);
+          throw(s_cgpa);
         cgpa = float(int(atof(s_cgpa.c_str()) * 10 + 0.5)) / 10;
         DomesticStudents[i].setCGPA(cgpa);
         getline(ss, s_researchScore, ',');
         if (s_researchScore == "")
-          throw (s_researchScore);
+          throw(s_researchScore);
         researchScore = int(atoi(s_researchScore.c_str()) + 0.5);
         DomesticStudents[i].setResearchScore(atoi(s_researchScore.c_str()));
-        DomesticStudents[i].setUID(stu_count);
         DomesticStudents[i].setType("Domestic");
-        stu_count++;
         i++;
-      }  
+      }
       catch (string errorEmptyField)
       {
         cout << "There are field(s) missing in domestic file" << endl;
         exit(1);
       }
     }
-
-    DomesticStudentList *DomHead = nullptr;
-    arrayToListDom(DomesticStudents, numDomesticStudents, &DomHead);
-    domesticFile.close();
-    delete[] DomesticStudents;
 
     ifstream InternationalFile("international-stu.txt"); // connects file with international student info
     if (!InternationalFile.is_open())                    // error return in case of file not opening
@@ -197,7 +189,6 @@ int main() // main function
 
     getline(InternationalFile, line);
 
-    int stu_inter_count = 1;
     int j = 0;
     int numInternationalStudents = lineCounter(InternationalFile);
     International *InternationalStudents = new International[numInternationalStudents];
@@ -207,15 +198,16 @@ int main() // main function
       string firstNameInt, lastNameInt, country, s_cgpa2, s_researchScore2, s_reading, s_listening, s_speaking, s_writing;
       float cgpa2;
       int researchScore2, reading, listening, speaking, writing;
-      try {
+      try
+      {
         // sets object member variables
         getline(ss, firstNameInt, ',');
         if (firstNameInt == "")
-          throw (firstNameInt);
+          throw(firstNameInt);
         InternationalStudents[j].setFirstName(firstNameInt);
         getline(ss, lastNameInt, ',');
         if (lastNameInt == "")
-          throw (lastNameInt);
+          throw(lastNameInt);
         InternationalStudents[j].setLastName(lastNameInt);
         getline(ss, country, ',');
         if ((country != "Canada") && (country != "China") && (country != "India") && (country != "Iran") && (country != "Korea"))
@@ -236,7 +228,7 @@ int main() // main function
         }
         else if (country == "")
         {
-          throw (country);
+          throw(country);
         }
         else
         {
@@ -245,40 +237,40 @@ int main() // main function
 
         getline(ss, s_cgpa2, ',');
         if (s_cgpa2 == "")
-          throw (s_cgpa2);
+          throw(s_cgpa2);
         cgpa2 = float(int(atof(s_cgpa2.c_str()) * 10 + 0.5)) / 10;
         InternationalStudents[j].setCGPA(cgpa2);
 
         getline(ss, s_researchScore2, ',');
         if (s_researchScore2 == "")
-          throw (s_researchScore2);
+          throw(s_researchScore2);
         researchScore2 = int(atoi(s_researchScore2.c_str()) + 0.5);
         InternationalStudents[j].setResearchScore(atoi(s_researchScore2.c_str()));
 
         getline(ss, s_reading, ',');
         if (s_reading == "")
-          throw (s_reading);
+          throw(s_reading);
         reading = atoi(s_reading.c_str());
         InternationalStudents[j].setReading(atoi(s_reading.c_str()));
 
         getline(ss, s_listening, ',');
         if (s_listening == "")
-          throw (s_listening);
+          throw(s_listening);
         listening = atoi(s_listening.c_str());
         InternationalStudents[j].setListening(atoi(s_listening.c_str()));
 
         getline(ss, s_speaking, ',');
         if (s_speaking == "")
-          throw (s_speaking);
+          throw(s_speaking);
         speaking = atoi(s_speaking.c_str());
         InternationalStudents[j].setSpeaking(atoi(s_speaking.c_str()));
 
         getline(ss, s_writing, ',');
         if (s_writing == "")
-          throw (s_writing);
+          throw(s_writing);
         writing = atoi(s_writing.c_str());
         InternationalStudents[j].setWriting(atoi(s_writing.c_str()));
-      }  
+      }
       catch (string errorField)
       {
         cout << "There are field(s) missing in international file" << endl;
@@ -286,12 +278,17 @@ int main() // main function
       }
 
       InternationalStudents[j].setToeflScore(reading, listening, speaking, writing);
-      InternationalStudents[j].setUID(numDomesticStudents + stu_inter_count);
       InternationalStudents[j].setType("International");
       j++;
-      stu_inter_count++;
     }
 
+    DomesticStudentList *DomHead = nullptr;
+    arrayToListDom(DomesticStudents, numDomesticStudents, &DomHead);
+    domesticFile.close();
+    delete[] DomesticStudents;
+
+    InternationalStudentList *IntHead = nullptr;
+    arrayToListInt(InternationalStudents, numInternationalStudents, &IntHead);
     International *filteredInternational = new International[numInternationalStudents];
     International *rejectedInternational = new International[numInternationalStudents];
     int filteredIndex = 0;
@@ -310,10 +307,10 @@ int main() // main function
         rejectedInternational[rejectedIndex++] = InternationalStudents[j];
       }
     }
-    InternationalStudentList *IntHead = nullptr;
+
     InternationalStudentList *IntHeadFiltered = nullptr;
     InternationalStudentList *IntHeadRejected = nullptr;
-    arrayToListInt(InternationalStudents, numInternationalStudents, &IntHead);
+
     arrayToListInt(filteredInternational, filteredIndex, &IntHeadFiltered);
     arrayToListInt(rejectedInternational, rejectedIndex, &IntHeadRejected);
     InternationalFile.close();
@@ -321,7 +318,21 @@ int main() // main function
     delete[] filteredInternational;
     delete[] rejectedInternational;
 
+    StudentList *StuHead = nullptr;
+    DomesticStudentList *currentDom = DomHead;
+    InternationalStudentList *currentInt = IntHeadFiltered;
+    while (currentDom != NULL)
+    {
+      appendMerge(&StuHead, currentDom->domesticStudent);
+      currentDom = currentDom->next;
+    }
+    while (currentInt != NULL)
+    {
+      appendMerge(&StuHead, currentInt->internationalStudent);
+      currentInt = currentInt->next;
+    }
     string exitCheck;
+
     while (true) // menu system
     {
       int menu_selector = 0; // resets menu selection value to 0 when loop begins
@@ -334,12 +345,13 @@ int main() // main function
              << "Select 1: to sort Domestic Students\n"
              << "Select 2: to sort International Students\n"
              << "Select 3: to sort All Students\n"
-             << "Select 4: to exit the program\n"
+             << "Select 4: to see All test cases\n"
+             << "Select 5: to exit the program\n"
              << ">> ";
         menu_selector = Get_Number(); // get user_input
         cout << "-----------------------------------------------------------------------------------------------------------------------\n";
       }
-      if (menu_selector < 1 || menu_selector > 4)
+      if (menu_selector < 1 || menu_selector > 5)
       {
         cout << "You have selected an invalid menu option. Returning to main menu.\n"; // If user selects invalid menu slection, print error and return to menu
       }
@@ -396,6 +408,7 @@ int main() // main function
         if (menu_selector == 1) // selects domestic students
         {
           MergeSortDom(&DomHead, user_input);
+          updateDomHD(&DomHead);
           cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
           cout << "\nAll Sorted Domestic Students:\n\n";
           cout << setw(12) << left << "UID: ";
@@ -409,6 +422,7 @@ int main() // main function
         if (menu_selector == 2) // selects international students
         {
           MergeSortInt(&IntHead, user_input);
+          updateIntHD(&IntHead);
           cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
           cout << "\nAll Sorted International Students:\n\n";
           cout << setw(12) << left << "UID: ";
@@ -430,8 +444,67 @@ int main() // main function
 
       if (menu_selector == 3) // sorts all students
       {
-        // MultiSort(&DomHead);
-        // MultiSort(&IntHead);
+        MergeSortDom(&DomHead);
+        MergeSortInt(&IntHead);
+      CHOICE:
+        int choice = 0;
+        cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
+        cout << "Please select one of the following:\n" // presents users with two options
+             << "Select 1: to view Domestic and International Students Spearately\n"
+             << "Select 2: to view all sorted students (Based on Research Score and CGPA only)\n"
+             << ">> ";
+        choice = Get_Number();
+        if (choice < 1 || choice > 2) // error checking
+        {
+          cout << "You have selected an invalid menu option. Returning to selection.\n"; // If user selects invalid menu slection, print error and return to menu
+          goto CHOICE;
+        }
+        if (choice == 1) // choice 1: view separately
+        {
+          MergeSortDom(&DomHead);
+          updateDomHD(&DomHead);
+          cout << "\nAll Sorted Domestic Students:\n\n";
+          cout << setw(12) << left << "UID: ";
+          cout << setw(14) << left << "First Name: "
+               << " " << setw(17) << left << "Last Name: ";
+          cout << setw(10) << left << "Province: ";
+          cout << setw(6) << left << "CGPA: ";
+          cout << setw(4) << left << "RS: " << endl;
+          printDom(DomHead);
+          MergeSortInt(&IntHead);
+          updateIntHD(&IntHead);
+          cout << "\nAll Sorted International Students:\n\n";
+          cout << setw(12) << left << "UID: ";
+          cout << setw(14) << left << "First Name: "
+               << " " << setw(17) << left << "Last Name: ";
+          cout << setw(10) << left << "Country: ";
+          cout << setw(6) << left << "CGPA: ";
+          cout << setw(4) << left << "RS: ";
+          cout << setw(4) << left << "R: ";
+          cout << setw(4) << left << "L: ";
+          cout << setw(4) << left << "S: ";
+          cout << setw(4) << left << "W: ";
+          cout << "Total Score: " << endl;
+          printInt(IntHead);
+          cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
+        }
+        if (choice == 2) // choice 2: sort all students
+        {
+          MergeSortAll(&StuHead);
+          updateMergeHD(&StuHead);
+          cout << "\nAll Sorted Students: (Based on Research Score and CGPA only)\n\n";
+          cout << setw(12) << left << "UID: ";
+          cout << setw(14) << left << "First Name: "
+               << " " << setw(17) << left << "Last Name: ";
+          cout << setw(10) << left << "CGPA: ";
+          cout << setw(6) << left << "RS: " << endl;
+          printMerge(StuHead);
+          cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
+        }
+      }
+
+      else if (menu_selector == 4)
+      {
         cout << "\nHead is: " << DomHead->head->domesticStudent;
         cout << "Tail is: " << DomHead->tail->domesticStudent;
         cout << "\nHead is: " << IntHead->head->internationalStudent;
@@ -459,27 +532,10 @@ int main() // main function
         DomFindUID(DomHead, 20210099);
         cout << endl;
 
-        StudentList *StuHead = nullptr;
-        DomesticStudentList *currentDom = DomHead;
-        InternationalStudentList *currentInt = IntHeadFiltered;
-        while (currentDom != NULL)
-        {
-          appendMerge(&StuHead, currentDom->domesticStudent);
-          currentDom = currentDom->next;
-        }
-        while (currentInt != NULL)
-        {
-          appendMerge(&StuHead, currentInt->internationalStudent);
-          currentInt = currentInt->next;
-        }
-        updateMergeHD(&StuHead);
-        printMerge(StuHead);
         cout << "\nHead is: " << StuHead->head->Students;
         cout << "Tail is: " << StuHead->tail->Students;
         cout << endl;
 
-        // MergeSortAll(&StuHead, 'g');
-        // MergeSortAll(&StuHead, 'r');
         MergeSortAll(&StuHead);
         printMerge(StuHead);
         updateMergeHD(&StuHead);
@@ -494,7 +550,6 @@ int main() // main function
         NewStudentDom.setResearchScore(100);
         NewStudentDom.setFirstName("Gabus");
         NewStudentDom.setLastName("Anus");
-        NewStudentDom.setUID(stu_count++);
         NewStudentDom.setProvince("BC");
 
         International NewStudentInt;
@@ -544,58 +599,13 @@ int main() // main function
         cout << "Tail is: " << DomHead->tail->domesticStudent;
         cout << endl;
 
-      CHOICE:
-        int choice = 0;
-        cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
-        cout << "Please select one of the following:\n" // presents users with two options
-             << "Select 1: to view Domestic and International Students Spearately\n"
-             << "Select 2: to view all sorted students (Based on Research Score and CGPA only)\n"
-             << ">> ";
-        choice = Get_Number();
-        if (choice < 1 || choice > 2) // error checking
-        {
-          cout << "You have selected an invalid menu option. Returning to selection.\n"; // If user selects invalid menu slection, print error and return to menu
-          goto CHOICE;
-        }
-        if (choice == 1) // choice 1: view separately
-        {
-          cout << "\nAll Sorted Domestic Students:\n\n";
-          cout << setw(12) << left << "UID: ";
-          cout << setw(14) << left << "First Name: "
-               << " " << setw(17) << left << "Last Name: ";
-          cout << setw(10) << left << "Province: ";
-          cout << setw(6) << left << "CGPA: ";
-          cout << setw(4) << left << "RS: " << endl;
-          printDom(DomHead);
-          cout << "\nAll Sorted International Students:\n\n";
-          cout << setw(12) << left << "UID: ";
-          cout << setw(14) << left << "First Name: "
-               << " " << setw(17) << left << "Last Name: ";
-          cout << setw(10) << left << "Country: ";
-          cout << setw(6) << left << "CGPA: ";
-          cout << setw(4) << left << "RS: ";
-          cout << setw(4) << left << "R: ";
-          cout << setw(4) << left << "L: ";
-          cout << setw(4) << left << "S: ";
-          cout << setw(4) << left << "W: ";
-          cout << "Total Score: " << endl;
-          printInt(IntHead);
-          cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
-        }
-        if (choice == 2) // choice 2: sort all students
-        {
-          cout << "\nAll Sorted Students: (Based on Research Score and CGPA only)\n\n";
-          cout << setw(12) << left << "UID: ";
-          cout << setw(14) << left << "First Name: "
-               << " " << setw(17) << left << "Last Name: ";
-          cout << setw(10) << left << "CGPA: ";
-          cout << setw(6) << left << "RS: " << endl;
-          // printMerge(/**/);
-          cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
-        }
+        DomFindUID(DomHead, 20210150);
+        DomFindUID(DomHead, 20210120);
+        cout << "End of test cases";
+        cout << endl;
       }
 
-      else if (menu_selector == 4) // exit program prommpt
+      else if (menu_selector == 5) // exit program prommpt
       {
         cout << "Are you sure you wish to completely exit the program? Use Y/N (yes or no) to proceed.\n" // Ensures that the user wishes to exit the program
              << ">> ";

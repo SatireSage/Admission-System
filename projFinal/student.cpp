@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std; // use namespace std
 // -------------------------------------- Student Class -------------------------------------- //
-
+int Student::StudentUIDcounter = 20210000;
 // Student class constructor
 Student::Student()
 {
@@ -14,7 +14,17 @@ Student::Student()
     setType("");
     setCGPA(0.0);
     setResearchScore(0);
-    setUID(0);
+    UID = StudentUIDcounter++;
+}
+
+Student::Student(string FirstNameValue, string LastNameValue, string TypeValue, float CGPAValue, int researchScoreValue)
+{
+    setFirstName(FirstNameValue);
+    setLastName(FirstNameValue);
+    setType(TypeValue);
+    setCGPA(CGPAValue);
+    setResearchScore(researchScoreValue);
+    UID = StudentUIDcounter++;
 }
 
 // Student class get-functions
@@ -41,8 +51,6 @@ void Student::setCGPA(float cgpaValue) { CGPA = cgpaValue; }
 
 void Student::setResearchScore(int researchScoreValue) { RScore = researchScoreValue; }
 
-void Student::setUID(int UIDValue) { UID = 20210000 + UIDValue - 1; }
-
 // Student class friend functions
 // Overload operator
 ostream &operator<<(ostream &outs, const Student &stuObj)
@@ -55,7 +63,7 @@ ostream &operator<<(ostream &outs, const Student &stuObj)
     return outs;
 }
 // compares CGPA of students
-int compareCGPA(Student stu1, Student stu2)
+int compareCGPA(const Student stu1, const Student stu2)
 {
     if (stu1.getCGPA() < stu2.getCGPA())
     {
@@ -71,7 +79,7 @@ int compareCGPA(Student stu1, Student stu2)
     }
 }
 // compares RS of students
-int compareResearchScore(Student stu1, Student stu2)
+int compareResearchScore(const Student stu1, const Student stu2)
 {
     if (stu1.getResearchScore() < stu2.getResearchScore())
     {
@@ -87,7 +95,7 @@ int compareResearchScore(Student stu1, Student stu2)
     }
 }
 // compares first names of students alphabetically
-int compareFirstName(Student stu1, Student stu2)
+int compareFirstName(const Student stu1, const Student stu2)
 {
     string student1 = stu1.getFirstName();
     string student2 = stu2.getFirstName();
@@ -100,7 +108,7 @@ int compareFirstName(Student stu1, Student stu2)
     return student1.compare(student2);
 }
 // compares last names of students alphabetically
-int compareLastName(Student stu1, Student stu2)
+int compareLastName(const Student stu1, const Student stu2)
 {
     string student1 = stu1.getLastName();
     string student2 = stu2.getLastName();
@@ -114,7 +122,7 @@ int compareLastName(Student stu1, Student stu2)
 }
 
 // compares the type of students
-int compareType(Student stu1, Student stu2)
+int compareType(const Student stu1, const Student stu2)
 {
     if (stu1.getType() == "International" && stu2.getType() == "Domestic")
     {

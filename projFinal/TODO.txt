@@ -5,8 +5,9 @@ Zach:
 Nick:
 1. Make the threshold functions virtual (the threshold functions already made) and get rid of all the friend functions
 
-Anyone:
-1. Make a working menu for the project
-2. Do the unit test cases (I have done most of em in line 419 to 531 in main.cpp)
+Daniel:
+Slides
 
-Slides need to be done as well
+Anyone:
+1. Edit Menu (Added most afaik and they work just check the doc)
+2. Edit Test Cases (I have done most of em in line 419 to 531 in main.cpp)
