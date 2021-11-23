@@ -137,42 +137,50 @@ int main() // main function
       int researchScore;
       string Provinces[] = {"NL", "PE", "NS", "NB", "QC", "ON", "MB", "SK", "AB", "BC", "YT", "NT", "NU"};
       // takes data from txt file and sets object member variables
-      getline(ss, firstName, ',');
-      if (firstName == "")
-        cout << "Warning: First name is missing" << endl;
-      DomesticStudents[i].setFirstName(firstName);
-      getline(ss, lastName, ',');
-      if (lastName == "")
-        cout << "Warning: Last name is missing" << endl;
-      DomesticStudents[i].setLastName(lastName);
-      getline(ss, province, ',');
-      if (find(begin(Provinces), end(Provinces), province) != end(Provinces))
+      try 
       {
-        DomesticStudents[i].setProvince(province);
-      }
-      else if (province == "")
+        getline(ss, firstName, ',');
+        if (firstName == "")
+          throw (firstName);
+        DomesticStudents[i].setFirstName(firstName);
+        getline(ss, lastName, ',');
+        if (lastName == "")
+          throw (lastName);
+        DomesticStudents[i].setLastName(lastName);
+        getline(ss, province, ',');
+        if (find(begin(Provinces), end(Provinces), province) != end(Provinces))
+        {
+          DomesticStudents[i].setProvince(province);
+        }
+        else if (province == "")
+        {
+          throw (province);
+        }
+        else
+        {
+          cout << province << " is not a province in Canada. Exiting program." << endl;
+          exit(1);
+        }
+        getline(ss, s_cgpa, ',');
+        if (s_cgpa == "")
+          throw (s_cgpa);
+        cgpa = float(int(atof(s_cgpa.c_str()) * 10 + 0.5)) / 10;
+        DomesticStudents[i].setCGPA(cgpa);
+        getline(ss, s_researchScore, ',');
+        if (s_researchScore == "")
+          throw (s_researchScore);
+        researchScore = int(atoi(s_researchScore.c_str()) + 0.5);
+        DomesticStudents[i].setResearchScore(atoi(s_researchScore.c_str()));
+        DomesticStudents[i].setUID(stu_count);
+        DomesticStudents[i].setType("Domestic");
+        stu_count++;
+        i++;
+      }  
+      catch (string errorEmpty)
       {
-        cout << "Warning: Province is missing" << endl;
-      }
-      else
-      {
-        cout << province << " is not a province in Canada. Exiting program." << endl;
+        cout << "There are field(s) missing" << endl;
         exit(1);
       }
-      getline(ss, s_cgpa, ',');
-      if (s_cgpa == "")
-        cout << "Warning: CGPA is missing" << endl;
-      cgpa = float(int(atof(s_cgpa.c_str()) * 10 + 0.5)) / 10;
-      DomesticStudents[i].setCGPA(cgpa);
-      getline(ss, s_researchScore, ',');
-      if (s_researchScore == "")
-        cout << "Warning: Research score is missing" << endl;
-      researchScore = int(atoi(s_researchScore.c_str()) + 0.5);
-      DomesticStudents[i].setResearchScore(atoi(s_researchScore.c_str()));
-      DomesticStudents[i].setUID(stu_count);
-      DomesticStudents[i].setType("Domestic");
-      stu_count++;
-      i++;
     }
 
     DomesticStudentList *DomHead = nullptr;
@@ -221,7 +229,7 @@ int main() // main function
         }
         else
         {
-          // output error because province isnt valid
+          // output error because country isnt valid
           cout << "Error: An invalid country was entered: " << country;
           exit(1);
         }
