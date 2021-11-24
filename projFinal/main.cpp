@@ -3,7 +3,8 @@
 #include <iostream>  //cin and cout
 #include <fstream>   //file processing
 #include <sstream>   //formatted string processing
-#include <cstdlib>   //atof and atoi
+#include <cstdlib> 
+ //atof and atoi
 #include <iomanip>   // formatting
 #include <limits>    //numeric limit
 #include <algorithm> // for std::find
@@ -17,6 +18,26 @@ int Get_Number() // checks validity of input
 {
   string line;
   int user_input;
+  while (getline(cin, line))
+  {
+    stringstream ss(line);
+    if (ss >> user_input)
+    {
+      if (ss.eof())
+      {
+        break;
+      }
+    }
+    cout << "Please enter a number as input only for the previous input: " << '\n'
+         << ">> ";
+  }
+  return user_input;
+};
+
+double Get_Double() // checks validity of input
+{
+  string line;
+  double user_input;
   while (getline(cin, line))
   {
     stringstream ss(line);
@@ -344,9 +365,10 @@ int main() // main function
              << "Please select one of the folowing:\n"
              << "Select 1: to sort Domestic Students\n"
              << "Select 2: to sort International Students\n"
-             << "Select 3: to sort All Students\n"
-             << "Select 4: to see All test cases\n"
-             << "Select 5: to exit the program\n"
+             << "Select 3: to sort All Students (Based on Research Score and CGPA only)\n"
+             << "Selext 4: to insert new student\n"
+             << "Select 5: to see All test cases\n"
+             << "Select 6: to exit the program\n"
              << ">> ";
         menu_selector = Get_Number(); // get user_input
         cout << "-----------------------------------------------------------------------------------------------------------------------\n";
@@ -446,64 +468,253 @@ int main() // main function
       {
         MergeSortDom(&DomHead);
         MergeSortInt(&IntHead);
-      CHOICE:
-        int choice = 0;
-        cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
-        cout << "Please select one of the following:\n" // presents users with two options
-             << "Select 1: to view Domestic and International Students Spearately\n"
-             << "Select 2: to view all sorted students (Based on Research Score and CGPA only)\n"
-             << ">> ";
-        choice = Get_Number();
-        if (choice < 1 || choice > 2) // error checking
-        {
-          cout << "You have selected an invalid menu option. Returning to selection.\n"; // If user selects invalid menu slection, print error and return to menu
-          goto CHOICE;
-        }
-        if (choice == 1) // choice 1: view separately
-        {
-          MergeSortDom(&DomHead);
-          updateDomHD(&DomHead);
-          cout << "\nAll Sorted Domestic Students:\n\n";
-          cout << setw(12) << left << "UID: ";
-          cout << setw(14) << left << "First Name: "
-               << " " << setw(17) << left << "Last Name: ";
-          cout << setw(10) << left << "Province: ";
-          cout << setw(6) << left << "CGPA: ";
-          cout << setw(4) << left << "RS: " << endl;
-          printDom(DomHead);
-          MergeSortInt(&IntHead);
-          updateIntHD(&IntHead);
-          cout << "\nAll Sorted International Students:\n\n";
-          cout << setw(12) << left << "UID: ";
-          cout << setw(14) << left << "First Name: "
-               << " " << setw(17) << left << "Last Name: ";
-          cout << setw(10) << left << "Country: ";
-          cout << setw(6) << left << "CGPA: ";
-          cout << setw(4) << left << "RS: ";
-          cout << setw(4) << left << "R: ";
-          cout << setw(4) << left << "L: ";
-          cout << setw(4) << left << "S: ";
-          cout << setw(4) << left << "W: ";
-          cout << "Total Score: " << endl;
-          printInt(IntHead);
-          cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
-        }
-        if (choice == 2) // choice 2: sort all students
-        {
-          MergeSortAll(&StuHead);
-          updateMergeHD(&StuHead);
-          cout << "\nAll Sorted Students: (Based on Research Score and CGPA only)\n\n";
-          cout << setw(12) << left << "UID: ";
-          cout << setw(14) << left << "First Name: "
-               << " " << setw(17) << left << "Last Name: ";
-          cout << setw(10) << left << "CGPA: ";
-          cout << setw(6) << left << "RS: " << endl;
-          printMerge(StuHead);
-          cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
-        }
-      }
 
-      else if (menu_selector == 4)
+        MergeSortAll(&StuHead);
+        updateMergeHD(&StuHead);
+        cout << "\nAll Sorted Students: (Based on Research Score and CGPA only)\n\n";
+        cout << setw(12) << left << "UID: ";
+        cout << setw(14) << left << "First Name: "
+            << " " << setw(17) << left << "Last Name: ";
+        cout << setw(10) << left << "CGPA: ";
+        cout << setw(6) << left << "RS: " << endl;
+        printMerge(StuHead);
+        cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
+          
+      }
+      
+      if (menu_selector == 4)
+      {
+        USER_CHOICE:
+          int user_choice = 1;
+          cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
+          cout << "Please select one of the following:\n"
+              << "Select 1: Insert Domestic Student\n"
+              << "Select 2: Insert International Student\n"
+              << ">> ";
+          user_choice = Get_Number();
+          if (user_choice != 1 && user_choice != 2)
+          {
+            cout << "You have selected an invalid menu option. Returning to selection.\n"; // If user selects invalid menu slection, print error and return to menu
+            goto USER_CHOICE;
+          }
+          if (user_choice == 1)
+          {
+            int tempNum = 0;
+            bool check = false;
+            Domestic NewStudentDom;
+            string userString;
+            float cgpaDom;
+            int rsDom;
+            string Provinces[] = {"NL", "PE", "NS", "NB", "QC", "ON", "MB", "SK", "AB", "BC", "YT", "NT", "NU"};
+            cout << "Please enter first name" << endl;
+            cin >> userString;
+            NewStudentDom.setFirstName(userString);
+            cout << "Please enter last name" << endl;
+            cin >> userString;
+            NewStudentDom.setLastName(userString);
+            cout << "Please enter province" << endl;
+            
+            while (true)
+            {
+              cin >> userString;
+              transform(userString.begin(), userString.end(), userString.begin(), ::toupper);
+              if (find(begin(Provinces), end(Provinces), userString) != end(Provinces))
+              {
+                NewStudentDom.setProvince(userString);
+                break;
+              }
+              cin.clear();
+              cin.ignore(numeric_limits<streamsize>::max(), '\n');
+              cout << "Please enter a valid 2 letter prefix for a Canadian province" << endl;
+            }
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Please enter CGPA" << endl;
+            while (true)
+            {
+              double tempDouble;
+              tempDouble = Get_Double();
+              cgpaDom = float(int(tempDouble * 10 + 0.5)) / 10;
+              if (cgpaDom <= 4.31 && cgpaDom >= 0) 
+              {
+                NewStudentDom.setCGPA(cgpaDom);
+                break;
+              }
+              
+              cout << "Please enter a valid CGPA" << endl;
+
+            }
+            check = false;
+            cout << "Please enter research score" << endl;
+            while (check != true)
+            {
+              tempNum = Get_Number();
+              if (tempNum <= 100 && tempNum >= 0) {
+                NewStudentDom.setResearchScore(tempNum);
+                check = true;
+              }
+              else
+              {
+                cout << "Please enter a valid research score" << endl;
+              }
+            }
+            NewStudentDom.setType("Domestic");
+            appendDom(&DomHead, NewStudentDom);
+            MergeSortDom(&DomHead);
+            updateDomHD(&DomHead);
+            appendMerge(&StuHead, NewStudentDom);
+          }
+          if (user_choice == 2)
+          {
+            int tempNum = 0;
+            int readInt, speakInt, writeInt, listInt;
+            bool check = false;
+            International NewStudentInt;
+            string userString;
+            float cgpaInt;
+            string Countries[] = {"canada", "china", "india", "iran", "korea"};
+            cout << "Please enter first name" << endl;
+            cin >> userString;
+            NewStudentInt.setFirstName(userString);
+            cout << "Please enter last name" << endl;
+            cin >> userString;
+            NewStudentInt.setLastName(userString);
+            cout << "Please enter country" << endl;
+            while (true)
+            {
+              cin >> userString;
+              transform(userString.begin(), userString.end(), userString.begin(), ::tolower);
+              if (userString == "idian")
+              {
+                cout << "Error: India was misspelled. Correcting error\n";
+                userString = "Indian";
+                NewStudentInt.setCountry(userString);
+                break;
+              }
+              if (find(begin(Countries), end(Countries), userString) != end(Countries))
+              {
+                userString[0] = toupper(userString[0]);
+                NewStudentInt.setCountry(userString);
+                break;
+              }
+              cout << "ERROR: These are the accepted countries: Canada, China, India, Iran, and Korea" << endl;
+              cin.clear();
+              cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Please enter CGPA" << endl;
+            while (check != true)
+            {
+              double tempDouble;
+              tempDouble = Get_Double();
+              cgpaInt = float(int(tempDouble * 10 + 0.5)) / 10;
+              if (cgpaInt < 4.31 && cgpaInt > 0) {
+                NewStudentInt.setCGPA(cgpaInt);
+                check = true;
+              }
+              else
+              {
+                cout << "Please enter a valid CGPA" << endl;
+              }
+            }
+            check = false;
+            cout << "Please enter research score" << endl;
+            while (check != true)
+            {
+              tempNum = Get_Number();
+              if (tempNum <= 100 && tempNum >= 0) {
+                NewStudentInt.setResearchScore(tempNum);
+                check = true;
+              }
+              else
+              {
+                cout << "Please enter a valid research score" << endl;
+              }
+            }
+            check = false;
+            cout << "Please enter reading score" << endl;
+            while (check != true)
+            {
+              tempNum = Get_Number();
+              if (tempNum <= 30 && tempNum >= 0) {
+                NewStudentInt.setReading(tempNum);
+                readInt = tempNum;
+                check = true;
+              }
+              else
+              {
+                cout << "Please enter a valid reading score" << endl;
+              }
+            }
+            check = false;
+            cout << "Please enter listening score" << endl;
+            while (check != true)
+            {
+              tempNum = Get_Number();
+              if (tempNum <= 30 && tempNum >= 0) {
+                NewStudentInt.setListening(tempNum);
+                listInt = tempNum;
+                check = true;
+              }
+              else
+              {
+                cout << "Please enter a valid listening score" << endl;
+              }
+            }
+            check = false;
+            cout << "Please enter speaking score" << endl;
+            while (check != true)
+            {
+              tempNum = Get_Number();
+              if (tempNum <= 30 && tempNum >= 0) {
+                NewStudentInt.setSpeaking(tempNum);
+                speakInt = tempNum;
+                check = true;
+              }
+              else
+              {
+                cout << "Please enter a valid speaking score" << endl;
+              }
+            }
+            check = false;
+            cout << "Please enter writing score" << endl;
+            while (check != true)
+            {
+              tempNum = Get_Number();
+              if (tempNum <= 30 && tempNum >= 0) {
+                NewStudentInt.setWriting(tempNum);
+                writeInt = tempNum;
+                check = true;
+              }
+              else
+              {
+                cout << "Please enter a valid writing score" << endl;
+              }
+            }
+
+            NewStudentInt.setToeflScore(readInt, listInt, speakInt, writeInt);
+            NewStudentInt.setType("International");
+            if (NewStudentInt.getTotalScore() >= 93 && NewStudentInt.getReading() >= 20 && NewStudentInt.getListening() >= 20 && NewStudentInt.getSpeaking() >= 20 && NewStudentInt.getWriting() >= 20)
+            {
+              appendInt(&IntHead, NewStudentInt);
+              MergeSortInt(&IntHead);
+              updateIntHD(&IntHead);
+              appendMerge(&StuHead, NewStudentInt);
+
+            }
+            else
+            {
+              cout << "International student does not meet TOEFL requirements and can't be added to system. Returning to menu" << endl;
+
+            }
+
+
+          }
+        
+      }
+      
+      if (menu_selector == 5)
       {
         cout << "\nHead is: " << DomHead->head->domesticStudent;
         cout << "Tail is: " << DomHead->tail->domesticStudent;
@@ -605,7 +816,7 @@ int main() // main function
         cout << endl;
       }
 
-      else if (menu_selector == 5) // exit program prommpt
+      if (menu_selector == 6) // exit program prommpt
       {
         cout << "Are you sure you wish to completely exit the program? Use Y/N (yes or no) to proceed.\n" // Ensures that the user wishes to exit the program
              << ">> ";
@@ -631,11 +842,12 @@ int main() // main function
           cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
       }
-    }
+    } 
+    
+  return 0;
   }
   catch (bad_alloc)
   {
     std::cout << "Warning: Bad memory allocation." << '\n';
   };
-  return 0;
 }
