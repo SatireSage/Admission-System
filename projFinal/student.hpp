@@ -45,8 +45,7 @@ public:
     friend int compareType(Student stu1, Student stu2);
     friend ostream &operator<<(ostream &outs, const Student &stuObj);
 
-    // virtual void threshold(StudentList *Stu, float CGPA_VALUE, int researchScore_VALUE); *using this one :) moo
-
+    // virtual void threshold(StudentList *Stu, float CGPA_VALUE, int researchScore_VALUE);
     // virtual void threshold(StudentList *Stu, float CGPA_VALUE);
     // virtual void threshold(StudentList *Stu, int researchScore_VALUE);
 };

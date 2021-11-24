@@ -11,20 +11,20 @@ using namespace std; // use namespace std
 class InternationalStudentList
 {
 protected:
-    void friend IntFindName(InternationalStudentList *Stu, string FirstName, string LastName);
-    void friend IntFindCGPA(InternationalStudentList *Stu1, float CGPA_VALUE);
-    void friend IntFindResearchScore(InternationalStudentList *Stu1, int researchScore_VALUE);
-    void friend IntFindUID(InternationalStudentList *Stu1, int UIDValue);
+    friend void IntFindName(InternationalStudentList *Stu, string FirstName, string LastName);
+    friend void IntFindCGPA(InternationalStudentList *Stu1, float CGPA_VALUE);
+    friend void IntFindResearchScore(InternationalStudentList *Stu1, int researchScore_VALUE);
+    friend void IntFindUID(InternationalStudentList *Stu1, int UIDValue);
 
 public:
     International internationalStudent;
     InternationalStudentList *next, *head, *tail;
 
-    void friend deleteInt(InternationalStudentList **head_ref, string FirstName, string LastName);
-    void friend appendInt(InternationalStudentList **head_ref, International new_data);
-    void friend printInt(InternationalStudentList *node);
-    void friend deleteIntHD(InternationalStudentList **head_ref);
-    void friend updateIntHD(InternationalStudentList **head_ref);
+    void deleteInt(InternationalStudentList **head_ref, string FirstName, string LastName);
+    void appendInt(InternationalStudentList **head_ref, International new_data);
+    void printInt(InternationalStudentList *node);
+    void deleteIntHD(InternationalStudentList **head_ref);
+    void updateIntHD(InternationalStudentList **head_ref);
 };
 
 #endif

@@ -2,14 +2,12 @@ Zach:
 1. Try-throw-catch added but idk if it works *mem alloc
 2. Make example errors and show that code catches them
 3. Edit Test Cases (I have done most of em in main.cpp as part 4 of the menu)
-4. Get rid of all the friend functions that aren't required (figure it out based on the doc dont ask)
 
 Nick:
 1. Make the threshold functions virtual (the threshold functions already made) and get rid of all the friend functions
-3. Get rid of all the friend functions that aren't required (figure it out based on the doc dont ask)
 4. Menu: Search
+         Display Rejects
 
 Daniel:
-Slides
-1. Get rid of all the friend functions that aren't required (figure it out based on the doc dont ask)
+1. Slides
 2. Non-default constructor for domestic and international classes (already done for student class)

@@ -11,20 +11,20 @@ using namespace std; // use namespace std
 class DomesticStudentList
 {
 protected:
-    void friend DomFindName(DomesticStudentList *Stu, string FirstName, string LastName);
-    void friend DomFindCGPA(DomesticStudentList *Stu1, float CGPA_VALUE);
-    void friend DomFindResearchScore(DomesticStudentList *Stu1, int researchScore_VALUE);
-    void friend DomFindUID(DomesticStudentList *Stu1, int UIDValue);
+    friend void DomFindName(DomesticStudentList *Stu, string FirstName, string LastName);
+    friend void DomFindCGPA(DomesticStudentList *Stu1, float CGPA_VALUE);
+    friend void DomFindResearchScore(DomesticStudentList *Stu1, int researchScore_VALUE);
+    friend void DomFindUID(DomesticStudentList *Stu1, int UIDValue);
 
 public:
     Domestic domesticStudent;
     DomesticStudentList *next, *head, *tail;
 
-    void friend deleteDom(DomesticStudentList **head_ref, string FirstName, string LastName);
-    void friend appendDom(DomesticStudentList **head_ref, Domestic new_data);
-    void friend printDom(DomesticStudentList *node);
-    void friend deleteDomHD(DomesticStudentList **head_ref);
-    void friend updateDomHD(DomesticStudentList **head_ref);
+    void deleteDom(DomesticStudentList **head_ref, string FirstName, string LastName);
+    void appendDom(DomesticStudentList **head_ref, Domestic new_data);
+    void printDom(DomesticStudentList *node);
+    void deleteDomHD(DomesticStudentList **head_ref);
+    void updateDomHD(DomesticStudentList **head_ref);
 };
 
 #endif

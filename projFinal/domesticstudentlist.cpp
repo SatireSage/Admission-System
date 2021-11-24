@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std; // use namespace std
 
-void deleteDom(DomesticStudentList **head_ref, string FirstName, string LastName)
+void DomesticStudentList::deleteDom(DomesticStudentList **head_ref, string FirstName, string LastName)
 {
     DomesticStudentList *temp = *head_ref;
     DomesticStudentList *prev = NULL;
@@ -44,7 +44,7 @@ void deleteDom(DomesticStudentList **head_ref, string FirstName, string LastName
     }
 }
 
-void appendDom(DomesticStudentList **root, Domestic item)
+void DomesticStudentList::appendDom(DomesticStudentList **root, Domestic item)
 {
     DomesticStudentList *temp = new DomesticStudentList;
     DomesticStudentList *current;
@@ -211,7 +211,7 @@ void DomFindUID(DomesticStudentList *Stu, int UIDValue)
         cout << storeDom.at(i) << ' ';
 }
 
-void printDom(DomesticStudentList *node)
+void DomesticStudentList::printDom(DomesticStudentList *node)
 {
     while (node != NULL)
     {
@@ -220,7 +220,7 @@ void printDom(DomesticStudentList *node)
     }
 }
 
-void deleteDomHD(DomesticStudentList **head_ref)
+void DomesticStudentList::deleteDomHD(DomesticStudentList **head_ref)
 {
     if (head_ref == NULL)
         return;
@@ -236,11 +236,9 @@ void deleteDomHD(DomesticStudentList **head_ref)
     (*head_ref)->tail->next = NULL;
 }
 
-void updateDomHD(DomesticStudentList **head_ref)
+void DomesticStudentList::updateDomHD(DomesticStudentList **head_ref)
 {
     DomesticStudentList *temp = *head_ref;
-    cout << endl
-         << "CHECK HEAD: " << temp->domesticStudent << endl;
     (*head_ref)->head = temp;
     DomesticStudentList *last = *head_ref;
     while (last->next != NULL)

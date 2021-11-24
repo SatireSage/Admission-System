@@ -11,24 +11,23 @@ using namespace std; // use namespace std
 class StudentList : public Student
 {
 protected:
-    void friend FindName(StudentList *Stu, string FirstName, string LastName);
-    void friend FindCGPA(StudentList *Stu1, float CGPA_VALUE);
-    void friend FindResearchScore(StudentList *Stu1, int researchScore_VALUE);
-    void friend FindUID(StudentList *Stu1, int UIDValue);
-    void friend threshold(StudentList *Stu, float CGPA_VALUE, int researchScore_VALUE);
-    void friend threshold(StudentList *Stu, float CGPA_VALUE);
-    void friend threshold(StudentList *Stu, int researchScore_VALUE);
+    friend void FindName(StudentList *Stu, string FirstName, string LastName);
+    friend void FindCGPA(StudentList *Stu1, float CGPA_VALUE);
+    friend void FindResearchScore(StudentList *Stu1, int researchScore_VALUE);
+    friend void FindUID(StudentList *Stu1, int UIDValue);
+    friend void threshold(StudentList *Stu, float CGPA_VALUE, int researchScore_VALUE);
+    friend void threshold(StudentList *Stu, float CGPA_VALUE);
+    friend void threshold(StudentList *Stu, int researchScore_VALUE);
 
 public:
     Student Students;
     StudentList *next, *head, *tail;
 
-    void friend deleteMerge(StudentList **head_ref, string FirstName, string LastName);
-    void friend appendMerge(StudentList **head_ref, Student new_data);
-    void friend printMerge(StudentList *node);
-    void friend deleteMergeHD(StudentList **head_ref);
-    void friend updateMergeHD(StudentList **head_ref);
-    // virtual void threshold(StudentList *Stu, float CGPA_VALUE, int researchScore_VALUE);
+    void deleteMerge(StudentList **head_ref, string FirstName, string LastName);
+    void appendMerge(StudentList **head_ref, Student new_data);
+    void printMerge(StudentList *node);
+    void deleteMergeHD(StudentList **head_ref);
+    void updateMergeHD(StudentList **head_ref);
 };
 
 #endif

@@ -5,9 +5,7 @@
 #include <vector>
 using namespace std; // use namespace std
 
-
-
-void deleteMerge(StudentList **head_ref, string FirstName, string LastName)
+void StudentList::deleteMerge(StudentList **head_ref, string FirstName, string LastName)
 {
     StudentList *temp = *head_ref;
     StudentList *prev = NULL;
@@ -46,7 +44,7 @@ void deleteMerge(StudentList **head_ref, string FirstName, string LastName)
     }
 }
 
-void appendMerge(StudentList **root, Student item)
+void StudentList::appendMerge(StudentList **root, Student item)
 {
     StudentList *temp = new StudentList;
     StudentList *current;
@@ -308,7 +306,7 @@ void threshold(StudentList *Stu, float CGPA_VALUE)
         cout << storeStu.at(i) << ' ';
 }
 
-void printMerge(StudentList *node)
+void StudentList::printMerge(StudentList *node)
 {
     while (node != NULL)
     {
@@ -317,7 +315,7 @@ void printMerge(StudentList *node)
     }
 }
 
-void deleteMergeHD(StudentList **head_ref)
+void StudentList::deleteMergeHD(StudentList **head_ref)
 {
     if (head_ref == NULL)
         return;
@@ -333,16 +331,12 @@ void deleteMergeHD(StudentList **head_ref)
     (*head_ref)->tail->next = NULL;
 }
 
-void updateMergeHD(StudentList **head_ref)
+void StudentList::updateMergeHD(StudentList **head_ref)
 {
     StudentList *temp = *head_ref;
-    cout << endl
-         << "CHECK HEAD: " << temp->Students << endl;
     (*head_ref)->head = temp;
     StudentList *last = *head_ref;
     while (last->next != NULL)
         last = last->next;
     (*head_ref)->tail = last;
 }
-
-

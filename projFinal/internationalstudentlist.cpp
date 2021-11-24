@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std; // use namespace std
 
-void deleteInt(InternationalStudentList **head_ref, string FirstName, string LastName)
+void InternationalStudentList::deleteInt(InternationalStudentList **head_ref, string FirstName, string LastName)
 {
     InternationalStudentList *temp = *head_ref;
     InternationalStudentList *prev = NULL;
@@ -44,7 +44,7 @@ void deleteInt(InternationalStudentList **head_ref, string FirstName, string Las
     }
 }
 
-void appendInt(InternationalStudentList **root, International item)
+void InternationalStudentList::appendInt(InternationalStudentList **root, International item)
 {
     InternationalStudentList *temp = new InternationalStudentList;
     InternationalStudentList *current;
@@ -211,7 +211,7 @@ void IntFindUID(InternationalStudentList *Stu, int UIDValue)
         cout << storeInt.at(i) << ' ';
 }
 
-void printInt(InternationalStudentList *node)
+void InternationalStudentList::printInt(InternationalStudentList *node)
 {
     while (node != NULL)
     {
@@ -220,7 +220,7 @@ void printInt(InternationalStudentList *node)
     }
 }
 
-void deleteIntHD(InternationalStudentList **head_ref)
+void InternationalStudentList::deleteIntHD(InternationalStudentList **head_ref)
 {
     if (head_ref == NULL)
         return;
@@ -236,11 +236,9 @@ void deleteIntHD(InternationalStudentList **head_ref)
     (*head_ref)->tail->next = NULL;
 }
 
-void updateIntHD(InternationalStudentList **head_ref)
+void InternationalStudentList::updateIntHD(InternationalStudentList **head_ref)
 {
     InternationalStudentList *temp = *head_ref;
-    cout << endl
-         << "CHECK HEAD: " << temp->internationalStudent << endl;
     (*head_ref)->head = temp;
     InternationalStudentList *last = *head_ref;
     while (last->next != NULL)
