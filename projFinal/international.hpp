@@ -18,6 +18,7 @@ private:
 public:
     // International class constructor
     International();
+    International(string FirstNameValue, string LastNameValue, string TypeValue, string InternationalValue, float CGPAValue, int researchScoreValue);
 
     // international class get function
     string getCountry() const;

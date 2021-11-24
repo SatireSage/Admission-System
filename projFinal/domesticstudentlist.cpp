@@ -46,29 +46,37 @@ void DomesticStudentList::deleteDom(DomesticStudentList **head_ref, string First
 
 void DomesticStudentList::appendDom(DomesticStudentList **root, Domestic item)
 {
-    DomesticStudentList *temp = new DomesticStudentList;
-    DomesticStudentList *current;
-    temp->domesticStudent = item;
-    temp->next = NULL;
-    temp->head = NULL;
-    temp->tail = NULL;
+    try
+    {
+        DomesticStudentList *temp = new DomesticStudentList;
+        DomesticStudentList *current;
+        temp->domesticStudent = item;
+        temp->next = NULL;
+        temp->head = NULL;
+        temp->tail = NULL;
 
-    if (*root == NULL)
-    {
-        temp->head = temp;
-        temp->tail = temp;
-        *root = temp;
+        if (*root == NULL)
+        {
+            temp->head = temp;
+            temp->tail = temp;
+            *root = temp;
+        }
+        else
+        {
+            current = *root;
+            while (current->next != NULL)
+                current = current->next;
+            temp->head = current->head;
+            temp->tail = temp;
+            (*root)->tail = temp;
+            current->next = temp;
+            current->tail = current->next;
+        }
     }
-    else
+    catch (bad_alloc)
     {
-        current = *root;
-        while (current->next != NULL)
-            current = current->next;
-        temp->head = current->head;
-        temp->tail = temp;
-        (*root)->tail = temp;
-        current->next = temp;
-        current->tail = current->next;
+        std::cout << "Warning: Bad memory allocation!";
+        exit(1);
     }
 }
 

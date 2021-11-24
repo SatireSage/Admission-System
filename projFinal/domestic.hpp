@@ -16,6 +16,7 @@ private:
 public:
     // Domestic class constructor
     Domestic();
+    Domestic(string FirstNameValue, string LastNameValue, string TypeValue, string ProvinceValue, float CGPAValue, int researchScoreValue);
 
     // Domestic class get function
     string getProvince() const;

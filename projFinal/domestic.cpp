@@ -11,6 +11,18 @@ Domestic::Domestic()
     setProvince("");
 }
 
+// Domestic class constructor
+Domestic::Domestic(string FirstNameValue, string LastNameValue, string TypeValue, string ProvinceValue, float CGPAValue, int researchScoreValue)
+{
+    setFirstName(FirstNameValue);
+    setLastName(FirstNameValue);
+    setType(TypeValue);
+    setCGPA(CGPAValue);
+    setResearchScore(researchScoreValue);
+    UID = StudentUIDcounter++;
+    setProvince(ProvinceValue);
+}
+
 // Domestic class get-functions
 string Domestic::getProvince() const
 {

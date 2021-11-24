@@ -11,6 +11,17 @@ International::International()
     setCountry("");
 }
 
+// Domestic class constructor
+International::International(string FirstNameValue, string LastNameValue, string TypeValue, string InternationalValue, float CGPAValue, int researchScoreValue)
+{
+    setFirstName(FirstNameValue);
+    setLastName(FirstNameValue);
+    setType(TypeValue);
+    setCGPA(CGPAValue);
+    setResearchScore(researchScoreValue);
+    UID = StudentUIDcounter++;
+    setCountry(InternationalValue);
+}
 // International class get-functions
 string International::getCountry() const
 {

@@ -46,29 +46,37 @@ void StudentList::deleteMerge(StudentList **head_ref, string FirstName, string L
 
 void StudentList::appendMerge(StudentList **root, Student item)
 {
-    StudentList *temp = new StudentList;
-    StudentList *current;
-    temp->Students = item;
-    temp->next = NULL;
-    temp->head = NULL;
-    temp->tail = NULL;
+    try
+    {
+        StudentList *temp = new StudentList;
+        StudentList *current;
+        temp->Students = item;
+        temp->next = NULL;
+        temp->head = NULL;
+        temp->tail = NULL;
 
-    if (*root == NULL)
-    {
-        temp->head = temp;
-        temp->tail = temp;
-        *root = temp;
+        if (*root == NULL)
+        {
+            temp->head = temp;
+            temp->tail = temp;
+            *root = temp;
+        }
+        else
+        {
+            current = *root;
+            while (current->next != NULL)
+                current = current->next;
+            temp->head = current->head;
+            temp->tail = temp;
+            (*root)->tail = temp;
+            current->next = temp;
+            current->tail = current->next;
+        }
     }
-    else
+    catch (bad_alloc)
     {
-        current = *root;
-        while (current->next != NULL)
-            current = current->next;
-        temp->head = current->head;
-        temp->tail = temp;
-        (*root)->tail = temp;
-        current->next = temp;
-        current->tail = current->next;
+        std::cout << "Warning: Bad memory allocation!";
+        exit(1);
     }
 }
 
