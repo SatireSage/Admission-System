@@ -366,9 +366,11 @@ int main() // main function
              << "Select 1: to sort Domestic Students\n"
              << "Select 2: to sort International Students\n"
              << "Select 3: to sort All Students (Based on Research Score and CGPA only)\n"
-             << "Selext 4: to insert new student\n"
-             << "Select 5: to see All test cases\n"
-             << "Select 6: to exit the program\n"
+             << "Select 4: to insert new student\n"
+             << "Select 5: to delete a student\n"
+             << "Select 6: to delete head and tail nodes\n"
+             << "Select 7: to see All test cases\n"
+             << "Select 8: to exit the program\n"
              << ">> ";
         menu_selector = Get_Number(); // get user_input
         cout << "-----------------------------------------------------------------------------------------------------------------------\n";
@@ -713,8 +715,70 @@ int main() // main function
           }
         
       }
-      
       if (menu_selector == 5)
+      {
+        DEL_CHOICE:
+          int delMenu;
+          cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
+          cout << "Please select one of the following:\n"
+              << "Select 1: Delete Domestic Student\n"
+              << "Select 2: Delete International Student\n"
+              << ">> ";
+          delMenu = Get_Number();
+          if (delMenu != 1 && delMenu != 2)
+          {
+            cout << "You have selected an invalid menu option. Returning to selection.\n"; // If user selects invalid menu slection, print error and return to menu
+            goto DEL_CHOICE;
+          }
+          string first, last;
+          cout << "Please enter first name of student you want to delete" << endl;
+          cin >> first;
+          cout << "Please enter last name" << endl;
+          cin >> last;
+          if (delMenu == 1)
+          {
+            deleteDom(&DomHead, first, last);
+            MergeSortDom(&DomHead);
+            updateDomHD(&DomHead);
+            MergeSortAll(&StuHead);
+          }
+          else
+          {
+            deleteInt(&IntHead, first, last);
+            MergeSortInt(&IntHead);
+            updateIntHD(&IntHead);
+            MergeSortAll(&StuHead);
+          }
+          cout << "Returning to main menu" << endl;        
+      }
+      if (menu_selector == 6)
+      {
+        DH_CHOICE:
+          int delMenu;
+          cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
+          cout << "Please select one of the following:\n"
+              << "Select 1: Delete head and tail of Domestic Student list\n"
+              << "Select 2: Delete head and tail of International Student list\n"
+              << ">> ";
+          delMenu = Get_Number();
+          if (delMenu != 1 && delMenu != 2)
+          {
+            cout << "You have selected an invalid menu option. Returning to selection.\n"; // If user selects invalid menu slection, print error and return to menu
+            goto DH_CHOICE;
+          }
+          if (delMenu == 1)
+          {
+            deleteDomHD(&DomHead);
+            updateDomHD(&DomHead);
+          }
+          else
+          {
+            deleteIntHD(&IntHead);
+            updateIntHD(&IntHead);
+          }
+          cout << "Returning to main menu" << endl;  
+      }
+      if (menu_selector == 7)
       {
         cout << "\nHead is: " << DomHead->head->domesticStudent;
         cout << "Tail is: " << DomHead->tail->domesticStudent;
@@ -816,7 +880,7 @@ int main() // main function
         cout << endl;
       }
 
-      if (menu_selector == 6) // exit program prommpt
+      if (menu_selector == 8) // exit program prommpt
       {
         cout << "Are you sure you wish to completely exit the program? Use Y/N (yes or no) to proceed.\n" // Ensures that the user wishes to exit the program
              << ">> ";
