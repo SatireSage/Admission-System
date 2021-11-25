@@ -375,13 +375,14 @@ int main() // main function
                    << "Select 4: to insert new student\n"
                    << "Select 5: to delete a student\n"
                    << "Select 6: to delete head and tail nodes\n"
-                   << "Select 7: to see All test cases\n"
-                   << "Select 8: to exit the program\n"
+                   << "Select 7: to search for a student\n"
+                   << "Select 8: to see All test cases\n"
+                   << "Select 9: to exit the program\n"
                    << ">> ";
               menu_selector = Get_Number(); // get user_input
               cout << "-----------------------------------------------------------------------------------------------------------------------\n";
             }
-            if (menu_selector < 1 || menu_selector > 5)
+            if (menu_selector < 1 || menu_selector > 9)
             {
               cout << "You have selected an invalid menu option. Returning to main menu.\n"; // If user selects invalid menu slection, print error and return to menu
             }
@@ -508,17 +509,17 @@ int main() // main function
               {
                 int tempNum = 0;
                 bool check = false;
-                Domestic NewStudentDom;
                 string userString;
+                string firstNameVal, lastNameVal, typeVal, provinceVal;
                 float cgpaDom;
                 int rsDom;
                 string Provinces[] = {"NL", "PE", "NS", "NB", "QC", "ON", "MB", "SK", "AB", "BC", "YT", "NT", "NU"};
                 cout << "Please enter first name" << endl;
                 cin >> userString;
-                NewStudentDom.setFirstName(userString);
+                firstNameVal = userString;
                 cout << "Please enter last name" << endl;
                 cin >> userString;
-                NewStudentDom.setLastName(userString);
+                lastNameVal = userString;
                 cout << "Please enter province" << endl;
 
                 while (true)
@@ -527,7 +528,7 @@ int main() // main function
                   transform(userString.begin(), userString.end(), userString.begin(), ::toupper);
                   if (find(begin(Provinces), end(Provinces), userString) != end(Provinces))
                   {
-                    NewStudentDom.setProvince(userString);
+                    provinceVal = userString;
                     break;
                   }
                   cin.clear();
@@ -544,7 +545,6 @@ int main() // main function
                   cgpaDom = float(int(tempDouble * 10 + 0.5)) / 10;
                   if (cgpaDom <= 4.31 && cgpaDom >= 0)
                   {
-                    NewStudentDom.setCGPA(cgpaDom);
                     break;
                   }
 
@@ -557,7 +557,7 @@ int main() // main function
                   tempNum = Get_Number();
                   if (tempNum <= 100 && tempNum >= 0)
                   {
-                    NewStudentDom.setResearchScore(tempNum);
+                    rsDom = tempNum;
                     check = true;
                   }
                   else
@@ -565,7 +565,8 @@ int main() // main function
                     cout << "Please enter a valid research score" << endl;
                   }
                 }
-                NewStudentDom.setType("Domestic");
+                typeVal = "Domestic";
+                Domestic NewStudentDom(firstNameVal, lastNameVal, typeVal, provinceVal, cgpaDom, rsDom);
                 DomHead->appendDom(&DomHead, NewStudentDom);
                 MergeSortDom(&DomHead);
                 DomHead->updateDomHD(&DomHead);
@@ -574,18 +575,20 @@ int main() // main function
               if (user_choice == 2)
               {
                 int tempNum = 0;
-                int readInt, speakInt, writeInt, listInt;
+                int readInt, speakInt, writeInt, listInt, rsInt;
                 bool check = false;
-                International NewStudentInt;
-                string userString;
+                //International NewStudentInt;
+                string userString, firstInt, lastInt, typeVal, countryVal;
                 float cgpaInt;
                 string Countries[] = {"canada", "china", "india", "iran", "korea"};
                 cout << "Please enter first name" << endl;
                 cin >> userString;
-                NewStudentInt.setFirstName(userString);
+                firstInt = userString;
+                //NewStudentInt.setFirstName(userString);
                 cout << "Please enter last name" << endl;
                 cin >> userString;
-                NewStudentInt.setLastName(userString);
+                lastInt = userString;
+                //NewStudentInt.setLastName(userString);
                 cout << "Please enter country" << endl;
                 while (true)
                 {
@@ -595,13 +598,15 @@ int main() // main function
                   {
                     cout << "Error: India was misspelled. Correcting error\n";
                     userString = "Indian";
-                    NewStudentInt.setCountry(userString);
+                    //NewStudentInt.setCountry(userString);
+                    countryVal = userString;
                     break;
                   }
                   if (find(begin(Countries), end(Countries), userString) != end(Countries))
                   {
                     userString[0] = toupper(userString[0]);
-                    NewStudentInt.setCountry(userString);
+                    //NewStudentInt.setCountry(userString);
+                    countryVal = userString;
                     break;
                   }
                   cout << "ERROR: These are the accepted countries: Canada, China, India, Iran, and Korea" << endl;
@@ -618,7 +623,7 @@ int main() // main function
                   cgpaInt = float(int(tempDouble * 10 + 0.5)) / 10;
                   if (cgpaInt < 4.31 && cgpaInt > 0)
                   {
-                    NewStudentInt.setCGPA(cgpaInt);
+                    //NewStudentInt.setCGPA(cgpaInt);
                     check = true;
                   }
                   else
@@ -633,7 +638,8 @@ int main() // main function
                   tempNum = Get_Number();
                   if (tempNum <= 100 && tempNum >= 0)
                   {
-                    NewStudentInt.setResearchScore(tempNum);
+                    //NewStudentInt.setResearchScore(tempNum);
+                    rsInt = tempNum;
                     check = true;
                   }
                   else
@@ -648,7 +654,7 @@ int main() // main function
                   tempNum = Get_Number();
                   if (tempNum <= 30 && tempNum >= 0)
                   {
-                    NewStudentInt.setReading(tempNum);
+                    //NewStudentInt.setReading(tempNum);
                     readInt = tempNum;
                     check = true;
                   }
@@ -664,7 +670,7 @@ int main() // main function
                   tempNum = Get_Number();
                   if (tempNum <= 30 && tempNum >= 0)
                   {
-                    NewStudentInt.setListening(tempNum);
+                    //NewStudentInt.setListening(tempNum);
                     listInt = tempNum;
                     check = true;
                   }
@@ -680,7 +686,7 @@ int main() // main function
                   tempNum = Get_Number();
                   if (tempNum <= 30 && tempNum >= 0)
                   {
-                    NewStudentInt.setSpeaking(tempNum);
+                    //NewStudentInt.setSpeaking(tempNum);
                     speakInt = tempNum;
                     check = true;
                   }
@@ -696,7 +702,7 @@ int main() // main function
                   tempNum = Get_Number();
                   if (tempNum <= 30 && tempNum >= 0)
                   {
-                    NewStudentInt.setWriting(tempNum);
+                    //NewStudentInt.setWriting(tempNum);
                     writeInt = tempNum;
                     check = true;
                   }
@@ -705,9 +711,10 @@ int main() // main function
                     cout << "Please enter a valid writing score" << endl;
                   }
                 }
-
+                typeVal = "International";
+                International NewStudentInt(firstInt, lastInt, typeVal, countryVal, cgpaInt, rsInt);
                 NewStudentInt.setToeflScore(readInt, listInt, speakInt, writeInt);
-                NewStudentInt.setType("International");
+                //NewStudentInt.setType("International");
                 if (NewStudentInt.getTotalScore() >= 93 && NewStudentInt.getReading() >= 20 && NewStudentInt.getListening() >= 20 && NewStudentInt.getSpeaking() >= 20 && NewStudentInt.getWriting() >= 20)
                 {
                   IntHead->appendInt(&IntHead, NewStudentInt);
@@ -974,7 +981,7 @@ int main() // main function
               
               
             }
-            if (menu_selector == 9)
+            if (menu_selector == 8)
             {
               cout << "Test 1: Append new student to domestic and international lists" << endl;
               Domestic NewStudentDom("Gabus", "Anus", "Domestic", "BC", 4.3, 100);
@@ -1075,7 +1082,7 @@ int main() // main function
               cout << endl;
             }
 
-            if (menu_selector == 8) // exit program prommpt
+            if (menu_selector == 9) // exit program prommpt
             {
               cout << "Are you sure you wish to completely exit the program? Use Y/N (yes or no) to proceed.\n" // Ensures that the user wishes to exit the program
                    << ">> ";
