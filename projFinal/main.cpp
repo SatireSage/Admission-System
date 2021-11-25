@@ -784,7 +784,197 @@ int main() // main function
               }
               cout << "Returning to main menu" << endl;
             }
-            if (menu_selector == 7)
+            if (menu_selector == 7) //search
+            {
+            MENSEV_CHOICE:
+              int delMenu;
+              cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
+              cout << "Please select one of the following:\n"
+                   << "Select 1: to search Domestic Student\n"
+                   << "Select 2: to seatch International Student\n"
+                   << ">> ";
+              delMenu = Get_Number();
+              if (delMenu != 1 && delMenu != 2)
+              {
+                cout << "You have selected an invalid menu option. Returning to selection.\n"; // If user selects invalid menu slection, print error and return to menu
+                goto MENSEV_CHOICE;
+              }
+            MENSUB_CHOICE:
+              int subMenu;
+              cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
+              cout << "Please select one of the following:\n"
+                   << "Select 1: to search name\n"
+                   << "Select 2: to search CGPA\n"
+                   << "Select 3: to search reasearch score\n"
+                   << "Select 4: to search UID\n"
+                   << ">> ";
+              subMenu = Get_Number();
+              if (subMenu < 1 || subMenu > 4)
+              {
+                cout << "You have selected an invalid menu option. Returning to selection.\n"; // If user selects invalid menu slection, print error and return to menu
+                goto MENSUB_CHOICE;
+              }
+              if (subMenu == 1)
+              {
+                string userFirst, userLast;
+                cout << "Please enter first name" << endl;
+                cin >> userFirst;
+                cout << "Please enter last name" << endl;
+                cin >> userLast;
+                cout << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                if (delMenu == 1)
+                {
+                  cout << setw(12) << left << "UID: ";
+                  cout << setw(14) << left << "First Name: "
+                     << " " << setw(17) << left << "Last Name: ";
+                  cout << setw(10) << left << "Province: ";
+                  cout << setw(6) << left << "CGPA: ";
+                  cout << setw(4) << left << "RS: " << endl;
+                  DomFindName(DomHead, userFirst, userLast);
+                  cout << endl;
+                }
+                else
+                {
+                  cout << setw(12) << left << "UID: ";
+                  cout << setw(14) << left << "First Name: "
+                      << " " << setw(17) << left << "Last Name: ";
+                  cout << setw(10) << left << "Country: ";
+                  cout << setw(6) << left << "CGPA: ";
+                  cout << setw(4) << left << "RS: ";
+                  cout << setw(4) << left << "R: ";
+                  cout << setw(4) << left << "L: ";
+                  cout << setw(4) << left << "S: ";
+                  cout << setw(4) << left << "W: ";
+                  cout << "Total Score: " << endl;
+                  IntFindName(IntHead, userFirst, userLast);
+                }
+              }
+              if (subMenu == 2)
+              {
+                float cgpaSearch;
+                cout << "Please enter CGPA" << endl;
+                while (true)
+                {
+                  double tempDouble;
+                  tempDouble = Get_Double();
+                  cout << endl;
+                  cgpaSearch = float(int(tempDouble * 10 + 0.5)) / 10;
+                  if (cgpaSearch < 4.31 && cgpaSearch > 0)
+                  {
+                    if (delMenu == 1)
+                    {
+                      cout << setw(12) << left << "UID: ";
+                      cout << setw(14) << left << "First Name: "
+                          << " " << setw(17) << left << "Last Name: ";
+                      cout << setw(10) << left << "Province: ";
+                      cout << setw(6) << left << "CGPA: ";
+                      cout << setw(4) << left << "RS: " << endl;
+                      DomFindCGPA(DomHead, cgpaSearch);
+                    }
+                    else
+                    {
+                      cout << setw(12) << left << "UID: ";
+                      cout << setw(14) << left << "First Name: "
+                          << " " << setw(17) << left << "Last Name: ";
+                      cout << setw(10) << left << "Country: ";
+                      cout << setw(6) << left << "CGPA: ";
+                      cout << setw(4) << left << "RS: ";
+                      cout << setw(4) << left << "R: ";
+                      cout << setw(4) << left << "L: ";
+                      cout << setw(4) << left << "S: ";
+                      cout << setw(4) << left << "W: ";
+                      cout << "Total Score: " << endl;
+                      IntFindCGPA(IntHead, cgpaSearch);
+                    }
+                    break;
+                  }
+                  else
+                  {
+                    cout << "Please enter a valid CGPA" << endl;
+                  }
+                }
+
+              }
+              if (subMenu == 3){
+                int tempNum;
+                cout << "Please enter research score" << endl;
+                while (true)
+                {
+                  tempNum = Get_Number();
+                  cout << endl;
+                  if (tempNum <= 100 && tempNum >= 0)
+                  {
+                    if (delMenu == 1)
+                    {
+                      cout << setw(12) << left << "UID: ";
+                      cout << setw(14) << left << "First Name: "
+                       << " " << setw(17) << left << "Last Name: ";
+                      cout << setw(10) << left << "Province: ";
+                      cout << setw(6) << left << "CGPA: ";
+                      cout << setw(4) << left << "RS: " << endl;
+                      DomFindResearchScore(DomHead, tempNum);
+                    }
+                    else
+                    {
+                      cout << setw(12) << left << "UID: ";
+                      cout << setw(14) << left << "First Name: "
+                          << " " << setw(17) << left << "Last Name: ";
+                      cout << setw(10) << left << "Country: ";
+                      cout << setw(6) << left << "CGPA: ";
+                      cout << setw(4) << left << "RS: ";
+                      cout << setw(4) << left << "R: ";
+                      cout << setw(4) << left << "L: ";
+                      cout << setw(4) << left << "S: ";
+                      cout << setw(4) << left << "W: ";
+                      cout << "Total Score: " << endl;
+                      IntFindResearchScore(IntHead, tempNum);
+                    }
+                    break;
+                  }
+                  else
+                  {
+                    cout << "Please enter a valid reading score" << endl;
+                  }
+                }
+              }
+              if (subMenu == 4) 
+              {
+                int tempNum;
+                cout << "Please enter UID" << endl;
+                tempNum = Get_Number();
+                if (delMenu == 1)
+                {
+                  cout << setw(12) << left << "UID: ";
+                  cout << setw(14) << left << "First Name: "
+                     << " " << setw(17) << left << "Last Name: ";
+                  cout << setw(10) << left << "Province: ";
+                  cout << setw(6) << left << "CGPA: ";
+                  cout << setw(4) << left << "RS: " << endl;
+                  DomFindUID(DomHead, tempNum);
+                }
+                else
+                {
+                  cout << setw(12) << left << "UID: ";
+                  cout << setw(14) << left << "First Name: "
+                      << " " << setw(17) << left << "Last Name: ";
+                  cout << setw(10) << left << "Country: ";
+                  cout << setw(6) << left << "CGPA: ";
+                  cout << setw(4) << left << "RS: ";
+                  cout << setw(4) << left << "R: ";
+                  cout << setw(4) << left << "L: ";
+                  cout << setw(4) << left << "S: ";
+                  cout << setw(4) << left << "W: ";
+                  cout << "Total Score: " << endl;
+                  IntFindUID(IntHead, tempNum);
+                }
+
+              }
+              
+              
+            }
+            if (menu_selector == 9)
             {
               cout << "Test 1: Append new student to domestic and international lists" << endl;
               Domestic NewStudentDom("Gabus", "Anus", "Domestic", "BC", 4.3, 100);

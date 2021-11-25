@@ -123,7 +123,7 @@ void DomFindName(DomesticStudentList *Stu, string FirstName, string LastName)
         cout << "No such student found." << endl;
 
     for (int i = 0; i < storeDom.size(); i++)
-        cout << storeDom.at(i) << ' ';
+        cout << " " << storeDom.at(i);
 }
 
 void DomFindCGPA(DomesticStudentList *Stu, float CGPA_VALUE)
@@ -154,7 +154,7 @@ void DomFindCGPA(DomesticStudentList *Stu, float CGPA_VALUE)
         cout << "No such student found." << endl;
 
     for (int i = 0; i < storeDom.size(); i++)
-        cout << storeDom.at(i) << ' ';
+        cout << " " << storeDom.at(i);
 }
 
 void DomFindResearchScore(DomesticStudentList *Stu, int researchScore_VALUE)
@@ -185,7 +185,7 @@ void DomFindResearchScore(DomesticStudentList *Stu, int researchScore_VALUE)
         cout << "No such student found." << endl;
 
     for (int i = 0; i < storeDom.size(); i++)
-        cout << storeDom.at(i) << ' ';
+        cout << " " << storeDom.at(i);
 }
 
 void DomFindUID(DomesticStudentList *Stu, int UIDValue)
@@ -216,7 +216,7 @@ void DomFindUID(DomesticStudentList *Stu, int UIDValue)
         cout << "No such student found." << endl;
 
     for (int i = 0; i < storeDom.size(); i++)
-        cout << storeDom.at(i) << ' ';
+        cout << " " << storeDom.at(i);
 }
 
 void DomesticStudentList::printDom(DomesticStudentList *node)

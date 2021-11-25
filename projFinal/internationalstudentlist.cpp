@@ -123,7 +123,7 @@ void IntFindName(InternationalStudentList *Stu, string FirstName, string LastNam
         cout << "No such student found." << endl;
 
     for (int i = 0; i < storeInt.size(); i++)
-        cout << storeInt.at(i) << ' ';
+        cout << " " << storeInt.at(i);
 }
 
 void IntFindCGPA(InternationalStudentList *Stu, float CGPA_VALUE)
@@ -154,7 +154,8 @@ void IntFindCGPA(InternationalStudentList *Stu, float CGPA_VALUE)
         cout << "No such student found." << endl;
 
     for (int i = 0; i < storeInt.size(); i++)
-        cout << storeInt.at(i) << ' ';
+        //cout << storeInt.at(i) << ' ';
+        cout << " " << storeInt.at(i);
 }
 
 void IntFindResearchScore(InternationalStudentList *Stu, int researchScore_VALUE)
@@ -185,7 +186,7 @@ void IntFindResearchScore(InternationalStudentList *Stu, int researchScore_VALUE
         cout << "No such student found." << endl;
 
     for (int i = 0; i < storeInt.size(); i++)
-        cout << storeInt.at(i) << ' ';
+        cout << " " << storeInt.at(i);
 }
 
 void IntFindUID(InternationalStudentList *Stu, int UIDValue)
@@ -216,7 +217,7 @@ void IntFindUID(InternationalStudentList *Stu, int UIDValue)
         cout << "No such student found." << endl;
 
     for (int i = 0; i < storeInt.size(); i++)
-        cout << storeInt.at(i) << ' ';
+        cout << " " << storeInt.at(i);
 }
 
 void InternationalStudentList::printInt(InternationalStudentList *node)
