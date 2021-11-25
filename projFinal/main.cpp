@@ -192,6 +192,7 @@ int main() // main function
         researchScore = int(atoi(s_researchScore.c_str()) + 0.5);
         DomesticStudents[i].setResearchScore(atoi(s_researchScore.c_str()));
         DomesticStudents[i].setType("Domestic");
+        DomesticStudents[i].UID = DomesticStudents[i].StudentUIDcounter++;
         i++;
       }
       catch (string errorEmptyField)
@@ -302,6 +303,7 @@ int main() // main function
 
         InternationalStudents[j].setToeflScore(reading, listening, speaking, writing);
         InternationalStudents[j].setType("International");
+        InternationalStudents[j].UID = InternationalStudents[j].StudentUIDcounter++;
         j++;
       }
 

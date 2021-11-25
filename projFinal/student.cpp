@@ -14,7 +14,6 @@ Student::Student()
     setType("");
     setCGPA(0.0);
     setResearchScore(0);
-    UID = StudentUIDcounter++;
 }
 
 Student::Student(string FirstNameValue, string LastNameValue, string TypeValue, float CGPAValue, int researchScoreValue)

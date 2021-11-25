@@ -6,7 +6,6 @@ Zach:
 Nick:
 1. Menu: Threshold menu (so we can use the damn thing now that i fixed it)
          Menu to do stuff with Reject List (i.e. basically sort them or smth idk but we gotta do more than just print afaik)
-2. UID fucked royally
 
 Daniel:
 1. Slides
