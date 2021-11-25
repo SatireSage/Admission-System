@@ -721,6 +721,8 @@ int main() // main function
                   MergeSortInt(&IntHead);
                   IntHead->updateIntHD(&IntHead);
                   StuHead->appendMerge(&StuHead, NewStudentInt);
+                  MergeSortAll(&StuHead);
+                  StuHead->updateMergeHD(&StuHead);
                   IntHeadFiltered->appendInt(&IntHeadFiltered, NewStudentInt);
                   MergeSortInt(&IntHeadFiltered);
                   IntHeadFiltered->updateIntHD(&IntHeadFiltered);
