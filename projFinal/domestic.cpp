@@ -15,7 +15,7 @@ Domestic::Domestic()
 Domestic::Domestic(string FirstNameValue, string LastNameValue, string TypeValue, string ProvinceValue, float CGPAValue, int researchScoreValue)
 {
     setFirstName(FirstNameValue);
-    setLastName(FirstNameValue);
+    setLastName(LastNameValue);
     setType(TypeValue);
     setCGPA(CGPAValue);
     setResearchScore(researchScoreValue);

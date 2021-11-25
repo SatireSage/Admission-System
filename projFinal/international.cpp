@@ -16,7 +16,7 @@ International::International(string FirstNameValue, string LastNameValue, string
 {
     ToeflScore toefl;
     setFirstName(FirstNameValue);
-    setLastName(FirstNameValue);
+    setLastName(LastNameValue);
     setType(TypeValue);
     setCGPA(CGPAValue);
     setResearchScore(researchScoreValue);

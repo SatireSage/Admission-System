@@ -6,8 +6,7 @@ Zach:
 Nick:
 1. Menu: Threshold menu (so we can use the damn thing now that i fixed it)
          Menu to do stuff with Reject List (i.e. basically sort them or smth idk but we gotta do more than just print afaik)
-2. Non-default constructor works kinda but i made changes to UID so that we dont have a set function for it 
-   That fact has fucked adding or deleting a new student royally so we need to fix
+2. UID fucked royally
 
 Daniel:
 1. Slides
