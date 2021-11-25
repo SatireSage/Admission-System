@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std; // use namespace std
 
-void InternationalStudentList::deleteInt(InternationalStudentList **head_ref, string FirstName, string LastName)
+void InternationalStudentList::deleteInt(InternationalStudentList **head_ref, string FirstName, string LastName)//O(n) time complexity
 {
     InternationalStudentList *temp = *head_ref;
     InternationalStudentList *prev = NULL;
@@ -44,7 +44,7 @@ void InternationalStudentList::deleteInt(InternationalStudentList **head_ref, st
     }
 }
 
-void InternationalStudentList::appendInt(InternationalStudentList **root, International item)
+void InternationalStudentList::appendInt(InternationalStudentList **root, International item) //O(n) time complexity
 {
     try
     {
@@ -80,7 +80,7 @@ void InternationalStudentList::appendInt(InternationalStudentList **root, Intern
     }
 }
 
-void IntFindName(InternationalStudentList *Stu, string FirstName, string LastName)
+void IntFindName(InternationalStudentList *Stu, string FirstName, string LastName)//O(n^2) time complexity
 {
     string string1, string2;
     InternationalStudentList *current;
@@ -126,7 +126,7 @@ void IntFindName(InternationalStudentList *Stu, string FirstName, string LastNam
         cout << " " << storeInt.at(i);
 }
 
-void IntFindCGPA(InternationalStudentList *Stu, float CGPA_VALUE)
+void IntFindCGPA(InternationalStudentList *Stu, float CGPA_VALUE)//O(n) time complexity
 {
     float storeCGPA;
     InternationalStudentList *current;
@@ -158,7 +158,7 @@ void IntFindCGPA(InternationalStudentList *Stu, float CGPA_VALUE)
         cout << " " << storeInt.at(i);
 }
 
-void IntFindResearchScore(InternationalStudentList *Stu, int researchScore_VALUE)
+void IntFindResearchScore(InternationalStudentList *Stu, int researchScore_VALUE)//O(n) time complexity
 {
     int storeRScore;
     InternationalStudentList *current;
@@ -189,7 +189,7 @@ void IntFindResearchScore(InternationalStudentList *Stu, int researchScore_VALUE
         cout << " " << storeInt.at(i);
 }
 
-void IntFindUID(InternationalStudentList *Stu, int UIDValue)
+void IntFindUID(InternationalStudentList *Stu, int UIDValue)//O(n) time complexity
 {
     int storeID;
     InternationalStudentList *current;
@@ -220,7 +220,7 @@ void IntFindUID(InternationalStudentList *Stu, int UIDValue)
         cout << " " << storeInt.at(i);
 }
 
-void InternationalStudentList::printInt(InternationalStudentList *node)
+void InternationalStudentList::printInt(InternationalStudentList *node) //O(n) time complexity
 {
     while (node != NULL)
     {
@@ -229,7 +229,7 @@ void InternationalStudentList::printInt(InternationalStudentList *node)
     }
 }
 
-void InternationalStudentList::deleteIntHD(InternationalStudentList **head_ref)
+void InternationalStudentList::deleteIntHD(InternationalStudentList **head_ref) //O(n) time complexity
 {
     if (head_ref == NULL)
         return;
@@ -245,7 +245,7 @@ void InternationalStudentList::deleteIntHD(InternationalStudentList **head_ref)
     (*head_ref)->tail->next = NULL;
 }
 
-void InternationalStudentList::updateIntHD(InternationalStudentList **head_ref)
+void InternationalStudentList::updateIntHD(InternationalStudentList **head_ref) //O(n) time complexity
 {
     InternationalStudentList *temp = *head_ref;
     (*head_ref)->head = temp;

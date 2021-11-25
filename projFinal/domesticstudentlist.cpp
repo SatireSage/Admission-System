@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std; // use namespace std
 
-void DomesticStudentList::deleteDom(DomesticStudentList **head_ref, string FirstName, string LastName)
+void DomesticStudentList::deleteDom(DomesticStudentList **head_ref, string FirstName, string LastName) //O(n) time complexity
 {
     DomesticStudentList *temp = *head_ref;
     DomesticStudentList *prev = NULL;
@@ -22,7 +22,6 @@ void DomesticStudentList::deleteDom(DomesticStudentList **head_ref, string First
         (*head_ref)->tail = second_last;
         return;
     }
-
     else
     {
         while (temp != NULL && temp->domesticStudent.getFirstName() != FirstName && temp->domesticStudent.getLastName() != LastName)
@@ -44,7 +43,7 @@ void DomesticStudentList::deleteDom(DomesticStudentList **head_ref, string First
     }
 }
 
-void DomesticStudentList::appendDom(DomesticStudentList **root, Domestic item)
+void DomesticStudentList::appendDom(DomesticStudentList **root, Domestic item)  //O(n) time complexity
 {
     try
     {
@@ -80,7 +79,7 @@ void DomesticStudentList::appendDom(DomesticStudentList **root, Domestic item)
     }
 }
 
-void DomFindName(DomesticStudentList *Stu, string FirstName, string LastName)
+void DomFindName(DomesticStudentList *Stu, string FirstName, string LastName) //O(n^2) time complexity
 {
     string string1, string2;
     DomesticStudentList *current;
@@ -126,7 +125,7 @@ void DomFindName(DomesticStudentList *Stu, string FirstName, string LastName)
         cout << " " << storeDom.at(i);
 }
 
-void DomFindCGPA(DomesticStudentList *Stu, float CGPA_VALUE)
+void DomFindCGPA(DomesticStudentList *Stu, float CGPA_VALUE) //O(n) time complexity
 {
     float storeCGPA;
     DomesticStudentList *current;
@@ -157,7 +156,7 @@ void DomFindCGPA(DomesticStudentList *Stu, float CGPA_VALUE)
         cout << " " << storeDom.at(i);
 }
 
-void DomFindResearchScore(DomesticStudentList *Stu, int researchScore_VALUE)
+void DomFindResearchScore(DomesticStudentList *Stu, int researchScore_VALUE) //O(n) time complexity
 {
     int storeRScore;
     DomesticStudentList *current;
@@ -188,7 +187,7 @@ void DomFindResearchScore(DomesticStudentList *Stu, int researchScore_VALUE)
         cout << " " << storeDom.at(i);
 }
 
-void DomFindUID(DomesticStudentList *Stu, int UIDValue)
+void DomFindUID(DomesticStudentList *Stu, int UIDValue) //O(n) time complexity
 {
     int storeID;
     DomesticStudentList *current;
@@ -219,7 +218,7 @@ void DomFindUID(DomesticStudentList *Stu, int UIDValue)
         cout << " " << storeDom.at(i);
 }
 
-void DomesticStudentList::printDom(DomesticStudentList *node)
+void DomesticStudentList::printDom(DomesticStudentList *node) //O(n) time complexity
 {
     while (node != NULL)
     {
@@ -228,7 +227,7 @@ void DomesticStudentList::printDom(DomesticStudentList *node)
     }
 }
 
-void DomesticStudentList::deleteDomHD(DomesticStudentList **head_ref)
+void DomesticStudentList::deleteDomHD(DomesticStudentList **head_ref) //O(n) time complexity
 {
     if (head_ref == NULL)
         return;
@@ -244,7 +243,7 @@ void DomesticStudentList::deleteDomHD(DomesticStudentList **head_ref)
     (*head_ref)->tail->next = NULL;
 }
 
-void DomesticStudentList::updateDomHD(DomesticStudentList **head_ref)
+void DomesticStudentList::updateDomHD(DomesticStudentList **head_ref) //O(n) time complexity
 {
     DomesticStudentList *temp = *head_ref;
     (*head_ref)->head = temp;
