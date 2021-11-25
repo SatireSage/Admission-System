@@ -12,8 +12,9 @@ International::International()
 }
 
 // Domestic class constructor
-International::International(string FirstNameValue, string LastNameValue, string TypeValue, string InternationalValue, float CGPAValue, int researchScoreValue)
+International::International(string FirstNameValue, string LastNameValue, string TypeValue, string InternationalValue, float CGPAValue, int researchScoreValue, int writingScoreValue, int listeningScoreValue, int readingScoreValue, int speakingScoreValue)
 {
+    ToeflScore toefl;
     setFirstName(FirstNameValue);
     setLastName(FirstNameValue);
     setType(TypeValue);
@@ -21,6 +22,10 @@ International::International(string FirstNameValue, string LastNameValue, string
     setResearchScore(researchScoreValue);
     UID = StudentUIDcounter++;
     setCountry(InternationalValue);
+    toeflScore.setReading(readingScoreValue);
+    toeflScore.setListening(listeningScoreValue);
+    toeflScore.setWriting(writingScoreValue);
+    toeflScore.setSpeaking(speakingScoreValue);
 }
 // International class get-functions
 string International::getCountry() const

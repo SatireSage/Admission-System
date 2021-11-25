@@ -713,8 +713,7 @@ int main() // main function
                   }
                 }
                 typeVal = "International";
-                International NewStudentInt(firstInt, lastInt, typeVal, countryVal, cgpaInt, rsInt);
-                NewStudentInt.setToeflScore(readInt, listInt, speakInt, writeInt);
+                International NewStudentInt(firstInt, lastInt, typeVal, countryVal, cgpaInt, rsInt, readInt, listInt, speakInt, writeInt);
                 // NewStudentInt.setType("International");
                 if (NewStudentInt.getTotalScore() >= 93 && NewStudentInt.getReading() >= 20 && NewStudentInt.getListening() >= 20 && NewStudentInt.getSpeaking() >= 20 && NewStudentInt.getWriting() >= 20)
                 {
@@ -994,7 +993,7 @@ int main() // main function
               cout << "Tail is: " << DomHead->tail->domesticStudent;
               cout << endl;
 
-              International NewStudentInt("NotGabus", "Anus", "International", "India", 4.3, 100);
+              International NewStudentInt("NotGabus", "Anus", "International", "India", 4.3, 100, 22, 22, 22, 22);
               IntHead->appendInt(&IntHead, NewStudentInt);
               if (NewStudentInt.getTotalScore() >= 93 && NewStudentInt.getReading() >= 20 && NewStudentInt.getListening() >= 20 && NewStudentInt.getSpeaking() >= 20 && NewStudentInt.getWriting() >= 20)
               {
