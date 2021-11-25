@@ -12,10 +12,10 @@ private:
     // Student class private memeber variables
     string firstName, lastName, type;
     float CGPA;
-    int RScore;
+    int RScore, UID;
 
 public:
-    int UID;
+    // int UID;
     static int StudentUIDcounter;
 
     //  Studnet class constructor
@@ -36,6 +36,7 @@ public:
     void setType(string typeValue);
     void setCGPA(float cgpaValue);
     void setResearchScore(int researchScoreValue);
+    void setUID();
 
     // Student class friend functions
     friend int compareCGPA(Student stu1, Student stu2);

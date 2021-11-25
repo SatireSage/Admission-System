@@ -23,7 +23,8 @@ Student::Student(string FirstNameValue, string LastNameValue, string TypeValue, 
     setType(TypeValue);
     setCGPA(CGPAValue);
     setResearchScore(researchScoreValue);
-    UID = StudentUIDcounter++;
+    // UID = StudentUIDcounter++;
+    setUID();
 }
 
 // Student class get-functions
@@ -49,6 +50,8 @@ void Student::setType(string typeValue) { type = typeValue; }
 void Student::setCGPA(float cgpaValue) { CGPA = cgpaValue; }
 
 void Student::setResearchScore(int researchScoreValue) { RScore = researchScoreValue; }
+
+void Student::setUID() { UID = StudentUIDcounter++; }
 
 // Student class friend functions
 // Overload operator

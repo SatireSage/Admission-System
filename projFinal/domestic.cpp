@@ -19,7 +19,8 @@ Domestic::Domestic(string FirstNameValue, string LastNameValue, string TypeValue
     setType(TypeValue);
     setCGPA(CGPAValue);
     setResearchScore(researchScoreValue);
-    UID = StudentUIDcounter++;
+    // UID = StudentUIDcounter++;
+    setUID();
     setProvince(ProvinceValue);
 }
 

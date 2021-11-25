@@ -20,7 +20,8 @@ International::International(string FirstNameValue, string LastNameValue, string
     setType(TypeValue);
     setCGPA(CGPAValue);
     setResearchScore(researchScoreValue);
-    UID = StudentUIDcounter++;
+    // UID = StudentUIDcounter++;
+    setUID();
     setCountry(InternationalValue);
     toeflScore.setReading(readingScoreValue);
     toeflScore.setListening(listeningScoreValue);
