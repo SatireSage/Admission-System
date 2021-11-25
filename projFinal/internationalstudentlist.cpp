@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std; // use namespace std
 
-void InternationalStudentList::deleteInt(InternationalStudentList **head_ref, string FirstName, string LastName)//O(n) time complexity
+void InternationalStudentList::deleteInt(InternationalStudentList **head_ref, string FirstName, string LastName) // O(n) time complexity
 {
     InternationalStudentList *temp = *head_ref;
     InternationalStudentList *prev = NULL;
@@ -44,7 +44,7 @@ void InternationalStudentList::deleteInt(InternationalStudentList **head_ref, st
     }
 }
 
-void InternationalStudentList::appendInt(InternationalStudentList **root, International item) //O(n) time complexity
+void InternationalStudentList::appendInt(InternationalStudentList **root, International item) // O(n) time complexity
 {
     try
     {
@@ -80,7 +80,7 @@ void InternationalStudentList::appendInt(InternationalStudentList **root, Intern
     }
 }
 
-void IntFindName(InternationalStudentList *Stu, string FirstName, string LastName)//O(n^2) time complexity
+void IntFindName(InternationalStudentList *Stu, string FirstName, string LastName) // O(n^2) time complexity
 {
     string string1, string2;
     InternationalStudentList *current;
@@ -126,7 +126,7 @@ void IntFindName(InternationalStudentList *Stu, string FirstName, string LastNam
         cout << " " << storeInt.at(i);
 }
 
-void IntFindCGPA(InternationalStudentList *Stu, float CGPA_VALUE)//O(n) time complexity
+void IntFindCGPA(InternationalStudentList *Stu, float CGPA_VALUE) // O(n) time complexity
 {
     float storeCGPA;
     InternationalStudentList *current;
@@ -154,11 +154,11 @@ void IntFindCGPA(InternationalStudentList *Stu, float CGPA_VALUE)//O(n) time com
         cout << "No such student found." << endl;
 
     for (int i = 0; i < storeInt.size(); i++)
-        //cout << storeInt.at(i) << ' ';
+        // cout << storeInt.at(i) << ' ';
         cout << " " << storeInt.at(i);
 }
 
-void IntFindResearchScore(InternationalStudentList *Stu, int researchScore_VALUE)//O(n) time complexity
+void IntFindResearchScore(InternationalStudentList *Stu, int researchScore_VALUE) // O(n) time complexity
 {
     int storeRScore;
     InternationalStudentList *current;
@@ -189,7 +189,7 @@ void IntFindResearchScore(InternationalStudentList *Stu, int researchScore_VALUE
         cout << " " << storeInt.at(i);
 }
 
-void IntFindUID(InternationalStudentList *Stu, int UIDValue)//O(n) time complexity
+void IntFindUID(InternationalStudentList *Stu, int UIDValue) // O(n) time complexity
 {
     int storeID;
     InternationalStudentList *current;
@@ -220,7 +220,7 @@ void IntFindUID(InternationalStudentList *Stu, int UIDValue)//O(n) time complexi
         cout << " " << storeInt.at(i);
 }
 
-void InternationalStudentList::printInt(InternationalStudentList *node) //O(n) time complexity
+void InternationalStudentList::printInt(InternationalStudentList *node) // O(n) time complexity
 {
     while (node != NULL)
     {
@@ -229,7 +229,7 @@ void InternationalStudentList::printInt(InternationalStudentList *node) //O(n) t
     }
 }
 
-void InternationalStudentList::deleteIntHD(InternationalStudentList **head_ref) //O(n) time complexity
+void InternationalStudentList::deleteIntHD(InternationalStudentList **head_ref) // O(n) time complexity
 {
     if (head_ref == NULL)
         return;
@@ -245,7 +245,7 @@ void InternationalStudentList::deleteIntHD(InternationalStudentList **head_ref) 
     (*head_ref)->tail->next = NULL;
 }
 
-void InternationalStudentList::updateIntHD(InternationalStudentList **head_ref) //O(n) time complexity
+void InternationalStudentList::updateIntHD(InternationalStudentList **head_ref) // O(n) time complexity
 {
     InternationalStudentList *temp = *head_ref;
     (*head_ref)->head = temp;
@@ -253,4 +253,99 @@ void InternationalStudentList::updateIntHD(InternationalStudentList **head_ref) 
     while (last->next != NULL)
         last = last->next;
     (*head_ref)->tail = last;
+}
+
+void InternationalStudentList::threshold(InternationalStudentList *Stu, float CGPA_VALUE, int researchScore_VALUE) // O(n) time complexity
+{
+    int storeRScore;
+    float storeCGPA;
+    InternationalStudentList *current;
+    vector<Student> storeStu;
+
+    if (Stu == nullptr)
+    {
+        cout << "\n Does not exist.";
+    }
+    else
+    {
+        current = Stu;
+        while (current != NULL)
+        {
+            storeRScore = current->internationalStudent.getResearchScore();
+            storeCGPA = current->internationalStudent.getCGPA();
+            if (CGPA_VALUE <= storeCGPA && researchScore_VALUE <= storeRScore)
+            {
+                storeStu.push_back(current->internationalStudent);
+            }
+            current = current->next;
+        }
+    }
+
+    if (storeStu.size() == 0)
+        cout << "No such student found." << endl;
+
+    for (int i = 0; i < storeStu.size(); i++)
+        cout << storeStu.at(i) << ' ';
+}
+
+void InternationalStudentList::threshold(InternationalStudentList *Stu, int researchScore_VALUE) // O(n) time complexity
+{
+    int storeRScore;
+    InternationalStudentList *current;
+    vector<Student> storeStu;
+
+    if (Stu == nullptr)
+    {
+        cout << "\n Does not exist.";
+    }
+    else
+    {
+        current = Stu;
+        while (current != NULL)
+        {
+            storeRScore = current->internationalStudent.getResearchScore();
+            if (researchScore_VALUE <= storeRScore)
+            {
+                storeStu.push_back(current->internationalStudent);
+            }
+            current = current->next;
+        }
+    }
+
+    if (storeStu.size() == 0)
+        cout << "No such student found." << endl;
+
+    for (int i = 0; i < storeStu.size(); i++)
+        cout << storeStu.at(i) << ' ';
+}
+
+void InternationalStudentList::threshold(InternationalStudentList *Stu, float CGPA_VALUE) // O(n) time complexity
+{
+    float storeCGPA;
+    InternationalStudentList *current;
+    vector<Student> storeStu;
+
+    if (Stu == nullptr)
+    {
+        cout << "\n Does not exist.";
+    }
+    else
+    {
+        current = Stu;
+        while (current != NULL)
+        {
+            storeCGPA = current->internationalStudent.getCGPA();
+            if (CGPA_VALUE <= storeCGPA)
+            {
+                storeStu.push_back(current->internationalStudent);
+            }
+            current = current->next;
+        }
+    }
+
+    if (storeStu.size() == 0)
+        cout << "No such student found." << endl;
+
+    for (int i = 0; i < storeStu.size(); i++)
+        cout << storeStu.at(i) << ' ';
 }

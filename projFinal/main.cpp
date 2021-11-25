@@ -578,18 +578,18 @@ int main() // main function
                 int tempNum = 0;
                 int readInt, speakInt, writeInt, listInt, rsInt;
                 bool check = false;
-                //International NewStudentInt;
+                // International NewStudentInt;
                 string userString, firstInt, lastInt, typeVal, countryVal;
                 float cgpaInt;
                 string Countries[] = {"canada", "china", "india", "iran", "korea"};
                 cout << "Please enter first name" << endl;
                 cin >> userString;
                 firstInt = userString;
-                //NewStudentInt.setFirstName(userString);
+                // NewStudentInt.setFirstName(userString);
                 cout << "Please enter last name" << endl;
                 cin >> userString;
                 lastInt = userString;
-                //NewStudentInt.setLastName(userString);
+                // NewStudentInt.setLastName(userString);
                 cout << "Please enter country" << endl;
                 while (true)
                 {
@@ -599,14 +599,14 @@ int main() // main function
                   {
                     cout << "Error: India was misspelled. Correcting error\n";
                     userString = "Indian";
-                    //NewStudentInt.setCountry(userString);
+                    // NewStudentInt.setCountry(userString);
                     countryVal = userString;
                     break;
                   }
                   if (find(begin(Countries), end(Countries), userString) != end(Countries))
                   {
                     userString[0] = toupper(userString[0]);
-                    //NewStudentInt.setCountry(userString);
+                    // NewStudentInt.setCountry(userString);
                     countryVal = userString;
                     break;
                   }
@@ -624,7 +624,7 @@ int main() // main function
                   cgpaInt = float(int(tempDouble * 10 + 0.5)) / 10;
                   if (cgpaInt < 4.31 && cgpaInt > 0)
                   {
-                    //NewStudentInt.setCGPA(cgpaInt);
+                    // NewStudentInt.setCGPA(cgpaInt);
                     check = true;
                   }
                   else
@@ -639,7 +639,7 @@ int main() // main function
                   tempNum = Get_Number();
                   if (tempNum <= 100 && tempNum >= 0)
                   {
-                    //NewStudentInt.setResearchScore(tempNum);
+                    // NewStudentInt.setResearchScore(tempNum);
                     rsInt = tempNum;
                     check = true;
                   }
@@ -655,7 +655,7 @@ int main() // main function
                   tempNum = Get_Number();
                   if (tempNum <= 30 && tempNum >= 0)
                   {
-                    //NewStudentInt.setReading(tempNum);
+                    // NewStudentInt.setReading(tempNum);
                     readInt = tempNum;
                     check = true;
                   }
@@ -671,7 +671,7 @@ int main() // main function
                   tempNum = Get_Number();
                   if (tempNum <= 30 && tempNum >= 0)
                   {
-                    //NewStudentInt.setListening(tempNum);
+                    // NewStudentInt.setListening(tempNum);
                     listInt = tempNum;
                     check = true;
                   }
@@ -687,7 +687,7 @@ int main() // main function
                   tempNum = Get_Number();
                   if (tempNum <= 30 && tempNum >= 0)
                   {
-                    //NewStudentInt.setSpeaking(tempNum);
+                    // NewStudentInt.setSpeaking(tempNum);
                     speakInt = tempNum;
                     check = true;
                   }
@@ -703,7 +703,7 @@ int main() // main function
                   tempNum = Get_Number();
                   if (tempNum <= 30 && tempNum >= 0)
                   {
-                    //NewStudentInt.setWriting(tempNum);
+                    // NewStudentInt.setWriting(tempNum);
                     writeInt = tempNum;
                     check = true;
                   }
@@ -715,7 +715,7 @@ int main() // main function
                 typeVal = "International";
                 International NewStudentInt(firstInt, lastInt, typeVal, countryVal, cgpaInt, rsInt);
                 NewStudentInt.setToeflScore(readInt, listInt, speakInt, writeInt);
-                //NewStudentInt.setType("International");
+                // NewStudentInt.setType("International");
                 if (NewStudentInt.getTotalScore() >= 93 && NewStudentInt.getReading() >= 20 && NewStudentInt.getListening() >= 20 && NewStudentInt.getSpeaking() >= 20 && NewStudentInt.getWriting() >= 20)
                 {
                   IntHead->appendInt(&IntHead, NewStudentInt);
@@ -795,7 +795,7 @@ int main() // main function
               }
               cout << "Returning to main menu" << endl;
             }
-            if (menu_selector == 7) //search
+            if (menu_selector == 7) // search
             {
             MENSEV_CHOICE:
               int delMenu;
@@ -839,7 +839,7 @@ int main() // main function
                 {
                   cout << setw(12) << left << "UID: ";
                   cout << setw(14) << left << "First Name: "
-                     << " " << setw(17) << left << "Last Name: ";
+                       << " " << setw(17) << left << "Last Name: ";
                   cout << setw(10) << left << "Province: ";
                   cout << setw(6) << left << "CGPA: ";
                   cout << setw(4) << left << "RS: " << endl;
@@ -850,7 +850,7 @@ int main() // main function
                 {
                   cout << setw(12) << left << "UID: ";
                   cout << setw(14) << left << "First Name: "
-                      << " " << setw(17) << left << "Last Name: ";
+                       << " " << setw(17) << left << "Last Name: ";
                   cout << setw(10) << left << "Country: ";
                   cout << setw(6) << left << "CGPA: ";
                   cout << setw(4) << left << "RS: ";
@@ -878,7 +878,7 @@ int main() // main function
                     {
                       cout << setw(12) << left << "UID: ";
                       cout << setw(14) << left << "First Name: "
-                          << " " << setw(17) << left << "Last Name: ";
+                           << " " << setw(17) << left << "Last Name: ";
                       cout << setw(10) << left << "Province: ";
                       cout << setw(6) << left << "CGPA: ";
                       cout << setw(4) << left << "RS: " << endl;
@@ -888,7 +888,7 @@ int main() // main function
                     {
                       cout << setw(12) << left << "UID: ";
                       cout << setw(14) << left << "First Name: "
-                          << " " << setw(17) << left << "Last Name: ";
+                           << " " << setw(17) << left << "Last Name: ";
                       cout << setw(10) << left << "Country: ";
                       cout << setw(6) << left << "CGPA: ";
                       cout << setw(4) << left << "RS: ";
@@ -906,9 +906,9 @@ int main() // main function
                     cout << "Please enter a valid CGPA" << endl;
                   }
                 }
-
               }
-              if (subMenu == 3){
+              if (subMenu == 3)
+              {
                 int tempNum;
                 cout << "Please enter research score" << endl;
                 while (true)
@@ -921,7 +921,7 @@ int main() // main function
                     {
                       cout << setw(12) << left << "UID: ";
                       cout << setw(14) << left << "First Name: "
-                       << " " << setw(17) << left << "Last Name: ";
+                           << " " << setw(17) << left << "Last Name: ";
                       cout << setw(10) << left << "Province: ";
                       cout << setw(6) << left << "CGPA: ";
                       cout << setw(4) << left << "RS: " << endl;
@@ -931,7 +931,7 @@ int main() // main function
                     {
                       cout << setw(12) << left << "UID: ";
                       cout << setw(14) << left << "First Name: "
-                          << " " << setw(17) << left << "Last Name: ";
+                           << " " << setw(17) << left << "Last Name: ";
                       cout << setw(10) << left << "Country: ";
                       cout << setw(6) << left << "CGPA: ";
                       cout << setw(4) << left << "RS: ";
@@ -950,7 +950,7 @@ int main() // main function
                   }
                 }
               }
-              if (subMenu == 4) 
+              if (subMenu == 4)
               {
                 int tempNum;
                 cout << "Please enter UID" << endl;
@@ -959,7 +959,7 @@ int main() // main function
                 {
                   cout << setw(12) << left << "UID: ";
                   cout << setw(14) << left << "First Name: "
-                     << " " << setw(17) << left << "Last Name: ";
+                       << " " << setw(17) << left << "Last Name: ";
                   cout << setw(10) << left << "Province: ";
                   cout << setw(6) << left << "CGPA: ";
                   cout << setw(4) << left << "RS: " << endl;
@@ -969,7 +969,7 @@ int main() // main function
                 {
                   cout << setw(12) << left << "UID: ";
                   cout << setw(14) << left << "First Name: "
-                      << " " << setw(17) << left << "Last Name: ";
+                       << " " << setw(17) << left << "Last Name: ";
                   cout << setw(10) << left << "Country: ";
                   cout << setw(6) << left << "CGPA: ";
                   cout << setw(4) << left << "RS: ";
@@ -980,10 +980,7 @@ int main() // main function
                   cout << "Total Score: " << endl;
                   IntFindUID(IntHead, tempNum);
                 }
-
               }
-              
-              
             }
             if (menu_selector == 8)
             {
@@ -1034,7 +1031,7 @@ int main() // main function
               cout << endl;
               IntFindResearchScore(IntHead, 99);
               cout << endl;
-              IntFindUID(IntHead, 20210069);
+              IntFindUID(IntHead, 20210169);
               cout << endl;
               IntHead->printInt(IntHead);
               cout << endl;
@@ -1048,7 +1045,7 @@ int main() // main function
               cout << "Tail is: " << DomHead->tail->domesticStudent;
               cout << endl;
 
-              IntHead->deleteInt(&IntHead, "Gabus", "Anus");
+              IntHead->deleteInt(&IntHead, "NotGabus", "Anus");
               MergeSortInt(&IntHead);
               IntHead->updateIntHD(&IntHead);
               IntHead->printInt(IntHead);
@@ -1080,7 +1077,8 @@ int main() // main function
               cout << endl;
 
               cout << "Test 6: Display students based on threshold" << endl;
-              threshold(StuHead, 3.9, 90);
+              StuHead->threshold(StuHead, 3.9, 90);
+              cout << endl;
 
               cout << "End of test cases";
               cout << endl;
@@ -1093,16 +1091,16 @@ int main() // main function
               cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
               cout << "\nAll rejected International Students:\n\n";
               cout << setw(12) << left << "UID: ";
-                cout << setw(14) << left << "First Name: "
-                     << " " << setw(17) << left << "Last Name: ";
-                cout << setw(10) << left << "Country: ";
-                cout << setw(6) << left << "CGPA: ";
-                cout << setw(4) << left << "RS: ";
-                cout << setw(4) << left << "R: ";
-                cout << setw(4) << left << "L: ";
-                cout << setw(4) << left << "S: ";
-                cout << setw(4) << left << "W: ";
-                cout << "Total Score: " << endl;
+              cout << setw(14) << left << "First Name: "
+                   << " " << setw(17) << left << "Last Name: ";
+              cout << setw(10) << left << "Country: ";
+              cout << setw(6) << left << "CGPA: ";
+              cout << setw(4) << left << "RS: ";
+              cout << setw(4) << left << "R: ";
+              cout << setw(4) << left << "L: ";
+              cout << setw(4) << left << "S: ";
+              cout << setw(4) << left << "W: ";
+              cout << "Total Score: " << endl;
               IntHeadRejected->printInt(IntHeadRejected);
             }
 

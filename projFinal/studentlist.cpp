@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std; // use namespace std
 
-void StudentList::deleteMerge(StudentList **head_ref, string FirstName, string LastName)//O(n) time complexity
+void StudentList::deleteMerge(StudentList **head_ref, string FirstName, string LastName) // O(n) time complexity
 {
     StudentList *temp = *head_ref;
     StudentList *prev = NULL;
@@ -44,7 +44,7 @@ void StudentList::deleteMerge(StudentList **head_ref, string FirstName, string L
     }
 }
 
-void StudentList::appendMerge(StudentList **root, Student item)//O(n) time complexity
+void StudentList::appendMerge(StudentList **root, Student item) // O(n) time complexity
 {
     try
     {
@@ -80,7 +80,7 @@ void StudentList::appendMerge(StudentList **root, Student item)//O(n) time compl
     }
 }
 
-void FindName(StudentList *Stu, string FirstName, string LastName)//O(n^2) time complexity
+void FindName(StudentList *Stu, string FirstName, string LastName) // O(n^2) time complexity
 {
     string string1, string2;
     StudentList *current;
@@ -126,7 +126,7 @@ void FindName(StudentList *Stu, string FirstName, string LastName)//O(n^2) time 
         cout << storeStu.at(i) << ' ';
 }
 
-void FindCGPA(StudentList *Stu, float CGPA_VALUE)//O(n) time complexity
+void FindCGPA(StudentList *Stu, float CGPA_VALUE) // O(n) time complexity
 {
     float storeCGPA;
     StudentList *current;
@@ -157,7 +157,7 @@ void FindCGPA(StudentList *Stu, float CGPA_VALUE)//O(n) time complexity
         cout << storeStu.at(i) << ' ';
 }
 
-void FindResearchScore(StudentList *Stu, int researchScore_VALUE)//O(n) time complexity
+void FindResearchScore(StudentList *Stu, int researchScore_VALUE) // O(n) time complexity
 {
     int storeRScore;
     StudentList *current;
@@ -188,7 +188,7 @@ void FindResearchScore(StudentList *Stu, int researchScore_VALUE)//O(n) time com
         cout << storeStu.at(i) << ' ';
 }
 
-void FindUID(StudentList *Stu, int UIDValue)//O(n) time complexity
+void FindUID(StudentList *Stu, int UIDValue) // O(n) time complexity
 {
     int storeID;
     StudentList *current;
@@ -219,7 +219,7 @@ void FindUID(StudentList *Stu, int UIDValue)//O(n) time complexity
         cout << storeStu.at(i) << ' ';
 }
 
-void threshold(StudentList *Stu, float CGPA_VALUE, int researchScore_VALUE)//O(n) time complexity
+void StudentList::threshold(StudentList *Stu, float CGPA_VALUE, int researchScore_VALUE) // O(n) time complexity
 {
     int storeRScore;
     float storeCGPA;
@@ -252,7 +252,7 @@ void threshold(StudentList *Stu, float CGPA_VALUE, int researchScore_VALUE)//O(n
         cout << storeStu.at(i) << ' ';
 }
 
-void threshold(StudentList *Stu, int researchScore_VALUE)//O(n) time complexity
+void StudentList::threshold(StudentList *Stu, int researchScore_VALUE) // O(n) time complexity
 {
     int storeRScore;
     StudentList *current;
@@ -283,7 +283,7 @@ void threshold(StudentList *Stu, int researchScore_VALUE)//O(n) time complexity
         cout << storeStu.at(i) << ' ';
 }
 
-void threshold(StudentList *Stu, float CGPA_VALUE)//O(n) time complexity
+void StudentList::threshold(StudentList *Stu, float CGPA_VALUE) // O(n) time complexity
 {
     float storeCGPA;
     StudentList *current;
@@ -314,7 +314,7 @@ void threshold(StudentList *Stu, float CGPA_VALUE)//O(n) time complexity
         cout << storeStu.at(i) << ' ';
 }
 
-void StudentList::printMerge(StudentList *node)//O(n) time complexity
+void StudentList::printMerge(StudentList *node) // O(n) time complexity
 {
     while (node != NULL)
     {
@@ -323,7 +323,7 @@ void StudentList::printMerge(StudentList *node)//O(n) time complexity
     }
 }
 
-void StudentList::deleteMergeHD(StudentList **head_ref)//O(n) time complexity
+void StudentList::deleteMergeHD(StudentList **head_ref) // O(n) time complexity
 {
     if (head_ref == NULL)
         return;
@@ -339,7 +339,7 @@ void StudentList::deleteMergeHD(StudentList **head_ref)//O(n) time complexity
     (*head_ref)->tail->next = NULL;
 }
 
-void StudentList::updateMergeHD(StudentList **head_ref)//O(n) time complexity
+void StudentList::updateMergeHD(StudentList **head_ref) // O(n) time complexity
 {
     StudentList *temp = *head_ref;
     (*head_ref)->head = temp;

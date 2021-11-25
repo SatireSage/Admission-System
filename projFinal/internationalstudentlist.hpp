@@ -20,6 +20,10 @@ public:
     International internationalStudent;
     InternationalStudentList *next, *head, *tail;
 
+    virtual void threshold(InternationalStudentList *Stu, float CGPA_VALUE, int researchScore_VALUE);
+    virtual void threshold(InternationalStudentList *Stu, float CGPA_VALUE);
+    virtual void threshold(InternationalStudentList *Stu, int researchScore_VALUE);
+
     void deleteInt(InternationalStudentList **head_ref, string FirstName, string LastName);
     void appendInt(InternationalStudentList **head_ref, International new_data);
     void printInt(InternationalStudentList *node);

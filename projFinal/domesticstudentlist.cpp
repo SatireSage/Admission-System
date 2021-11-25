@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std; // use namespace std
 
-void DomesticStudentList::deleteDom(DomesticStudentList **head_ref, string FirstName, string LastName) //O(n) time complexity
+void DomesticStudentList::deleteDom(DomesticStudentList **head_ref, string FirstName, string LastName) // O(n) time complexity
 {
     DomesticStudentList *temp = *head_ref;
     DomesticStudentList *prev = NULL;
@@ -43,7 +43,7 @@ void DomesticStudentList::deleteDom(DomesticStudentList **head_ref, string First
     }
 }
 
-void DomesticStudentList::appendDom(DomesticStudentList **root, Domestic item)  //O(n) time complexity
+void DomesticStudentList::appendDom(DomesticStudentList **root, Domestic item) // O(n) time complexity
 {
     try
     {
@@ -79,7 +79,7 @@ void DomesticStudentList::appendDom(DomesticStudentList **root, Domestic item)  
     }
 }
 
-void DomFindName(DomesticStudentList *Stu, string FirstName, string LastName) //O(n^2) time complexity
+void DomFindName(DomesticStudentList *Stu, string FirstName, string LastName) // O(n^2) time complexity
 {
     string string1, string2;
     DomesticStudentList *current;
@@ -125,7 +125,7 @@ void DomFindName(DomesticStudentList *Stu, string FirstName, string LastName) //
         cout << " " << storeDom.at(i);
 }
 
-void DomFindCGPA(DomesticStudentList *Stu, float CGPA_VALUE) //O(n) time complexity
+void DomFindCGPA(DomesticStudentList *Stu, float CGPA_VALUE) // O(n) time complexity
 {
     float storeCGPA;
     DomesticStudentList *current;
@@ -156,7 +156,7 @@ void DomFindCGPA(DomesticStudentList *Stu, float CGPA_VALUE) //O(n) time complex
         cout << " " << storeDom.at(i);
 }
 
-void DomFindResearchScore(DomesticStudentList *Stu, int researchScore_VALUE) //O(n) time complexity
+void DomFindResearchScore(DomesticStudentList *Stu, int researchScore_VALUE) // O(n) time complexity
 {
     int storeRScore;
     DomesticStudentList *current;
@@ -187,7 +187,7 @@ void DomFindResearchScore(DomesticStudentList *Stu, int researchScore_VALUE) //O
         cout << " " << storeDom.at(i);
 }
 
-void DomFindUID(DomesticStudentList *Stu, int UIDValue) //O(n) time complexity
+void DomFindUID(DomesticStudentList *Stu, int UIDValue) // O(n) time complexity
 {
     int storeID;
     DomesticStudentList *current;
@@ -218,7 +218,7 @@ void DomFindUID(DomesticStudentList *Stu, int UIDValue) //O(n) time complexity
         cout << " " << storeDom.at(i);
 }
 
-void DomesticStudentList::printDom(DomesticStudentList *node) //O(n) time complexity
+void DomesticStudentList::printDom(DomesticStudentList *node) // O(n) time complexity
 {
     while (node != NULL)
     {
@@ -227,7 +227,7 @@ void DomesticStudentList::printDom(DomesticStudentList *node) //O(n) time comple
     }
 }
 
-void DomesticStudentList::deleteDomHD(DomesticStudentList **head_ref) //O(n) time complexity
+void DomesticStudentList::deleteDomHD(DomesticStudentList **head_ref) // O(n) time complexity
 {
     if (head_ref == NULL)
         return;
@@ -243,7 +243,7 @@ void DomesticStudentList::deleteDomHD(DomesticStudentList **head_ref) //O(n) tim
     (*head_ref)->tail->next = NULL;
 }
 
-void DomesticStudentList::updateDomHD(DomesticStudentList **head_ref) //O(n) time complexity
+void DomesticStudentList::updateDomHD(DomesticStudentList **head_ref) // O(n) time complexity
 {
     DomesticStudentList *temp = *head_ref;
     (*head_ref)->head = temp;
@@ -251,4 +251,99 @@ void DomesticStudentList::updateDomHD(DomesticStudentList **head_ref) //O(n) tim
     while (last->next != NULL)
         last = last->next;
     (*head_ref)->tail = last;
+}
+
+void DomesticStudentList::threshold(DomesticStudentList *Stu, float CGPA_VALUE, int researchScore_VALUE) // O(n) time complexity
+{
+    int storeRScore;
+    float storeCGPA;
+    DomesticStudentList *current;
+    vector<Student> storeStu;
+
+    if (Stu == nullptr)
+    {
+        cout << "\n Does not exist.";
+    }
+    else
+    {
+        current = Stu;
+        while (current != NULL)
+        {
+            storeRScore = current->domesticStudent.getResearchScore();
+            storeCGPA = current->domesticStudent.getCGPA();
+            if (CGPA_VALUE <= storeCGPA && researchScore_VALUE <= storeRScore)
+            {
+                storeStu.push_back(current->domesticStudent);
+            }
+            current = current->next;
+        }
+    }
+
+    if (storeStu.size() == 0)
+        cout << "No such student found." << endl;
+
+    for (int i = 0; i < storeStu.size(); i++)
+        cout << storeStu.at(i) << ' ';
+}
+
+void DomesticStudentList::threshold(DomesticStudentList *Stu, int researchScore_VALUE) // O(n) time complexity
+{
+    int storeRScore;
+    DomesticStudentList *current;
+    vector<Student> storeStu;
+
+    if (Stu == nullptr)
+    {
+        cout << "\n Does not exist.";
+    }
+    else
+    {
+        current = Stu;
+        while (current != NULL)
+        {
+            storeRScore = current->domesticStudent.getResearchScore();
+            if (researchScore_VALUE <= storeRScore)
+            {
+                storeStu.push_back(current->domesticStudent);
+            }
+            current = current->next;
+        }
+    }
+
+    if (storeStu.size() == 0)
+        cout << "No such student found." << endl;
+
+    for (int i = 0; i < storeStu.size(); i++)
+        cout << storeStu.at(i) << ' ';
+}
+
+void DomesticStudentList::threshold(DomesticStudentList *Stu, float CGPA_VALUE) // O(n) time complexity
+{
+    float storeCGPA;
+    DomesticStudentList *current;
+    vector<Student> storeStu;
+
+    if (Stu == nullptr)
+    {
+        cout << "\n Does not exist.";
+    }
+    else
+    {
+        current = Stu;
+        while (current != NULL)
+        {
+            storeCGPA = current->domesticStudent.getCGPA();
+            if (CGPA_VALUE <= storeCGPA)
+            {
+                storeStu.push_back(current->domesticStudent);
+            }
+            current = current->next;
+        }
+    }
+
+    if (storeStu.size() == 0)
+        cout << "No such student found." << endl;
+
+    for (int i = 0; i < storeStu.size(); i++)
+        cout << storeStu.at(i) << ' ';
 }
