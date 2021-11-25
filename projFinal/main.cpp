@@ -329,7 +329,7 @@ int main() // main function
           }
           for (int j = 0; j < numInternationalStudents; j++) // removes international students not meeting requirements
           {
-            if (InternationalStudents[j].getTotalScore() < 93 && InternationalStudents[j].getReading() < 20 && InternationalStudents[j].getListening() < 20 && InternationalStudents[j].getSpeaking() < 20 && InternationalStudents[j].getWriting() < 20)
+            if (InternationalStudents[j].getTotalScore() < 93 || InternationalStudents[j].getReading() < 20 || InternationalStudents[j].getListening() < 20 || InternationalStudents[j].getSpeaking() < 20 || InternationalStudents[j].getWriting() < 20)
             {
               rejectedInternational[rejectedIndex++] = InternationalStudents[j];
             }
@@ -377,12 +377,13 @@ int main() // main function
                    << "Select 6: to delete head and tail nodes\n"
                    << "Select 7: to search for a student\n"
                    << "Select 8: to see All test cases\n"
-                   << "Select 9: to exit the program\n"
+                   << "Select 9: to display all rejected international students\n"
+                   << "Select 10: to exit the program\n"
                    << ">> ";
               menu_selector = Get_Number(); // get user_input
               cout << "-----------------------------------------------------------------------------------------------------------------------\n";
             }
-            if (menu_selector < 1 || menu_selector > 9)
+            if (menu_selector < 1 || menu_selector > 10)
             {
               cout << "You have selected an invalid menu option. Returning to main menu.\n"; // If user selects invalid menu slection, print error and return to menu
             }
@@ -452,8 +453,8 @@ int main() // main function
               }
               if (menu_selector == 2) // selects international students
               {
-                MergeSortInt(&IntHead, user_input);
-                IntHead->updateIntHD(&IntHead);
+                MergeSortInt(&IntHeadFiltered, user_input);
+                IntHeadFiltered->updateIntHD(&IntHeadFiltered);
                 cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
                 cout << "\nAll Sorted International Students:\n\n";
                 cout << setw(12) << left << "UID: ";
@@ -467,7 +468,7 @@ int main() // main function
                 cout << setw(4) << left << "S: ";
                 cout << setw(4) << left << "W: ";
                 cout << "Total Score: " << endl;
-                IntHead->printInt(IntHead);
+                IntHeadFiltered->printInt(IntHeadFiltered);
               }
               cin.clear();
               cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -724,6 +725,9 @@ int main() // main function
                 }
                 else
                 {
+                  IntHeadRejected->appendInt(&IntHeadRejected, NewStudentInt);
+                  MergeSortInt(&IntHeadRejected);
+                  IntHeadRejected->updateIntHD(&IntHeadRejected);
                   cout << "International student does not meet TOEFL requirements and can't be added to system. Returning to menu" << endl;
                 }
               }
@@ -1082,7 +1086,27 @@ int main() // main function
               cout << endl;
             }
 
-            if (menu_selector == 9) // exit program prommpt
+            if (menu_selector == 9)
+            {
+              MergeSortInt(&IntHeadRejected);
+              IntHeadRejected->updateIntHD(&IntHeadRejected);
+              cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
+              cout << "\nAll rejected International Students:\n\n";
+              cout << setw(12) << left << "UID: ";
+                cout << setw(14) << left << "First Name: "
+                     << " " << setw(17) << left << "Last Name: ";
+                cout << setw(10) << left << "Country: ";
+                cout << setw(6) << left << "CGPA: ";
+                cout << setw(4) << left << "RS: ";
+                cout << setw(4) << left << "R: ";
+                cout << setw(4) << left << "L: ";
+                cout << setw(4) << left << "S: ";
+                cout << setw(4) << left << "W: ";
+                cout << "Total Score: " << endl;
+              IntHeadRejected->printInt(IntHeadRejected);
+            }
+
+            if (menu_selector == 10) // exit program prommpt
             {
               cout << "Are you sure you wish to completely exit the program? Use Y/N (yes or no) to proceed.\n" // Ensures that the user wishes to exit the program
                    << ">> ";
