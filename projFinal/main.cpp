@@ -358,6 +358,7 @@ int main() // main function
             StuHead->appendMerge(&StuHead, currentInt->internationalStudent);
             currentInt = currentInt->next;
           }
+          StuHead->updateMergeHD(&StuHead);
           string exitCheck;
 
           while (true) // menu system
@@ -572,6 +573,7 @@ int main() // main function
                 MergeSortDom(&DomHead);
                 DomHead->updateDomHD(&DomHead);
                 StuHead->appendMerge(&StuHead, NewStudentDom);
+                StuHead->updateMergeHD(&StuHead);
               }
               if (user_choice == 2)
               {
@@ -721,6 +723,7 @@ int main() // main function
                   MergeSortInt(&IntHead);
                   IntHead->updateIntHD(&IntHead);
                   StuHead->appendMerge(&StuHead, NewStudentInt);
+                  StuHead->updateMergeHD(&StuHead);
                 }
                 else
                 {
