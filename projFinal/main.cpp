@@ -713,7 +713,7 @@ int main() // main function
                   }
                 }
                 typeVal = "International";
-                International NewStudentInt(firstInt, lastInt, typeVal, countryVal, cgpaInt, rsInt, readInt, listInt, speakInt, writeInt);
+                International NewStudentInt(firstInt, lastInt, typeVal, countryVal, cgpaInt, rsInt, writeInt, listInt, readInt, speakInt);
                 // NewStudentInt.setType("International");
                 if (NewStudentInt.getTotalScore() >= 93 && NewStudentInt.getReading() >= 20 && NewStudentInt.getListening() >= 20 && NewStudentInt.getSpeaking() >= 20 && NewStudentInt.getWriting() >= 20)
                 {
@@ -721,13 +721,19 @@ int main() // main function
                   MergeSortInt(&IntHead);
                   IntHead->updateIntHD(&IntHead);
                   StuHead->appendMerge(&StuHead, NewStudentInt);
+                  IntHeadFiltered->appendInt(&IntHeadFiltered, NewStudentInt);
+                  MergeSortInt(&IntHeadFiltered);
+                  IntHeadFiltered->updateIntHD(&IntHeadFiltered);
                 }
                 else
                 {
+                  IntHead->appendInt(&IntHead, NewStudentInt);
+                  MergeSortInt(&IntHead);
+                  IntHead->updateIntHD(&IntHead);
                   IntHeadRejected->appendInt(&IntHeadRejected, NewStudentInt);
                   MergeSortInt(&IntHeadRejected);
                   IntHeadRejected->updateIntHD(&IntHeadRejected);
-                  cout << "International student does not meet TOEFL requirements and can't be added to system. Returning to menu" << endl;
+                  cout << "International student does not meet TOEFL requirements" << endl;
                 }
               }
             }

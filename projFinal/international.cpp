@@ -26,6 +26,7 @@ International::International(string FirstNameValue, string LastNameValue, string
     toeflScore.setListening(listeningScoreValue);
     toeflScore.setWriting(writingScoreValue);
     toeflScore.setSpeaking(speakingScoreValue);
+    setToeflScore(toeflScore);
 }
 // International class get-functions
 string International::getCountry() const
