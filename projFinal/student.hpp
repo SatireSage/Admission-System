@@ -17,6 +17,7 @@ private:
 public:
     int UID;
     static int StudentUIDcounter;
+
     //  Studnet class constructor
     Student();
     Student(string FirstNameValue, string LastNameValue, string TypeValue, float CGPAValue, int researchScoreValue);
@@ -35,8 +36,6 @@ public:
     void setType(string typeValue);
     void setCGPA(float cgpaValue);
     void setResearchScore(int researchScoreValue);
-    // each student should have an 8-digit unique application id with int type, starting with 20210000.
-    // We assume there are less than 10,000 applicants in our system.
 
     // Student class friend functions
     friend int compareCGPA(Student stu1, Student stu2);
@@ -45,10 +44,6 @@ public:
     friend int compareLastName(Student stu1, Student stu2);
     friend int compareType(Student stu1, Student stu2);
     friend ostream &operator<<(ostream &outs, const Student &stuObj);
-
-    // virtual void threshold(StudentList *Stu, float CGPA_VALUE, int researchScore_VALUE);
-    // virtual void threshold(StudentList *Stu, float CGPA_VALUE);
-    // virtual void threshold(StudentList *Stu, int researchScore_VALUE);
 };
 
 #endif

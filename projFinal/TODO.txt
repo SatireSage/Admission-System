@@ -4,8 +4,9 @@ Zach:
    "Create an error input for each of the above case, and demo to your TA that your code can handle all the above errors."
 
 Nick:
-1. Menu: Threshold menu (so we can use the damn thing now that i fixed it)
-         Menu to do stuff with Reject List (i.e. basically sort them or smth idk but we gotta do more than just print afaik)
+1. Menu: Threshold Sub menu
+         Sorting Sub menu for Rejects
+         All lists should be updated after performing any action (i.e. insert or delete etc)
 
 Daniel:
 1. Slides

@@ -716,7 +716,7 @@ int main() // main function
                 }
                 typeVal = "International";
                 International NewStudentInt(firstInt, lastInt, typeVal, countryVal, cgpaInt, rsInt, writeInt, listInt, readInt, speakInt);
-                // NewStudentInt.setType("International");
+
                 if (NewStudentInt.getTotalScore() >= 93 && NewStudentInt.getReading() >= 20 && NewStudentInt.getListening() >= 20 && NewStudentInt.getSpeaking() >= 20 && NewStudentInt.getWriting() >= 20)
                 {
                   IntHead->appendInt(&IntHead, NewStudentInt);
