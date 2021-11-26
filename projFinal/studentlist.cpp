@@ -249,7 +249,7 @@ void StudentList::threshold(StudentList *Stu, float CGPA_VALUE, int researchScor
         cout << "No such student found." << endl;
 
     for (int i = 0; i < storeStu.size(); i++)
-        cout << storeStu.at(i) << ' ';
+        cout << " " << storeStu.at(i);
 }
 
 void StudentList::threshold(StudentList *Stu, int researchScore_VALUE) // O(n) time complexity

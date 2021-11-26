@@ -373,16 +373,17 @@ int main() // main function
               cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
               cout << "Welcome to 251 Interim Project! Please select one of the following menu options:\n"
                    << "Please select one of the folowing:\n"
-                   << "Select 1: to sort Domestic Students\n"
-                   << "Select 2: to sort International Students\n"
-                   << "Select 3: to sort All Students (Based on Research Score and CGPA only)\n"
-                   << "Select 4: to insert new student\n"
-                   << "Select 5: to delete a student\n"
-                   << "Select 6: to delete head and tail nodes\n"
-                   << "Select 7: to search for a student\n"
-                   << "Select 8: to see All test cases\n"
-                   << "Select 9: to display all rejected international students\n"
-                   << "Select 10: to exit the program\n"
+                   << "Select 1:  to sort Domestic Students\n"
+                   << "Select 2:  to sort International Students\n"
+                   << "Select 3:  to sort All Students (Based on Research Score and CGPA only)\n"
+                   << "Select 4:  to insert new student\n"
+                   << "Select 5:  to delete a student\n"
+                   << "Select 6:  to delete head and tail nodes\n"
+                   << "Select 7:  to search for a student\n"
+                   << "Select 8:  to see All test cases\n"
+                   << "Select 9:  to sort rejected international students\n"
+                   << "select 10: to display students based on CGPA and Research Score threshold\n"
+                   << "Select 11: to exit the program\n"
                    << ">> ";
               menu_selector = Get_Number(); // get user_input
               cout << "-----------------------------------------------------------------------------------------------------------------------\n";
@@ -768,14 +769,18 @@ int main() // main function
                 DomHead->deleteDom(&DomHead, first, last);
                 MergeSortDom(&DomHead);
                 DomHead->updateDomHD(&DomHead);
+                StuHead->deleteMerge(&StuHead, first, last);
                 MergeSortAll(&StuHead);
+                StuHead->updateMergeHD(&StuHead);
               }
               else
               {
                 IntHead->deleteInt(&IntHead, first, last);
                 MergeSortInt(&IntHead);
                 IntHead->updateIntHD(&IntHead);
+                StuHead->deleteMerge(&StuHead, first, last);
                 MergeSortAll(&StuHead);
+                StuHead->updateMergeHD(&StuHead);
               }
               cout << "Returning to main menu" << endl;
             }
@@ -1081,8 +1086,8 @@ int main() // main function
 
               cout << "Test 5: Merged student lists" << endl;
               MergeSortAll(&StuHead);
-              StuHead->printMerge(StuHead);
               StuHead->updateMergeHD(&StuHead);
+              StuHead->printMerge(StuHead);      
               cout << "\nHead is: " << StuHead->head->Students;
               cout << "Tail is: " << StuHead->tail->Students;
               cout << endl;
@@ -1097,13 +1102,34 @@ int main() // main function
 
             if (menu_selector == 9)
             {
-              MergeSortInt(&IntHeadRejected);
+              char user_input;
+              while (true)
+              {
+                char user_selector = '0';
+                cout << "Please enter what you would like to sort by:\n"
+                     << "Please select one of the folowing:\n"
+                     << "First Name: F, Last Name: L, CGPA: G, Research Score: R, ";
+                cout << "Country: C";
+                cout << "\n>> ";
+                cin >> user_selector;              
+                if (user_selector == 'F' || user_selector == 'f' || user_selector == 'L' || user_selector == 'l' || user_selector == 'G' || user_selector == 'g' || user_selector == 'R' || user_selector == 'r' || user_selector == 'C' || user_selector == 'c')
+                {
+                  user_input = user_selector;
+                  break;
+                }
+                else
+                {
+                  cout << "\nPlease select the appropriate character only:\n";
+                }                
+              }
+
+              MergeSortInt(&IntHeadRejected, user_input);
               IntHeadRejected->updateIntHD(&IntHeadRejected);
               cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
-              cout << "\nAll rejected International Students:\n\n";
+              cout << "\nAll Sorted Rejected International Students:\n\n";
               cout << setw(12) << left << "UID: ";
               cout << setw(14) << left << "First Name: "
-                   << " " << setw(17) << left << "Last Name: ";
+                    << " " << setw(17) << left << "Last Name: ";
               cout << setw(10) << left << "Country: ";
               cout << setw(6) << left << "CGPA: ";
               cout << setw(4) << left << "RS: ";
@@ -1113,9 +1139,57 @@ int main() // main function
               cout << setw(4) << left << "W: ";
               cout << "Total Score: " << endl;
               IntHeadRejected->printInt(IntHeadRejected);
+              
+              cin.clear();
+              cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
 
-            if (menu_selector == 10) // exit program prommpt
+            if (menu_selector == 10)
+            {
+              int threshRS, tempNum;
+              double threshCGPA;
+              cout << "Please enter minimum CGPA" << endl;
+              while (true)
+              {
+                double tempDouble;
+                tempDouble = Get_Double();
+                threshCGPA = float(int(tempDouble * 10 + 0.5)) / 10;
+                if (threshCGPA < 4.31 && threshCGPA > 0)
+                {
+                  break;
+                }
+                else
+                {
+                  cout << "Please enter a valid CGPA" << endl;
+                }
+              }
+              cout << "Please enter minimum Research Score" << endl;
+              while (true)
+              {
+                tempNum = Get_Number();
+                if (tempNum <= 100 && tempNum >= 0)
+                {
+                  threshRS = tempNum;
+                  break;
+                }
+                else
+                {
+                  cout << "Please enter a valid Research Score" << endl;
+                }
+              }
+              cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
+              cout << "\nAll rejected International Students:\n\n";
+              cout << setw(12) << left << "UID: ";
+              cout << setw(14) << left << "First Name: "
+                   << " " << setw(17) << left << "Last Name: ";
+              cout << setw(10) << left << "CGPA: ";
+              cout << setw(6) << left << "RS: ";
+              cout << setw(4) << left << "Type: ";
+              cout << endl;
+              StuHead->threshold(StuHead, threshCGPA, threshRS);
+            }
+
+            if (menu_selector == 11) // exit program prommpt
             {
               cout << "Are you sure you wish to completely exit the program? Use Y/N (yes or no) to proceed.\n" // Ensures that the user wishes to exit the program
                    << ">> ";
