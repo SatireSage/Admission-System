@@ -740,6 +740,9 @@ int main() // main function
                   IntHeadRejected->appendInt(&IntHeadRejected, NewStudentInt);
                   MergeSortInt(&IntHeadRejected);
                   IntHeadRejected->updateIntHD(&IntHeadRejected);
+                  StuHead->appendMerge(&StuHead, NewStudentInt);
+                  MergeSortAll(&StuHead);
+                  StuHead->updateMergeHD(&StuHead);
                   cout << "International student does not meet TOEFL requirements" << endl;
                 }
               }
@@ -775,12 +778,51 @@ int main() // main function
               }
               else
               {
-                IntHead->deleteInt(&IntHead, first, last);
-                MergeSortInt(&IntHead);
-                IntHead->updateIntHD(&IntHead);
-                StuHead->deleteMerge(&StuHead, first, last);
-                MergeSortAll(&StuHead);
-                StuHead->updateMergeHD(&StuHead);
+                // IntHead->deleteInt(&IntHead, first, last);
+                // MergeSortInt(&IntHead);
+                // IntHead->updateIntHD(&IntHead);
+                // StuHead->deleteMerge(&StuHead, first, last);
+                // MergeSortAll(&StuHead);
+                // StuHead->updateMergeHD(&StuHead);
+                string deleteInt = IntFindType(IntHead, first, last);
+                if (deleteInt == "Accepted")
+                {
+                  cout << "Deleting from filtered";
+                  IntHead->deleteInt(&IntHead, first, last);
+                  MergeSortInt(&IntHead);
+                  IntHead->updateIntHD(&IntHead);
+                  IntHeadFiltered->deleteInt(&IntHeadFiltered, first, last);
+                  MergeSortInt(&IntHeadFiltered);
+                  IntHeadFiltered->updateIntHD(&IntHeadFiltered);
+                  IntHeadFiltered->printInt(IntHeadFiltered);
+                  StuHead->deleteMerge(&StuHead, first, last);
+                  MergeSortAll(&StuHead);
+                  StuHead->updateMergeHD(&StuHead);
+                  cout << "\nHead is: " << IntHeadFiltered->head->internationalStudent;
+                  cout << "Tail is: " << IntHeadFiltered->tail->internationalStudent;
+                  cout << endl;
+                }
+                else if (deleteInt == "Rejected")
+                {
+                  cout << "Deleting from rejected";
+                  IntHead->deleteInt(&IntHead, first, last);
+                  MergeSortInt(&IntHead);
+                  IntHead->updateIntHD(&IntHead);
+                  IntHeadRejected->deleteInt(&IntHeadRejected, first, last);
+                  MergeSortInt(&IntHeadRejected);
+                  IntHeadRejected->updateIntHD(&IntHeadRejected);
+                  IntHeadRejected->printInt(IntHeadRejected);
+                  StuHead->deleteMerge(&StuHead, first, last);
+                  MergeSortAll(&StuHead);
+                  StuHead->updateMergeHD(&StuHead);
+                  cout << "\nHead is: " << IntHeadRejected->head->internationalStudent;
+                  cout << "Tail is: " << IntHeadRejected->tail->internationalStudent;
+                  cout << endl;
+                }
+                else
+                {
+                  cout << "Student Does Not Exist.";
+                }
               }
               cout << "Returning to main menu" << endl;
             }
@@ -1001,7 +1043,7 @@ int main() // main function
             if (menu_selector == 8)
             {
               cout << "Test 1: Append new student to domestic and international lists" << endl;
-              Domestic NewStudentDom("Gabus", "Anus", "Domestic", "BC", 4.3, 100);
+              Domestic NewStudentDom("John", "Doe", "Domestic", "BC", 4.3, 100);
               DomHead->appendDom(&DomHead, NewStudentDom);
               MergeSortDom(&DomHead);
               DomHead->updateDomHD(&DomHead);
@@ -1010,7 +1052,7 @@ int main() // main function
               cout << "Tail is: " << DomHead->tail->domesticStudent;
               cout << endl;
 
-              International NewStudentInt("NotGabus", "Anus", "International", "India", 4.3, 100, 22, 22, 22, 22);
+              International NewStudentInt("NotJohn", "Doe", "International", "India", 4.3, 100, 22, 22, 22, 22);
               IntHead->appendInt(&IntHead, NewStudentInt);
               if (NewStudentInt.getTotalScore() >= 93 && NewStudentInt.getReading() >= 20 && NewStudentInt.getListening() >= 20 && NewStudentInt.getSpeaking() >= 20 && NewStudentInt.getWriting() >= 20)
               {
@@ -1053,21 +1095,56 @@ int main() // main function
               cout << endl;
 
               cout << "Test 3: Delete students from domestic and international lists" << endl;
-              DomHead->deleteDom(&DomHead, "Gabus", "Anus");
+              DomHead->deleteDom(&DomHead, "John", "Doe");
               MergeSortDom(&DomHead);
               DomHead->updateDomHD(&DomHead);
+              StuHead->deleteMerge(&StuHead, "John", "Doe");
+              MergeSortAll(&StuHead);
+              StuHead->updateMergeHD(&StuHead);
               DomHead->printDom(DomHead);
               cout << "\nHead is: " << DomHead->head->domesticStudent;
               cout << "Tail is: " << DomHead->tail->domesticStudent;
               cout << endl;
 
-              IntHead->deleteInt(&IntHead, "NotGabus", "Anus");
-              MergeSortInt(&IntHead);
-              IntHead->updateIntHD(&IntHead);
-              IntHead->printInt(IntHead);
-              cout << "\nHead is: " << IntHead->head->internationalStudent;
-              cout << "Tail is: " << IntHead->tail->internationalStudent;
-              cout << endl;
+              string deleteInt = IntFindType(IntHead, "NotJohn", "Doe");
+              if (deleteInt == "Accepted")
+              {
+                cout << "Deleting from filtered";
+                IntHead->deleteInt(&IntHead, "NotJohn", "Doe");
+                MergeSortInt(&IntHead);
+                IntHead->updateIntHD(&IntHead);
+                IntHeadFiltered->deleteInt(&IntHeadFiltered, "NotJohn", "Doe");
+                MergeSortInt(&IntHeadFiltered);
+                IntHeadFiltered->updateIntHD(&IntHeadFiltered);
+                IntHeadFiltered->printInt(IntHeadFiltered);
+                StuHead->deleteMerge(&StuHead, "NotJohn", "Doe");
+                MergeSortAll(&StuHead);
+                StuHead->updateMergeHD(&StuHead);
+                cout << "\nHead is: " << IntHeadFiltered->head->internationalStudent;
+                cout << "Tail is: " << IntHeadFiltered->tail->internationalStudent;
+                cout << endl;
+              }
+              else if (deleteInt == "Rejected")
+              {
+                cout << "Deleting from rejected";
+                IntHead->deleteInt(&IntHead, "NotJohn", "Doe");
+                MergeSortInt(&IntHead);
+                IntHead->updateIntHD(&IntHead);
+                IntHeadRejected->deleteInt(&IntHeadRejected, "NotJohn", "Doe");
+                MergeSortInt(&IntHeadRejected);
+                IntHeadRejected->updateIntHD(&IntHeadRejected);
+                IntHeadRejected->printInt(IntHeadRejected);
+                StuHead->deleteMerge(&StuHead, "NotJohn", "Doe");
+                MergeSortAll(&StuHead);
+                StuHead->updateMergeHD(&StuHead);
+                cout << "\nHead is: " << IntHeadRejected->head->internationalStudent;
+                cout << "Tail is: " << IntHeadRejected->tail->internationalStudent;
+                cout << endl;
+              }
+              else
+              {
+                cout << "Student Does Not Exist.";
+              }
 
               cout << "Test 4: Delete head and tail nodes from domestic and international lists" << endl;
               DomHead->deleteDomHD(&DomHead);
@@ -1098,21 +1175,6 @@ int main() // main function
 
               cout << "End of test cases";
               cout << endl;
-              // string deleteInt = IntFindType(IntHead, "Eunsuh", "Yie");
-              // if (deleteInt == "Accepted")
-              // {
-              //   cout << "Deleting from filtered";
-              //   // Delete from filtered list and delete from international list
-              // }
-              // else if (deleteInt == "Rejected")
-              // {
-              //   cout << "Deleting from rejected";
-              //   // Delete from rejected list and delete from international list
-              // }
-              // else
-              // {
-              //   cout << "DNE";
-              // }
             }
 
             if (menu_selector == 9)
