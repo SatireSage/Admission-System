@@ -352,7 +352,7 @@ void InternationalStudentList::threshold(InternationalStudentList *Stu, float CG
 
 string IntFindType(InternationalStudentList *Stu, string FirstName, string LastName) // O(n^2) time complexity
 {
-    string string1, string2;
+    string string1, string2, typeValueStu;
     InternationalStudentList *current;
     vector<International> storeInt;
 
@@ -386,11 +386,11 @@ string IntFindType(InternationalStudentList *Stu, string FirstName, string LastN
                 storeInt.push_back(current->internationalStudent);
                 if (current->internationalStudent.getTotalScore() >= 93 && current->internationalStudent.getReading() >= 20 && current->internationalStudent.getListening() >= 20 && current->internationalStudent.getSpeaking() >= 20 && current->internationalStudent.getWriting() >= 20)
                 {
-                    return "Accepted";
+                    typeValueStu = "Accepted";
                 }
                 else
                 {
-                    return "Rejected";
+                    typeValueStu = "Rejected";
                 }
             }
             current = current->next;
@@ -400,9 +400,10 @@ string IntFindType(InternationalStudentList *Stu, string FirstName, string LastN
     if (storeInt.size() == 0)
     {
         cout << "No such student found." << endl;
-        return "None";
+        typeValueStu = "None";
     }
 
+    return typeValueStu;
     // for (int i = 0; i < storeInt.size(); i++)
     //     cout << " " << storeInt.at(i);
 }

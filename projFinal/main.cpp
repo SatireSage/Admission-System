@@ -787,7 +787,7 @@ int main() // main function
                 string deleteInt = IntFindType(IntHead, first, last);
                 if (deleteInt == "Accepted")
                 {
-                  cout << "Deleting from filtered";
+                  cout << "Deleting from filtered: " << endl;
                   IntHead->deleteInt(&IntHead, first, last);
                   MergeSortInt(&IntHead);
                   IntHead->updateIntHD(&IntHead);
@@ -804,7 +804,7 @@ int main() // main function
                 }
                 else if (deleteInt == "Rejected")
                 {
-                  cout << "Deleting from rejected";
+                  cout << "Deleting from rejected: " << endl;
                   IntHead->deleteInt(&IntHead, first, last);
                   MergeSortInt(&IntHead);
                   IntHead->updateIntHD(&IntHead);
@@ -1109,7 +1109,7 @@ int main() // main function
               string deleteInt = IntFindType(IntHead, "NotJohn", "Doe");
               if (deleteInt == "Accepted")
               {
-                cout << "Deleting from filtered";
+                cout << "Deleting from filtered: " << endl;
                 IntHead->deleteInt(&IntHead, "NotJohn", "Doe");
                 MergeSortInt(&IntHead);
                 IntHead->updateIntHD(&IntHead);
@@ -1126,7 +1126,7 @@ int main() // main function
               }
               else if (deleteInt == "Rejected")
               {
-                cout << "Deleting from rejected";
+                cout << "Deleting from rejected: " << endl;
                 IntHead->deleteInt(&IntHead, "NotJohn", "Doe");
                 MergeSortInt(&IntHead);
                 IntHead->updateIntHD(&IntHead);
