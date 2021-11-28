@@ -1,7 +1,5 @@
 Zach:
-1. Make example errors and show that code catches them
-   Project doc says: 
-   "Create an error input for each of the above case, and demo to your TA that your code can handle all the above errors."
+1. Test the program for errors
 
 Daniel:
-1. Slides DO EM BITCH
+1. Slides

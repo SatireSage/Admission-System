@@ -137,7 +137,8 @@ int main() // main function
 
   string line;
   ifstream domesticFile("domestic-stu.txt"); // connects files with domestic student information
-  if (!domesticFile.is_open())               // error return in case of file not opening
+  // ifstream domesticFile("domestic-stu-copy.txt"); // connects files with domestic student information
+  if (!domesticFile.is_open()) // error return in case of file not opening
   {
     cout << "Unable to open file domestic-stu.txt" << endl;
     return -1;
@@ -204,7 +205,8 @@ int main() // main function
     }
 
     ifstream InternationalFile("international-stu.txt"); // connects file with international student info
-    if (!InternationalFile.is_open())                    // error return in case of file not opening
+    // ifstream InternationalFile("international-stu-copy.txt"); // connects file with international student info
+    if (!InternationalFile.is_open()) // error return in case of file not opening
     {
       cout << "Unable to open file international-stu.txt" << endl;
       return -1;
@@ -1179,6 +1181,23 @@ int main() // main function
 
               cout << "Test 6: Display students based on threshold" << endl;
               StuHead->threshold(StuHead, 3.9, 90);
+              cout << endl;
+
+              cout << "Test 7: Case sensitivity (Robust error check)" << endl
+                   << "\n";
+              cout << "First name input:    PENeLOpe" << endl;
+              DomFindName(DomHead, "PENeLOpe", "Sanders");
+              cout << "Last name input:    SANDers" << endl;
+              DomFindName(DomHead, "Penelope", "SANDers");
+              cout << "Complete name input:   PeNELOpE SanDERs" << endl;
+              DomFindName(DomHead, "PeNELOpE", "SanDERs");
+              cout << endl;
+              cout << "First name input:    HaEUn" << endl;
+              IntFindName(IntHead, "HaEUn", "Choi");
+              cout << "Last name input:    ChOI" << endl;
+              IntFindName(IntHead, "Haeun", "ChOI");
+              cout << "Complete name input:   HAeUN ChOi" << endl;
+              IntFindName(IntHead, "HAeUN", "ChOi");
               cout << endl;
 
               cout << "End of test cases";
