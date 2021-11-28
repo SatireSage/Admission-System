@@ -769,6 +769,7 @@ int main() // main function
               cin >> last;
               if (delMenu == 1)
               {
+                MergeSortDom(&DomHead);
                 DomHead->deleteDom(&DomHead, first, last);
                 MergeSortDom(&DomHead);
                 DomHead->updateDomHD(&DomHead);
@@ -785,43 +786,46 @@ int main() // main function
                 // MergeSortAll(&StuHead);
                 // StuHead->updateMergeHD(&StuHead);
                 string deleteInt = IntFindType(IntHead, first, last);
-                if (deleteInt == "Accepted")
+                if (deleteInt != "None")
                 {
-                  cout << "Deleting from filtered: " << endl;
+                  MergeSortInt(&IntHead);
                   IntHead->deleteInt(&IntHead, first, last);
                   MergeSortInt(&IntHead);
                   IntHead->updateIntHD(&IntHead);
-                  IntHeadFiltered->deleteInt(&IntHeadFiltered, first, last);
-                  MergeSortInt(&IntHeadFiltered);
-                  IntHeadFiltered->updateIntHD(&IntHeadFiltered);
-                  IntHeadFiltered->printInt(IntHeadFiltered);
-                  StuHead->deleteMerge(&StuHead, first, last);
-                  MergeSortAll(&StuHead);
-                  StuHead->updateMergeHD(&StuHead);
-                  cout << "\nHead is: " << IntHeadFiltered->head->internationalStudent;
-                  cout << "Tail is: " << IntHeadFiltered->tail->internationalStudent;
-                  cout << endl;
-                }
-                else if (deleteInt == "Rejected")
-                {
-                  cout << "Deleting from rejected: " << endl;
-                  IntHead->deleteInt(&IntHead, first, last);
-                  MergeSortInt(&IntHead);
-                  IntHead->updateIntHD(&IntHead);
-                  IntHeadRejected->deleteInt(&IntHeadRejected, first, last);
-                  MergeSortInt(&IntHeadRejected);
-                  IntHeadRejected->updateIntHD(&IntHeadRejected);
-                  IntHeadRejected->printInt(IntHeadRejected);
-                  StuHead->deleteMerge(&StuHead, first, last);
-                  MergeSortAll(&StuHead);
-                  StuHead->updateMergeHD(&StuHead);
-                  cout << "\nHead is: " << IntHeadRejected->head->internationalStudent;
-                  cout << "Tail is: " << IntHeadRejected->tail->internationalStudent;
-                  cout << endl;
-                }
-                else
-                {
-                  cout << "Student Does Not Exist.";
+                  if (deleteInt == "Accepted")
+                  {
+                    cout << "Deleting from filtered: " << endl;
+                    MergeSortInt(&IntHeadFiltered);
+                    IntHeadFiltered->deleteInt(&IntHeadFiltered, first, last);
+                    MergeSortInt(&IntHeadFiltered);
+                    IntHeadFiltered->updateIntHD(&IntHeadFiltered);
+                    IntHeadFiltered->printInt(IntHeadFiltered);
+                    StuHead->deleteMerge(&StuHead, first, last);
+                    MergeSortAll(&StuHead);
+                    StuHead->updateMergeHD(&StuHead);
+                    cout << "\nHead is: " << IntHeadFiltered->head->internationalStudent;
+                    cout << "Tail is: " << IntHeadFiltered->tail->internationalStudent;
+                    cout << endl;
+                  }
+                  else if (deleteInt == "Rejected")
+                  {
+                    cout << "Deleting from rejected: " << endl;
+                    MergeSortInt(&IntHeadRejected);
+                    IntHeadRejected->deleteInt(&IntHeadRejected, first, last);
+                    MergeSortInt(&IntHeadRejected);
+                    IntHeadRejected->updateIntHD(&IntHeadRejected);
+                    IntHeadRejected->printInt(IntHeadRejected);
+                    StuHead->deleteMerge(&StuHead, first, last);
+                    MergeSortAll(&StuHead);
+                    StuHead->updateMergeHD(&StuHead);
+                    cout << "\nHead is: " << IntHeadRejected->head->internationalStudent;
+                    cout << "Tail is: " << IntHeadRejected->tail->internationalStudent;
+                    cout << endl;
+                  }
+                  else
+                  {
+                    cout << "Student Does Not Exist.";
+                  }
                 }
               }
               cout << "Returning to main menu" << endl;
