@@ -349,3 +349,60 @@ void InternationalStudentList::threshold(InternationalStudentList *Stu, float CG
     for (int i = 0; i < storeStu.size(); i++)
         cout << storeStu.at(i) << ' ';
 }
+
+string IntFindType(InternationalStudentList *Stu, string FirstName, string LastName) // O(n^2) time complexity
+{
+    string string1, string2;
+    InternationalStudentList *current;
+    vector<International> storeInt;
+
+    if (Stu == nullptr)
+    {
+        cout << "\n Does not exist.";
+    }
+    else
+    {
+        current = Stu;
+        while (current != NULL)
+        {
+            string1 = current->internationalStudent.getFirstName();
+            string2 = current->internationalStudent.getLastName();
+            for (int i = 0; i < string1.size(); i++)
+                if (string1[i] >= 'a' && string1[i] <= 'z')
+                    string1[i] -= ('a' - 'A');
+            for (int i = 0; i < FirstName.size(); i++)
+                if (FirstName[i] >= 'a' && FirstName[i] <= 'z')
+                    FirstName[i] -= ('a' - 'A');
+            for (int i = 0; i < string2.size(); i++)
+                if (string2[i] >= 'a' && string2[i] <= 'z')
+                    string2[i] -= ('a' - 'A');
+            for (int i = 0; i < LastName.size(); i++)
+                if (LastName[i] >= 'a' && LastName[i] <= 'z')
+                    LastName[i] -= ('a' - 'A');
+            int comparatorFirstName = FirstName.compare(string1);
+            int comparatorLastName = LastName.compare(string2);
+            if ((comparatorFirstName == 0) && (comparatorLastName == 0))
+            {
+                storeInt.push_back(current->internationalStudent);
+                if (current->internationalStudent.getTotalScore() >= 93 && current->internationalStudent.getReading() >= 20 && current->internationalStudent.getListening() >= 20 && current->internationalStudent.getSpeaking() >= 20 && current->internationalStudent.getWriting() >= 20)
+                {
+                    return "Accepted";
+                }
+                else
+                {
+                    return "Rejected";
+                }
+            }
+            current = current->next;
+        }
+    }
+
+    if (storeInt.size() == 0)
+    {
+        cout << "No such student found." << endl;
+        return "None";
+    }
+
+    // for (int i = 0; i < storeInt.size(); i++)
+    //     cout << " " << storeInt.at(i);
+}

@@ -1087,7 +1087,7 @@ int main() // main function
               cout << "Test 5: Merged student lists" << endl;
               MergeSortAll(&StuHead);
               StuHead->updateMergeHD(&StuHead);
-              StuHead->printMerge(StuHead);      
+              StuHead->printMerge(StuHead);
               cout << "\nHead is: " << StuHead->head->Students;
               cout << "Tail is: " << StuHead->tail->Students;
               cout << endl;
@@ -1098,6 +1098,21 @@ int main() // main function
 
               cout << "End of test cases";
               cout << endl;
+              // string deleteInt = IntFindType(IntHead, "Eunsuh", "Yie");
+              // if (deleteInt == "Accepted")
+              // {
+              //   cout << "Deleting from filtered";
+              //   // Delete from filtered list and delete from international list
+              // }
+              // else if (deleteInt == "Rejected")
+              // {
+              //   cout << "Deleting from rejected";
+              //   // Delete from rejected list and delete from international list
+              // }
+              // else
+              // {
+              //   cout << "DNE";
+              // }
             }
 
             if (menu_selector == 9)
@@ -1111,7 +1126,7 @@ int main() // main function
                      << "First Name: F, Last Name: L, CGPA: G, Research Score: R, ";
                 cout << "Country: C";
                 cout << "\n>> ";
-                cin >> user_selector;              
+                cin >> user_selector;
                 if (user_selector == 'F' || user_selector == 'f' || user_selector == 'L' || user_selector == 'l' || user_selector == 'G' || user_selector == 'g' || user_selector == 'R' || user_selector == 'r' || user_selector == 'C' || user_selector == 'c')
                 {
                   user_input = user_selector;
@@ -1120,7 +1135,7 @@ int main() // main function
                 else
                 {
                   cout << "\nPlease select the appropriate character only:\n";
-                }                
+                }
               }
 
               MergeSortInt(&IntHeadRejected, user_input);
@@ -1129,7 +1144,7 @@ int main() // main function
               cout << "\nAll Sorted Rejected International Students:\n\n";
               cout << setw(12) << left << "UID: ";
               cout << setw(14) << left << "First Name: "
-                    << " " << setw(17) << left << "Last Name: ";
+                   << " " << setw(17) << left << "Last Name: ";
               cout << setw(10) << left << "Country: ";
               cout << setw(6) << left << "CGPA: ";
               cout << setw(4) << left << "RS: ";
@@ -1139,7 +1154,7 @@ int main() // main function
               cout << setw(4) << left << "W: ";
               cout << "Total Score: " << endl;
               IntHeadRejected->printInt(IntHeadRejected);
-              
+
               cin.clear();
               cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
