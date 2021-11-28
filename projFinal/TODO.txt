@@ -1,10 +1,7 @@
-Zach: is busy catching pokemon
+Zach:
 1. Make example errors and show that code catches them
    Project doc says: 
    "Create an error input for each of the above case, and demo to your TA that your code can handle all the above errors."
-
-Nick:
-1. Menu: All lists should be updated after performing any action (i.e. insert or delete etc)
 
 Daniel:
 1. Slides DO EM BITCH

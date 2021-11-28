@@ -792,6 +792,10 @@ int main() // main function
                   IntHead->deleteInt(&IntHead, first, last);
                   MergeSortInt(&IntHead);
                   IntHead->updateIntHD(&IntHead);
+                  MergeSortAll(&StuHead);
+                  StuHead->deleteMerge(&StuHead, first, last);
+                  MergeSortAll(&StuHead);
+                  StuHead->updateMergeHD(&StuHead);
                   if (deleteInt == "Accepted")
                   {
                     cout << "Deleting from filtered: " << endl;
