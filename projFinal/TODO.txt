@@ -1,5 +1,0 @@
-Zach:
-1. Test the program for errors
-
-Daniel:
-1. Slides
