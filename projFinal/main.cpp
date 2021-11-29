@@ -894,6 +894,8 @@ int main() // main function
                 }
               }
               cout << "Returning to main menu" << endl;
+              cin.clear();
+              cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
             if (menu_selector == 6)
             {
