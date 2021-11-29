@@ -242,7 +242,7 @@ int main() // main function
             if (country == "Idian")
             {
               // output warning message
-              cout << "Error: India was misspelled. Correcting error\n";
+              cout << "Warning Error: India was misspelled.\n Error Corrected.\n";
               country = "India";
               InternationalStudents[j].setCountry(country);
             }
