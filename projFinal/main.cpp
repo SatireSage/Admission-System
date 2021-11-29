@@ -474,6 +474,9 @@ int main() // main function
                 cout << setw(10) << left << "CGPA: ";
                 cout << setw(6) << left << "RS: " << endl;
                 StuHead->printMerge(StuHead);
+                cout << "\nHead is: " << StuHead->head->Students;
+                cout << "Tail is: " << StuHead->tail->Students;
+                cout << endl;
               }
               if (menu_selector == 1) // selects domestic students
               {
@@ -488,6 +491,9 @@ int main() // main function
                 cout << setw(6) << left << "CGPA: ";
                 cout << setw(4) << left << "RS: " << endl;
                 DomHead->printDom(DomHead);
+                cout << "\nHead is: " << DomHead->head->domesticStudent;
+                cout << "Tail is: " << DomHead->tail->domesticStudent;
+                cout << endl;
               }
               if (menu_selector == 2) // selects international students
               {
@@ -507,6 +513,9 @@ int main() // main function
                 cout << setw(4) << left << "W: ";
                 cout << "Total Score: " << endl;
                 IntHeadFiltered->printInt(IntHeadFiltered);
+                cout << "\nHead is: " << IntHeadFiltered->head->internationalStudent;
+                cout << "Tail is: " << IntHeadFiltered->tail->internationalStudent;
+                cout << endl;
               }
               cin.clear();
               cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -526,6 +535,9 @@ int main() // main function
               cout << setw(10) << left << "CGPA: ";
               cout << setw(6) << left << "RS: " << endl;
               StuHead->printMerge(StuHead);
+              cout << "\nHead is: " << StuHead->head->Students;
+              cout << "Tail is: " << StuHead->tail->Students;
+              cout << endl;
               cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
             }
 
@@ -1302,37 +1314,71 @@ int main() // main function
 
             if (menu_selector == 10)
             {
+              bool ASKcgpa = false, ASKRScore = false;
+              string checkCGPA, checkRSCORE;
               int threshRS, tempNum;
               double threshCGPA;
-              cout << "Please enter minimum CGPA" << endl
+              cout << "Would you like to scort by cpga? Use Y/N (yes or no) to proceed." << endl
                    << ">> ";
-              while (true)
+              cin >> checkCGPA;
+              if (checkCGPA == "Y" || checkCGPA == "y" || checkCGPA == "YES" || checkCGPA == "yes" || checkCGPA == "Yes") // Various forms of the so called term "yes" to agree to the terms of exiting the program
               {
-                double tempDouble;
-                tempDouble = Get_Double();
-                threshCGPA = float(int(tempDouble * 10 + 0.5)) / 10;
-                if (threshCGPA < 4.31 && threshCGPA > 0)
+                ASKcgpa = true;
+              }
+              if (checkCGPA == "N" || checkCGPA == "n" || checkCGPA == "NO" || checkCGPA == "no" || checkCGPA == "No")
+              {
+                ASKcgpa = false;
+              }
+              if (ASKcgpa)
+              {
+                cout << "Please enter minimum CGPA" << endl
+                     << ">> ";
+                while (true)
                 {
-                  break;
-                }
-                else
-                {
-                  cout << "Please enter a valid CGPA" << endl;
+                  double tempDouble;
+                  cin.clear();
+                  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                  tempDouble = Get_Double();
+                  threshCGPA = float(int(tempDouble * 10 + 0.5)) / 10;
+                  if (threshCGPA < 4.31 && threshCGPA > 0)
+                  {
+                    break;
+                  }
+                  else
+                  {
+                    cout << "Please enter a valid CGPA" << endl;
+                  }
                 }
               }
-              cout << "Please enter minimum Research Score" << endl
+              cout << "Would you like to scort by research score? Use Y/N (yes or no) to proceed." << endl
                    << ">> ";
-              while (true)
+              cin >> checkRSCORE;
+              if (checkRSCORE == "Y" || checkRSCORE == "y" || checkRSCORE == "YES" || checkRSCORE == "yes" || checkRSCORE == "Yes") // Various forms of the so called term "yes" to agree to the terms of exiting the program
               {
-                tempNum = Get_Number();
-                if (tempNum <= 100 && tempNum >= 0)
+                ASKRScore = true;
+              }
+              else if (checkRSCORE == "N" || checkRSCORE == "n" || checkRSCORE == "NO" || checkRSCORE == "no" || checkRSCORE == "No")
+              {
+                ASKRScore = false;
+              }
+              if (ASKRScore)
+              {
+                cout << "Please enter minimum Research Score" << endl
+                     << ">> ";
+                while (true)
                 {
-                  threshRS = tempNum;
-                  break;
-                }
-                else
-                {
-                  cout << "Please enter a valid Research Score" << endl;
+                  cin.clear();
+                  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                  tempNum = Get_Number();
+                  if (tempNum <= 100 && tempNum >= 0)
+                  {
+                    threshRS = tempNum;
+                    break;
+                  }
+                  else
+                  {
+                    cout << "Please enter a valid Research Score" << endl;
+                  }
                 }
               }
               cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
@@ -1344,7 +1390,20 @@ int main() // main function
               cout << setw(6) << left << "RS: ";
               cout << setw(4) << left << "Type: ";
               cout << endl;
-              StuHead->threshold(StuHead, threshCGPA, threshRS);
+              if (ASKcgpa && ASKRScore)
+              {
+                StuHead->threshold(StuHead, threshCGPA, threshRS);
+              }
+              else if (ASKcgpa && !ASKRScore)
+              {
+                StuHead->threshold(StuHead, threshCGPA, threshRS);
+              }
+              else if (!ASKcgpa && ASKRScore)
+              {
+                StuHead->threshold(StuHead, threshCGPA, threshRS);
+              }
+              cin.clear();
+              cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
 
             if (menu_selector == 11) // exit program prommpt
