@@ -347,3 +347,17 @@ void DomesticStudentList::threshold(DomesticStudentList *Stu, float CGPA_VALUE) 
     for (int i = 0; i < storeStu.size(); i++)
         cout << storeStu.at(i) << ' ';
 }
+
+void DomesticStudentList::deleteList(DomesticStudentList **head_ref)
+{
+    DomesticStudentList *currentNode = *head_ref;
+    DomesticStudentList *next = NULL;
+
+    while (currentNode != NULL)
+    {
+        next = currentNode->next;
+        free(currentNode);
+        currentNode = next;
+    }
+    *head_ref = nullptr;
+}

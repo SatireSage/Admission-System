@@ -29,6 +29,7 @@ public:
     void printDom(DomesticStudentList *node);
     void deleteDomHD(DomesticStudentList **head_ref);
     void updateDomHD(DomesticStudentList **head_ref);
+    void deleteList(DomesticStudentList **head_ref);
 };
 
 #endif

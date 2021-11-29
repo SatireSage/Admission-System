@@ -1,10 +1,8 @@
-// main.cpp, put your driver code here,
-// you can manipulate your class objects here
-#include <iostream> //cin and cout
-#include <fstream>  //file processing
-#include <sstream>  //formatted string processing
-#include <cstdlib>
-// atof and atoi
+// 251 Final Project Fall 2021 - main.cpp
+#include <iostream>  //cin and cout
+#include <fstream>   //file processing
+#include <sstream>   //formatted string processing
+#include <cstdlib>   // atof and atoi
 #include <iomanip>   // formatting
 #include <limits>    //numeric limit
 #include <algorithm> // for std::find
@@ -368,13 +366,14 @@ int main() // main function
 
           while (true) // menu system
           {
-            int menu_selector = 0; // resets menu selection value to 0 when loop begins
+            int menu_selector = 12; // resets menu selection value to 0 when loop begins
 
-            if (menu_selector == 0) // main menu
+            if (menu_selector == 12) // main menu
             {
               cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
               cout << "Welcome to 251 Interim Project! Please select one of the following menu options:\n"
                    << "Please select one of the folowing:\n"
+                   << "Select 0:  to sort All Students \n"
                    << "Select 1:  to sort Domestic Students\n"
                    << "Select 2:  to sort International Students\n"
                    << "Select 3:  to sort All Students (Based on Research Score and CGPA only)\n"
@@ -390,12 +389,12 @@ int main() // main function
               menu_selector = Get_Number(); // get user_input
               cout << "-----------------------------------------------------------------------------------------------------------------------\n";
             }
-            if (menu_selector < 1 || menu_selector > 10)
+            if (menu_selector < 0 || menu_selector > 12)
             {
               cout << "You have selected an invalid menu option. Returning to main menu.\n"; // If user selects invalid menu slection, print error and return to menu
             }
 
-            if (menu_selector == 1 || menu_selector == 2) // allows user to select which sorting method to sort students by
+            if (menu_selector == 0 || menu_selector == 1 || menu_selector == 2) // allows user to select which sorting method to sort students by
             {
               bool check = true;
               char user_input;
@@ -405,6 +404,10 @@ int main() // main function
                 cout << "Please enter what you would like to sort by:\n"
                      << "Please select one of the folowing:\n"
                      << "First Name: F, Last Name: L, CGPA: G, Research Score: R, ";
+                if (menu_selector == 0) // uses type in the case of all students
+                {
+                  cout << "Type: T";
+                }
                 if (menu_selector == 1) // uses province in the case of domestic students
                 {
                   cout << "Province: P";
@@ -415,6 +418,20 @@ int main() // main function
                 }
                 cout << "\n>> ";
                 cin >> user_selector;
+                if (menu_selector == 0) // user input to select which option, case insensitive
+                {
+                  if (user_selector == 'F' || user_selector == 'f' || user_selector == 'L' || user_selector == 'l' || user_selector == 'G' || user_selector == 'g' || user_selector == 'R' || user_selector == 'r' || user_selector == 'T' || user_selector == 't')
+                  {
+                    check = false;
+                    user_input = user_selector;
+                    break;
+                  }
+                  else
+                  {
+                    cout << "\nPlease select the appropriate character only:\n";
+                    check = true;
+                  }
+                }
                 if (menu_selector == 1) // user input to select which option, case insensitive
                 {
                   if (user_selector == 'F' || user_selector == 'f' || user_selector == 'L' || user_selector == 'l' || user_selector == 'G' || user_selector == 'g' || user_selector == 'R' || user_selector == 'r' || user_selector == 'P' || user_selector == 'p')
@@ -443,6 +460,20 @@ int main() // main function
                     check = true;
                   }
                 }
+              }
+              if (menu_selector == 0) // selects students
+              {
+
+                MergeSortAll(&StuHead, user_input);
+                StuHead->updateMergeHD(&StuHead);
+                cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
+                cout << "\nAll Sorted Students:\n\n";
+                cout << setw(12) << left << "UID: ";
+                cout << setw(14) << left << "First Name: "
+                     << " " << setw(17) << left << "Last Name: ";
+                cout << setw(10) << left << "CGPA: ";
+                cout << setw(6) << left << "RS: " << endl;
+                StuHead->printMerge(StuHead);
               }
               if (menu_selector == 1) // selects domestic students
               {
@@ -522,13 +553,16 @@ int main() // main function
                 float cgpaDom;
                 int rsDom;
                 string Provinces[] = {"NL", "PE", "NS", "NB", "QC", "ON", "MB", "SK", "AB", "BC", "YT", "NT", "NU"};
-                cout << "Please enter first name" << endl;
+                cout << "Please enter first name" << endl
+                     << ">> ";
                 cin >> userString;
                 firstNameVal = userString;
-                cout << "Please enter last name" << endl;
+                cout << "Please enter last name" << endl
+                     << ">> ";
                 cin >> userString;
                 lastNameVal = userString;
-                cout << "Please enter province" << endl;
+                cout << "Please enter province" << endl
+                     << ">> ";
 
                 while (true)
                 {
@@ -545,7 +579,8 @@ int main() // main function
                 }
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Please enter CGPA" << endl;
+                cout << "Please enter CGPA" << endl
+                     << ">> ";
                 while (true)
                 {
                   double tempDouble;
@@ -559,7 +594,8 @@ int main() // main function
                   cout << "Please enter a valid CGPA" << endl;
                 }
                 check = false;
-                cout << "Please enter research score" << endl;
+                cout << "Please enter research score" << endl
+                     << ">> ";
                 while (check != true)
                 {
                   tempNum = Get_Number();
@@ -589,15 +625,18 @@ int main() // main function
                 string userString, firstInt, lastInt, typeVal, countryVal;
                 float cgpaInt;
                 string Countries[] = {"canada", "china", "india", "iran", "korea"};
-                cout << "Please enter first name" << endl;
+                cout << "Please enter first name" << endl
+                     << ">> ";
                 cin >> userString;
                 firstInt = userString;
                 // NewStudentInt.setFirstName(userString);
-                cout << "Please enter last name" << endl;
+                cout << "Please enter last name" << endl
+                     << ">> ";
                 cin >> userString;
                 lastInt = userString;
                 // NewStudentInt.setLastName(userString);
-                cout << "Please enter country" << endl;
+                cout << "Please enter country" << endl
+                     << ">> ";
                 while (true)
                 {
                   cin >> userString;
@@ -623,7 +662,8 @@ int main() // main function
                 }
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Please enter CGPA" << endl;
+                cout << "Please enter CGPA" << endl
+                     << ">> ";
                 while (check != true)
                 {
                   double tempDouble;
@@ -640,7 +680,8 @@ int main() // main function
                   }
                 }
                 check = false;
-                cout << "Please enter research score" << endl;
+                cout << "Please enter research score" << endl
+                     << ">> ";
                 while (check != true)
                 {
                   tempNum = Get_Number();
@@ -656,7 +697,8 @@ int main() // main function
                   }
                 }
                 check = false;
-                cout << "Please enter reading score" << endl;
+                cout << "Please enter reading score" << endl
+                     << ">> ";
                 while (check != true)
                 {
                   tempNum = Get_Number();
@@ -672,7 +714,8 @@ int main() // main function
                   }
                 }
                 check = false;
-                cout << "Please enter listening score" << endl;
+                cout << "Please enter listening score" << endl
+                     << ">> ";
                 while (check != true)
                 {
                   tempNum = Get_Number();
@@ -688,7 +731,8 @@ int main() // main function
                   }
                 }
                 check = false;
-                cout << "Please enter speaking score" << endl;
+                cout << "Please enter speaking score" << endl
+                     << ">> ";
                 while (check != true)
                 {
                   tempNum = Get_Number();
@@ -704,7 +748,8 @@ int main() // main function
                   }
                 }
                 check = false;
-                cout << "Please enter writing score" << endl;
+                cout << "Please enter writing score" << endl
+                     << ">> ";
                 while (check != true)
                 {
                   tempNum = Get_Number();
@@ -765,9 +810,11 @@ int main() // main function
                 goto DEL_CHOICE;
               }
               string first, last;
-              cout << "Please enter first name of student you want to delete" << endl;
+              cout << "Please enter first name of student you want to delete" << endl
+                   << ">> ";
               cin >> first;
-              cout << "Please enter last name" << endl;
+              cout << "Please enter last name" << endl
+                   << ">> ";
               cin >> last;
               if (delMenu == 1)
               {
@@ -896,9 +943,11 @@ int main() // main function
               if (subMenu == 1)
               {
                 string userFirst, userLast;
-                cout << "Please enter first name" << endl;
+                cout << "Please enter first name" << endl
+                     << ">> ";
                 cin >> userFirst;
-                cout << "Please enter last name" << endl;
+                cout << "Please enter last name" << endl
+                     << ">> ";
                 cin >> userLast;
                 cout << endl;
                 cin.clear();
@@ -933,7 +982,8 @@ int main() // main function
               if (subMenu == 2)
               {
                 float cgpaSearch;
-                cout << "Please enter CGPA" << endl;
+                cout << "Please enter CGPA" << endl
+                     << ">> ";
                 while (true)
                 {
                   double tempDouble;
@@ -978,7 +1028,8 @@ int main() // main function
               if (subMenu == 3)
               {
                 int tempNum;
-                cout << "Please enter research score" << endl;
+                cout << "Please enter research score" << endl
+                     << ">> ";
                 while (true)
                 {
                   tempNum = Get_Number();
@@ -1014,14 +1065,15 @@ int main() // main function
                   }
                   else
                   {
-                    cout << "Please enter a valid reading score" << endl;
+                    cout << "Please enter a valid score" << endl;
                   }
                 }
               }
               if (subMenu == 4)
               {
                 int tempNum;
-                cout << "Please enter UID" << endl;
+                cout << "Please enter UID" << endl
+                     << ">> ";
                 tempNum = Get_Number();
                 if (delMenu == 1)
                 {
@@ -1252,7 +1304,8 @@ int main() // main function
             {
               int threshRS, tempNum;
               double threshCGPA;
-              cout << "Please enter minimum CGPA" << endl;
+              cout << "Please enter minimum CGPA" << endl
+                   << ">> ";
               while (true)
               {
                 double tempDouble;
@@ -1267,7 +1320,8 @@ int main() // main function
                   cout << "Please enter a valid CGPA" << endl;
                 }
               }
-              cout << "Please enter minimum Research Score" << endl;
+              cout << "Please enter minimum Research Score" << endl
+                   << ">> ";
               while (true)
               {
                 tempNum = Get_Number();
@@ -1282,7 +1336,7 @@ int main() // main function
                 }
               }
               cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
-              cout << "\nAll rejected International Students:\n\n";
+              cout << "\nAll students accepted based on the threshold:\n\n";
               cout << setw(12) << left << "UID: ";
               cout << setw(14) << left << "First Name: "
                    << " " << setw(17) << left << "Last Name: ";
@@ -1301,6 +1355,11 @@ int main() // main function
               if (exitCheck == "Y" || exitCheck == "y" || exitCheck == "YES" || exitCheck == "yes" || exitCheck == "Yes") // Various forms of the so called term "yes" to agree to the terms of exiting the program
               {
                 cout << "Exiting Script after cleaning up files!";
+                StuHead->deleteList(&StuHead);
+                DomHead->deleteList(&DomHead);
+                IntHead->deleteList(&IntHead);
+                IntHeadFiltered->deleteList(&IntHeadFiltered);
+                IntHeadRejected->deleteList(&IntHeadRejected);
                 cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
                 break;
               }

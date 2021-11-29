@@ -407,3 +407,17 @@ string IntFindType(InternationalStudentList *Stu, string FirstName, string LastN
     // for (int i = 0; i < storeInt.size(); i++)
     //     cout << " " << storeInt.at(i);
 }
+
+void InternationalStudentList::deleteList(InternationalStudentList **head_ref)
+{
+    InternationalStudentList *currentNode = *head_ref;
+    InternationalStudentList *next = NULL;
+
+    while (currentNode != NULL)
+    {
+        next = currentNode->next;
+        free(currentNode);
+        currentNode = next;
+    }
+    *head_ref = nullptr;
+}

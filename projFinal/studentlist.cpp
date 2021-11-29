@@ -1,5 +1,6 @@
 // studentlist.cpp to implement your classes
 #include "studentlist.hpp"
+#include "stu_sort.hpp"
 #include <iomanip>
 #include <iostream>
 #include <vector>
@@ -224,7 +225,7 @@ void StudentList::threshold(StudentList *Stu, float CGPA_VALUE, int researchScor
     int storeRScore;
     float storeCGPA;
     StudentList *current;
-    vector<Student> storeStu;
+    StudentList *storeStu = nullptr;
 
     if (Stu == nullptr)
     {
@@ -239,24 +240,28 @@ void StudentList::threshold(StudentList *Stu, float CGPA_VALUE, int researchScor
             storeCGPA = current->Students.getCGPA();
             if (CGPA_VALUE <= storeCGPA && researchScore_VALUE <= storeRScore)
             {
-                storeStu.push_back(current->Students);
+                storeStu->appendMerge(&storeStu, current->Students);
             }
             current = current->next;
         }
     }
 
-    if (storeStu.size() == 0)
+    if (storeStu == nullptr)
+    {
         cout << "No such student found." << endl;
-
-    for (int i = 0; i < storeStu.size(); i++)
-        cout << " " << storeStu.at(i);
+    }
+    else
+    {
+        MergeSortAll(&storeStu);
+        printMerge(storeStu);
+    }
 }
 
 void StudentList::threshold(StudentList *Stu, int researchScore_VALUE) // O(n) time complexity
 {
     int storeRScore;
     StudentList *current;
-    vector<Student> storeStu;
+    StudentList *storeStu = nullptr;
 
     if (Stu == nullptr)
     {
@@ -270,24 +275,28 @@ void StudentList::threshold(StudentList *Stu, int researchScore_VALUE) // O(n) t
             storeRScore = current->Students.getResearchScore();
             if (researchScore_VALUE <= storeRScore)
             {
-                storeStu.push_back(current->Students);
+                storeStu->appendMerge(&storeStu, current->Students);
             }
             current = current->next;
         }
     }
 
-    if (storeStu.size() == 0)
+    if (storeStu == nullptr)
+    {
         cout << "No such student found." << endl;
-
-    for (int i = 0; i < storeStu.size(); i++)
-        cout << storeStu.at(i) << ' ';
+    }
+    else
+    {
+        MergeSortAll(&storeStu);
+        printMerge(storeStu);
+    }
 }
 
 void StudentList::threshold(StudentList *Stu, float CGPA_VALUE) // O(n) time complexity
 {
     float storeCGPA;
     StudentList *current;
-    vector<Student> storeStu;
+    StudentList *storeStu = nullptr;
 
     if (Stu == nullptr)
     {
@@ -301,17 +310,21 @@ void StudentList::threshold(StudentList *Stu, float CGPA_VALUE) // O(n) time com
             storeCGPA = current->Students.getCGPA();
             if (CGPA_VALUE <= storeCGPA)
             {
-                storeStu.push_back(current->Students);
+                storeStu->appendMerge(&storeStu, current->Students);
             }
             current = current->next;
         }
     }
 
-    if (storeStu.size() == 0)
+    if (storeStu == nullptr)
+    {
         cout << "No such student found." << endl;
-
-    for (int i = 0; i < storeStu.size(); i++)
-        cout << storeStu.at(i) << ' ';
+    }
+    else
+    {
+        MergeSortAll(&storeStu);
+        printMerge(storeStu);
+    }
 }
 
 void StudentList::printMerge(StudentList *node) // O(n) time complexity
@@ -347,4 +360,18 @@ void StudentList::updateMergeHD(StudentList **head_ref) // O(n) time complexity
     while (last->next != NULL)
         last = last->next;
     (*head_ref)->tail = last;
+}
+
+void StudentList::deleteList(StudentList **head_ref)
+{
+    StudentList *currentNode = *head_ref;
+    StudentList *next = NULL;
+
+    while (currentNode != NULL)
+    {
+        next = currentNode->next;
+        free(currentNode);
+        currentNode = next;
+    }
+    *head_ref = nullptr;
 }

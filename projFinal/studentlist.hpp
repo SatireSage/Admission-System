@@ -31,6 +31,7 @@ public:
     void printMerge(StudentList *node);
     void deleteMergeHD(StudentList **head_ref);
     void updateMergeHD(StudentList **head_ref);
+    void deleteList(StudentList **head_ref);
 };
 
 #endif

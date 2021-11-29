@@ -30,6 +30,7 @@ public:
     void printInt(InternationalStudentList *node);
     void deleteIntHD(InternationalStudentList **head_ref);
     void updateIntHD(InternationalStudentList **head_ref);
+    void deleteList(InternationalStudentList **head_ref);
 };
 
 #endif
