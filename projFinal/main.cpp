@@ -1314,6 +1314,21 @@ int main() // main function
 
             if (menu_selector == 10)
             {
+            THRESH_CHOICE:
+              int threshMenu;
+              cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
+              cout << "Please select one of the following:\n"
+                   << "Select 1: to search Domestic Student\n"
+                   << "Select 2: to seatch International Student\n"
+                   << "Select 3: to seatch all Students\n"
+                   << ">> ";
+              threshMenu = Get_Number();
+              if (threshMenu != 1 && threshMenu != 2 && threshMenu != 3)
+              {
+                cout << "You have selected an invalid menu option. Returning to selection.\n"; // If user selects invalid menu slection, print error and return to menu
+                goto THRESH_CHOICE;
+              }
+            ASKOne:
               bool ASKcgpa = false, ASKRScore = false;
               string checkCGPA, checkRSCORE;
               int threshRS, tempNum;
@@ -1325,10 +1340,15 @@ int main() // main function
               {
                 ASKcgpa = true;
               }
-              if (checkCGPA == "N" || checkCGPA == "n" || checkCGPA == "NO" || checkCGPA == "no" || checkCGPA == "No")
+              else if (checkCGPA == "N" || checkCGPA == "n" || checkCGPA == "NO" || checkCGPA == "no" || checkCGPA == "No")
               {
                 ASKcgpa = false;
               }
+              else
+              {
+                goto ASKOne;
+              }
+
               if (ASKcgpa)
               {
                 cout << "Please enter minimum CGPA" << endl
@@ -1361,6 +1381,11 @@ int main() // main function
               {
                 ASKRScore = false;
               }
+              else
+              {
+                goto ASKOne;
+              }
+
               if (ASKRScore)
               {
                 cout << "Please enter minimum Research Score" << endl
@@ -1392,15 +1417,48 @@ int main() // main function
               cout << endl;
               if (ASKcgpa && ASKRScore)
               {
-                StuHead->threshold(StuHead, threshCGPA, threshRS);
+                if (threshMenu == 1)
+                {
+                  DomHead->threshold(DomHead, threshCGPA, threshRS);
+                }
+                else if (threshMenu == 2)
+                {
+                  IntHeadFiltered->threshold(IntHeadFiltered, threshCGPA, threshRS);
+                }
+                else if (threshMenu == 3)
+                {
+                  StuHead->threshold(StuHead, threshCGPA, threshRS);
+                }
               }
               else if (ASKcgpa && !ASKRScore)
               {
-                StuHead->threshold(StuHead, threshCGPA, threshRS);
+                if (threshMenu == 1)
+                {
+                  DomHead->threshold(DomHead, threshCGPA, threshRS);
+                }
+                else if (threshMenu == 2)
+                {
+                  IntHeadFiltered->threshold(IntHeadFiltered, threshCGPA, threshRS);
+                }
+                else if (threshMenu == 3)
+                {
+                  StuHead->threshold(StuHead, threshCGPA, threshRS);
+                }
               }
               else if (!ASKcgpa && ASKRScore)
               {
-                StuHead->threshold(StuHead, threshCGPA, threshRS);
+                if (threshMenu == 1)
+                {
+                  DomHead->threshold(DomHead, threshRS);
+                }
+                else if (threshMenu == 2)
+                {
+                  IntHeadFiltered->threshold(IntHeadFiltered, threshRS);
+                }
+                else if (threshMenu == 3)
+                {
+                  StuHead->threshold(StuHead, threshRS);
+                }
               }
               cin.clear();
               cin.ignore(numeric_limits<streamsize>::max(), '\n');

@@ -1,5 +1,6 @@
 // domesticstudentlist.cpp to implement your classes
 #include "domesticstudentlist.hpp"
+#include "stu_sort.hpp"
 #include <iomanip>
 #include <iostream>
 #include <vector>
@@ -258,7 +259,7 @@ void DomesticStudentList::threshold(DomesticStudentList *Stu, float CGPA_VALUE, 
     int storeRScore;
     float storeCGPA;
     DomesticStudentList *current;
-    vector<Student> storeStu;
+    DomesticStudentList *storeStu = nullptr;
 
     if (Stu == nullptr)
     {
@@ -273,24 +274,28 @@ void DomesticStudentList::threshold(DomesticStudentList *Stu, float CGPA_VALUE, 
             storeCGPA = current->domesticStudent.getCGPA();
             if (CGPA_VALUE <= storeCGPA && researchScore_VALUE <= storeRScore)
             {
-                storeStu.push_back(current->domesticStudent);
+                storeStu->appendDom(&storeStu, current->domesticStudent);
             }
             current = current->next;
         }
     }
 
-    if (storeStu.size() == 0)
+    if (storeStu == nullptr)
+    {
         cout << "No such student found." << endl;
-
-    for (int i = 0; i < storeStu.size(); i++)
-        cout << storeStu.at(i) << ' ';
+    }
+    else
+    {
+        MergeSortDom(&storeStu);
+        printDom(storeStu);
+    }
 }
 
 void DomesticStudentList::threshold(DomesticStudentList *Stu, int researchScore_VALUE) // O(n) time complexity
 {
     int storeRScore;
     DomesticStudentList *current;
-    vector<Student> storeStu;
+    DomesticStudentList *storeStu = nullptr;
 
     if (Stu == nullptr)
     {
@@ -304,24 +309,28 @@ void DomesticStudentList::threshold(DomesticStudentList *Stu, int researchScore_
             storeRScore = current->domesticStudent.getResearchScore();
             if (researchScore_VALUE <= storeRScore)
             {
-                storeStu.push_back(current->domesticStudent);
+                storeStu->appendDom(&storeStu, current->domesticStudent);
             }
             current = current->next;
         }
     }
 
-    if (storeStu.size() == 0)
+    if (storeStu == nullptr)
+    {
         cout << "No such student found." << endl;
-
-    for (int i = 0; i < storeStu.size(); i++)
-        cout << storeStu.at(i) << ' ';
+    }
+    else
+    {
+        MergeSortDom(&storeStu);
+        printDom(storeStu);
+    }
 }
 
 void DomesticStudentList::threshold(DomesticStudentList *Stu, float CGPA_VALUE) // O(n) time complexity
 {
     float storeCGPA;
     DomesticStudentList *current;
-    vector<Student> storeStu;
+    DomesticStudentList *storeStu = nullptr;
 
     if (Stu == nullptr)
     {
@@ -335,17 +344,21 @@ void DomesticStudentList::threshold(DomesticStudentList *Stu, float CGPA_VALUE) 
             storeCGPA = current->domesticStudent.getCGPA();
             if (CGPA_VALUE <= storeCGPA)
             {
-                storeStu.push_back(current->domesticStudent);
+                storeStu->appendDom(&storeStu, current->domesticStudent);
             }
             current = current->next;
         }
     }
 
-    if (storeStu.size() == 0)
+    if (storeStu == nullptr)
+    {
         cout << "No such student found." << endl;
-
-    for (int i = 0; i < storeStu.size(); i++)
-        cout << storeStu.at(i) << ' ';
+    }
+    else
+    {
+        MergeSortDom(&storeStu);
+        printDom(storeStu);
+    }
 }
 
 void DomesticStudentList::deleteList(DomesticStudentList **head_ref)

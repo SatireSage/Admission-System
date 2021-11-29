@@ -1,5 +1,6 @@
 // internationalstudentlist.cpp to implement your classes
 #include "internationalstudentlist.hpp"
+#include "stu_sort.hpp"
 #include <iomanip>
 #include <iostream>
 #include <vector>
@@ -260,7 +261,7 @@ void InternationalStudentList::threshold(InternationalStudentList *Stu, float CG
     int storeRScore;
     float storeCGPA;
     InternationalStudentList *current;
-    vector<Student> storeStu;
+    InternationalStudentList *storeStu = nullptr;
 
     if (Stu == nullptr)
     {
@@ -275,24 +276,28 @@ void InternationalStudentList::threshold(InternationalStudentList *Stu, float CG
             storeCGPA = current->internationalStudent.getCGPA();
             if (CGPA_VALUE <= storeCGPA && researchScore_VALUE <= storeRScore)
             {
-                storeStu.push_back(current->internationalStudent);
+                storeStu->appendInt(&storeStu, current->internationalStudent);
             }
             current = current->next;
         }
     }
 
-    if (storeStu.size() == 0)
+    if (storeStu == nullptr)
+    {
         cout << "No such student found." << endl;
-
-    for (int i = 0; i < storeStu.size(); i++)
-        cout << storeStu.at(i) << ' ';
+    }
+    else
+    {
+        MergeSortInt(&storeStu);
+        printInt(storeStu);
+    }
 }
 
 void InternationalStudentList::threshold(InternationalStudentList *Stu, int researchScore_VALUE) // O(n) time complexity
 {
     int storeRScore;
     InternationalStudentList *current;
-    vector<Student> storeStu;
+    InternationalStudentList *storeStu = nullptr;
 
     if (Stu == nullptr)
     {
@@ -306,24 +311,28 @@ void InternationalStudentList::threshold(InternationalStudentList *Stu, int rese
             storeRScore = current->internationalStudent.getResearchScore();
             if (researchScore_VALUE <= storeRScore)
             {
-                storeStu.push_back(current->internationalStudent);
+                storeStu->appendInt(&storeStu, current->internationalStudent);
             }
             current = current->next;
         }
     }
 
-    if (storeStu.size() == 0)
+    if (storeStu == nullptr)
+    {
         cout << "No such student found." << endl;
-
-    for (int i = 0; i < storeStu.size(); i++)
-        cout << storeStu.at(i) << ' ';
+    }
+    else
+    {
+        MergeSortInt(&storeStu);
+        printInt(storeStu);
+    }
 }
 
 void InternationalStudentList::threshold(InternationalStudentList *Stu, float CGPA_VALUE) // O(n) time complexity
 {
     float storeCGPA;
     InternationalStudentList *current;
-    vector<Student> storeStu;
+    InternationalStudentList *storeStu = nullptr;
 
     if (Stu == nullptr)
     {
@@ -337,17 +346,21 @@ void InternationalStudentList::threshold(InternationalStudentList *Stu, float CG
             storeCGPA = current->internationalStudent.getCGPA();
             if (CGPA_VALUE <= storeCGPA)
             {
-                storeStu.push_back(current->internationalStudent);
+                storeStu->appendInt(&storeStu, current->internationalStudent);
             }
             current = current->next;
         }
     }
 
-    if (storeStu.size() == 0)
+    if (storeStu == nullptr)
+    {
         cout << "No such student found." << endl;
-
-    for (int i = 0; i < storeStu.size(); i++)
-        cout << storeStu.at(i) << ' ';
+    }
+    else
+    {
+        MergeSortInt(&storeStu);
+        printInt(storeStu);
+    }
 }
 
 string IntFindType(InternationalStudentList *Stu, string FirstName, string LastName) // O(n^2) time complexity
