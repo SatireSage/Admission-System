@@ -3,9 +3,9 @@
 
 //----------------------------------------------Domestic-----------------------------------------
 // Single Sort Functions
-void MergeSortDom(DomesticStudentList **headRef, char type)//O(n^3) time complexity
+void MergeSortDom(DomesticStudentList **headNode, char type) // O(n^3) time complexity
 {
-    DomesticStudentList *head = *headRef;
+    DomesticStudentList *head = *headNode;
     DomesticStudentList *stu1;
     DomesticStudentList *stu2;
 
@@ -15,14 +15,14 @@ void MergeSortDom(DomesticStudentList **headRef, char type)//O(n^3) time complex
         MergeSortDom(&stu1, type);
         MergeSortDom(&stu2, type);
 
-        *headRef = SortedMergeDom(stu1, stu2, type);
+        *headNode = SortedMergeDom(stu1, stu2, type);
     }
 }
 
 // Single Sort Functions
-void MergeSortDom(DomesticStudentList **headRef)//O(n^3) time complexity
+void MergeSortDom(DomesticStudentList **headNode) // O(n^3) time complexity
 {
-    DomesticStudentList *head = *headRef;
+    DomesticStudentList *head = *headNode;
     DomesticStudentList *stu1;
     DomesticStudentList *stu2;
 
@@ -32,11 +32,11 @@ void MergeSortDom(DomesticStudentList **headRef)//O(n^3) time complexity
         MergeSortDom(&stu1);
         MergeSortDom(&stu2);
 
-        *headRef = SortedMergeDom(stu1, stu2);
+        *headNode = SortedMergeDom(stu1, stu2);
     }
 }
 
-DomesticStudentList *SortedMergeDom(DomesticStudentList *stu1, DomesticStudentList *stu2, char type)//O(n^2) time complexity
+DomesticStudentList *SortedMergeDom(DomesticStudentList *stu1, DomesticStudentList *stu2, char type) // O(n^2) time complexity
 {
     DomesticStudentList *result = NULL;
 
@@ -61,7 +61,7 @@ DomesticStudentList *SortedMergeDom(DomesticStudentList *stu1, DomesticStudentLi
     return (result);
 }
 
-DomesticStudentList *SortedMergeDom(DomesticStudentList *stu1, DomesticStudentList *stu2)//O(n^2) time complexity
+DomesticStudentList *SortedMergeDom(DomesticStudentList *stu1, DomesticStudentList *stu2) // O(n^2) time complexity
 {
     DomesticStudentList *result = NULL;
 
@@ -97,7 +97,7 @@ DomesticStudentList *SortedMergeDom(DomesticStudentList *stu1, DomesticStudentLi
     return (result);
 }
 
-void FrontBackSplit(DomesticStudentList *source, DomesticStudentList **frontRef, DomesticStudentList **backRef)//O(n) time complexity
+void FrontBackSplit(DomesticStudentList *source, DomesticStudentList **frontRef, DomesticStudentList **backRef) // O(n) time complexity
 {
     DomesticStudentList *first, *second;
     second = source;
@@ -119,9 +119,9 @@ void FrontBackSplit(DomesticStudentList *source, DomesticStudentList **frontRef,
 }
 
 //----------------------------------------------International--------------------------------------------------------
-void MergeSortInt(InternationalStudentList **headRef, char type)//O(n^3) time complexity
+void MergeSortInt(InternationalStudentList **headNode, char type) // O(n^3) time complexity
 {
-    InternationalStudentList *head = *headRef;
+    InternationalStudentList *head = *headNode;
     InternationalStudentList *stu1;
     InternationalStudentList *stu2;
 
@@ -131,13 +131,13 @@ void MergeSortInt(InternationalStudentList **headRef, char type)//O(n^3) time co
         MergeSortInt(&stu1, type);
         MergeSortInt(&stu2, type);
 
-        *headRef = SortedMergeInt(stu1, stu2, type);
+        *headNode = SortedMergeInt(stu1, stu2, type);
     }
 }
 
-void MergeSortInt(InternationalStudentList **headRef)//O(n^3) time complexity
+void MergeSortInt(InternationalStudentList **headNode) // O(n^3) time complexity
 {
-    InternationalStudentList *head = *headRef;
+    InternationalStudentList *head = *headNode;
     InternationalStudentList *stu1;
     InternationalStudentList *stu2;
 
@@ -147,11 +147,11 @@ void MergeSortInt(InternationalStudentList **headRef)//O(n^3) time complexity
         MergeSortInt(&stu1);
         MergeSortInt(&stu2);
 
-        *headRef = SortedMergeInt(stu1, stu2);
+        *headNode = SortedMergeInt(stu1, stu2);
     }
 }
 
-InternationalStudentList *SortedMergeInt(InternationalStudentList *stu1, InternationalStudentList *stu2, char type)//O(n^2) time complexity
+InternationalStudentList *SortedMergeInt(InternationalStudentList *stu1, InternationalStudentList *stu2, char type) // O(n^2) time complexity
 {
     InternationalStudentList *result = NULL;
 
@@ -177,7 +177,7 @@ InternationalStudentList *SortedMergeInt(InternationalStudentList *stu1, Interna
     return (result);
 }
 
-InternationalStudentList *SortedMergeInt(InternationalStudentList *stu1, InternationalStudentList *stu2)//O(n^2) time complexity
+InternationalStudentList *SortedMergeInt(InternationalStudentList *stu1, InternationalStudentList *stu2) // O(n^2) time complexity
 {
     InternationalStudentList *result = NULL;
 
@@ -213,7 +213,7 @@ InternationalStudentList *SortedMergeInt(InternationalStudentList *stu1, Interna
     return (result);
 }
 
-void FrontBackSplit(InternationalStudentList *source, InternationalStudentList **frontRef, InternationalStudentList **backRef)//O(n) time complexity
+void FrontBackSplit(InternationalStudentList *source, InternationalStudentList **frontRef, InternationalStudentList **backRef) // O(n) time complexity
 {
     InternationalStudentList *first, *second;
     second = source;
@@ -235,9 +235,9 @@ void FrontBackSplit(InternationalStudentList *source, InternationalStudentList *
 }
 
 //-----------------------------------------------Student List----------------------------------------------------------------
-void MergeSortAll(StudentList **headRef, char type)//O(n^3) time complexity
+void MergeSortAll(StudentList **headNode, char type) // O(n^3) time complexity
 {
-    StudentList *head = *headRef;
+    StudentList *head = *headNode;
     StudentList *stu1;
     StudentList *stu2;
 
@@ -249,12 +249,12 @@ void MergeSortAll(StudentList **headRef, char type)//O(n^3) time complexity
     MergeSortAll(&stu1, type);
     MergeSortAll(&stu2, type);
 
-    *headRef = SortedMergeAll(stu1, stu2, type);
+    *headNode = SortedMergeAll(stu1, stu2, type);
 }
 
-void MergeSortAll(StudentList **headRef)//O(n^3) time complexity
+void MergeSortAll(StudentList **headNode) // O(n^3) time complexity
 {
-    StudentList *head = *headRef;
+    StudentList *head = *headNode;
     StudentList *stu1;
     StudentList *stu2;
 
@@ -264,11 +264,11 @@ void MergeSortAll(StudentList **headRef)//O(n^3) time complexity
         MergeSortAll(&stu1);
         MergeSortAll(&stu2);
 
-        *headRef = SortedMergeAll(stu1, stu2);
+        *headNode = SortedMergeAll(stu1, stu2);
     }
 }
 
-StudentList *SortedMergeAll(StudentList *stu1, StudentList *stu2, char type)//O(n^2) time complexity
+StudentList *SortedMergeAll(StudentList *stu1, StudentList *stu2, char type) // O(n^2) time complexity
 {
     StudentList *result = NULL;
 
@@ -294,7 +294,7 @@ StudentList *SortedMergeAll(StudentList *stu1, StudentList *stu2, char type)//O(
     return (result);
 }
 
-StudentList *SortedMergeAll(StudentList *stu1, StudentList *stu2)//O(n^2) time complexity
+StudentList *SortedMergeAll(StudentList *stu1, StudentList *stu2) // O(n^2) time complexity
 {
     StudentList *result = NULL;
 
@@ -330,7 +330,7 @@ StudentList *SortedMergeAll(StudentList *stu1, StudentList *stu2)//O(n^2) time c
     return (result);
 }
 
-void FrontBackSplit(StudentList *source, StudentList **frontRef, StudentList **backRef)//O(n) time complexity
+void FrontBackSplit(StudentList *source, StudentList **frontRef, StudentList **backRef) // O(n) time complexity
 {
     StudentList *first, *second;
     second = source;

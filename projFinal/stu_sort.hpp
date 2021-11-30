@@ -8,19 +8,19 @@
 #include <string> //you will have to use string in C++
 
 // Multi Sort functions
-void MergeSortDom(DomesticStudentList **headRef);
+void MergeSortDom(DomesticStudentList **headNode);
 DomesticStudentList *SortedMergeDom(DomesticStudentList *stu1, DomesticStudentList *stu2);
-void MergeSortInt(InternationalStudentList **headRef);
+void MergeSortInt(InternationalStudentList **headNode);
 InternationalStudentList *SortedMergeInt(InternationalStudentList *stu1, InternationalStudentList *stu2);
-void MergeSortAll(StudentList **headRef);
+void MergeSortAll(StudentList **headNode);
 StudentList *SortedMergeAll(StudentList *stu1, StudentList *stu2);
 
 // Single Sort functions
-void MergeSortDom(DomesticStudentList **headRef, char type);
+void MergeSortDom(DomesticStudentList **headNode, char type);
 DomesticStudentList *SortedMergeDom(DomesticStudentList *stu1, DomesticStudentList *stu2, char type);
-void MergeSortInt(InternationalStudentList **headRef, char type);
+void MergeSortInt(InternationalStudentList **headNode, char type);
 InternationalStudentList *SortedMergeInt(InternationalStudentList *stu1, InternationalStudentList *stu2, char type);
-void MergeSortAll(StudentList **headRef, char type);
+void MergeSortAll(StudentList **headNode, char type);
 StudentList *SortedMergeAll(StudentList *stu1, StudentList *stu2, char type);
 
 void FrontBackSplit(DomesticStudentList *source,

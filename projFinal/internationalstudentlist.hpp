@@ -26,12 +26,12 @@ public:
     virtual void threshold(InternationalStudentList *Stu, float CGPA_VALUE);
     virtual void threshold(InternationalStudentList *Stu, int researchScore_VALUE);
 
-    void deleteInt(InternationalStudentList **head_ref, string FirstName, string LastName);
-    void appendInt(InternationalStudentList **head_ref, International new_data);
+    void deleteInt(InternationalStudentList **headNode, string FirstName, string LastName);
+    void appendInt(InternationalStudentList **headNode, International new_data);
     void printInt(InternationalStudentList *node);
-    void deleteIntHD(InternationalStudentList **head_ref);
-    void updateIntHD(InternationalStudentList **head_ref);
-    void deleteList(InternationalStudentList **head_ref);
+    void deleteIntHD(InternationalStudentList **headNode);
+    void updateIntHD(InternationalStudentList **headNode);
+    void deleteList(InternationalStudentList **headNode);
 };
 
 #endif

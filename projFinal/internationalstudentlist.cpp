@@ -7,17 +7,17 @@
 #include <vector>
 using namespace std; // use namespace std
 
-void InternationalStudentList::deleteInt(InternationalStudentList **head_ref, string FirstName, string LastName) // O(n) time complexity
+void InternationalStudentList::deleteInt(InternationalStudentList **headNode, string FirstName, string LastName) // O(n) time complexity
 {
     transform(FirstName.begin(), FirstName.end(), FirstName.begin(), ::tolower);
     transform(LastName.begin(), LastName.end(), LastName.begin(), ::tolower);
-    bool exists = (*head_ref)->inList((*head_ref), FirstName, LastName);
+    bool exists = (*headNode)->inList((*headNode), FirstName, LastName);
 
     if (exists == 1)
     {
         for (int i = 0; i < 1; i++)
         {
-            InternationalStudentList *temp = *head_ref;
+            InternationalStudentList *temp = *headNode;
             InternationalStudentList *prev = NULL;
 
             string fname, lname;
@@ -28,14 +28,14 @@ void InternationalStudentList::deleteInt(InternationalStudentList **head_ref, st
 
             if (temp != NULL && fname == FirstName && lname == LastName)
             {
-                *head_ref = temp->next; // Changed head
+                *headNode = temp->next; // Changed head
                 delete temp;            // free old head
 
-                InternationalStudentList *second_last = *head_ref;
+                InternationalStudentList *second_last = *headNode;
                 while (second_last->next != NULL)
                     second_last = second_last->next;
-                (*head_ref)->head = second_last->head;
-                (*head_ref)->tail = second_last;
+                (*headNode)->head = second_last->head;
+                (*headNode)->tail = second_last;
                 return;
             }
 
@@ -56,11 +56,11 @@ void InternationalStudentList::deleteInt(InternationalStudentList **head_ref, st
 
                 prev->next = temp->next;
                 delete temp;
-                InternationalStudentList *second_last = *head_ref;
+                InternationalStudentList *second_last = *headNode;
                 while (second_last->next != NULL)
                     second_last = second_last->next;
-                (*head_ref)->head = temp->head;
-                (*head_ref)->tail = second_last;
+                (*headNode)->head = temp->head;
+                (*headNode)->tail = second_last;
             }
         }
     }
@@ -306,30 +306,30 @@ void InternationalStudentList::printInt(InternationalStudentList *node) // O(n) 
     }
 }
 
-void InternationalStudentList::deleteIntHD(InternationalStudentList **head_ref) // O(n) time complexity
+void InternationalStudentList::deleteIntHD(InternationalStudentList **headNode) // O(n) time complexity
 {
-    if (head_ref == NULL)
+    if (headNode == NULL)
         return;
 
-    deleteInt(&(*head_ref), (*head_ref)->internationalStudent.getFirstName(), (*head_ref)->internationalStudent.getLastName());
+    deleteInt(&(*headNode), (*headNode)->internationalStudent.getFirstName(), (*headNode)->internationalStudent.getLastName());
 
-    InternationalStudentList *second_last = *head_ref;
+    InternationalStudentList *second_last = *headNode;
     while (second_last->next->next != NULL)
         second_last = second_last->next;
 
-    delete (*head_ref)->tail;
-    (*head_ref)->tail = second_last;
-    (*head_ref)->tail->next = NULL;
+    delete (*headNode)->tail;
+    (*headNode)->tail = second_last;
+    (*headNode)->tail->next = NULL;
 }
 
-void InternationalStudentList::updateIntHD(InternationalStudentList **head_ref) // O(n) time complexity
+void InternationalStudentList::updateIntHD(InternationalStudentList **headNode) // O(n) time complexity
 {
-    InternationalStudentList *temp = *head_ref;
-    (*head_ref)->head = temp;
-    InternationalStudentList *last = *head_ref;
+    InternationalStudentList *temp = *headNode;
+    (*headNode)->head = temp;
+    InternationalStudentList *last = *headNode;
     while (last->next != NULL)
         last = last->next;
-    (*head_ref)->tail = last;
+    (*headNode)->tail = last;
 }
 
 void InternationalStudentList::threshold(InternationalStudentList *Stu, float CGPA_VALUE, int researchScore_VALUE) // O(n) time complexity
@@ -497,9 +497,9 @@ string IntFindType(InternationalStudentList *Stu, string FirstName, string LastN
     //     cout << " " << storeInt.at(i);
 }
 
-void InternationalStudentList::deleteList(InternationalStudentList **head_ref)
+void InternationalStudentList::deleteList(InternationalStudentList **headNode)
 {
-    InternationalStudentList *currentNode = *head_ref;
+    InternationalStudentList *currentNode = *headNode;
     InternationalStudentList *next = NULL;
 
     while (currentNode != NULL)
@@ -508,5 +508,5 @@ void InternationalStudentList::deleteList(InternationalStudentList **head_ref)
         free(currentNode);
         currentNode = next;
     }
-    *head_ref = nullptr;
+    *headNode = nullptr;
 }

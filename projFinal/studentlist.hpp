@@ -27,12 +27,12 @@ public:
     void threshold(StudentList *Stu, float CGPA_VALUE);
     void threshold(StudentList *Stu, int researchScore_VALUE);
 
-    void deleteMerge(StudentList **head_ref, string FirstName, string LastName);
-    void appendMerge(StudentList **head_ref, Student new_data);
+    void deleteMerge(StudentList **headNode, string FirstName, string LastName);
+    void appendMerge(StudentList **headNode, Student new_data);
     void printMerge(StudentList *node);
-    void deleteMergeHD(StudentList **head_ref);
-    void updateMergeHD(StudentList **head_ref);
-    void deleteList(StudentList **head_ref);
+    void deleteMergeHD(StudentList **headNode);
+    void updateMergeHD(StudentList **headNode);
+    void deleteList(StudentList **headNode);
 };
 
 #endif

@@ -25,12 +25,12 @@ public:
     virtual void threshold(DomesticStudentList *Stu, float CGPA_VALUE);
     virtual void threshold(DomesticStudentList *Stu, int researchScore_VALUE);
 
-    void deleteDom(DomesticStudentList **head_ref, string FirstName, string LastName);
-    void appendDom(DomesticStudentList **head_ref, Domestic new_data);
+    void deleteDom(DomesticStudentList **headNode, string FirstName, string LastName);
+    void appendDom(DomesticStudentList **headNode, Domestic new_data);
     void printDom(DomesticStudentList *node);
-    void deleteDomHD(DomesticStudentList **head_ref);
-    void updateDomHD(DomesticStudentList **head_ref);
-    void deleteList(DomesticStudentList **head_ref);
+    void deleteDomHD(DomesticStudentList **headNode);
+    void updateDomHD(DomesticStudentList **headNode);
+    void deleteList(DomesticStudentList **headNode);
 };
 
 #endif

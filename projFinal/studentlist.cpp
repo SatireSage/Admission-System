@@ -7,17 +7,17 @@
 #include <vector>
 using namespace std; // use namespace std
 
-void StudentList::deleteMerge(StudentList **head_ref, string FirstName, string LastName) // O(n) time complexity
+void StudentList::deleteMerge(StudentList **headNode, string FirstName, string LastName) // O(n) time complexity
 {
     transform(FirstName.begin(), FirstName.end(), FirstName.begin(), ::tolower);
     transform(LastName.begin(), LastName.end(), LastName.begin(), ::tolower);
-    bool exists = (*head_ref)->inList((*head_ref), FirstName, LastName);
+    bool exists = (*headNode)->inList((*headNode), FirstName, LastName);
 
     if (exists == 1)
     {
         for (int i = 0; i < 1; i++)
         {
-            StudentList *temp = *head_ref;
+            StudentList *temp = *headNode;
             StudentList *prev = NULL;
 
             string fname, lname;
@@ -28,14 +28,14 @@ void StudentList::deleteMerge(StudentList **head_ref, string FirstName, string L
 
             if (temp != NULL && fname == FirstName && lname == LastName)
             {
-                *head_ref = temp->next; // Changed head
+                *headNode = temp->next; // Changed head
                 delete temp;            // free old head
 
-                StudentList *second_last = *head_ref;
+                StudentList *second_last = *headNode;
                 while (second_last->next != NULL)
                     second_last = second_last->next;
-                (*head_ref)->head = second_last->head;
-                (*head_ref)->tail = second_last;
+                (*headNode)->head = second_last->head;
+                (*headNode)->tail = second_last;
                 return;
             }
 
@@ -56,11 +56,11 @@ void StudentList::deleteMerge(StudentList **head_ref, string FirstName, string L
 
                 prev->next = temp->next;
                 delete temp;
-                StudentList *second_last = *head_ref;
+                StudentList *second_last = *headNode;
                 while (second_last->next != NULL)
                     second_last = second_last->next;
-                (*head_ref)->head = second_last->head;
-                (*head_ref)->tail = second_last;
+                (*headNode)->head = second_last->head;
+                (*headNode)->tail = second_last;
             }
         }
     }
@@ -412,35 +412,35 @@ void StudentList::printMerge(StudentList *node) // O(n) time complexity
     }
 }
 
-void StudentList::deleteMergeHD(StudentList **head_ref) // O(n) time complexity
+void StudentList::deleteMergeHD(StudentList **headNode) // O(n) time complexity
 {
-    if (head_ref == NULL)
+    if (headNode == NULL)
         return;
 
-    deleteMerge(&(*head_ref), (*head_ref)->Students.getFirstName(), (*head_ref)->Students.getLastName());
+    deleteMerge(&(*headNode), (*headNode)->Students.getFirstName(), (*headNode)->Students.getLastName());
 
-    StudentList *second_last = *head_ref;
+    StudentList *second_last = *headNode;
     while (second_last->next->next != NULL)
         second_last = second_last->next;
 
-    delete (*head_ref)->tail;
-    (*head_ref)->tail = second_last;
-    (*head_ref)->tail->next = NULL;
+    delete (*headNode)->tail;
+    (*headNode)->tail = second_last;
+    (*headNode)->tail->next = NULL;
 }
 
-void StudentList::updateMergeHD(StudentList **head_ref) // O(n) time complexity
+void StudentList::updateMergeHD(StudentList **headNode) // O(n) time complexity
 {
-    StudentList *temp = *head_ref;
-    (*head_ref)->head = temp;
-    StudentList *last = *head_ref;
+    StudentList *temp = *headNode;
+    (*headNode)->head = temp;
+    StudentList *last = *headNode;
     while (last->next != NULL)
         last = last->next;
-    (*head_ref)->tail = last;
+    (*headNode)->tail = last;
 }
 
-void StudentList::deleteList(StudentList **head_ref)
+void StudentList::deleteList(StudentList **headNode)
 {
-    StudentList *currentNode = *head_ref;
+    StudentList *currentNode = *headNode;
     StudentList *next = NULL;
 
     while (currentNode != NULL)
@@ -449,5 +449,5 @@ void StudentList::deleteList(StudentList **head_ref)
         free(currentNode);
         currentNode = next;
     }
-    *head_ref = nullptr;
+    *headNode = nullptr;
 }

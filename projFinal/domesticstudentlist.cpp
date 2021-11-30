@@ -7,17 +7,17 @@
 #include <vector>
 using namespace std; // use namespace std
 
-void DomesticStudentList::deleteDom(DomesticStudentList **head_ref, string FirstName, string LastName) // O(n) time complexity
+void DomesticStudentList::deleteDom(DomesticStudentList **headNode, string FirstName, string LastName) // O(n) time complexity
 {
     transform(FirstName.begin(), FirstName.end(), FirstName.begin(), ::tolower);
     transform(LastName.begin(), LastName.end(), LastName.begin(), ::tolower);
-    bool exists = (*head_ref)->inList((*head_ref), FirstName, LastName);
+    bool exists = (*headNode)->inList((*headNode), FirstName, LastName);
 
     if (exists == 1)
     {
         for (int i = 0; i < 2; i++)
         {
-            DomesticStudentList *temp = *head_ref;
+            DomesticStudentList *temp = *headNode;
             DomesticStudentList *prev = NULL;
 
             string fname, lname;
@@ -28,14 +28,14 @@ void DomesticStudentList::deleteDom(DomesticStudentList **head_ref, string First
 
             if (temp != NULL && fname == FirstName && lname == LastName)
             {
-                *head_ref = temp->next; // Changed head
+                *headNode = temp->next; // Changed head
                 delete temp;            // free old head
 
-                DomesticStudentList *second_last = *head_ref;
+                DomesticStudentList *second_last = *headNode;
                 while (second_last->next != NULL)
                     second_last = second_last->next;
-                (*head_ref)->head = second_last->head;
-                (*head_ref)->tail = second_last;
+                (*headNode)->head = second_last->head;
+                (*headNode)->tail = second_last;
                 return;
             }
             else
@@ -55,11 +55,11 @@ void DomesticStudentList::deleteDom(DomesticStudentList **head_ref, string First
 
                 prev->next = temp->next;
                 delete temp;
-                DomesticStudentList *second_last = *head_ref;
+                DomesticStudentList *second_last = *headNode;
                 while (second_last->next != NULL)
                     second_last = second_last->next;
-                (*head_ref)->head = temp->head;
-                (*head_ref)->tail = second_last;
+                (*headNode)->head = temp->head;
+                (*headNode)->tail = second_last;
             }
         }
     }
@@ -304,30 +304,30 @@ void DomesticStudentList::printDom(DomesticStudentList *node) // O(n) time compl
     }
 }
 
-void DomesticStudentList::deleteDomHD(DomesticStudentList **head_ref) // O(n) time complexity
+void DomesticStudentList::deleteDomHD(DomesticStudentList **headNode) // O(n) time complexity
 {
-    if (head_ref == NULL)
+    if (headNode == NULL)
         return;
 
-    deleteDom(&(*head_ref), (*head_ref)->domesticStudent.getFirstName(), (*head_ref)->domesticStudent.getLastName());
+    deleteDom(&(*headNode), (*headNode)->domesticStudent.getFirstName(), (*headNode)->domesticStudent.getLastName());
 
-    DomesticStudentList *second_last = *head_ref;
+    DomesticStudentList *second_last = *headNode;
     while (second_last->next->next != NULL)
         second_last = second_last->next;
 
-    delete (*head_ref)->tail;
-    (*head_ref)->tail = second_last;
-    (*head_ref)->tail->next = NULL;
+    delete (*headNode)->tail;
+    (*headNode)->tail = second_last;
+    (*headNode)->tail->next = NULL;
 }
 
-void DomesticStudentList::updateDomHD(DomesticStudentList **head_ref) // O(n) time complexity
+void DomesticStudentList::updateDomHD(DomesticStudentList **headNode) // O(n) time complexity
 {
-    DomesticStudentList *temp = *head_ref;
-    (*head_ref)->head = temp;
-    DomesticStudentList *last = *head_ref;
+    DomesticStudentList *temp = *headNode;
+    (*headNode)->head = temp;
+    DomesticStudentList *last = *headNode;
     while (last->next != NULL)
         last = last->next;
-    (*head_ref)->tail = last;
+    (*headNode)->tail = last;
 }
 
 void DomesticStudentList::threshold(DomesticStudentList *Stu, float CGPA_VALUE, int researchScore_VALUE) // O(n) time complexity
@@ -437,9 +437,9 @@ void DomesticStudentList::threshold(DomesticStudentList *Stu, float CGPA_VALUE) 
     }
 }
 
-void DomesticStudentList::deleteList(DomesticStudentList **head_ref)
+void DomesticStudentList::deleteList(DomesticStudentList **headNode)
 {
-    DomesticStudentList *currentNode = *head_ref;
+    DomesticStudentList *currentNode = *headNode;
     DomesticStudentList *next = NULL;
 
     while (currentNode != NULL)
@@ -448,5 +448,5 @@ void DomesticStudentList::deleteList(DomesticStudentList **head_ref)
         free(currentNode);
         currentNode = next;
     }
-    *head_ref = nullptr;
+    *headNode = nullptr;
 }
