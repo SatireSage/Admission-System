@@ -11,54 +11,62 @@ void InternationalStudentList::deleteInt(InternationalStudentList **head_ref, st
 {
     transform(FirstName.begin(), FirstName.end(), FirstName.begin(), ::tolower);
     transform(LastName.begin(), LastName.end(), LastName.begin(), ::tolower);
+    bool exists = (*head_ref)->inList((*head_ref), FirstName, LastName);
 
-    for (int i = 0; i < 2; i++)
+    if (exists == 1)
     {
-        InternationalStudentList *temp = *head_ref;
-        InternationalStudentList *prev = NULL;
-
-        string fname, lname;
-        fname = temp->internationalStudent.getFirstName();
-        lname = temp->internationalStudent.getLastName();
-        transform(fname.begin(), fname.end(), fname.begin(), ::tolower);
-        transform(lname.begin(), lname.end(), lname.begin(), ::tolower);
-
-        if (temp != NULL && fname == FirstName && lname == LastName)
+        for (int i = 0; i < 2; i++)
         {
-            *head_ref = temp->next; // Changed head
-            delete temp;            // free old head
+            InternationalStudentList *temp = *head_ref;
+            InternationalStudentList *prev = NULL;
 
-            InternationalStudentList *second_last = *head_ref;
-            while (second_last->next != NULL)
-                second_last = second_last->next;
-            (*head_ref)->head = second_last->head;
-            (*head_ref)->tail = second_last;
-            return;
-        }
+            string fname, lname;
+            fname = temp->internationalStudent.getFirstName();
+            lname = temp->internationalStudent.getLastName();
+            transform(fname.begin(), fname.end(), fname.begin(), ::tolower);
+            transform(lname.begin(), lname.end(), lname.begin(), ::tolower);
 
-        else
-        {
-            while (temp != NULL && fname != FirstName && lname != LastName)
+            if (temp != NULL && fname == FirstName && lname == LastName)
             {
-                prev = temp;
-                temp = temp->next;
-                fname = temp->internationalStudent.getFirstName();
-                lname = temp->internationalStudent.getLastName();
-                transform(fname.begin(), fname.end(), fname.begin(), ::tolower);
-                transform(lname.begin(), lname.end(), lname.begin(), ::tolower);
+                *head_ref = temp->next; // Changed head
+                delete temp;            // free old head
+
+                InternationalStudentList *second_last = *head_ref;
+                while (second_last->next != NULL)
+                    second_last = second_last->next;
+                (*head_ref)->head = second_last->head;
+                (*head_ref)->tail = second_last;
+                return;
             }
 
-            if (temp == NULL)
-                return;
+            else
+            {
+                while (temp != NULL && fname != FirstName && lname != LastName)
+                {
+                    prev = temp;
+                    temp = temp->next;
+                    fname = temp->internationalStudent.getFirstName();
+                    lname = temp->internationalStudent.getLastName();
+                    transform(fname.begin(), fname.end(), fname.begin(), ::tolower);
+                    transform(lname.begin(), lname.end(), lname.begin(), ::tolower);
+                }
 
-            prev->next = temp->next;
-            delete temp;
-            InternationalStudentList *second_last = *head_ref;
-            while (second_last->next != NULL)
-                second_last = second_last->next;
-            (*head_ref)->head = temp->head;
-            (*head_ref)->tail = second_last;
+                if (temp == NULL)
+                    return;
+
+                prev->next = temp->next;
+                delete temp;
+                InternationalStudentList *second_last = *head_ref;
+                while (second_last->next != NULL)
+                    second_last = second_last->next;
+                (*head_ref)->head = temp->head;
+                (*head_ref)->tail = second_last;
+            }
         }
+    }
+    else
+    {
+        return;
     }
 }
 
@@ -96,6 +104,57 @@ void InternationalStudentList::appendInt(InternationalStudentList **root, Intern
         std::cout << "Warning: Bad memory allocation!";
         exit(1);
     }
+}
+
+bool InternationalStudentList::inList(InternationalStudentList *Stu, string FirstName, string LastName)
+{
+    bool found;
+    string string1, string2;
+    InternationalStudentList *current;
+    vector<International> storeInt;
+
+    if (Stu == nullptr)
+    {
+        cout << "\n Does not exist.";
+    }
+    else
+    {
+        current = Stu;
+        while (current != NULL)
+        {
+            string1 = current->internationalStudent.getFirstName();
+            string2 = current->internationalStudent.getLastName();
+            for (int i = 0; i < string1.size(); i++)
+                if (string1[i] >= 'a' && string1[i] <= 'z')
+                    string1[i] -= ('a' - 'A');
+            for (int i = 0; i < FirstName.size(); i++)
+                if (FirstName[i] >= 'a' && FirstName[i] <= 'z')
+                    FirstName[i] -= ('a' - 'A');
+            for (int i = 0; i < string2.size(); i++)
+                if (string2[i] >= 'a' && string2[i] <= 'z')
+                    string2[i] -= ('a' - 'A');
+            for (int i = 0; i < LastName.size(); i++)
+                if (LastName[i] >= 'a' && LastName[i] <= 'z')
+                    LastName[i] -= ('a' - 'A');
+            int comparatorFirstName = FirstName.compare(string1);
+            int comparatorLastName = LastName.compare(string2);
+            if ((comparatorFirstName == 0) && (comparatorLastName == 0))
+            {
+                storeInt.push_back(current->internationalStudent);
+            }
+            current = current->next;
+        }
+    }
+
+    if (storeInt.size() == 0)
+    {
+        found = false;
+    }
+    else
+    {
+        found = true;
+    }
+    return found;
 }
 
 void IntFindName(InternationalStudentList *Stu, string FirstName, string LastName) // O(n^2) time complexity

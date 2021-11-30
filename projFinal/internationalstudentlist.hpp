@@ -16,6 +16,7 @@ protected:
     friend void IntFindResearchScore(InternationalStudentList *Stu1, int researchScore_VALUE);
     friend void IntFindUID(InternationalStudentList *Stu1, int UIDValue);
     friend string IntFindType(InternationalStudentList *Stu, string FirstName, string LastName);
+    bool inList(InternationalStudentList *Stu, string FirstName, string LastName);
 
 public:
     International internationalStudent;

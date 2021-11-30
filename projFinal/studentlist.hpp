@@ -17,6 +17,7 @@ protected:
     friend void FindCGPA(StudentList *Stu1, float CGPA_VALUE);
     friend void FindResearchScore(StudentList *Stu1, int researchScore_VALUE);
     friend void FindUID(StudentList *Stu1, int UIDValue);
+    bool inList(StudentList *Stu, string FirstName, string LastName);
 
 public:
     Student Students;

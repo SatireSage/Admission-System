@@ -842,6 +842,7 @@ int main() // main function
               cin >> last;
               if (delMenu == 1)
               {
+                DomFindName(DomHead, first, last);
                 MergeSortDom(&DomHead);
                 DomHead->deleteDom(&DomHead, first, last);
                 MergeSortDom(&DomHead);
@@ -861,6 +862,7 @@ int main() // main function
                 string deleteInt = IntFindType(IntHead, first, last);
                 if (deleteInt != "None")
                 {
+                  IntFindName(IntHead, first, last);
                   MergeSortInt(&IntHead);
                   IntHead->deleteInt(&IntHead, first, last);
                   MergeSortInt(&IntHead);

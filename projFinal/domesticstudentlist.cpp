@@ -11,53 +11,61 @@ void DomesticStudentList::deleteDom(DomesticStudentList **head_ref, string First
 {
     transform(FirstName.begin(), FirstName.end(), FirstName.begin(), ::tolower);
     transform(LastName.begin(), LastName.end(), LastName.begin(), ::tolower);
+    bool exists = (*head_ref)->inList((*head_ref), FirstName, LastName);
 
-    for (int i = 0; i < 2; i++)
+    if (exists == 1)
     {
-        DomesticStudentList *temp = *head_ref;
-        DomesticStudentList *prev = NULL;
-
-        string fname, lname;
-        fname = temp->domesticStudent.getFirstName();
-        lname = temp->domesticStudent.getLastName();
-        transform(fname.begin(), fname.end(), fname.begin(), ::tolower);
-        transform(lname.begin(), lname.end(), lname.begin(), ::tolower);
-
-        if (temp != NULL && fname == FirstName && lname == LastName)
+        for (int i = 0; i < 2; i++)
         {
-            *head_ref = temp->next; // Changed head
-            delete temp;            // free old head
+            DomesticStudentList *temp = *head_ref;
+            DomesticStudentList *prev = NULL;
 
-            DomesticStudentList *second_last = *head_ref;
-            while (second_last->next != NULL)
-                second_last = second_last->next;
-            (*head_ref)->head = second_last->head;
-            (*head_ref)->tail = second_last;
-            return;
-        }
-        else
-        {
-            while (temp != NULL && fname != FirstName && lname != LastName)
+            string fname, lname;
+            fname = temp->domesticStudent.getFirstName();
+            lname = temp->domesticStudent.getLastName();
+            transform(fname.begin(), fname.end(), fname.begin(), ::tolower);
+            transform(lname.begin(), lname.end(), lname.begin(), ::tolower);
+
+            if (temp != NULL && fname == FirstName && lname == LastName)
             {
-                prev = temp;
-                temp = temp->next;
-                fname = temp->domesticStudent.getFirstName();
-                lname = temp->domesticStudent.getLastName();
-                transform(fname.begin(), fname.end(), fname.begin(), ::tolower);
-                transform(lname.begin(), lname.end(), lname.begin(), ::tolower);
-            }
+                *head_ref = temp->next; // Changed head
+                delete temp;            // free old head
 
-            if (temp == NULL)
+                DomesticStudentList *second_last = *head_ref;
+                while (second_last->next != NULL)
+                    second_last = second_last->next;
+                (*head_ref)->head = second_last->head;
+                (*head_ref)->tail = second_last;
                 return;
+            }
+            else
+            {
+                while (temp != NULL && fname != FirstName && lname != LastName)
+                {
+                    prev = temp;
+                    temp = temp->next;
+                    fname = temp->domesticStudent.getFirstName();
+                    lname = temp->domesticStudent.getLastName();
+                    transform(fname.begin(), fname.end(), fname.begin(), ::tolower);
+                    transform(lname.begin(), lname.end(), lname.begin(), ::tolower);
+                }
 
-            prev->next = temp->next;
-            delete temp;
-            DomesticStudentList *second_last = *head_ref;
-            while (second_last->next != NULL)
-                second_last = second_last->next;
-            (*head_ref)->head = temp->head;
-            (*head_ref)->tail = second_last;
+                if (temp == NULL)
+                    return;
+
+                prev->next = temp->next;
+                delete temp;
+                DomesticStudentList *second_last = *head_ref;
+                while (second_last->next != NULL)
+                    second_last = second_last->next;
+                (*head_ref)->head = temp->head;
+                (*head_ref)->tail = second_last;
+            }
         }
+    }
+    else
+    {
+        return;
     }
 }
 
@@ -95,6 +103,57 @@ void DomesticStudentList::appendDom(DomesticStudentList **root, Domestic item) /
         std::cout << "Warning: Bad memory allocation!";
         exit(1);
     }
+}
+
+bool DomesticStudentList::inList(DomesticStudentList *Stu, string FirstName, string LastName)
+{
+    bool found;
+    string string1, string2;
+    DomesticStudentList *current;
+    vector<Domestic> storeDom;
+
+    if (Stu == nullptr)
+    {
+        cout << "\n Does not exist.";
+    }
+    else
+    {
+        current = Stu;
+        while (current != NULL)
+        {
+            string1 = current->domesticStudent.getFirstName();
+            string2 = current->domesticStudent.getLastName();
+            for (int i = 0; i < string1.size(); i++)
+                if (string1[i] >= 'a' && string1[i] <= 'z')
+                    string1[i] -= ('a' - 'A');
+            for (int i = 0; i < FirstName.size(); i++)
+                if (FirstName[i] >= 'a' && FirstName[i] <= 'z')
+                    FirstName[i] -= ('a' - 'A');
+            for (int i = 0; i < string2.size(); i++)
+                if (string2[i] >= 'a' && string2[i] <= 'z')
+                    string2[i] -= ('a' - 'A');
+            for (int i = 0; i < LastName.size(); i++)
+                if (LastName[i] >= 'a' && LastName[i] <= 'z')
+                    LastName[i] -= ('a' - 'A');
+            int comparatorFirstName = FirstName.compare(string1);
+            int comparatorLastName = LastName.compare(string2);
+            if ((comparatorFirstName == 0) && (comparatorLastName == 0))
+            {
+                storeDom.push_back(current->domesticStudent);
+            }
+            current = current->next;
+        }
+    }
+
+    if (storeDom.size() == 0)
+    {
+        found = false;
+    }
+    else
+    {
+        found = true;
+    }
+    return found;
 }
 
 void DomFindName(DomesticStudentList *Stu, string FirstName, string LastName) // O(n^2) time complexity

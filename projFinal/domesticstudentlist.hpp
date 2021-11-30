@@ -15,6 +15,7 @@ protected:
     friend void DomFindCGPA(DomesticStudentList *Stu1, float CGPA_VALUE);
     friend void DomFindResearchScore(DomesticStudentList *Stu1, int researchScore_VALUE);
     friend void DomFindUID(DomesticStudentList *Stu1, int UIDValue);
+    bool inList(DomesticStudentList *Stu, string FirstName, string LastName);
 
 public:
     Domestic domesticStudent;

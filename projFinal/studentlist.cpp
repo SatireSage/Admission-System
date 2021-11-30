@@ -11,54 +11,63 @@ void StudentList::deleteMerge(StudentList **head_ref, string FirstName, string L
 {
     transform(FirstName.begin(), FirstName.end(), FirstName.begin(), ::tolower);
     transform(LastName.begin(), LastName.end(), LastName.begin(), ::tolower);
+    bool exists = (*head_ref)->inList((*head_ref), FirstName, LastName);
 
-    for (int i = 0; i < 2; i++)
+    if (exists == 1)
+
     {
-        StudentList *temp = *head_ref;
-        StudentList *prev = NULL;
-
-        string fname, lname;
-        fname = temp->Students.getFirstName();
-        lname = temp->Students.getLastName();
-        transform(fname.begin(), fname.end(), fname.begin(), ::tolower);
-        transform(lname.begin(), lname.end(), lname.begin(), ::tolower);
-
-        if (temp != NULL && fname == FirstName && lname == LastName)
+        for (int i = 0; i < 2; i++)
         {
-            *head_ref = temp->next; // Changed head
-            delete temp;            // free old head
+            StudentList *temp = *head_ref;
+            StudentList *prev = NULL;
 
-            StudentList *second_last = *head_ref;
-            while (second_last->next != NULL)
-                second_last = second_last->next;
-            (*head_ref)->head = second_last->head;
-            (*head_ref)->tail = second_last;
-            return;
-        }
+            string fname, lname;
+            fname = temp->Students.getFirstName();
+            lname = temp->Students.getLastName();
+            transform(fname.begin(), fname.end(), fname.begin(), ::tolower);
+            transform(lname.begin(), lname.end(), lname.begin(), ::tolower);
 
-        else
-        {
-            while (temp != NULL && fname != FirstName && lname != LastName)
+            if (temp != NULL && fname == FirstName && lname == LastName)
             {
-                prev = temp;
-                temp = temp->next;
-                fname = temp->Students.getFirstName();
-                lname = temp->Students.getLastName();
-                transform(fname.begin(), fname.end(), fname.begin(), ::tolower);
-                transform(lname.begin(), lname.end(), lname.begin(), ::tolower);
+                *head_ref = temp->next; // Changed head
+                delete temp;            // free old head
+
+                StudentList *second_last = *head_ref;
+                while (second_last->next != NULL)
+                    second_last = second_last->next;
+                (*head_ref)->head = second_last->head;
+                (*head_ref)->tail = second_last;
+                return;
             }
 
-            if (temp == NULL)
-                return;
+            else
+            {
+                while (temp != NULL && fname != FirstName && lname != LastName)
+                {
+                    prev = temp;
+                    temp = temp->next;
+                    fname = temp->Students.getFirstName();
+                    lname = temp->Students.getLastName();
+                    transform(fname.begin(), fname.end(), fname.begin(), ::tolower);
+                    transform(lname.begin(), lname.end(), lname.begin(), ::tolower);
+                }
 
-            prev->next = temp->next;
-            delete temp;
-            StudentList *second_last = *head_ref;
-            while (second_last->next != NULL)
-                second_last = second_last->next;
-            (*head_ref)->head = second_last->head;
-            (*head_ref)->tail = second_last;
+                if (temp == NULL)
+                    return;
+
+                prev->next = temp->next;
+                delete temp;
+                StudentList *second_last = *head_ref;
+                while (second_last->next != NULL)
+                    second_last = second_last->next;
+                (*head_ref)->head = second_last->head;
+                (*head_ref)->tail = second_last;
+            }
         }
+    }
+    else
+    {
+        return;
     }
 }
 
@@ -96,6 +105,57 @@ void StudentList::appendMerge(StudentList **root, Student item) // O(n) time com
         std::cout << "Warning: Bad memory allocation!";
         exit(1);
     }
+}
+
+bool StudentList::inList(StudentList *Stu, string FirstName, string LastName)
+{
+    bool found;
+    string string1, string2;
+    StudentList *current;
+    vector<Student> storeStu;
+
+    if (Stu == nullptr)
+    {
+        cout << "\n Does not exist.";
+    }
+    else
+    {
+        current = Stu;
+        while (current != NULL)
+        {
+            string1 = current->Students.getFirstName();
+            string2 = current->Students.getLastName();
+            for (int i = 0; i < string1.size(); i++)
+                if (string1[i] >= 'a' && string1[i] <= 'z')
+                    string1[i] -= ('a' - 'A');
+            for (int i = 0; i < FirstName.size(); i++)
+                if (FirstName[i] >= 'a' && FirstName[i] <= 'z')
+                    FirstName[i] -= ('a' - 'A');
+            for (int i = 0; i < string2.size(); i++)
+                if (string2[i] >= 'a' && string2[i] <= 'z')
+                    string2[i] -= ('a' - 'A');
+            for (int i = 0; i < LastName.size(); i++)
+                if (LastName[i] >= 'a' && LastName[i] <= 'z')
+                    LastName[i] -= ('a' - 'A');
+            int comparatorFirstName = FirstName.compare(string1);
+            int comparatorLastName = LastName.compare(string2);
+            if ((comparatorFirstName == 0) && (comparatorLastName == 0))
+            {
+                storeStu.push_back(current->Students);
+            }
+            current = current->next;
+        }
+    }
+
+    if (storeStu.size() == 0)
+    {
+        found = false;
+    }
+    else
+    {
+        found = true;
+    }
+    return found;
 }
 
 void FindName(StudentList *Stu, string FirstName, string LastName) // O(n^2) time complexity
