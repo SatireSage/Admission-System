@@ -587,7 +587,8 @@ int main() // main function
                   }
                   cin.clear();
                   cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                  cout << "Please enter a valid 2 letter prefix for a Canadian province" << endl;
+                  cout << "Please enter a valid 2 letter prefix for a Canadian province" << endl
+                       << ">> ";
                 }
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -603,7 +604,8 @@ int main() // main function
                     break;
                   }
 
-                  cout << "Please enter a valid CGPA" << endl;
+                  cout << "Please enter a valid CGPA" << endl
+                       << ">> ";
                 }
                 check = false;
                 cout << "Please enter research score" << endl
@@ -618,7 +620,8 @@ int main() // main function
                   }
                   else
                   {
-                    cout << "Please enter a valid research score" << endl;
+                    cout << "Please enter a valid research score" << endl
+                         << ">> ";
                   }
                 }
                 typeVal = "Domestic";
@@ -688,7 +691,8 @@ int main() // main function
                   }
                   else
                   {
-                    cout << "Please enter a valid CGPA" << endl;
+                    cout << "Please enter a valid CGPA" << endl
+                         << ">> ";
                   }
                 }
                 check = false;
@@ -705,7 +709,8 @@ int main() // main function
                   }
                   else
                   {
-                    cout << "Please enter a valid research score" << endl;
+                    cout << "Please enter a valid research score" << endl
+                         << ">> ";
                   }
                 }
                 check = false;
@@ -722,7 +727,8 @@ int main() // main function
                   }
                   else
                   {
-                    cout << "Please enter a valid reading score" << endl;
+                    cout << "Please enter a valid reading score" << endl
+                         << ">> ";
                   }
                 }
                 check = false;
@@ -739,7 +745,8 @@ int main() // main function
                   }
                   else
                   {
-                    cout << "Please enter a valid listening score" << endl;
+                    cout << "Please enter a valid listening score" << endl
+                         << ">> ";
                   }
                 }
                 check = false;
@@ -756,7 +763,8 @@ int main() // main function
                   }
                   else
                   {
-                    cout << "Please enter a valid speaking score" << endl;
+                    cout << "Please enter a valid speaking score" << endl
+                         << ">> ";
                   }
                 }
                 check = false;
@@ -773,7 +781,8 @@ int main() // main function
                   }
                   else
                   {
-                    cout << "Please enter a valid writing score" << endl;
+                    cout << "Please enter a valid writing score" << endl
+                         << ">> ";
                   }
                 }
                 typeVal = "International";
@@ -1035,7 +1044,8 @@ int main() // main function
                   }
                   else
                   {
-                    cout << "Please enter a valid CGPA" << endl;
+                    cout << "Please enter a valid CGPA" << endl
+                         << ">> ";
                   }
                 }
               }
@@ -1079,16 +1089,32 @@ int main() // main function
                   }
                   else
                   {
-                    cout << "Please enter a valid score" << endl;
+                    cout << "Please enter a valid score" << endl
+                         << ">> ";
                   }
                 }
               }
               if (subMenu == 4)
               {
+              UIDChecker:
                 int tempNum;
                 cout << "Please enter UID" << endl
                      << ">> ";
                 tempNum = Get_Number();
+                string tempStr = to_string(tempNum);
+                if (tempStr.size() <= 8)
+                {
+                  if (tempStr[0] != '2' || tempStr[1] != '0' || tempStr[2] != '2' || tempStr[3] != '1')
+                  {
+                    cout << "Warning: Wrong UID Format. Please try again" << endl;
+                    goto UIDChecker;
+                  }
+                }
+                else
+                {
+                  cout << "Warning: Wrong UID Format. Please try again" << endl;
+                  goto UIDChecker;
+                }
                 if (delMenu == 1)
                 {
                   cout << setw(12) << left << "UID: ";
@@ -1368,7 +1394,8 @@ int main() // main function
                   }
                   else
                   {
-                    cout << "Please enter a valid CGPA" << endl;
+                    cout << "Please enter a valid CGPA" << endl
+                         << ">> ";
                   }
                 }
               }
@@ -1404,7 +1431,8 @@ int main() // main function
                   }
                   else
                   {
-                    cout << "Please enter a valid Research Score" << endl;
+                    cout << "Please enter a valid Research Score" << endl
+                         << ">> ";
                   }
                 }
               }
