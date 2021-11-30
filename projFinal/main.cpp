@@ -934,6 +934,7 @@ int main() // main function
                 cout << "\nHead is: " << DomHead->head->domesticStudent;
                 cout << "Tail is: " << DomHead->tail->domesticStudent;
                 cout << endl;
+                MergeSortAll(&StuHead);
                 StuHead->deleteMerge(&StuHead, DomHead->head->domesticStudent.getFirstName(), DomHead->head->domesticStudent.getLastName());
                 StuHead->deleteMerge(&StuHead, DomHead->tail->domesticStudent.getFirstName(), DomHead->tail->domesticStudent.getLastName());
                 StuHead->updateMergeHD(&StuHead);
@@ -950,6 +951,7 @@ int main() // main function
                 cout << "\nHead is: " << IntHead->head->internationalStudent;
                 cout << "Tail is: " << IntHead->tail->internationalStudent;
                 cout << endl;
+                MergeSortAll(&StuHead);
                 StuHead->deleteMerge(&StuHead, IntHead->head->internationalStudent.getFirstName(), IntHead->head->internationalStudent.getLastName());
                 StuHead->deleteMerge(&StuHead, IntHead->tail->internationalStudent.getFirstName(), IntHead->tail->internationalStudent.getLastName());
                 IntHead->deleteIntHD(&IntHead);

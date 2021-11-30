@@ -14,9 +14,8 @@ void StudentList::deleteMerge(StudentList **head_ref, string FirstName, string L
     bool exists = (*head_ref)->inList((*head_ref), FirstName, LastName);
 
     if (exists == 1)
-
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 1; i++)
         {
             StudentList *temp = *head_ref;
             StudentList *prev = NULL;
