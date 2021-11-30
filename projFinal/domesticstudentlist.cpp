@@ -8,39 +8,42 @@ using namespace std; // use namespace std
 
 void DomesticStudentList::deleteDom(DomesticStudentList **head_ref, string FirstName, string LastName) // O(n) time complexity
 {
-    DomesticStudentList *temp = *head_ref;
-    DomesticStudentList *prev = NULL;
-
-    if (temp != NULL && temp->domesticStudent.getFirstName() == FirstName && temp->domesticStudent.getLastName() == LastName)
+    for (int i = 0; i < 2; i++)
     {
-        *head_ref = temp->next; // Changed head
-        delete temp;            // free old head
+        DomesticStudentList *temp = *head_ref;
+        DomesticStudentList *prev = NULL;
 
-        DomesticStudentList *second_last = *head_ref;
-        while (second_last->next != NULL)
-            second_last = second_last->next;
-        (*head_ref)->head = second_last->head;
-        (*head_ref)->tail = second_last;
-        return;
-    }
-    else
-    {
-        while (temp != NULL && temp->domesticStudent.getFirstName() != FirstName && temp->domesticStudent.getLastName() != LastName)
+        if (temp != NULL && temp->domesticStudent.getFirstName() == FirstName && temp->domesticStudent.getLastName() == LastName)
         {
-            prev = temp;
-            temp = temp->next;
-        }
+            *head_ref = temp->next; // Changed head
+            delete temp;            // free old head
 
-        if (temp == NULL)
+            DomesticStudentList *second_last = *head_ref;
+            while (second_last->next != NULL)
+                second_last = second_last->next;
+            (*head_ref)->head = second_last->head;
+            (*head_ref)->tail = second_last;
             return;
+        }
+        else
+        {
+            while (temp != NULL && temp->domesticStudent.getFirstName() != FirstName && temp->domesticStudent.getLastName() != LastName)
+            {
+                prev = temp;
+                temp = temp->next;
+            }
 
-        prev->next = temp->next;
-        delete temp;
-        DomesticStudentList *second_last = *head_ref;
-        while (second_last->next != NULL)
-            second_last = second_last->next;
-        (*head_ref)->head = temp->head;
-        (*head_ref)->tail = second_last;
+            if (temp == NULL)
+                return;
+
+            prev->next = temp->next;
+            delete temp;
+            DomesticStudentList *second_last = *head_ref;
+            while (second_last->next != NULL)
+                second_last = second_last->next;
+            (*head_ref)->head = temp->head;
+            (*head_ref)->tail = second_last;
+        }
     }
 }
 

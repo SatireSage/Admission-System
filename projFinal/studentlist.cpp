@@ -8,40 +8,43 @@ using namespace std; // use namespace std
 
 void StudentList::deleteMerge(StudentList **head_ref, string FirstName, string LastName) // O(n) time complexity
 {
-    StudentList *temp = *head_ref;
-    StudentList *prev = NULL;
-
-    if (temp != NULL && temp->Students.getFirstName() == FirstName && temp->Students.getLastName() == LastName)
+    for (int i = 0; i < 2; i++)
     {
-        *head_ref = temp->next; // Changed head
-        delete temp;            // free old head
+        StudentList *temp = *head_ref;
+        StudentList *prev = NULL;
 
-        StudentList *second_last = *head_ref;
-        while (second_last->next != NULL)
-            second_last = second_last->next;
-        (*head_ref)->head = second_last->head;
-        (*head_ref)->tail = second_last;
-        return;
-    }
-
-    else
-    {
-        while (temp != NULL && temp->Students.getFirstName() != FirstName && temp->Students.getLastName() != LastName)
+        if (temp != NULL && temp->Students.getFirstName() == FirstName && temp->Students.getLastName() == LastName)
         {
-            prev = temp;
-            temp = temp->next;
+            *head_ref = temp->next; // Changed head
+            delete temp;            // free old head
+
+            StudentList *second_last = *head_ref;
+            while (second_last->next != NULL)
+                second_last = second_last->next;
+            (*head_ref)->head = second_last->head;
+            (*head_ref)->tail = second_last;
+            return;
         }
 
-        if (temp == NULL)
-            return;
+        else
+        {
+            while (temp != NULL && temp->Students.getFirstName() != FirstName && temp->Students.getLastName() != LastName)
+            {
+                prev = temp;
+                temp = temp->next;
+            }
 
-        prev->next = temp->next;
-        delete temp;
-        StudentList *second_last = *head_ref;
-        while (second_last->next != NULL)
-            second_last = second_last->next;
-        (*head_ref)->head = second_last->head;
-        (*head_ref)->tail = second_last;
+            if (temp == NULL)
+                return;
+
+            prev->next = temp->next;
+            delete temp;
+            StudentList *second_last = *head_ref;
+            while (second_last->next != NULL)
+                second_last = second_last->next;
+            (*head_ref)->head = second_last->head;
+            (*head_ref)->tail = second_last;
+        }
     }
 }
 
