@@ -3,17 +3,27 @@
 #include "stu_sort.hpp"
 #include <iomanip>
 #include <iostream>
+#include <algorithm>
 #include <vector>
 using namespace std; // use namespace std
 
 void DomesticStudentList::deleteDom(DomesticStudentList **head_ref, string FirstName, string LastName) // O(n) time complexity
 {
+    transform(FirstName.begin(), FirstName.end(), FirstName.begin(), ::tolower);
+    transform(LastName.begin(), LastName.end(), LastName.begin(), ::tolower);
+
     for (int i = 0; i < 2; i++)
     {
         DomesticStudentList *temp = *head_ref;
         DomesticStudentList *prev = NULL;
 
-        if (temp != NULL && temp->domesticStudent.getFirstName() == FirstName && temp->domesticStudent.getLastName() == LastName)
+        string fname, lname;
+        fname = temp->domesticStudent.getFirstName();
+        lname = temp->domesticStudent.getLastName();
+        transform(fname.begin(), fname.end(), fname.begin(), ::tolower);
+        transform(lname.begin(), lname.end(), lname.begin(), ::tolower);
+
+        if (temp != NULL && fname == FirstName && lname == LastName)
         {
             *head_ref = temp->next; // Changed head
             delete temp;            // free old head
@@ -27,10 +37,14 @@ void DomesticStudentList::deleteDom(DomesticStudentList **head_ref, string First
         }
         else
         {
-            while (temp != NULL && temp->domesticStudent.getFirstName() != FirstName && temp->domesticStudent.getLastName() != LastName)
+            while (temp != NULL && fname != FirstName && lname != LastName)
             {
                 prev = temp;
                 temp = temp->next;
+                fname = temp->domesticStudent.getFirstName();
+                lname = temp->domesticStudent.getLastName();
+                transform(fname.begin(), fname.end(), fname.begin(), ::tolower);
+                transform(lname.begin(), lname.end(), lname.begin(), ::tolower);
             }
 
             if (temp == NULL)

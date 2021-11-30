@@ -3,17 +3,27 @@
 #include "stu_sort.hpp"
 #include <iomanip>
 #include <iostream>
+#include <algorithm>
 #include <vector>
 using namespace std; // use namespace std
 
 void StudentList::deleteMerge(StudentList **head_ref, string FirstName, string LastName) // O(n) time complexity
 {
+    transform(FirstName.begin(), FirstName.end(), FirstName.begin(), ::tolower);
+    transform(LastName.begin(), LastName.end(), LastName.begin(), ::tolower);
+
     for (int i = 0; i < 2; i++)
     {
         StudentList *temp = *head_ref;
         StudentList *prev = NULL;
 
-        if (temp != NULL && temp->Students.getFirstName() == FirstName && temp->Students.getLastName() == LastName)
+        string fname, lname;
+        fname = temp->Students.getFirstName();
+        lname = temp->Students.getLastName();
+        transform(fname.begin(), fname.end(), fname.begin(), ::tolower);
+        transform(lname.begin(), lname.end(), lname.begin(), ::tolower);
+
+        if (temp != NULL && fname == FirstName && lname == LastName)
         {
             *head_ref = temp->next; // Changed head
             delete temp;            // free old head
@@ -32,6 +42,10 @@ void StudentList::deleteMerge(StudentList **head_ref, string FirstName, string L
             {
                 prev = temp;
                 temp = temp->next;
+                fname = temp->Students.getFirstName();
+                lname = temp->Students.getLastName();
+                transform(fname.begin(), fname.end(), fname.begin(), ::tolower);
+                transform(lname.begin(), lname.end(), lname.begin(), ::tolower);
             }
 
             if (temp == NULL)
