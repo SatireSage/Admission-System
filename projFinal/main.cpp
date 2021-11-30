@@ -865,7 +865,6 @@ int main() // main function
                   IntFindName(IntHead, first, last);
                   MergeSortInt(&IntHead);
                   IntHead->deleteInt(&IntHead, first, last);
-                  IntHead->deleteInt(&IntHead, first, last);
                   MergeSortInt(&IntHead);
                   IntHead->updateIntHD(&IntHead);
                   MergeSortAll(&StuHead);
@@ -876,7 +875,6 @@ int main() // main function
                   {
                     cout << "Deleting from filtered: " << endl;
                     MergeSortInt(&IntHeadFiltered);
-                    IntHeadFiltered->deleteInt(&IntHeadFiltered, first, last);
                     IntHeadFiltered->deleteInt(&IntHeadFiltered, first, last);
                     MergeSortInt(&IntHeadFiltered);
                     IntHeadFiltered->updateIntHD(&IntHeadFiltered);
@@ -1243,10 +1241,8 @@ int main() // main function
               {
                 cout << "Deleting from filtered: " << endl;
                 IntHead->deleteInt(&IntHead, "NotJohn", "Doe");
-                IntHead->deleteInt(&IntHead, "NotJohn", "Doe");
                 MergeSortInt(&IntHead);
                 IntHead->updateIntHD(&IntHead);
-                IntHeadFiltered->deleteInt(&IntHeadFiltered, "NotJohn", "Doe");
                 IntHeadFiltered->deleteInt(&IntHeadFiltered, "NotJohn", "Doe");
                 MergeSortInt(&IntHeadFiltered);
                 IntHeadFiltered->updateIntHD(&IntHeadFiltered);
@@ -1261,7 +1257,6 @@ int main() // main function
               else if (deleteInt == "Rejected")
               {
                 cout << "Deleting from rejected: " << endl;
-                IntHead->deleteInt(&IntHead, "NotJohn", "Doe");
                 IntHead->deleteInt(&IntHead, "NotJohn", "Doe");
                 MergeSortInt(&IntHead);
                 IntHead->updateIntHD(&IntHead);

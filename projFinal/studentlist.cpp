@@ -9,14 +9,15 @@ using namespace std; // use namespace std
 
 void StudentList::deleteMerge(StudentList **headNode, string FirstName, string LastName) // O(n) time complexity
 {
-    transform(FirstName.begin(), FirstName.end(), FirstName.begin(), ::tolower);
-    transform(LastName.begin(), LastName.end(), LastName.begin(), ::tolower);
-    bool exists = (*headNode)->inList((*headNode), FirstName, LastName);
-
-    if (exists == 1)
+    for (int i = 0; i < 2; i++)
     {
-        for (int i = 0; i < 1; i++)
+        transform(FirstName.begin(), FirstName.end(), FirstName.begin(), ::tolower);
+        transform(LastName.begin(), LastName.end(), LastName.begin(), ::tolower);
+        bool exists = (*headNode)->inList((*headNode), FirstName, LastName);
+
+        if (exists == 1)
         {
+
             StudentList *temp = *headNode;
             StudentList *prev = NULL;
 
@@ -63,10 +64,10 @@ void StudentList::deleteMerge(StudentList **headNode, string FirstName, string L
                 (*headNode)->tail = second_last;
             }
         }
-    }
-    else
-    {
-        return;
+        else
+        {
+            return;
+        }
     }
 }
 
