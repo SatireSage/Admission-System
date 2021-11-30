@@ -15,7 +15,7 @@ void InternationalStudentList::deleteInt(InternationalStudentList **head_ref, st
 
     if (exists == 1)
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 1; i++)
         {
             InternationalStudentList *temp = *head_ref;
             InternationalStudentList *prev = NULL;

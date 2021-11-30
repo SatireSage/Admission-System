@@ -865,6 +865,7 @@ int main() // main function
                   IntFindName(IntHead, first, last);
                   MergeSortInt(&IntHead);
                   IntHead->deleteInt(&IntHead, first, last);
+                  IntHead->deleteInt(&IntHead, first, last);
                   MergeSortInt(&IntHead);
                   IntHead->updateIntHD(&IntHead);
                   MergeSortAll(&StuHead);
@@ -875,6 +876,7 @@ int main() // main function
                   {
                     cout << "Deleting from filtered: " << endl;
                     MergeSortInt(&IntHeadFiltered);
+                    IntHeadFiltered->deleteInt(&IntHeadFiltered, first, last);
                     IntHeadFiltered->deleteInt(&IntHeadFiltered, first, last);
                     MergeSortInt(&IntHeadFiltered);
                     IntHeadFiltered->updateIntHD(&IntHeadFiltered);
@@ -945,17 +947,16 @@ int main() // main function
               else
               {
                 cout << "New Head and Tail students are: " << endl;
-                cout << "\nHead is: " << IntHeadFiltered->head->internationalStudent;
-                cout << "Tail is: " << IntHeadFiltered->tail->internationalStudent;
+                cout << "\nHead is: " << IntHead->head->internationalStudent;
+                cout << "Tail is: " << IntHead->tail->internationalStudent;
                 cout << endl;
-                StuHead->deleteMerge(&StuHead, IntHeadFiltered->head->internationalStudent.getFirstName(), IntHeadFiltered->head->internationalStudent.getLastName());
-                StuHead->deleteMerge(&StuHead, IntHeadFiltered->tail->internationalStudent.getFirstName(), IntHeadFiltered->tail->internationalStudent.getLastName());
-                StuHead->updateMergeHD(&StuHead);
-                IntHeadFiltered->deleteIntHD(&IntHeadFiltered);
-                IntHeadFiltered->updateIntHD(&IntHeadFiltered);
+                StuHead->deleteMerge(&StuHead, IntHead->head->internationalStudent.getFirstName(), IntHead->head->internationalStudent.getLastName());
+                StuHead->deleteMerge(&StuHead, IntHead->tail->internationalStudent.getFirstName(), IntHead->tail->internationalStudent.getLastName());
+                IntHead->deleteIntHD(&IntHead);
+                IntHead->updateIntHD(&IntHead);
                 cout << "New Head and Tail students are: " << endl;
-                cout << "\nHead is: " << IntHeadFiltered->head->internationalStudent;
-                cout << "Tail is: " << IntHeadFiltered->tail->internationalStudent;
+                cout << "\nHead is: " << IntHead->head->internationalStudent;
+                cout << "Tail is: " << IntHead->tail->internationalStudent;
                 cout << endl;
               }
               cout << "Returning to main menu" << endl;
@@ -1240,8 +1241,10 @@ int main() // main function
               {
                 cout << "Deleting from filtered: " << endl;
                 IntHead->deleteInt(&IntHead, "NotJohn", "Doe");
+                IntHead->deleteInt(&IntHead, "NotJohn", "Doe");
                 MergeSortInt(&IntHead);
                 IntHead->updateIntHD(&IntHead);
+                IntHeadFiltered->deleteInt(&IntHeadFiltered, "NotJohn", "Doe");
                 IntHeadFiltered->deleteInt(&IntHeadFiltered, "NotJohn", "Doe");
                 MergeSortInt(&IntHeadFiltered);
                 IntHeadFiltered->updateIntHD(&IntHeadFiltered);
@@ -1256,6 +1259,7 @@ int main() // main function
               else if (deleteInt == "Rejected")
               {
                 cout << "Deleting from rejected: " << endl;
+                IntHead->deleteInt(&IntHead, "NotJohn", "Doe");
                 IntHead->deleteInt(&IntHead, "NotJohn", "Doe");
                 MergeSortInt(&IntHead);
                 IntHead->updateIntHD(&IntHead);
