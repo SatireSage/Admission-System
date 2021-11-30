@@ -926,13 +926,20 @@ int main() // main function
               }
               if (delMenu == 1)
               {
+                MergeSortAll(&StuHead);
+                StuHead->deleteMerge(&StuHead, DomHead->head->domesticStudent.getFirstName(), DomHead->head->domesticStudent.getLastName());
+                StuHead->deleteMerge(&StuHead, DomHead->tail->domesticStudent.getFirstName(), DomHead->tail->domesticStudent.getLastName());
+                StuHead->updateMergeHD(&StuHead);
                 DomHead->deleteDomHD(&DomHead);
                 DomHead->updateDomHD(&DomHead);
               }
               else
               {
-                IntHead->deleteIntHD(&IntHead);
-                IntHead->updateIntHD(&IntHead);
+                StuHead->deleteMerge(&StuHead, IntHeadFiltered->head->internationalStudent.getFirstName(), IntHeadFiltered->head->internationalStudent.getLastName());
+                StuHead->deleteMerge(&StuHead, IntHeadFiltered->tail->internationalStudent.getFirstName(), IntHeadFiltered->tail->internationalStudent.getLastName());
+                StuHead->updateMergeHD(&StuHead);
+                IntHeadFiltered->deleteIntHD(&IntHeadFiltered);
+                IntHeadFiltered->updateIntHD(&IntHeadFiltered);
               }
               cout << "Returning to main menu" << endl;
             }
