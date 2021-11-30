@@ -472,7 +472,7 @@ int main() // main function
                 cout << setw(14) << left << "First Name: "
                      << " " << setw(17) << left << "Last Name: ";
                 cout << setw(10) << left << "CGPA: ";
-                cout << setw(6) << left << "RS: " << endl;
+                cout << setw(6) << left << "RS: ";
                 cout << setw(4) << left << "Type: " << endl;
                 StuHead->printMerge(StuHead);
                 cout << "\nHead is: " << StuHead->head->Students;
