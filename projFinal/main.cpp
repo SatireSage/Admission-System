@@ -473,6 +473,7 @@ int main() // main function
                      << " " << setw(17) << left << "Last Name: ";
                 cout << setw(10) << left << "CGPA: ";
                 cout << setw(6) << left << "RS: " << endl;
+                cout << setw(4) << left << "Type: " << endl;
                 StuHead->printMerge(StuHead);
                 cout << "\nHead is: " << StuHead->head->Students;
                 cout << "Tail is: " << StuHead->tail->Students;
@@ -630,6 +631,8 @@ int main() // main function
                 MergeSortDom(&DomHead);
                 DomHead->updateDomHD(&DomHead);
                 StuHead->appendMerge(&StuHead, NewStudentDom);
+                MergeSortAll(&StuHead);
+                StuHead->updateMergeHD(&StuHead);
               }
               if (user_choice == 2)
               {
@@ -940,7 +943,7 @@ int main() // main function
               cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
               cout << "Please select one of the following:\n"
                    << "Select 1: to search Domestic Student\n"
-                   << "Select 2: to seatch International Student\n"
+                   << "Select 2: to search International Student\n"
                    << ">> ";
               delMenu = Get_Number();
               if (delMenu != 1 && delMenu != 2)
@@ -1347,8 +1350,8 @@ int main() // main function
               cout << "\n-----------------------------------------------------------------------------------------------------------------------\n";
               cout << "Please select one of the following:\n"
                    << "Select 1: to search Domestic Student\n"
-                   << "Select 2: to seatch International Student\n"
-                   << "Select 3: to seatch all Students\n"
+                   << "Select 2: to search International Student\n"
+                   << "Select 3: to search all Students\n"
                    << ">> ";
               threshMenu = Get_Number();
               if (threshMenu != 1 && threshMenu != 2 && threshMenu != 3)
@@ -1360,7 +1363,7 @@ int main() // main function
               bool ASKcgpa = false, ASKRScore = false;
               string checkCGPA, checkRSCORE;
               int threshRS;
-              double threshCGPA;
+              float threshCGPA;
               cout << "Would you like to sort by cpga? Use Y/N (yes or no) to proceed." << endl
                    << ">> ";
               cin >> checkCGPA;
@@ -1464,15 +1467,15 @@ int main() // main function
               {
                 if (threshMenu == 1)
                 {
-                  DomHead->threshold(DomHead, threshCGPA, threshRS);
+                  DomHead->threshold(DomHead, threshCGPA);
                 }
                 else if (threshMenu == 2)
                 {
-                  IntHeadFiltered->threshold(IntHeadFiltered, threshCGPA, threshRS);
+                  IntHeadFiltered->threshold(IntHeadFiltered, threshCGPA);
                 }
                 else if (threshMenu == 3)
                 {
-                  StuHead->threshold(StuHead, threshCGPA, threshRS);
+                  StuHead->threshold(StuHead, threshCGPA);
                 }
               }
               else if (!ASKcgpa && ASKRScore)
