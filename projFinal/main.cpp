@@ -240,7 +240,7 @@ int main() // main function
             if (country == "Idian")
             {
               // output warning message
-              cout << "Warning Error: India was misspelled.\n Error Corrected.\n";
+              cout << "Import Warning Error: India was misspelled. Error Corrected.\n";
               country = "India";
               InternationalStudents[j].setCountry(country);
             }
@@ -389,7 +389,7 @@ int main() // main function
               menu_selector = Get_Number(); // get user_input
               cout << "-----------------------------------------------------------------------------------------------------------------------\n";
             }
-            if (menu_selector < 0 || menu_selector > 12)
+            if (menu_selector < 0 || menu_selector > 11)
             {
               cout << "You have selected an invalid menu option. Returning to main menu.\n"; // If user selects invalid menu slection, print error and return to menu
             }
@@ -1102,7 +1102,7 @@ int main() // main function
                      << ">> ";
                 tempNum = Get_Number();
                 string tempStr = to_string(tempNum);
-                if (tempStr.size() <= 8)
+                if (tempStr.size() == 8)
                 {
                   if (tempStr[0] != '2' || tempStr[1] != '0' || tempStr[2] != '2' || tempStr[3] != '1')
                   {
@@ -1359,9 +1359,9 @@ int main() // main function
             ASKOne:
               bool ASKcgpa = false, ASKRScore = false;
               string checkCGPA, checkRSCORE;
-              int threshRS, tempNum;
+              int threshRS;
               double threshCGPA;
-              cout << "Would you like to scort by cpga? Use Y/N (yes or no) to proceed." << endl
+              cout << "Would you like to sort by cpga? Use Y/N (yes or no) to proceed." << endl
                    << ">> ";
               cin >> checkCGPA;
               if (checkCGPA == "Y" || checkCGPA == "y" || checkCGPA == "YES" || checkCGPA == "yes" || checkCGPA == "Yes") // Various forms of the so called term "yes" to agree to the terms of exiting the program
@@ -1376,7 +1376,8 @@ int main() // main function
               {
                 goto ASKOne;
               }
-
+              cin.clear();
+              cin.ignore(numeric_limits<streamsize>::max(), '\n');
               if (ASKcgpa)
               {
                 cout << "Please enter minimum CGPA" << endl
@@ -1384,8 +1385,6 @@ int main() // main function
                 while (true)
                 {
                   double tempDouble;
-                  cin.clear();
-                  cin.ignore(numeric_limits<streamsize>::max(), '\n');
                   tempDouble = Get_Double();
                   threshCGPA = float(int(tempDouble * 10 + 0.5)) / 10;
                   if (threshCGPA < 4.31 && threshCGPA > 0)
@@ -1399,7 +1398,8 @@ int main() // main function
                   }
                 }
               }
-              cout << "Would you like to scort by research score? Use Y/N (yes or no) to proceed." << endl
+            ASKTwo:
+              cout << "Would you like to sort by research score? Use Y/N (yes or no) to proceed." << endl
                    << ">> ";
               cin >> checkRSCORE;
               if (checkRSCORE == "Y" || checkRSCORE == "y" || checkRSCORE == "YES" || checkRSCORE == "yes" || checkRSCORE == "Yes") // Various forms of the so called term "yes" to agree to the terms of exiting the program
@@ -1412,17 +1412,17 @@ int main() // main function
               }
               else
               {
-                goto ASKOne;
+                goto ASKTwo;
               }
-
+              cin.clear();
+              cin.ignore(numeric_limits<streamsize>::max(), '\n');
               if (ASKRScore)
               {
                 cout << "Please enter minimum Research Score" << endl
                      << ">> ";
                 while (true)
                 {
-                  cin.clear();
-                  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                  int tempNum;
                   tempNum = Get_Number();
                   if (tempNum <= 100 && tempNum >= 0)
                   {
@@ -1490,8 +1490,6 @@ int main() // main function
                   StuHead->threshold(StuHead, threshRS);
                 }
               }
-              cin.clear();
-              cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
 
             if (menu_selector == 11) // exit program prommpt

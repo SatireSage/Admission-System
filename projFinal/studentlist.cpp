@@ -38,7 +38,7 @@ void StudentList::deleteMerge(StudentList **head_ref, string FirstName, string L
 
         else
         {
-            while (temp != NULL && temp->Students.getFirstName() != FirstName && temp->Students.getLastName() != LastName)
+            while (temp != NULL && fname != FirstName && lname != LastName)
             {
                 prev = temp;
                 temp = temp->next;
