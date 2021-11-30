@@ -926,20 +926,35 @@ int main() // main function
               }
               if (delMenu == 1)
               {
-                MergeSortAll(&StuHead);
+                cout << "Current Head and Tail students are: " << endl;
+                cout << "\nHead is: " << DomHead->head->domesticStudent;
+                cout << "Tail is: " << DomHead->tail->domesticStudent;
+                cout << endl;
                 StuHead->deleteMerge(&StuHead, DomHead->head->domesticStudent.getFirstName(), DomHead->head->domesticStudent.getLastName());
                 StuHead->deleteMerge(&StuHead, DomHead->tail->domesticStudent.getFirstName(), DomHead->tail->domesticStudent.getLastName());
                 StuHead->updateMergeHD(&StuHead);
                 DomHead->deleteDomHD(&DomHead);
                 DomHead->updateDomHD(&DomHead);
+                cout << "New Head and Tail students are: " << endl;
+                cout << "\nHead is: " << DomHead->head->domesticStudent;
+                cout << "Tail is: " << DomHead->tail->domesticStudent;
+                cout << endl;
               }
               else
               {
+                cout << "New Head and Tail students are: " << endl;
+                cout << "\nHead is: " << IntHeadFiltered->head->internationalStudent;
+                cout << "Tail is: " << IntHeadFiltered->tail->internationalStudent;
+                cout << endl;
                 StuHead->deleteMerge(&StuHead, IntHeadFiltered->head->internationalStudent.getFirstName(), IntHeadFiltered->head->internationalStudent.getLastName());
                 StuHead->deleteMerge(&StuHead, IntHeadFiltered->tail->internationalStudent.getFirstName(), IntHeadFiltered->tail->internationalStudent.getLastName());
                 StuHead->updateMergeHD(&StuHead);
                 IntHeadFiltered->deleteIntHD(&IntHeadFiltered);
                 IntHeadFiltered->updateIntHD(&IntHeadFiltered);
+                cout << "New Head and Tail students are: " << endl;
+                cout << "\nHead is: " << IntHeadFiltered->head->internationalStudent;
+                cout << "Tail is: " << IntHeadFiltered->tail->internationalStudent;
+                cout << endl;
               }
               cout << "Returning to main menu" << endl;
             }
