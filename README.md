@@ -1,5 +1,8 @@
 # Graduate Admission System
 
+Authors:
+[Sahaj Singh](https://github.com/SatireSage), [Nicholas Mah](https://github.com/NickMoo5), [Zach Hsu](https://github.com/zach-hsu), [Daniel Yu](https://github.com/danielqyu)
+
 This repository contains the code for a graduate admission system implemented in C++ for both Domestic and International students. The admission system utilizes singly linked lists, and a variety of searching, insertion, and deletion functions, as well as unit tests and complexity analysis of sorting algorithms. The project is organized into four main parts:
 
 ## Part 1: Singly Linked List based System
